@@ -199,6 +199,8 @@
         UINavigationController *navControl = [segue destinationViewController];
         FilterViewController *filterViewController = (FilterViewController *)navControl.topViewController;
         filterViewController.delegate = self;
+        filterViewController.filterPreferences = self.filterArray;
+        filterViewController.getAdvice = self.getAdvice;
     }
 }
 

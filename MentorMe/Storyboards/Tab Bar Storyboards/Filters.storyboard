@@ -74,7 +74,7 @@
                     <navigationItem key="navigationItem" title="Filters" id="HT3-JX-dQ6">
                         <barButtonItem key="leftBarButtonItem" title="Back" id="Zwj-Rg-nUh">
                             <connections>
-                                <action selector="backAction:" destination="lUd-Iu-PGM" id="MQf-bb-frY"/>
+                                <action selector="backAction:" destination="lUd-Iu-PGM" id="4ww-yi-5YN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Confirm" id="wIv-Qb-3UX">
