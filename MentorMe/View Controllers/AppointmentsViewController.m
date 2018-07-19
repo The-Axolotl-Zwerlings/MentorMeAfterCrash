@@ -16,13 +16,19 @@
 
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *appointmentController;
+
 
 @end
+
+
 
 @implementation AppointmentsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.title = @"appointments";
     
     
     self.appointmentsTableView.delegate = self;
@@ -47,6 +53,18 @@
     [self.appointmentsTableView reloadData];
     
 }
+
+- (IBAction)decodeController:(id)sender {
+    
+    if (self.appointmentController.selectedSegmentIndex == 0) {
+        NSLog(@"Upcoming selected");
+        
+    } else if(self.appointmentController.selectedSegmentIndex == 1) {
+        NSLog(@"Past selected");
+    }
+    
+}
+
 
 - (void) fetchAppointments {
     
