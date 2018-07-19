@@ -1,0 +1,850 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5A93DD3343D8201C3DF38DC5 /* libPods-MentorMeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */; };
+		9FC714FCF36D31653200DA99 /* libPods-MentorMeUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63F95249E25064190E804E60 /* libPods-MentorMeUITests.a */; };
+		A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */; };
+		A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494B20FFA5B800DC129F /* AppointmentModel.m */; };
+		A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494E20FFA5C800DC129F /* InterestModel.m */; };
+		A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A495920FFAF8200DC129F /* DiscoverCell.m */; };
+		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
+		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
+		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
+		A883130820F28D5F00363E48 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130620F28D5F00363E48 /* LaunchScreen.storyboard */; };
+		A883130B20F28D5F00363E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A883130A20F28D5F00363E48 /* main.m */; };
+		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
+		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
+		C002266920FE5A11007D359B /* AppointmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */; };
+		C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */; };
+		C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C002266D20FE5B70007D359B /* ProfileViewController.m */; };
+		C002267020FE63BA007D359B /* SignUpViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266F20FE63BA007D359B /* SignUpViewController.storyboard */; };
+		C002267220FE64FD007D359B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002267120FE64FD007D359B /* Main.storyboard */; };
+		C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D899E20F7CA9900342B39 /* LoginViewController.m */; };
+		C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D89A420F7CE3D00342B39 /* SignUpViewController.m */; };
+		C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */; };
+		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
+		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
+		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
+		C0F1017B21011385009ADA47 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F1017921011384009ADA47 /* FilterViewController.m */; };
+		C0F1017D2101139A009ADA47 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F1017C2101139A009ADA47 /* Filters.storyboard */; };
+		C0F1018021011471009ADA47 /* DiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F1017F21011471009ADA47 /* DiscoverTableViewController.m */; };
+		C0F10182210114B3009ADA47 /* DiscoverTableViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F10181210114B3009ADA47 /* DiscoverTableViewStoryboard.storyboard */; };
+		FE4AE2B2B579EAC022338C7C /* libPods-MentorMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A883131120F28D5F00363E48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A88312F020F28D5C00363E48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A88312F720F28D5C00363E48;
+			remoteInfo = MentorMe;
+		};
+		A883131C20F28D5F00363E48 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A88312F020F28D5C00363E48 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A88312F720F28D5C00363E48;
+			remoteInfo = MentorMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		14FFF7CCDA154F8B2460B8B7 /* Pods-MentorMeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMeUITests/Pods-MentorMeUITests.release.xcconfig"; sourceTree = "<group>"; };
+		2A0F31EB3C37DFDA797EF18C /* Pods-MentorMeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMeTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMeTests/Pods-MentorMeTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D959AD740970DE50263A7EF /* Pods-MentorMe.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMe.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMe/Pods-MentorMe.debug.xcconfig"; sourceTree = "<group>"; };
+		5E8695638031164B8B3EA787 /* Pods-MentorMeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMeTests/Pods-MentorMeTests.release.xcconfig"; sourceTree = "<group>"; };
+		63F95249E25064190E804E60 /* libPods-MentorMeUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMeUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		644A9C9A2B69BAA56AAD9E66 /* Pods-MentorMeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMeUITests/Pods-MentorMeUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9BFB1FC76E501007979CC5A1 /* Pods-MentorMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MentorMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-MentorMe/Pods-MentorMe.release.xcconfig"; sourceTree = "<group>"; };
+		A82A494720FFA3FE00DC129F /* PFUser+ExtendedUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PFUser+ExtendedUser.h"; sourceTree = "<group>"; };
+		A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PFUser+ExtendedUser.m"; sourceTree = "<group>"; };
+		A82A494A20FFA5B800DC129F /* AppointmentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
+		A82A494B20FFA5B800DC129F /* AppointmentModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentModel.m; sourceTree = "<group>"; };
+		A82A494D20FFA5C800DC129F /* InterestModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InterestModel.h; sourceTree = "<group>"; };
+		A82A494E20FFA5C800DC129F /* InterestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterestModel.m; sourceTree = "<group>"; };
+		A82A495820FFAF8200DC129F /* DiscoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverCell.h; sourceTree = "<group>"; };
+		A82A495920FFAF8200DC129F /* DiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverCell.m; sourceTree = "<group>"; };
+		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A883130220F28D5C00363E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/TabBarViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
+		A883130420F28D5F00363E48 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A883130720F28D5F00363E48 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A883130920F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A883130A20F28D5F00363E48 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A883131020F28D5F00363E48 /* MentorMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A883131420F28D5F00363E48 /* MentorMeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeTests.m; sourceTree = "<group>"; };
+		A883131620F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A883131F20F28D5F00363E48 /* MentorMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeUITests.m; sourceTree = "<group>"; };
+		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentsViewController.storyboard; sourceTree = "<group>"; };
+		C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
+		C002266C20FE5B70007D359B /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		C002266D20FE5B70007D359B /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		C002266F20FE63BA007D359B /* SignUpViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpViewController.storyboard; sourceTree = "<group>"; };
+		C002267120FE64FD007D359B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		C03D899D20F7CA9900342B39 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		C03D899E20F7CA9900342B39 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		C03D89A320F7CE3D00342B39 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		C03D89A420F7CE3D00342B39 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
+		C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
+		C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentDetailsViewController.storyboard; sourceTree = "<group>"; };
+		C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailsViewController.h; sourceTree = "<group>"; };
+		C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailsViewController.m; sourceTree = "<group>"; };
+		C0F101762101059B009ADA47 /* AppointmentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
+		C0F101772101059B009ADA47 /* AppointmentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		C0F1017921011384009ADA47 /* FilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterViewController.m; path = "../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/View Controllers/FilterViewController.m"; sourceTree = "<group>"; };
+		C0F1017A21011385009ADA47 /* FilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterViewController.h; path = "../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/View Controllers/FilterViewController.h"; sourceTree = "<group>"; };
+		C0F1017C2101139A009ADA47 /* Filters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Filters.storyboard; path = "../../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/Storyboards/Tab Bar Storyboards/Filters.storyboard"; sourceTree = "<group>"; };
+		C0F1017E21011471009ADA47 /* DiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DiscoverTableViewController.h; path = "../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/View Controllers/DiscoverTableViewController.h"; sourceTree = "<group>"; };
+		C0F1017F21011471009ADA47 /* DiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DiscoverTableViewController.m; path = "../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/View Controllers/DiscoverTableViewController.m"; sourceTree = "<group>"; };
+		C0F10181210114B3009ADA47 /* DiscoverTableViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = DiscoverTableViewStoryboard.storyboard; path = "../../../../MentorMe-29cef1084e7107358e8dae3babd2a93b58b1de96/MentorMe/Storyboards/Tab Bar Storyboards/DiscoverTableViewStoryboard.storyboard"; sourceTree = "<group>"; };
+		E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A88312F520F28D5C00363E48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4AE2B2B579EAC022338C7C /* libPods-MentorMe.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883130D20F28D5F00363E48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5A93DD3343D8201C3DF38DC5 /* libPods-MentorMeTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883131820F28D5F00363E48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FC714FCF36D31653200DA99 /* libPods-MentorMeUITests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A82A494320FFA26200DC129F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A82A494A20FFA5B800DC129F /* AppointmentModel.h */,
+				A82A494B20FFA5B800DC129F /* AppointmentModel.m */,
+				A82A494D20FFA5C800DC129F /* InterestModel.h */,
+				A82A494E20FFA5C800DC129F /* InterestModel.m */,
+				A82A494720FFA3FE00DC129F /* PFUser+ExtendedUser.h */,
+				A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */,
+			);
+			name = Models;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		A88312EF20F28D5C00363E48 = {
+			isa = PBXGroup;
+			children = (
+				A88312FA20F28D5C00363E48 /* MentorMe */,
+				A883131320F28D5F00363E48 /* MentorMeTests */,
+				A883131E20F28D5F00363E48 /* MentorMeUITests */,
+				A88312F920F28D5C00363E48 /* Products */,
+				F09E48C407B6C9533FF8AEA0 /* Pods */,
+				B63B0D592BFEC95D505C6CEF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A88312F920F28D5C00363E48 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A88312F820F28D5C00363E48 /* MentorMe.app */,
+				A883131020F28D5F00363E48 /* MentorMeTests.xctest */,
+				A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A88312FA20F28D5C00363E48 /* MentorMe */ = {
+			isa = PBXGroup;
+			children = (
+				C05743DB20FFBAF900A6F529 /* Views */,
+				A82A494320FFA26200DC129F /* Models */,
+				C002266520FE578B007D359B /* Storyboards */,
+				C03D898720F7C8ED00342B39 /* View Controllers */,
+				A88312FB20F28D5C00363E48 /* AppDelegate.h */,
+				A88312FC20F28D5C00363E48 /* AppDelegate.m */,
+				A883130420F28D5F00363E48 /* Assets.xcassets */,
+				A883130620F28D5F00363E48 /* LaunchScreen.storyboard */,
+				A883130920F28D5F00363E48 /* Info.plist */,
+				A883130A20F28D5F00363E48 /* main.m */,
+			);
+			path = MentorMe;
+			sourceTree = "<group>";
+		};
+		A883131320F28D5F00363E48 /* MentorMeTests */ = {
+			isa = PBXGroup;
+			children = (
+				A883131420F28D5F00363E48 /* MentorMeTests.m */,
+				A883131620F28D5F00363E48 /* Info.plist */,
+			);
+			path = MentorMeTests;
+			sourceTree = "<group>";
+		};
+		A883131E20F28D5F00363E48 /* MentorMeUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A883131F20F28D5F00363E48 /* MentorMeUITests.m */,
+				A883132120F28D5F00363E48 /* Info.plist */,
+			);
+			path = MentorMeUITests;
+			sourceTree = "<group>";
+		};
+		B63B0D592BFEC95D505C6CEF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */,
+				E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */,
+				63F95249E25064190E804E60 /* libPods-MentorMeUITests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C002266520FE578B007D359B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */,
+				C002267120FE64FD007D359B /* Main.storyboard */,
+				C002266F20FE63BA007D359B /* SignUpViewController.storyboard */,
+				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
+				C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		C03D898720F7C8ED00342B39 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C0F1017E21011471009ADA47 /* DiscoverTableViewController.h */,
+				C0F1017F21011471009ADA47 /* DiscoverTableViewController.m */,
+				C0F1017A21011385009ADA47 /* FilterViewController.h */,
+				C0F1017921011384009ADA47 /* FilterViewController.m */,
+				C03D899D20F7CA9900342B39 /* LoginViewController.h */,
+				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
+				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
+				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
+				C002266C20FE5B70007D359B /* ProfileViewController.h */,
+				C002266D20FE5B70007D359B /* ProfileViewController.m */,
+				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
+				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
+				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
+				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		C05743DB20FFBAF900A6F529 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */,
+				C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */,
+				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
+				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				C0F10181210114B3009ADA47 /* DiscoverTableViewStoryboard.storyboard */,
+				C0F1017C2101139A009ADA47 /* Filters.storyboard */,
+				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
+				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
+			);
+			path = "Tab Bar Storyboards";
+			sourceTree = "<group>";
+		};
+		F09E48C407B6C9533FF8AEA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3D959AD740970DE50263A7EF /* Pods-MentorMe.debug.xcconfig */,
+				9BFB1FC76E501007979CC5A1 /* Pods-MentorMe.release.xcconfig */,
+				2A0F31EB3C37DFDA797EF18C /* Pods-MentorMeTests.debug.xcconfig */,
+				5E8695638031164B8B3EA787 /* Pods-MentorMeTests.release.xcconfig */,
+				644A9C9A2B69BAA56AAD9E66 /* Pods-MentorMeUITests.debug.xcconfig */,
+				14FFF7CCDA154F8B2460B8B7 /* Pods-MentorMeUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A88312F720F28D5C00363E48 /* MentorMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A883132420F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMe" */;
+			buildPhases = (
+				9722B5F09036DD60F658565B /* [CP] Check Pods Manifest.lock */,
+				A88312F420F28D5C00363E48 /* Sources */,
+				A88312F520F28D5C00363E48 /* Frameworks */,
+				A88312F620F28D5C00363E48 /* Resources */,
+				94343EAFC5BE7EC7BA8B77A5 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MentorMe;
+			productName = MentorMe;
+			productReference = A88312F820F28D5C00363E48 /* MentorMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A883130F20F28D5F00363E48 /* MentorMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A883132720F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMeTests" */;
+			buildPhases = (
+				21427D440587FD2B4877FD48 /* [CP] Check Pods Manifest.lock */,
+				A883130C20F28D5F00363E48 /* Sources */,
+				A883130D20F28D5F00363E48 /* Frameworks */,
+				A883130E20F28D5F00363E48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A883131220F28D5F00363E48 /* PBXTargetDependency */,
+			);
+			name = MentorMeTests;
+			productName = MentorMeTests;
+			productReference = A883131020F28D5F00363E48 /* MentorMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		A883131A20F28D5F00363E48 /* MentorMeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A883132A20F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMeUITests" */;
+			buildPhases = (
+				29A43A49ACC952A4F3443EA9 /* [CP] Check Pods Manifest.lock */,
+				A883131720F28D5F00363E48 /* Sources */,
+				A883131820F28D5F00363E48 /* Frameworks */,
+				A883131920F28D5F00363E48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A883131D20F28D5F00363E48 /* PBXTargetDependency */,
+			);
+			name = MentorMeUITests;
+			productName = MentorMeUITests;
+			productReference = A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A88312F020F28D5C00363E48 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Taylor Murray";
+				TargetAttributes = {
+					A88312F720F28D5C00363E48 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+					A883130F20F28D5F00363E48 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = A88312F720F28D5C00363E48;
+					};
+					A883131A20F28D5F00363E48 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = A88312F720F28D5C00363E48;
+					};
+				};
+			};
+			buildConfigurationList = A88312F320F28D5C00363E48 /* Build configuration list for PBXProject "MentorMe" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A88312EF20F28D5C00363E48;
+			productRefGroup = A88312F920F28D5C00363E48 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A88312F720F28D5C00363E48 /* MentorMe */,
+				A883130F20F28D5F00363E48 /* MentorMeTests */,
+				A883131A20F28D5F00363E48 /* MentorMeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A88312F620F28D5C00363E48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C002267220FE64FD007D359B /* Main.storyboard in Resources */,
+				A883130820F28D5F00363E48 /* LaunchScreen.storyboard in Resources */,
+				C0F10182210114B3009ADA47 /* DiscoverTableViewStoryboard.storyboard in Resources */,
+				A883130520F28D5F00363E48 /* Assets.xcassets in Resources */,
+				C002266920FE5A11007D359B /* AppointmentsViewController.storyboard in Resources */,
+				C002267020FE63BA007D359B /* SignUpViewController.storyboard in Resources */,
+				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
+				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
+				C0F1017D2101139A009ADA47 /* Filters.storyboard in Resources */,
+				C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883130E20F28D5F00363E48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883131920F28D5F00363E48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		21427D440587FD2B4877FD48 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MentorMeTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		29A43A49ACC952A4F3443EA9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MentorMeUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		94343EAFC5BE7EC7BA8B77A5 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MentorMe/Pods-MentorMe-resources.sh",
+				"${PODS_ROOT}/DateTools/DateTools/DateTools/DateTools.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/Parse/Parse.bundle",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/en.lproj",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/fr.lproj",
+				"${PODS_ROOT}/ParseUI/ParseUI/Resources/Localization/pt-BR.lproj",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/DateTools.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Parse.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/en.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/fr.lproj",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/pt-BR.lproj",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MentorMe/Pods-MentorMe-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9722B5F09036DD60F658565B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MentorMe-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A88312F420F28D5C00363E48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
+				A883130B20F28D5F00363E48 /* main.m in Sources */,
+				C0F1018021011471009ADA47 /* DiscoverTableViewController.m in Sources */,
+				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
+				C0F1017B21011385009ADA47 /* FilterViewController.m in Sources */,
+				A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */,
+				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
+				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
+				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
+				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
+				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
+				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
+				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
+				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883130C20F28D5F00363E48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A883131720F28D5F00363E48 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A883131220F28D5F00363E48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A88312F720F28D5C00363E48 /* MentorMe */;
+			targetProxy = A883131120F28D5F00363E48 /* PBXContainerItemProxy */;
+		};
+		A883131D20F28D5F00363E48 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A88312F720F28D5C00363E48 /* MentorMe */;
+			targetProxy = A883131C20F28D5F00363E48 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A883130220F28D5C00363E48 /* Base */,
+			);
+			name = TabBarViewControllerStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+		A883130620F28D5F00363E48 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A883130720F28D5F00363E48 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A883132220F28D5F00363E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A883132320F28D5F00363E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A883132520F28D5F00363E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3D959AD740970DE50263A7EF /* Pods-MentorMe.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS6245D8K;
+				INFOPLIST_FILE = MentorMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nih2alj.MentorMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A883132620F28D5F00363E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9BFB1FC76E501007979CC5A1 /* Pods-MentorMe.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = DFS6245D8K;
+				INFOPLIST_FILE = MentorMe/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.nih2alj.MentorMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		A883132820F28D5F00363E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A0F31EB3C37DFDA797EF18C /* Pods-MentorMeTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				INFOPLIST_FILE = MentorMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.murrayt9.MentorMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MentorMe.app/MentorMe";
+			};
+			name = Debug;
+		};
+		A883132920F28D5F00363E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5E8695638031164B8B3EA787 /* Pods-MentorMeTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				INFOPLIST_FILE = MentorMeTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.murrayt9.MentorMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MentorMe.app/MentorMe";
+			};
+			name = Release;
+		};
+		A883132B20F28D5F00363E48 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 644A9C9A2B69BAA56AAD9E66 /* Pods-MentorMeUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				INFOPLIST_FILE = MentorMeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.murrayt9.MentorMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MentorMe;
+			};
+			name = Debug;
+		};
+		A883132C20F28D5F00363E48 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14FFF7CCDA154F8B2460B8B7 /* Pods-MentorMeUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				INFOPLIST_FILE = MentorMeUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.murrayt9.MentorMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = MentorMe;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A88312F320F28D5C00363E48 /* Build configuration list for PBXProject "MentorMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A883132220F28D5F00363E48 /* Debug */,
+				A883132320F28D5F00363E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A883132420F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A883132520F28D5F00363E48 /* Debug */,
+				A883132620F28D5F00363E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A883132720F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A883132820F28D5F00363E48 /* Debug */,
+				A883132920F28D5F00363E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A883132A20F28D5F00363E48 /* Build configuration list for PBXNativeTarget "MentorMeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A883132B20F28D5F00363E48 /* Debug */,
+				A883132C20F28D5F00363E48 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A88312F020F28D5C00363E48 /* Project object */;
+}
