@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Svq-Vm-sSu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Tan-xB-2SJ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -26,6 +26,9 @@
                                     <segment title="Upcoming"/>
                                     <segment title="Past"/>
                                 </segments>
+                                <connections>
+                                    <action selector="decodeController:" destination="CKj-0e-lgA" eventType="valueChanged" id="zwY-d9-FIo"/>
+                                </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fJd-2o-njc">
                                 <rect key="frame" x="0.0" y="110" width="375" height="557"/>
@@ -95,16 +98,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FTq-cI-aa6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Appointments" image="heart" id="I4T-pb-0od"/>
+                    <tabBarItem key="tabBarItem" title="Appointments" image="heart" id="Wjh-Lr-NKx"/>
                     <navigationItem key="navigationItem" title="Appointments" id="fx4-JQ-iR6"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="appointmentController" destination="YmG-qS-yuH" id="hYV-2B-QFa"/>
                         <outlet property="appointmentsTableView" destination="fJd-2o-njc" id="Zlb-OY-eqB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bOj-rm-IuB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4085.5999999999999" y="-109.29535232383809"/>
+            <point key="canvasLocation" x="5024.8000000000002" y="-109.29535232383809"/>
         </scene>
         <!--AppointmentDetailsViewController-->
         <scene sceneID="17n-Mf-Zpj">
@@ -112,26 +116,26 @@
                 <viewControllerPlaceholder storyboardName="AppointmentDetailsViewController" id="auS-yq-r0M" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="k6g-A2-T46" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4740" y="-110.64467766116942"/>
+            <point key="canvasLocation" x="5679.1999999999998" y="-110.64467766116942"/>
         </scene>
         <!--Appointments-->
-        <scene sceneID="OJ9-ET-VUn">
+        <scene sceneID="4pU-ql-35C">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Svq-Vm-sSu" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Appointments" image="heart" id="3QV-lE-KHa"/>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Tan-xB-2SJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Appointments" image="heart" id="I4T-pb-0od"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6yc-iN-VLH">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4rY-Lb-FF9">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="CKj-0e-lgA" kind="relationship" relationship="rootViewController" id="1yf-DU-K5m"/>
+                        <segue destination="CKj-0e-lgA" kind="relationship" relationship="rootViewController" id="9yA-ek-rk6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jTA-yT-96M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="M2X-cQ-Mce" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3146.4000000000001" y="-109.29535232383809"/>
+            <point key="canvasLocation" x="4085.5999999999999" y="-109.29535232383809"/>
         </scene>
     </scenes>
     <resources>
