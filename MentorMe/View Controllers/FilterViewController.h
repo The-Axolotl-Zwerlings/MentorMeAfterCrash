@@ -12,7 +12,8 @@
 @end
 @interface FilterViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
-@property (strong, nonatomic) NSString *giveOrGet;
+@property (nonatomic) BOOL getAdvice;
 @property (weak, nonatomic) id<FilterDelegate> delegate;
+@property (strong, nonatomic) NSArray *filterPreferences;
 @end
 
