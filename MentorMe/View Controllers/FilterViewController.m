@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UISwitch *companySwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *locationSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *interestsSwitchs;
+@property (strong, nonatomic) NSArray *filterPreferences;
+//school, company, location
 
 @end
 
@@ -25,6 +27,8 @@
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
     // Do any additional setup after loading the view.
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

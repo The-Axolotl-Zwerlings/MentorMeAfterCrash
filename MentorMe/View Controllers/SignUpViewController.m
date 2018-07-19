@@ -21,15 +21,20 @@
 @property (weak, nonatomic) IBOutlet UITextField *institutionField;
 @property (weak, nonatomic) IBOutlet UITextField *majorField;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
+@property (weak, nonatomic) IBOutlet UITextField *getAdviceField;
+@property (weak, nonatomic) IBOutlet UITextField *giveAdviceField;
 
 
 
 @property (weak, nonatomic) IBOutlet UIButton *addProfilePictureButton;
-
+@property (weak, nonatomic) IBOutlet UIButton *addGetAdviceInterestButton;
+@property (weak, nonatomic) IBOutlet UIButton *addGiveAdviceInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @property (nonatomic, strong) UIImage* chosenProfilePicture;
 @property (nonatomic, strong) UIImage* resizedProfilePicture;
+@property (nonatomic, strong) NSMutableArray* getAdviceInterests;
+@property (nonatomic, strong) NSMutableArray* giveAdviceInterests;
 
 @end
 
@@ -38,12 +43,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.getAdviceInterests = [[NSMutableArray alloc] init];
+    self.giveAdviceInterests = [[NSMutableArray alloc] init];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)onTapAddToGet:(id)sender {
+    [self.getAdviceInterests addObject:self.getAdviceField.text];
+    self.getAdviceField.text = nil;
+}
+- (IBAction)onTapAddToGive:(id)sender {
+    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
+    self.giveAdviceField.text = nil;}
 
 -(void)registerUser  {
     // initialize a user object
@@ -59,9 +73,17 @@
     newUser.company = self.companyField.text;
     newUser.school = self.institutionField.text;
     newUser.major = self.majorField.text;
+    newUser.getAdviceInterests = [[NSArray alloc]initWithArray:self.getAdviceInterests];
+    newUser.giveAdviceInterests = [[NSArray alloc]initWithArray:self.giveAdviceInterests];
     
-    //self.resizedProfilePicture = [self resizeThisImage:self.chosenProfilePicture withSize:self.chosenProfilePicture.size];
-    //newUser.profilePic = [self getPFFileFromImage:self.resizedProfilePicture];
+    if(self.chosenProfilePicture == nil){
+        self.chosenProfilePicture = [UIImage imageNamed:@"hipster2"];
+        newUser.profilePic = [self getPFFileFromImage:self.chosenProfilePicture];
+    }
+    else {
+        self.resizedProfilePicture = [self resizeThisImage:self.chosenProfilePicture withSize:self.chosenProfilePicture.size];
+        newUser.profilePic = [self getPFFileFromImage:self.resizedProfilePicture];
+    }
     
     // call sign up function on the object
     [newUser signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
@@ -74,7 +96,7 @@
         }
     }];
 }
-/*
+
 -(void)addProfilePicture {
     UIImagePickerController* imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
@@ -118,7 +140,7 @@
         return nil;
     }
     return [PFFile fileWithName:@"image.png" data:imageData];
-}*/
+}
 
 
 - (IBAction)onTapRegister:(id)sender {
@@ -130,7 +152,7 @@
     
     NSLog( @"Load camera");
     
-    //[self addProfilePicture];
+    [self addProfilePicture];
 }
 
 
