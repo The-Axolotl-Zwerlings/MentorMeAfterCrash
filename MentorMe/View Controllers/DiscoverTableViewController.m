@@ -10,6 +10,7 @@
 #import "DiscoverCell.h"
 #import "FilterViewController.h"
 #import "Parse.h"
+#import "PFUser+ExtendedUser.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -28,7 +29,7 @@
     self.getAdvice = YES;
     
     NSNumber* noObj = [NSNumber numberWithBool:NO];
-    self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,noObj,nil];
+    self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,nil];
     
     self.discoverTableView.delegate = self;
     self.discoverTableView.dataSource = self;
@@ -49,6 +50,13 @@
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    if(self.getAdvice){
+        [self fetchFilteredUsersGet];
+    } else{
+        [self fetchFilteredUsersGive];
+    }
+    
+    
     [self.discoverTableView reloadData];
     
 }
@@ -61,6 +69,16 @@
 -(void)fetchFilteredUsersGet{
     PFQuery *usersQuery = [PFUser query];
     usersQuery.limit = 20;
+    if([self.filterArray[0] boolValue]){
+        [usersQuery whereKey:@"school" equalTo:PFUser.currentUser.school];
+    }
+    if([self.filterArray[1] boolValue]){
+        [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
+    }
+//    if([self.filterArray[2] boolValue]){
+//        [usersQuery whereKey:@"location" equalTo:PFUser.currentUser.location];
+//    }
+    
     //[usersQuery orderByDescending:@"createdAt"];
     
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -102,7 +120,24 @@
 
 - (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company andLocation:(NSNumber *)location{
     
+    NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
+    [old replaceObjectAtIndex:0 withObject:school];
+    NSArray *newAr = [NSArray arrayWithArray:old];
+    self.filterArray = newAr;
+
+    NSMutableArray *old1 = [NSMutableArray arrayWithArray:self.filterArray];
+    [old1 replaceObjectAtIndex:1 withObject:company];
+    NSArray *newAr1 = [NSArray arrayWithArray:old1];
+    self.filterArray = newAr1;
+
+
+    NSMutableArray *old2 = [NSMutableArray arrayWithArray:self.filterArray];
+    [old replaceObjectAtIndex:2 withObject:location];
+    NSArray *newAr2 = [NSArray arrayWithArray:old2];
+    self.filterArray = newAr2;
+    
 }
+
 
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
@@ -164,6 +199,8 @@
         UINavigationController *navControl = [segue destinationViewController];
         FilterViewController *filterViewController = (FilterViewController *)navControl.topViewController;
         filterViewController.delegate = self;
+        filterViewController.filterPreferences = self.filterArray;
+        filterViewController.getAdvice = self.getAdvice;
     }
 }
 

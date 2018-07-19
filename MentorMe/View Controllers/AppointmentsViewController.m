@@ -16,26 +16,30 @@
 
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *appointmentController;
+
 
 @end
+
+
 
 @implementation AppointmentsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"appointments";
+    
     
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
     
-    [self fetchAppointments];
+    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
-    [self.refreshControl addTarget:self action:@selector(fetchAppointments) forControlEvents:UIControlEventValueChanged];
-    
+    [self.refreshControl addTarget:self action:@selector(fetchFilteredAppointments) forControlEvents:UIControlEventValueChanged];
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
-    
     [self.appointmentsTableView reloadData];
     
 }
@@ -43,35 +47,53 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    
     [self.appointmentsTableView reloadData];
+    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
+    
+}
+- (IBAction)didChangeIndex:(id)sender {
+    
+    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
     
 }
 
-- (void) fetchAppointments {
-    
-    NSLog( @"Fetching Appointments...");
-    [self.refreshControl endRefreshing];
+-(void) fetchFilteredAppointments:(NSInteger) index {
     
     PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
     
-    [query includeKeys:@[@"mentorUsername"]];
-    
-    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-        
-        if (posts != nil) {
-            self.appointmentsArray = (NSMutableArray *)posts;
-            [self.appointmentsTableView reloadData];
-            
-            [self.refreshControl endRefreshing];
-            NSLog(@"WE GOT THE APPOINTMENTS 😇");
-            
-        } else {
-            NSLog(@"%@", error.localizedDescription);
-        }
-    }];
-    
-    
+    if ( index == 0 ){
+        NSLog( @"Fetching Upcoming Appointments...");
+        [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:YES]];
+        [query includeKeys:@[@"mentorUsername"]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.appointmentsArray = nil;
+                self.appointmentsArray = (NSMutableArray *)posts;
+                [self.appointmentsTableView reloadData];
+                
+                [self.refreshControl endRefreshing];
+                NSLog(@"WE GOT THE UPCOMING APPOINTMENTS 😇");
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    } else {
+        NSLog( @"Fetching Past Appointments...");
+        [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:NO]];
+        [query includeKeys:@[@"mentorUsername"]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+            if (posts != nil) {
+                self.appointmentsArray = nil;
+                self.appointmentsArray = (NSMutableArray *)posts;
+                [self.appointmentsTableView reloadData];
+                [self.refreshControl endRefreshing];
+                NSLog(@"WE GOT THE PAST APPOINTMENTS 😇");
+                
+            } else {
+                NSLog(@"%@", error.localizedDescription);
+            }
+        }];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,7 +137,7 @@
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
         appointmentDetailsViewController.appointment = incomingAppointment;
         appointmentDetailsViewController.delegate = self;
-
+        
     }
 }
 

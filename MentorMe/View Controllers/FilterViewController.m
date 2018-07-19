@@ -16,15 +16,27 @@
 @property (strong, nonatomic) IBOutlet UISwitch *locationSwitch;
 @property (strong, nonatomic) IBOutlet UISwitch *interestsSwitchs;
 
+//school, company, location
+
 @end
 
 @implementation FilterViewController
+- (IBAction)backAction:(UIBarButtonItem *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
     // Do any additional setup after loading the view.
+    if(self.filterPreferences == nil){
+        self.filterPreferences = [NSArray arrayWithObjects:@(0),@(0),@(0),nil];
+    }
+    [self.schoolSwitch setOn:[self.filterPreferences[0] boolValue]];
+    [self.companySwitch setOn:[self.filterPreferences[1] boolValue]];
+    [self.locationSwitch setOn:[self.filterPreferences[2] boolValue]];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,24 +45,28 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SimpleTableItem"];
+    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
+    }
     PFUser *user = PFUser.currentUser;
     
-    if([self.giveOrGet isEqualToString:@"Give"]){
-        cell.textLabel.text = user.giveAdviceInterests[indexPath.row];
-    } else{
+    if(self.getAdvice){
         cell.textLabel.text = user.getAdviceInterests[indexPath.row];
+    } else{
+        cell.textLabel.text = user.giveAdviceInterests[indexPath.row];
     }
     return cell;
     
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     PFUser *user = PFUser.currentUser;
     
-    if([self.giveOrGet isEqualToString:@"Give"]){
-        return user.giveAdviceInterests.count;
-    } else{
+    if(self.getAdvice){
         return user.getAdviceInterests.count;
+    } else{
+        return user.giveAdviceInterests.count;
     }
 }
 - (IBAction)confirmAction:(UIBarButtonItem *)sender {
@@ -66,6 +82,8 @@
     if([self.companySwitch isOn]){
         company = [NSNumber numberWithBool:YES];
     }
+    
+    self.filterPreferences = [NSArray arrayWithObjects:school,company,location, nil];
     
     [self.delegate didChangeSchool:school withCompany:company andLocation:location];
     [self dismissViewControllerAnimated:YES completion:nil];
