@@ -28,11 +28,19 @@
 
 -(void)setUIfeatures {
     self.usernameLabel.text = self.user[@"username"];
-    self.jobTitleLabel.text = self.user[@"jobTitle"];
+    self.nameLabel.text = self.user[@"name"];
+    self.positionLabel.text = self.user[@"jobTitle"];
+    self.institutionLabel.text = self.user[@"company"];
     self.bioLabel.text = self.user[@"bio"];
+    self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
+    self.profileImageView.clipsToBounds = YES;
+    self.profileImageView.layer.borderWidth = 7.0f;
+    self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profileImageView.file = nil;
     self.profileImageView.file = self.user[@"profilePic"];
     [self.profileImageView loadInBackground];
+    
+    //self.bannerImageView.file = [UIImage imageNamed:@"hipster2"];
     
 }
 

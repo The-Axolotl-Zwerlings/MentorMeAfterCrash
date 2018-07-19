@@ -17,11 +17,12 @@
 
 @property (weak, nonatomic) IBOutlet PFImageView *bannerImageView;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *positionLabel;
+@property (weak, nonatomic) IBOutlet UILabel *institutionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
-
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *EditBarButton;
 @property (weak, nonatomic) IBOutlet UIButton *connectButton;
 
