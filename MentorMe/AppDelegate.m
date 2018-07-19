@@ -31,19 +31,21 @@
     [Parse initializeWithConfiguration:config];
     
 
-     /*
-     PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
+    
+     /*PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
      PFUser *newUser = [PFUser currentUser];
     
     
-     newUser.name = @"Nihal Jemal";
-     newUser.jobTitle = @"Software Engineering Intern";
-     newUser.school = @"Spelman College";
+     newUser.name = @"Mike Schroepfer";
+     newUser.jobTitle = @"CTO at Facebook";
+     newUser.school = @"Stanford University";
+      
      appointment[@"mentorName"] = newUser.name;
      appointment[@"mentor"] = newUser;
      appointment[@"mentee"] = [PFUser currentUser];
-     appointment[@"meetingLocation"] = @"Menlo Park Building 13";
-     appointment[@"meetingType"] = @"VideoChat in 13.1Z2";
+     appointment[@"meetingLocation"] = @"Menlo Park Building 24";
+     appointment[@"meetingType"] = @"Dinner in MPK 24.1Z2";
+     appointment[@"isUpcoming"] = @NO;
     
     
     
@@ -54,9 +56,9 @@
      } else {
      NSLog(@"Error: %@", error.description);
      }
-     }];
+     }];*/
       
-      */
+    
      
 
     
