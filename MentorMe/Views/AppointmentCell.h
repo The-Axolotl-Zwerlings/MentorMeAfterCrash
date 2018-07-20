@@ -14,11 +14,12 @@
 @interface AppointmentCell : UITableViewCell
 
 @property (strong, nonatomic) AppointmentModel *appointment;
-@property (weak, nonatomic) IBOutlet PFImageView *mentorProfilePic;
-@property (weak, nonatomic) IBOutlet UILabel *mentorName;
+@property (weak, nonatomic) IBOutlet PFImageView *otherAttendeeProfilePic;
+@property (weak, nonatomic) IBOutlet UILabel *otherAttendeeName;
 @property (weak, nonatomic) IBOutlet UILabel *meetingDate;
 @property (weak, nonatomic) IBOutlet UILabel *meetingLocation;
 @property (weak, nonatomic) IBOutlet UILabel *meetingType;
-
+@property (nonatomic) BOOL isMentor;
+@property (strong, nonatomic) IBOutlet UILabel *mentorOrMenteeLabel;
 
 @end

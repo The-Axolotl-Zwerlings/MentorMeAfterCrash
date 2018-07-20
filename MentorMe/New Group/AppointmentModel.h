@@ -15,13 +15,15 @@
 
 @property (nonatomic, strong ) PFUser *mentor;
 @property (nonatomic, strong ) PFUser *mentee;
-@property (nonatomic, strong ) NSString *mentorName;
+@property (nonatomic, strong) NSNumber *isMentor;
 @property( nonatomic, strong ) NSDate *meetingDate;
 @property( nonatomic, strong ) NSString *meetingType;
 @property( nonatomic, strong ) NSString *meetingLocation;
-@property (nonatomic ) BOOL *isUpcoming;
+@property (nonatomic, strong) NSNumber *isUpcoming;
+@property (nonatomic, strong) NSString *message;
 
-+ (void) postAppointment: ( PFUser * _Nullable )mentor withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL * _Nullable) isUpcoming withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion;
+
++ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL) isUpcoming withMessage:(NSString *)message withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion;
 
 
 

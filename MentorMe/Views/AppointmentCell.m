@@ -31,16 +31,26 @@
    
     _appointment = appointment;
    
-/*    PFUser *mentor = self.appointment.mentor;
-    self.mentorName.text = self.appointment.menteeUsername;
-    self.mentorProfilePic.file = mentor.profilePic;
     
-    _appointment = appointment;*/
+    if(appointment.isMentor){
+        self.otherAttendeeName.text = appointment.mentee.name;
+        self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
+        [self.otherAttendeeProfilePic loadInBackground];
+        self.mentorOrMenteeLabel.text = @"You're the mentor!";
+    } else{
+        self.otherAttendeeName.text = appointment.mentor.name;
+        self.otherAttendeeProfilePic.file = appointment.mentor.profilePic;
+        [self.otherAttendeeProfilePic loadInBackground];
+        self.mentorOrMenteeLabel.text = @"You're the mentee!";
+    }
     
-
     
-    self.mentorName.text = self.appointment.mentorName;
-    self.meetingDate.text = [self.appointment.meetingDate timeAgoSinceNow];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    
+    
+    self.meetingDate.text = [formatter stringFromDate:appointment.meetingDate];
     self.meetingType.text = self.appointment.meetingType;
     self.meetingLocation.text = self.appointment.meetingLocation;
         

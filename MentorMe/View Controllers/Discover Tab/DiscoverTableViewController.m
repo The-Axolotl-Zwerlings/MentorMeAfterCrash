@@ -57,7 +57,7 @@
 -(void)fetchFilteredUsersGet{
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"giveAdviceInterests"];
-    [usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
+    //[usersQuery whereKey:@"name" notEqualTo:PFUser.currentUser.name];
     usersQuery.limit = 20;
     [usersQuery orderByDescending:@"createdAt"];
     /*if([self.filterArray[0] boolValue]){
@@ -91,7 +91,7 @@
 -(void)fetchFilteredUsersGive{
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"getAdviceInterests"];
-    [usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
+    //[usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
     usersQuery.limit = 20;
     [usersQuery orderByDescending:@"createdAt"];
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -221,12 +221,17 @@
         filterViewController.getAdvice = self.getAdvice;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         
+        
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
         PFUser *incomingMentor = self.filteredUsers[indexPath.row];
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
-        
+        if(self.mentorMenteeSegControl.selectedSegmentIndex == 0){
+            mentorDetailsViewController.isMentorOfMeeting = NO;
+        } else{
+            mentorDetailsViewController.isMentorOfMeeting = YES;
+        }
         
     }
 }

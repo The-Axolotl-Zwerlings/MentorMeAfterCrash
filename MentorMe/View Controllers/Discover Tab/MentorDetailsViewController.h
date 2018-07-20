@@ -13,5 +13,5 @@
 @interface MentorDetailsViewController : UIViewController
 
 @property ( strong, nonatomic ) PFUser *mentor;
-
+@property (nonatomic) BOOL isMentorOfMeeting;
 @end

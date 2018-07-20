@@ -64,11 +64,11 @@
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
         [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:YES]];
-        [query includeKeys:@[@"mentorUsername"]];
+        //[query includeKeys:@[@""]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.appointmentsArray = nil;
-                self.appointmentsArray = (NSMutableArray *)posts;
+                self.appointmentsArray = posts;
                 [self.appointmentsTableView reloadData];
                 
                 [self.refreshControl endRefreshing];
@@ -80,7 +80,7 @@
     } else {
         NSLog( @"Fetching Past Appointments...");
         [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:NO]];
-        [query includeKeys:@[@"mentorUsername"]];
+        //[query includeKeys:@[@"name"]];
         [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.appointmentsArray = nil;

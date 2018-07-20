@@ -11,6 +11,7 @@
 #import "DiscoverTableViewController.h"
 #import "Parse/Parse.h"
 #import "ParseUI.h"
+#import "CreateAppointmentViewController.h"
 
 @interface MentorDetailsViewController ()
 @property (weak, nonatomic) IBOutlet PFImageView *profilePictureImageView;
@@ -67,14 +68,20 @@
 
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"createAppointmentSegue"]){
+        CreateAppointmentViewController *createAppointViewController = [segue destinationViewController];
+        createAppointViewController.isMentorOfMeeting = self.isMentorOfMeeting;
+        createAppointViewController.otherAttendee = self.mentor;
+        
+    }
 }
-*/
+
 
 @end

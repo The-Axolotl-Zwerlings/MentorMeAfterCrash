@@ -49,15 +49,21 @@
 
 -(void)loadAppointment{
     
-    NSString *titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentorName];
+    NSString *titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentor.name];
     
     self.title = titleString;
     
     self.locationLabel.text = self.appointment.meetingLocation;
-    self.timeLabel.text = [self.appointment.meetingDate timeAgoSinceNow];
+    
+    //Date
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    self.timeLabel.text = [formatter stringFromDate:self.appointment.meetingDate];
+    
+    
     NSString *completeMeetingType = [@"Meeting for " stringByAppendingString:self.appointment.meetingType];
     self.typeMeetingLabel.text = completeMeetingType;
-    self.messageLabel.text = [self.appointment.meetingType stringByAppendingString:[@" confirmed with " stringByAppendingString:self.appointment.mentorName]];
+    self.messageLabel.text = self.appointment.message;
     //self.mentorProfileView.file = self.appointment.mentor.profilePic;
     //[self.mentorProfileView loadInBackground];
     

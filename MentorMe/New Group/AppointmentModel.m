@@ -11,10 +11,9 @@
 @implementation AppointmentModel
 
 
-@dynamic mentorName;
 @dynamic mentor;
 @dynamic mentee;
-
+@dynamic isMentor;
 @dynamic meetingLocation;
 @dynamic meetingDate;
 @dynamic meetingType;
@@ -27,22 +26,18 @@
 }
 
 
-+ (void) postAppointment: ( PFUser * _Nullable )mentor withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL * _Nullable) isUpcoming withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
++ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL) isUpcoming withMessage:(NSString *)message withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
     
     PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
-    PFUser *newUser = [PFUser currentUser];
-    newUser.name = @"Mentor A";
-    newUser.jobTitle = @"Instructor A";
-    newUser.school = @"School A";
     
+    appointment[@"mentor"] = (isMentor) ? PFUser.currentUser : otherAttendee;
+    appointment[@"mentee"] = (isMentor) ? otherAttendee : PFUser.currentUser;
+    appointment[@"isMentor"] = @(isMentor);
     
-    appointment[@"mentorName"] = @"nsalinas";
-    appointment[@"mentor"] = newUser;
-    appointment[@"mentee"] = [PFUser currentUser];
-    appointment[@"meetingLocation"] = @"Menlo Park Building 1";
-    appointment[@"meetingType"] = @"Lunch A";
-    
-    appointment[@"isUpcoming"] = @YES;
+    appointment[@"meetingLocation"] = meetingLocation;
+    appointment[@"meetingType"] = meetingType;
+    appointment[@"meetingDate"] = meetingDate;
+    appointment[@"isUpcoming"] = @(isUpcoming);
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
