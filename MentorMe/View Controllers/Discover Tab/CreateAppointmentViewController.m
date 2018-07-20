@@ -30,6 +30,7 @@
     
     
     [AppointmentModel postAppointment:self.isMentorOfMeeting withPerson:self.otherAttendee withMeetingLocation:self.locationLabel.text withMeetingType:self.meetingTypeDic[@(self.appointmentTypeSegControl.selectedSegmentIndex)] withMeetingDate:[NSDate date] withIsComing:YES withMessage:self.messageTextView.text withCompletion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)cancelAction:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -32,8 +32,8 @@
     _appointment = appointment;
    
     
-    if(appointment.isMentor){
-        self.otherAttendeeName.text = appointment.mentee.name;
+    if(appointment.isMentor == [NSNumber numberWithBool:YES]){
+        self.otherAttendeeName.text = appointment.mentee[@"name"];
         self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
         self.mentorOrMenteeLabel.text = @"You're the mentor!";

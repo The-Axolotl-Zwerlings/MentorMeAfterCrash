@@ -59,15 +59,25 @@
 
 -(void) fetchFilteredAppointments:(NSInteger) index {
     
-    PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
+    PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
+    PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
+    
+    [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
+    [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
+    
+    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
+    
+    [combinedQuery includeKey:@"mentor.name"];
+    [combinedQuery includeKey:@"mentee.name"];
     
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
-        [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:YES]];
-        //[query includeKeys:@[@""]];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        
+        
+        [combinedQuery whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:YES]];
+        
+        [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
-                self.appointmentsArray = nil;
                 self.appointmentsArray = posts;
                 [self.appointmentsTableView reloadData];
                 
@@ -79,9 +89,9 @@
         }];
     } else {
         NSLog( @"Fetching Past Appointments...");
-        [query whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:NO]];
-        //[query includeKeys:@[@"name"]];
-        [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        [combinedQuery whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:NO]];
+        
+        [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
             if (posts != nil) {
                 self.appointmentsArray = nil;
                 self.appointmentsArray = (NSMutableArray *)posts;
