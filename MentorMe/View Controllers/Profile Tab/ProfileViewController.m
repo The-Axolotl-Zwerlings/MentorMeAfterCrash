@@ -71,15 +71,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if(tableView == self.getAdviceTableView){
-        static NSString *CellIdentifier = @"Cell";
-        GetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        GetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
         cell.interestLabel.text = [self.adviceToGet objectAtIndex: indexPath.row];
         
         return cell;
     }
     else{
-        static NSString *CellIdentifier = @"Cell";
-        GiveAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        GiveAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
         cell.interestLabel.text = [self.adviceToGive objectAtIndex: indexPath.row];
         
         return cell;
