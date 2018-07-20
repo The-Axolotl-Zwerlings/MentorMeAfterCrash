@@ -208,6 +208,11 @@
         filterViewController.delegate = self;
         filterViewController.filterPreferences = self.filterArray;
         filterViewController.getAdvice = self.getAdvice;
+    } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
+        
+        
+        
+        
     }
 }
 
