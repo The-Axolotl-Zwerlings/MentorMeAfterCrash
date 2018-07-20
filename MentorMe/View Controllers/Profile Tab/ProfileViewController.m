@@ -8,8 +8,10 @@
 
 #import "ProfileViewController.h"
 #import "SignUpViewController.h"
+#import "GetAdviceTableViewCell.h"
+#import "GiveAdviceTableViewCell.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @end
 
@@ -18,6 +20,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.user = [PFUser currentUser];
+    
+    self.getAdviceTableView.delegate = self;
+    self.giveAdviceTableView.delegate = self;
+    self.getAdviceTableView.dataSource = self;
+    self.giveAdviceTableView.dataSource = self;
+    
+    self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
+    self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
+
     [self setUIfeatures];
     // Do any additional setup after loading the view.
 }
@@ -46,12 +57,36 @@
     [self.profileImageView loadInBackground];
     
     self.bannerImageView.image = [UIImage imageNamed:@"33996-5-sunrise-clipart"];
-    
-   
-
-    
 }
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(tableView == self.getAdviceTableView){
+        return self.adviceToGet.count;
+    }
+    else{
+        return self.adviceToGive.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if(tableView == self.getAdviceTableView){
+        static NSString *CellIdentifier = @"Cell";
+        GetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        cell.interestLabel.text = [self.adviceToGet objectAtIndex: indexPath.row];
+        
+        return cell;
+    }
+    else{
+        static NSString *CellIdentifier = @"Cell";
+        GiveAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+        cell.interestLabel.text = [self.adviceToGive objectAtIndex: indexPath.row];
+        
+        return cell;
+    }
+    
+    
+}
 /*
 #pragma mark - Navigation
 
