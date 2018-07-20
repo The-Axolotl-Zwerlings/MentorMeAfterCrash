@@ -10,11 +10,11 @@
 #import "AppointmentModel.h"
 
 
-@protocol AppointmentDetailsViewControllerDelegate;
+//@protocol AppointmentDetailsViewControllerDelegate;
 
 @interface AppointmentDetailsViewController : UIViewController
 
 @property (strong, nonatomic) AppointmentModel *appointment;
-@property (weak, nonatomic) id<AppointmentDetailsViewControllerDelegate> delegate;
+//@property (weak, nonatomic) id<AppointmentDetailsViewControllerDelegate> delegate;
 
 @end

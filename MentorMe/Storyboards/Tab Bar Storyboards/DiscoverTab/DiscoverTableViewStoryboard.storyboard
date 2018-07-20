@@ -86,6 +86,7 @@
                                             <outlet property="nameLabel" destination="dx8-Px-Rv3" id="rgL-oE-yxB"/>
                                             <outlet property="profilePicView" destination="Ccj-O1-eS4" id="TcJ-sP-pfr"/>
                                             <outlet property="schoolLabel" destination="PUk-H0-1uB" id="1fu-Dt-8AE"/>
+                                            <segue destination="RbV-D6-zF5" kind="show" identifier="segueToMentorDetailsViewController" id="Fbe-TJ-6Mo"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -130,6 +131,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anQ-We-Gm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2186.4000000000001" y="187.55622188905548"/>
+        </scene>
+        <!--MentorDetailsStoryboard-->
+        <scene sceneID="x6q-r8-rhk">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MentorDetailsStoryboard" id="RbV-D6-zF5" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NkJ-JQ-QRC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2876" y="123"/>
         </scene>
         <!--Filters-->
         <scene sceneID="wQI-II-MkJ">

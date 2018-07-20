@@ -13,6 +13,8 @@
 		A8011C812101408C0028E604 /* FilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8011C802101408C0028E604 /* FilterViewController.m */; };
 		A8011C832101415C0028E604 /* Filters.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8011C822101415C0028E604 /* Filters.storyboard */; };
 		A8011C85210141910028E604 /* DiscoverTableViewStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */; };
+		A8011C87210167040028E604 /* CreateAppointment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A8011C86210167040028E604 /* CreateAppointment.storyboard */; };
+		A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A8011C892101691B0028E604 /* CreateAppointmentViewController.m */; };
 		A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */; };
 		A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494B20FFA5B800DC129F /* AppointmentModel.m */; };
 		A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494E20FFA5C800DC129F /* InterestModel.m */; };
@@ -35,6 +37,8 @@
 		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
 		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
 		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
+		C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */; };
+		C0F1018E2101647F009ADA47 /* MentorDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */; };
 		FE4AE2B2B579EAC022338C7C /* libPods-MentorMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +73,9 @@
 		A8011C802101408C0028E604 /* FilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilterViewController.m; sourceTree = "<group>"; };
 		A8011C822101415C0028E604 /* Filters.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Filters.storyboard; sourceTree = "<group>"; };
 		A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = DiscoverTableViewStoryboard.storyboard; sourceTree = "<group>"; };
+		A8011C86210167040028E604 /* CreateAppointment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAppointment.storyboard; sourceTree = "<group>"; };
+		A8011C882101691B0028E604 /* CreateAppointmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAppointmentViewController.h; sourceTree = "<group>"; };
+		A8011C892101691B0028E604 /* CreateAppointmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAppointmentViewController.m; sourceTree = "<group>"; };
 		A82A494720FFA3FE00DC129F /* PFUser+ExtendedUser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PFUser+ExtendedUser.h"; sourceTree = "<group>"; };
 		A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PFUser+ExtendedUser.m"; sourceTree = "<group>"; };
 		A82A494A20FFA5B800DC129F /* AppointmentModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentModel.h; sourceTree = "<group>"; };
@@ -109,6 +116,9 @@
 		C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailsViewController.m; sourceTree = "<group>"; };
 		C0F101762101059B009ADA47 /* AppointmentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		C0F101772101059B009ADA47 /* AppointmentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		C0F10186210162F1009ADA47 /* MentorDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MentorDetailsViewController.h; sourceTree = "<group>"; };
+		C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorDetailsViewController.m; sourceTree = "<group>"; };
+		C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MentorDetailsStoryboard.storyboard; sourceTree = "<group>"; };
 		E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -227,7 +237,6 @@
 				A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */,
 				C002267120FE64FD007D359B /* Main.storyboard */,
 				C002266F20FE63BA007D359B /* SignUpViewController.storyboard */,
-				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
 				C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */,
 			);
 			path = Storyboards;
@@ -236,20 +245,10 @@
 		C03D898720F7C8ED00342B39 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C03D899D20F7CA9900342B39 /* LoginViewController.h */,
-				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
-				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
-				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
-				C002266C20FE5B70007D359B /* ProfileViewController.h */,
-				C002266D20FE5B70007D359B /* ProfileViewController.m */,
-				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
-				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
-				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
-				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
-				A8011C7C21013F610028E604 /* DiscoverTableViewController.h */,
-				A8011C7D21013F610028E604 /* DiscoverTableViewController.m */,
-				A8011C7F2101408C0028E604 /* FilterViewController.h */,
-				A8011C802101408C0028E604 /* FilterViewController.m */,
+				C0F1018C21016335009ADA47 /* Opening */,
+				C0F1018921016301009ADA47 /* Discover Tab */,
+				C0F1018A21016311009ADA47 /* Appointments Tab */,
+				C0F1018B21016327009ADA47 /* Profile Tab */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -268,12 +267,85 @@
 		C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				A8011C822101415C0028E604 /* Filters.storyboard */,
-				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
-				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
-				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
+				C0F1018F2101648A009ADA47 /* DiscoverTab */,
+				C0F101902101648F009ADA47 /* AppointmentsTab */,
+				C0F1019121016496009ADA47 /* ProfileTab */,
 			);
 			path = "Tab Bar Storyboards";
+			sourceTree = "<group>";
+		};
+		C0F1018921016301009ADA47 /* Discover Tab */ = {
+			isa = PBXGroup;
+			children = (
+				A8011C7C21013F610028E604 /* DiscoverTableViewController.h */,
+				A8011C7D21013F610028E604 /* DiscoverTableViewController.m */,
+				A8011C7F2101408C0028E604 /* FilterViewController.h */,
+				A8011C802101408C0028E604 /* FilterViewController.m */,
+				C0F10186210162F1009ADA47 /* MentorDetailsViewController.h */,
+				C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */,
+				A8011C882101691B0028E604 /* CreateAppointmentViewController.h */,
+				A8011C892101691B0028E604 /* CreateAppointmentViewController.m */,
+			);
+			path = "Discover Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018A21016311009ADA47 /* Appointments Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
+				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
+				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
+				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
+			);
+			path = "Appointments Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018B21016327009ADA47 /* Profile Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266C20FE5B70007D359B /* ProfileViewController.h */,
+				C002266D20FE5B70007D359B /* ProfileViewController.m */,
+			);
+			path = "Profile Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018C21016335009ADA47 /* Opening */ = {
+			isa = PBXGroup;
+			children = (
+				C03D899D20F7CA9900342B39 /* LoginViewController.h */,
+				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
+				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
+				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
+			);
+			path = Opening;
+			sourceTree = "<group>";
+		};
+		C0F1018F2101648A009ADA47 /* DiscoverTab */ = {
+			isa = PBXGroup;
+			children = (
+				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
+				A8011C822101415C0028E604 /* Filters.storyboard */,
+				C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */,
+				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
+			);
+			path = DiscoverTab;
+			sourceTree = "<group>";
+		};
+		C0F101902101648F009ADA47 /* AppointmentsTab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
+				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
+			);
+			path = AppointmentsTab;
+			sourceTree = "<group>";
+		};
+		C0F1019121016496009ADA47 /* ProfileTab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
+			);
+			path = ProfileTab;
 			sourceTree = "<group>";
 		};
 		F09E48C407B6C9533FF8AEA0 /* Pods */ = {
@@ -405,6 +477,8 @@
 				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
 				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
 				A8011C832101415C0028E604 /* Filters.storyboard in Resources */,
+				C0F1018E2101647F009ADA47 /* MentorDetailsStoryboard.storyboard in Resources */,
+				A8011C87210167040028E604 /* CreateAppointment.storyboard in Resources */,
 				C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -523,10 +597,12 @@
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
 				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
 				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
+				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
 				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,
+				C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

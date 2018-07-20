@@ -16,7 +16,9 @@
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfileView;
 
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
-@property (strong, nonatomic) IBOutlet UITextView *messageTextView;
+@property (strong, nonatomic) IBOutlet UILabel *messageTextLabel;
+
+
 
 //buttons
 @property (strong, nonatomic) IBOutlet UIButton *coffeeButton;
@@ -35,12 +37,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    /*[AppointmentModel postAppointment:self.mentor withMeetingLocation:@"Bob's Burgers" withMeetingType:@"coffee" withMeetingDate:[NSDate date] withCompletion:^(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment) {
-        if(succeeded){
-            self.appointment = newAppointment;
-        }
-    }];*/
     
     
     [self loadAppointment];

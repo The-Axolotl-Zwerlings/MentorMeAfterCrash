@@ -11,6 +11,10 @@
 #import "FilterViewController.h"
 #import "Parse.h"
 #import "PFUser+ExtendedUser.h"
+#import "AppDelegate.h"
+#import "LoginViewController.h"
+#import "MentorDetailsViewController.h"
+
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -170,7 +174,12 @@
 - (IBAction)logoutButtonAction:(UIButton *)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error == nil){
+//            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//            LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
+//            
             [self dismissViewControllerAnimated:YES completion:nil];
+            
             NSLog(@"hey we did it");
         } else{
             NSLog(@"error in logging out");
@@ -201,6 +210,15 @@
         filterViewController.delegate = self;
         filterViewController.filterPreferences = self.filterArray;
         filterViewController.getAdvice = self.getAdvice;
+    } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
+        
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
+        PFUser *incomingMentor = self.filteredUsers[indexPath.row];
+        MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
+        mentorDetailsViewController.mentor = incomingMentor;
+        
+        
     }
 }
 

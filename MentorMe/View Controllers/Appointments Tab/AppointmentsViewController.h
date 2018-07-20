@@ -16,7 +16,7 @@
 @property (strong, nonatomic) NSMutableArray *appointmentsArray;
 
 
-@property (weak, nonatomic) id<AppointmentsViewControllerDelegate> delegate;
+
 
 
 @end
