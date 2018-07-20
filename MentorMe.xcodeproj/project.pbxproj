@@ -36,6 +36,7 @@
 		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
 		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
 		C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */; };
+		C0F1018E2101647F009ADA47 /* MentorDetailsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */; };
 		FE4AE2B2B579EAC022338C7C /* libPods-MentorMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */; };
 /* End PBXBuildFile section */
 
@@ -112,6 +113,7 @@
 		C0F101772101059B009ADA47 /* AppointmentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
 		C0F10186210162F1009ADA47 /* MentorDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MentorDetailsViewController.h; sourceTree = "<group>"; };
 		C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorDetailsViewController.m; sourceTree = "<group>"; };
+		C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MentorDetailsStoryboard.storyboard; sourceTree = "<group>"; };
 		E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -230,7 +232,6 @@
 				A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */,
 				C002267120FE64FD007D359B /* Main.storyboard */,
 				C002266F20FE63BA007D359B /* SignUpViewController.storyboard */,
-				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
 				C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */,
 			);
 			path = Storyboards;
@@ -261,10 +262,9 @@
 		C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				A8011C822101415C0028E604 /* Filters.storyboard */,
-				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
-				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
-				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
+				C0F1018F2101648A009ADA47 /* DiscoverTab */,
+				C0F101902101648F009ADA47 /* AppointmentsTab */,
+				C0F1019121016496009ADA47 /* ProfileTab */,
 			);
 			path = "Tab Bar Storyboards";
 			sourceTree = "<group>";
@@ -311,6 +311,33 @@
 				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
 			);
 			path = Opening;
+			sourceTree = "<group>";
+		};
+		C0F1018F2101648A009ADA47 /* DiscoverTab */ = {
+			isa = PBXGroup;
+			children = (
+				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
+				A8011C822101415C0028E604 /* Filters.storyboard */,
+				C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */,
+			);
+			path = DiscoverTab;
+			sourceTree = "<group>";
+		};
+		C0F101902101648F009ADA47 /* AppointmentsTab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
+				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
+			);
+			path = AppointmentsTab;
+			sourceTree = "<group>";
+		};
+		C0F1019121016496009ADA47 /* ProfileTab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
+			);
+			path = ProfileTab;
 			sourceTree = "<group>";
 		};
 		F09E48C407B6C9533FF8AEA0 /* Pods */ = {
@@ -442,6 +469,7 @@
 				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
 				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
 				A8011C832101415C0028E604 /* Filters.storyboard in Resources */,
+				C0F1018E2101647F009ADA47 /* MentorDetailsStoryboard.storyboard in Resources */,
 				C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
