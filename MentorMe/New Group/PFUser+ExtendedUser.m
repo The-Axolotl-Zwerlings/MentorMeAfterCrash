@@ -83,4 +83,8 @@
 -(PFRelation *)usersNearby{
     return self[@"usersNearby"];
 }
+/*@property (strong, nonatomic) NSNumber *giveAdviceCount;
+ @property (strong, nonatomic) NSNumber *getAdviceCount;
+ */
+
 @end

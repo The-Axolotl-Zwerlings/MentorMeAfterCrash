@@ -57,6 +57,7 @@
     self.timeLabel.text = [self.appointment.meetingDate timeAgoSinceNow];
     NSString *completeMeetingType = [@"Meeting for " stringByAppendingString:self.appointment.meetingType];
     self.typeMeetingLabel.text = completeMeetingType;
+    self.messageLabel.text = [self.appointment.meetingType stringByAppendingString:[@" confirmed with " stringByAppendingString:self.appointment.mentorName]];
     //self.mentorProfileView.file = self.appointment.mentor.profilePic;
     //[self.mentorProfileView loadInBackground];
     

@@ -149,6 +149,9 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
                             </button>
+                            <connections>
+                                <segue destination="WT2-ku-EZZ" kind="show" id="OBZ-gc-X2h"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -172,6 +175,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-aP-0d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1048.8" y="108.39580209895054"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="I52-Rp-b3r">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="WT2-ku-EZZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OLl-0M-uXl" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1760" y="-23"/>
         </scene>
         <!--TabBarNavigationController-->
         <scene sceneID="QWz-18-ZJN">

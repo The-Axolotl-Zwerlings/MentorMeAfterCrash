@@ -30,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.getAdvice = YES;
+    self.title = @"Discover";
     
     NSNumber* noObj = [NSNumber numberWithBool:NO];
     self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,nil];
@@ -41,29 +41,13 @@
     
     [self fetchFilteredUsersGet];
     
-    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchFilteredUsersGet) forControlEvents:UIControlEventValueChanged];
-    
     [self.discoverTableView insertSubview:self.refreshControl atIndex:0];
-    
     [self.discoverTableView reloadData];
     
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-    if(self.getAdvice){
-        [self fetchFilteredUsersGet];
-    } else{
-        [self fetchFilteredUsersGive];
-    }
-    
-    
-    [self.discoverTableView reloadData];
-    
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -72,13 +56,16 @@
 
 -(void)fetchFilteredUsersGet{
     PFQuery *usersQuery = [PFUser query];
+    [usersQuery includeKey:@"giveAdviceInterests"];
+    [usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
     usersQuery.limit = 20;
-    if([self.filterArray[0] boolValue]){
+    [usersQuery orderByDescending:@"createdAt"];
+    /*if([self.filterArray[0] boolValue]){
         [usersQuery whereKey:@"school" equalTo:PFUser.currentUser.school];
     }
     if([self.filterArray[1] boolValue]){
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
-    }
+     }*/
 //    if([self.filterArray[2] boolValue]){
 //        [usersQuery whereKey:@"location" equalTo:PFUser.currentUser.location];
 //    }
@@ -103,9 +90,10 @@
 
 -(void)fetchFilteredUsersGive{
     PFQuery *usersQuery = [PFUser query];
-    usersQuery.limit = 2;
-    //[usersQuery orderByDescending:@"createdAt"];
-    
+    [usersQuery includeKey:@"getAdviceInterests"];
+    [usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
+    usersQuery.limit = 20;
+    [usersQuery orderByDescending:@"createdAt"];
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
         
         if(users){
@@ -143,20 +131,41 @@
 }
 
 
+
+
+
+
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
     //if we are going to give advice
     if(self.mentorMenteeSegControl.selectedSegmentIndex == 1){
+        NSLog( @"Showing people who can give advice" );
         self.getAdvice = NO;
         [self fetchFilteredUsersGive];
         
     } else{
+        NSLog( @"Showing people need advice" );
         self.getAdvice = YES;
         [self fetchFilteredUsersGet];
     }
     
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

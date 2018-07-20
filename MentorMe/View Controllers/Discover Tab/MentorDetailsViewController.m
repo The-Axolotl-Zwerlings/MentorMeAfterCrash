@@ -19,6 +19,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
 @property (weak, nonatomic) IBOutlet UITextView *mentorDescription;
+@property (weak, nonatomic) IBOutlet UITextView *giveAdviceText;
+@property (weak, nonatomic) IBOutlet UITextView *getAdviceText;
 
 @end
 
@@ -44,9 +46,17 @@
     self.educationLabel.text = [@"Attends " stringByAppendingString: self.mentor.school];
     self.mentorDescription.text = self.mentor.bio;
     
+    if( self.mentor.giveAdviceInterests.count != 0 ){
+        self.giveAdviceText.text = self.mentor.giveAdviceInterests[0];
+    } else {
+        self.giveAdviceText.text = @"None at the moment";
+    }
     
-    
-    
+    if( self.mentor.getAdviceInterests.count != 0 ){
+        self.getAdviceText.text = self.mentor.getAdviceInterests[0];
+    } else {
+        self.getAdviceText.text = @"None at the moment";
+    }
 }
 
 - (void) refreshData {
