@@ -136,7 +136,7 @@
         AppointmentModel *incomingAppointment = self.appointmentsArray[indexPath.row];
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
         appointmentDetailsViewController.appointment = incomingAppointment;
-        appointmentDetailsViewController.delegate = self;
+        //appointmentDetailsViewController.delegate = self;
         
     }
 }
