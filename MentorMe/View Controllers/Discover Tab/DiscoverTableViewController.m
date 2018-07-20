@@ -13,6 +13,8 @@
 #import "PFUser+ExtendedUser.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "MentorDetailsViewController.h"
+
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -210,7 +212,11 @@
         filterViewController.getAdvice = self.getAdvice;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         
-        
+        UITableViewCell *tappedCell = sender;
+        NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
+        PFUser *incomingMentor = self.filteredUsers[indexPath.row];
+        MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
+        mentorDetailsViewController.mentor = incomingMentor;
         
         
     }

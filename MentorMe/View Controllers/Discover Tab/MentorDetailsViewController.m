@@ -7,8 +7,18 @@
 //
 
 #import "MentorDetailsViewController.h"
+#import "PFUser+ExtendedUser.h"
+#import "DiscoverTableViewController.h"
+#import "Parse/Parse.h"
+#import "ParseUI.h"
 
 @interface MentorDetailsViewController ()
+@property (weak, nonatomic) IBOutlet PFImageView *profilePictureImageView;
+@property (weak, nonatomic) IBOutlet UILabel *mentorName;
+@property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *educationLabel;
+@property (weak, nonatomic) IBOutlet UITextView *mentorDescription;
 
 @end
 
@@ -16,13 +26,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self loadMentor];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void) loadMentor {
+    
+    //self.profilePictureImageView.file = self.mentor.profilePic;
+    self.mentorName.text = self.mentor.name;
+    self.occupationLabel.text = [[self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
+    self.locationLabel.text = @"Lives in Mountain View, CA";
+    self.educationLabel.text = [@"Attends " stringByAppendingString: self.mentor.school];
+    self.mentorDescription.text = self.mentor.bio;
+    
+    
+    
+    
+}
+
+- (void) refreshData {
+    
+    
+}
+
+
+
 
 /*
 #pragma mark - Navigation

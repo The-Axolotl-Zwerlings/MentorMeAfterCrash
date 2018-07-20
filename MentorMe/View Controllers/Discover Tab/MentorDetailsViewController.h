@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PFUser+ExtendedUser.h"
+#import "Parse/Parse.h"
 
 @interface MentorDetailsViewController : UIViewController
+
+@property ( strong, nonatomic ) PFUser *mentor;
 
 @end
