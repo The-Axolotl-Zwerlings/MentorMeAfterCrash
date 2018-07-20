@@ -31,6 +31,13 @@
 @property (weak, nonatomic) IBOutlet UIView *whiteView;
 @property (weak, nonatomic) IBOutlet UILabel *greyView;
 
+@property (weak, nonatomic) IBOutlet UITableView *getAdviceTableView;
+@property (weak, nonatomic) IBOutlet UITableView *giveAdviceTableView;
+@property (strong, nonatomic) NSArray* adviceToGet;
+@property (strong, nonatomic) NSArray* adviceToGive;
+
+
+
 //methods
 -(void)setUIfeatures;
 
