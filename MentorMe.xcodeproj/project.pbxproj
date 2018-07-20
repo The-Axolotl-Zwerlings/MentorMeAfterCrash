@@ -35,6 +35,7 @@
 		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
 		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
 		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
+		C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */; };
 		FE4AE2B2B579EAC022338C7C /* libPods-MentorMe.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */; };
 /* End PBXBuildFile section */
 
@@ -109,6 +110,8 @@
 		C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailsViewController.m; sourceTree = "<group>"; };
 		C0F101762101059B009ADA47 /* AppointmentsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		C0F101772101059B009ADA47 /* AppointmentsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
+		C0F10186210162F1009ADA47 /* MentorDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MentorDetailsViewController.h; sourceTree = "<group>"; };
+		C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorDetailsViewController.m; sourceTree = "<group>"; };
 		E4893F7FB4B7966D94418CB2 /* libPods-MentorMeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -236,20 +239,10 @@
 		C03D898720F7C8ED00342B39 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				C03D899D20F7CA9900342B39 /* LoginViewController.h */,
-				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
-				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
-				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
-				C002266C20FE5B70007D359B /* ProfileViewController.h */,
-				C002266D20FE5B70007D359B /* ProfileViewController.m */,
-				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
-				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
-				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
-				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
-				A8011C7C21013F610028E604 /* DiscoverTableViewController.h */,
-				A8011C7D21013F610028E604 /* DiscoverTableViewController.m */,
-				A8011C7F2101408C0028E604 /* FilterViewController.h */,
-				A8011C802101408C0028E604 /* FilterViewController.m */,
+				C0F1018C21016335009ADA47 /* Opening */,
+				C0F1018921016301009ADA47 /* Discover Tab */,
+				C0F1018A21016311009ADA47 /* Appointments Tab */,
+				C0F1018B21016327009ADA47 /* Profile Tab */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -274,6 +267,50 @@
 				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
 			);
 			path = "Tab Bar Storyboards";
+			sourceTree = "<group>";
+		};
+		C0F1018921016301009ADA47 /* Discover Tab */ = {
+			isa = PBXGroup;
+			children = (
+				A8011C7C21013F610028E604 /* DiscoverTableViewController.h */,
+				A8011C7D21013F610028E604 /* DiscoverTableViewController.m */,
+				A8011C7F2101408C0028E604 /* FilterViewController.h */,
+				A8011C802101408C0028E604 /* FilterViewController.m */,
+				C0F10186210162F1009ADA47 /* MentorDetailsViewController.h */,
+				C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */,
+			);
+			path = "Discover Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018A21016311009ADA47 /* Appointments Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
+				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
+				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
+				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
+			);
+			path = "Appointments Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018B21016327009ADA47 /* Profile Tab */ = {
+			isa = PBXGroup;
+			children = (
+				C002266C20FE5B70007D359B /* ProfileViewController.h */,
+				C002266D20FE5B70007D359B /* ProfileViewController.m */,
+			);
+			path = "Profile Tab";
+			sourceTree = "<group>";
+		};
+		C0F1018C21016335009ADA47 /* Opening */ = {
+			isa = PBXGroup;
+			children = (
+				C03D899D20F7CA9900342B39 /* LoginViewController.h */,
+				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
+				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
+				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
+			);
+			path = Opening;
 			sourceTree = "<group>";
 		};
 		F09E48C407B6C9533FF8AEA0 /* Pods */ = {
@@ -527,6 +564,7 @@
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
 				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,
+				C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
