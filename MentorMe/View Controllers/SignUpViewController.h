@@ -11,6 +11,4 @@
 
 @interface SignUpViewController : UIViewController
 
-- (PFFile *)getPFFileFromImage: (UIImage * _Nullable)image;
-
 @end

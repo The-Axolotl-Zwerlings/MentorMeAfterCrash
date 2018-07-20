@@ -15,16 +15,21 @@
 
 @property (strong, nonatomic) PFUser* user;
 
-@property (weak, nonatomic) IBOutlet PFImageView *bannerImageView;
+@property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *positionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *institutionLabel;
-@property (weak, nonatomic) IBOutlet UILabel *addressLabel;
+@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *majorLabel;
+@property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
+@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *EditBarButton;
-@property (weak, nonatomic) IBOutlet UIButton *connectButton;
+
+
+@property (weak, nonatomic) IBOutlet UIView *whiteView;
+@property (weak, nonatomic) IBOutlet UILabel *greyView;
 
 //methods
 -(void)setUIfeatures;

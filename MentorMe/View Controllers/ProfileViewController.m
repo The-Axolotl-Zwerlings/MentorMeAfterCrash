@@ -7,6 +7,7 @@
 //
 
 #import "ProfileViewController.h"
+#import "SignUpViewController.h"
 
 @interface ProfileViewController ()
 
@@ -29,9 +30,13 @@
 -(void)setUIfeatures {
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
-    self.positionLabel.text = self.user[@"jobTitle"];
-    self.institutionLabel.text = self.user[@"company"];
+    self.jobTitleLabel.text = self.user[@"jobTitle"];
+    self.companyLabel.text = self.user[@"company"];
+    self.majorLabel.text = self.user[@"major"];
+    self.schoolLabel.text = self.user[@"school"];
     self.bioLabel.text = self.user[@"bio"];
+//    self.whiteView.layer.cornerRadius = 5.0;
+//    [self.whiteView setClipsToBounds:YES];
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 7.0f;
@@ -40,7 +45,10 @@
     self.profileImageView.file = self.user[@"profilePic"];
     [self.profileImageView loadInBackground];
     
-    //self.bannerImageView.file = [UIImage imageNamed:@"hipster2"];
+    self.bannerImageView.image = [UIImage imageNamed:@"33996-5-sunrise-clipart"];
+    
+   
+
     
 }
 
