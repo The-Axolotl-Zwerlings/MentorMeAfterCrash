@@ -42,7 +42,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocf-VM-Hy6">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ocf-VM-Hy6" customClass="PFImageView">
                                                     <rect key="frame" x="10" y="10" width="100" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.21405707465277779" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -81,14 +81,22 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="You are the mentor!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eg8-2E-nfz">
+                                                    <rect key="frame" x="217" y="0.0" width="151" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="meetingDate" destination="mat-GJ-gOo" id="UdY-Z0-dA7"/>
                                             <outlet property="meetingLocation" destination="WNx-gG-zNe" id="V9n-w0-gd9"/>
                                             <outlet property="meetingType" destination="syA-mL-EtP" id="USo-ij-cPU"/>
-                                            <outlet property="mentorName" destination="G8X-OZ-KSm" id="x4D-zY-zXT"/>
-                                            <outlet property="mentorProfilePic" destination="ocf-VM-Hy6" id="Jyy-8p-mAf"/>
+                                            <outlet property="mentorOrMenteeLabel" destination="eg8-2E-nfz" id="UUQ-28-CZW"/>
+                                            <outlet property="otherAttendeeName" destination="G8X-OZ-KSm" id="Pfh-Wy-y04"/>
+                                            <outlet property="otherAttendeeProfilePic" destination="ocf-VM-Hy6" id="05V-Qp-1hx"/>
                                             <segue destination="auS-yq-r0M" kind="show" identifier="segueToAppointmentsDetailsViewController" id="UC8-Fi-ZCI"/>
                                         </connections>
                                     </tableViewCell>

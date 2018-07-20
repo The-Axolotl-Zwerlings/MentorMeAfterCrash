@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="MY9-ZN-1zH">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -45,6 +45,9 @@
                                 <rect key="frame" x="194" y="597" width="181" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Confirm"/>
+                                <connections>
+                                    <action selector="createAction:" destination="MY9-ZN-1zH" eventType="touchUpInside" id="SmG-Fj-Oxu"/>
+                                </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ynk-2N-wz9">
                                 <rect key="frame" x="22" y="231" width="337" height="128"/>
@@ -58,6 +61,9 @@
                                 <rect key="frame" x="0.0" y="597" width="186" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelAction:" destination="MY9-ZN-1zH" eventType="touchUpInside" id="4Gl-VQ-RYi"/>
+                                </connections>
                             </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VTT-rD-L74">
                                 <rect key="frame" x="9" y="475" width="357" height="128"/>
@@ -86,25 +92,49 @@
                                     </label>
                                 </subviews>
                             </scrollView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDu-6N-3Ui">
-                                <rect key="frame" x="65" y="377" width="244" height="71"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDu-6N-3Ui">
+                                <rect key="frame" x="67.5" y="370" width="240" height="71"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="JVa-3G-5jn"/>
                                     <constraint firstAttribute="height" constant="70" id="UOQ-KY-hwa"/>
                                 </constraints>
                                 <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                    <segment title=""/>
+                                    <segment title="" image="33996-5-sunrise-clipart"/>
+                                    <segment title="" image="hipster2"/>
+                                    <segment title="" image="user-blue"/>
                                 </segments>
+                                <connections>
+                                    <action selector="didChangeType:" destination="MY9-ZN-1zH" eventType="valueChanged" id="J33-1T-xhu"/>
+                                </connections>
                             </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="fDu-6N-3Ui" firstAttribute="centerX" secondItem="8Nx-PZ-TfX" secondAttribute="centerX" id="EdU-iv-71Q"/>
+                            <constraint firstItem="fDu-6N-3Ui" firstAttribute="top" secondItem="or5-5E-C6Q" secondAttribute="top" constant="350" id="jcp-th-sGQ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="or5-5E-C6Q"/>
                     </view>
+                    <connections>
+                        <outlet property="appointmentTypeSegControl" destination="fDu-6N-3Ui" id="GeD-cA-aU3"/>
+                        <outlet property="locationLabel" destination="aP7-Fy-dKR" id="7XT-fz-OEM"/>
+                        <outlet property="meetingWithLabel" destination="D2W-xW-4SI" id="A1G-Jx-7MD"/>
+                        <outlet property="menteeIconView" destination="c54-XS-5Hr" id="JQI-Gh-IcW"/>
+                        <outlet property="menteeProfilePicView" destination="1IS-GS-emn" id="NRi-MZ-Lbi"/>
+                        <outlet property="mentorIconView" destination="ah5-lk-EF1" id="2Pf-Ub-cs1"/>
+                        <outlet property="mentorProfilePicView" destination="XZA-d4-CGC" id="2qe-Yf-zdb"/>
+                        <outlet property="messageTextView" destination="ynk-2N-wz9" id="DOC-N8-BIl"/>
+                        <outlet property="timeLabel" destination="LVr-Yh-T0S" id="g32-7f-rvz"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="47J-PZ-duY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-42.399999999999999" y="20.239880059970016"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="33996-5-sunrise-clipart" width="960" height="525"/>
+        <image name="hipster2" width="32" height="32"/>
+        <image name="user-blue" width="32" height="32"/>
+    </resources>
 </document>
