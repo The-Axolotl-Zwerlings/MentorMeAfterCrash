@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
 @property (strong, nonatomic) IBOutlet UILabel *interestsLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *profilePicView;
+@property (strong, nonatomic) NSNumber *isGivingAdvice;
 -(void)layoutCell:(PFUser *)user;
 @end

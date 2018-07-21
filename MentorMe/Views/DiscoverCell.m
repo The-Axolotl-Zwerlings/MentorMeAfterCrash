@@ -26,5 +26,18 @@
     self.schoolLabel.text = user.school;
     self.jobLabel.text = user.jobTitle;
     self.profilePicView.image = [UIImage imageNamed:@"user"];
+    self.interestsLabel.text = @"";
+    if([self.isGivingAdvice boolValue]){
+        for(NSString *interest in user.getAdviceInterests){
+            NSString *stringInterest = [interest stringByAppendingString:@", "];
+            self.interestsLabel.text = [self.interestsLabel.text stringByAppendingString:stringInterest];
+        }
+    } else{
+        for(NSString *interest in user.giveAdviceInterests){
+            NSString *stringInterest = [interest stringByAppendingString:@", "];
+            self.interestsLabel.text = [self.interestsLabel.text stringByAppendingString:stringInterest];
+        }
+    }
+    
 }
 @end

@@ -13,7 +13,7 @@
 
 @dynamic mentor;
 @dynamic mentee;
-@dynamic isMentor;
+//@dynamic isMentor;
 @dynamic meetingLocation;
 @dynamic meetingDate;
 @dynamic meetingType;
@@ -32,12 +32,13 @@
     
     appointment[@"mentor"] = (isMentor) ? PFUser.currentUser : otherAttendee;
     appointment[@"mentee"] = (isMentor) ? otherAttendee : PFUser.currentUser;
-    appointment[@"isMentor"] = @(isMentor);
+    //appointment[@"isMentor"] = @(isMentor);
     
     appointment[@"meetingLocation"] = meetingLocation;
     appointment[@"meetingType"] = meetingType;
     appointment[@"meetingDate"] = meetingDate;
     appointment[@"isUpcoming"] = @(isUpcoming);
+    appointment[@"message"] = message;
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {

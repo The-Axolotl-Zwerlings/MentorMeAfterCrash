@@ -60,15 +60,17 @@
     //[usersQuery whereKey:@"name" notEqualTo:PFUser.currentUser.name];
     usersQuery.limit = 20;
     [usersQuery orderByDescending:@"createdAt"];
-    /*if([self.filterArray[0] boolValue]){
+    if([self.filterArray[0] boolValue]){
         [usersQuery whereKey:@"school" equalTo:PFUser.currentUser.school];
     }
     if([self.filterArray[1] boolValue]){
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
-     }*/
+     }
 //    if([self.filterArray[2] boolValue]){
 //        [usersQuery whereKey:@"location" equalTo:PFUser.currentUser.location];
 //    }
+    
+    
     
     //[usersQuery orderByDescending:@"createdAt"];
     
@@ -174,6 +176,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
+    cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
+    
+    
     [cell layoutCell:self.filteredUsers[indexPath.row]];
     
     

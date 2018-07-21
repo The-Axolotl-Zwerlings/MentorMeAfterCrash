@@ -48,8 +48,13 @@
 }
 
 -(void)loadAppointment{
+    NSString *titleString;
+    if(self.appointment.mentor.username == PFUser.currentUser.username){
+        titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentee.name];
+    } else{
+        titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentor.name];
+    }
     
-    NSString *titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentor.name];
     
     self.title = titleString;
     

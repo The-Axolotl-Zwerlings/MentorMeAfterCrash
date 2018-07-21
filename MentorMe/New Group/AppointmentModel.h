@@ -15,7 +15,7 @@
 
 @property (nonatomic, strong ) PFUser *mentor;
 @property (nonatomic, strong ) PFUser *mentee;
-@property (nonatomic, strong) NSNumber *isMentor;
+//@property (nonatomic, strong) NSNumber *isMentor;
 @property( nonatomic, strong ) NSDate *meetingDate;
 @property( nonatomic, strong ) NSString *meetingType;
 @property( nonatomic, strong ) NSString *meetingLocation;

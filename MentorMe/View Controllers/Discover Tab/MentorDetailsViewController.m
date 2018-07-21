@@ -29,7 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadMentor];
+    [self loadPerson];
 }
 
 
@@ -38,7 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) loadMentor {
+- (void) loadPerson {
     
     //self.profilePictureImageView.file = self.mentor.profilePic;
     self.mentorName.text = self.mentor.name;

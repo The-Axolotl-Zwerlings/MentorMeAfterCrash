@@ -32,13 +32,14 @@
     _appointment = appointment;
    
     
-    if(appointment.isMentor == [NSNumber numberWithBool:YES]){
+    
+    if([appointment.mentor.username isEqualToString:PFUser.currentUser.username]){
         self.otherAttendeeName.text = appointment.mentee[@"name"];
         self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
         self.mentorOrMenteeLabel.text = @"You're the mentor!";
     } else{
-        self.otherAttendeeName.text = appointment.mentor.name;
+        self.otherAttendeeName.text = appointment.mentor[@"name"];
         self.otherAttendeeProfilePic.file = appointment.mentor.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
         self.mentorOrMenteeLabel.text = @"You're the mentee!";
