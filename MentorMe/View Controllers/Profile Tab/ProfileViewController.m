@@ -14,7 +14,7 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, EditProfileViewControllerDelegate>
+@interface ProfileViewController () <EditProfileViewControllerDelegate>
 
 @end
 
@@ -24,16 +24,18 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     
-    self.getAdviceTableView.delegate = self;
+  /*  self.getAdviceTableView.delegate = self;
     self.giveAdviceTableView.delegate = self;
     self.getAdviceTableView.dataSource = self;
-    self.giveAdviceTableView.dataSource = self;
+    self.giveAdviceTableView.dataSource = self;*/
     
     self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
 
     
     [self loadProfile];
+    
+    [self loadInterests];
     
     // Do any additional setup after loading the view.
 }
@@ -86,6 +88,48 @@
 }
 
 
+- (void) loadInterests {
+    
+    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.horizontalView.frame.size.width, self.horizontalView.frame.size.height)];
+    
+    int x = 0;
+    CGRect frame;
+    for (int i = 0; i < 10; i++) {
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        
+        if (i == 0) {
+            frame = CGRectMake(10, 10, 80, 80);
+        } else {
+            frame = CGRectMake((i * 80) + (i*20) + 10, 10, 80, 80);
+        }
+        
+        button.frame = frame;
+        [button setTitle:[NSString stringWithFormat:@"Button %d", i] forState:UIControlStateNormal];
+        [button setTag:i];
+        [button setBackgroundColor:[UIColor greenColor]];
+        [button addTarget:self action:@selector(buttonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [scrollView addSubview:button];
+        
+        if (i == 9) {
+            x = CGRectGetMaxX(button.frame);
+        }
+        
+    }
+    
+    scrollView.contentSize = CGSizeMake(x, scrollView.frame.size.height);
+    scrollView.backgroundColor = [UIColor redColor];
+    [self.horizontalView addSubview:scrollView];
+    
+}
+
+- (void) buttonClicked {
+    
+    NSLog( @"Button Clicked");
+    
+}
+
+/*
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(tableView == self.getAdviceTableView){
@@ -111,7 +155,7 @@
         return cell;
     }
     
-}
+}*/
 
 
 #pragma mark - Navigation

@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
 
+@property (weak, nonatomic) IBOutlet UIView *horizontalView;
 
 
 //methods
