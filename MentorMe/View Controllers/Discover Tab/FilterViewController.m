@@ -59,6 +59,8 @@
     }
     return cell;
     
+    NSLog(@"BYE!");
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     PFUser *user = PFUser.currentUser;

@@ -68,7 +68,8 @@
     
     NSString *completeMeetingType = [@"Meeting for " stringByAppendingString:self.appointment.meetingType];
     self.typeMeetingLabel.text = completeMeetingType;
-    self.messageLabel.text = self.appointment.message;
+    self.messageTextLabel.text = self.appointment.message;
+    self.messageLabel.text = @"Message:";
     //self.mentorProfileView.file = self.appointment.mentor.profilePic;
     //[self.mentorProfileView loadInBackground];
     

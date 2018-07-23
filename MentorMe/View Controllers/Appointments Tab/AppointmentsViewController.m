@@ -34,9 +34,11 @@
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
     
-    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
+    [self fetchFilteredAppointments];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
+    
+    
     
     [self.refreshControl addTarget:self action:@selector(fetchFilteredAppointments) forControlEvents:UIControlEventValueChanged];
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
@@ -48,16 +50,19 @@
     
     [super viewWillAppear:animated];
     [self.appointmentsTableView reloadData];
-    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
+    [self fetchFilteredAppointments];
     
 }
 - (IBAction)didChangeIndex:(id)sender {
     
-    [self fetchFilteredAppointments:self.appointmentController.selectedSegmentIndex];
+    [self fetchFilteredAppointments];
     
 }
 
--(void) fetchFilteredAppointments:(NSInteger) index {
+-(void) fetchFilteredAppointments{
+
+    NSInteger index = self.appointmentController.selectedSegmentIndex;
+                                                         
     
     PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
     PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
