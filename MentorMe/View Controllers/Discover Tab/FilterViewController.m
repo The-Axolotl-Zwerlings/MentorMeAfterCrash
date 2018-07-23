@@ -59,7 +59,7 @@
     }
     return cell;
     
-    NSLog(@"HI!");
+    NSLog(@"HELLO!");
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
