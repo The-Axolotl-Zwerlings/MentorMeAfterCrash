@@ -32,7 +32,9 @@
     self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
 
+    
     [self loadProfile];
+    
     // Do any additional setup after loading the view.
 }
 
@@ -44,21 +46,37 @@
 -(void)loadProfile {
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
-    self.jobTitleLabel.text = self.user[@"jobTitle"];
-    self.companyLabel.text = self.user[@"company"];
-    self.majorLabel.text = self.user[@"major"];
-    self.schoolLabel.text = self.user[@"school"];
+    
+    
+    NSString *jobTitleAppend = self.user[@"jobTitle"];
+    NSString *companyLabelAppend = self.user[@"company"];
+    
+    self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
+    
+    NSString *majorLabelAppend = self.user[@"major"];
+    NSString *schoolLabelAppend = self.user[@"school"];
+    
+    self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
+    
+    
+    self.bannerImageView.layer.borderWidth = 2.0f;
+    self.bannerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    
     self.bioLabel.text = self.user[@"bio"];
     
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.layer.borderWidth = 7.0f;
+    
+    
+    
+    self.profileImageView.layer.borderWidth = 4.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profileImageView.file = nil;
     self.profileImageView.file = self.user[@"profilePic"];
     [self.profileImageView loadInBackground];
     
     self.bannerImageView.image = [UIImage imageNamed:@"33996-5-sunrise-clipart"];
+    
 }
 
 - (void) didEditProfile {

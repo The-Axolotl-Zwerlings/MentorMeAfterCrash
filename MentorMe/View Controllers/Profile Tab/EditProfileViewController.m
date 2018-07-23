@@ -13,11 +13,11 @@
 
 @interface EditProfileViewController ()
 @property (weak, nonatomic) IBOutlet PFImageView *profilePictureImageView;
-@property (weak, nonatomic) IBOutlet UITextField *nameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *jobTitleLabel;
-@property (weak, nonatomic) IBOutlet UITextField *companyLabel;
-@property (weak, nonatomic) IBOutlet UITextField *majorLabel;
-@property (weak, nonatomic) IBOutlet UITextField *schoolLabel;
+@property (weak, nonatomic) IBOutlet UITextView *nameTextView;
+@property (weak, nonatomic) IBOutlet UITextView *jobTitleTextView;
+@property (weak, nonatomic) IBOutlet UITextView *companyTextView;
+@property (weak, nonatomic) IBOutlet UITextView *majorTextView;
+@property (weak, nonatomic) IBOutlet UITextView *schoolTextView;
 @property (weak, nonatomic) IBOutlet UITextView *biographyTextView;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
@@ -30,12 +30,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.profilePictureImageView.clipsToBounds = YES;
+    self.profilePictureImageView.layer.cornerRadius = self.profilePictureImageView.frame.size.width / 2;
+    
     PFUser* user = [PFUser currentUser];
-    self.nameLabel.placeholder = user[@"name"];
-    self.jobTitleLabel.placeholder = user[@"jobTitle"];
-    self.companyLabel.placeholder = user[@"company"];
-    self.majorLabel.placeholder = user[@"major"];
-    self.schoolLabel.placeholder = user[@"school"];
+    self.nameTextView.text = user[@"name"];
+    self.jobTitleTextView.text = user[@"jobTitle"];
+    self.companyTextView.text = user[@"company"];
+    self.majorTextView.text = user[@"major"];
+    self.schoolTextView.text = user[@"school"];
     self.biographyTextView.text = user[@"bio"];
     self.profilePictureImageView.file = user[@"profilePic"];
     
@@ -66,12 +69,13 @@
     
     PFUser* currUser = [PFUser currentUser];
     
-    currUser.name = self.nameLabel.text;
-    currUser.jobTitle = self.jobTitleLabel.text;
-    currUser.company = self.companyLabel.text;
-    currUser.major = self.majorLabel.text;
-    currUser.school = self.schoolLabel.text;
-    currUser.bio = self.biographyTextView.text;
+    currUser.name = [currUser.name isEqualToString:self.nameTextView.text] ? currUser.name : self.nameTextView.text;
+    currUser.jobTitle = [currUser.jobTitle isEqualToString:self.jobTitleTextView.text] ? currUser.jobTitle : self.jobTitleTextView.text;
+    currUser.company = [currUser.company isEqualToString:self.companyTextView.text] ? currUser.company : self.companyTextView.text;
+    currUser.major = [currUser.major isEqualToString:self.majorTextView.text] ? currUser.major : self.majorTextView.text;
+    currUser.school = [currUser.school isEqualToString:self.schoolTextView.text] ? currUser.school : self.schoolTextView.text;
+    currUser.bio = [currUser.bio isEqualToString:self.biographyTextView.text] ? currUser.bio :self.biographyTextView.text;
+
     currUser.profilePic = self.profilePictureImageView.file;
     
     [currUser saveInBackground];
@@ -109,7 +113,7 @@
     UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
     UIImage *editedImage = info[UIImagePickerControllerEditedImage];
     self.profilePictureImageView.file = nil;
-    CGSize size = CGSizeMake(80, 80);
+    CGSize size = CGSizeMake(136, 136);
     UIImage *resizedImage = [self resizeImage:editedImage withSize:size];
     PFFile *imageFile = [self getPFFileFromImage:resizedImage];
     
