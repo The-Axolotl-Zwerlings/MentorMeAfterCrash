@@ -10,6 +10,7 @@ target 'MentorMe' do
   pod 'GPSKit'
   pod 'Parse'
   pod 'ParseUI'
+  pod 'AFNetworking'
 
   target 'MentorMeTests' do
     inherit! :search_paths

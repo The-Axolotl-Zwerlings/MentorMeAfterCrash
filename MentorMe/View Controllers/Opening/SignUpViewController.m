@@ -45,6 +45,18 @@
     // Do any additional setup after loading the view.
     self.getAdviceInterests = [[NSMutableArray alloc] init];
     self.giveAdviceInterests = [[NSMutableArray alloc] init];
+    
+    UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
+              initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
+    
+    
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {
