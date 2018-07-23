@@ -29,6 +29,7 @@
 		B2AB7A622102624400625FEE /* GetAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */; };
 		B2AB7A652102625600625FEE /* GiveAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
+		B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */; };
 		C002266920FE5A11007D359B /* AppointmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */; };
 		C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */; };
 		C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C002266D20FE5B70007D359B /* ProfileViewController.m */; };
@@ -106,6 +107,8 @@
 		B2AB7A632102625600625FEE /* GiveAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceTableViewCell.h; sourceTree = "<group>"; };
 		B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceTableViewCell.m; sourceTree = "<group>"; };
 		B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
+		B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
+		B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
 		BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentsViewController.storyboard; sourceTree = "<group>"; };
 		C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
@@ -317,6 +320,8 @@
 			children = (
 				C002266C20FE5B70007D359B /* ProfileViewController.h */,
 				C002266D20FE5B70007D359B /* ProfileViewController.m */,
+				B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */,
+				B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */,
 			);
 			path = "Profile Tab";
 			sourceTree = "<group>";
@@ -608,6 +613,7 @@
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
 				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
 				A8011C812101408C0028E604 /* FilterViewController.m in Sources */,
+				B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */,
 				A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */,
 				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,

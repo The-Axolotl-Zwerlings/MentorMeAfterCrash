@@ -10,6 +10,7 @@
 #import "ParseUI/ParseUI.h"
 #import "Parse/Parse.h"
 
+
 @interface ProfileViewController : UIViewController
 //outlets for everything in the viewcontroller
 
@@ -29,7 +30,11 @@
 
 
 @property (weak, nonatomic) IBOutlet UIView *whiteView;
+
+//below might not exist anymore
 @property (weak, nonatomic) IBOutlet UILabel *greyView;
+@property (weak, nonatomic) IBOutlet UIView *lightView;
+
 
 @property (weak, nonatomic) IBOutlet UITableView *getAdviceTableView;
 @property (weak, nonatomic) IBOutlet UITableView *giveAdviceTableView;
