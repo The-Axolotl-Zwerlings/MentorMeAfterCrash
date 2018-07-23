@@ -10,4 +10,10 @@
 
 @interface InterestModel : PFObject<PFSubclassing>
 
+@property (strong, nonatomic) NSString* category;
+@property (strong, nonatomic) PFRelation* users;
+@property (strong, nonatomic) NSString* subject;
+
++(void) something: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers;
+
 @end
