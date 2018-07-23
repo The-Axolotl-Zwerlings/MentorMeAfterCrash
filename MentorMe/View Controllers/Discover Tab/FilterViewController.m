@@ -60,6 +60,7 @@
     return cell;
     
     NSLog(@"BYE!");
+    NSLog(@"Nico");
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
