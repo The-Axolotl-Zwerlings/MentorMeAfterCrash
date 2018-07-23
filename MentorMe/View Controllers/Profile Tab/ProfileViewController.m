@@ -31,7 +31,7 @@
     self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
 
-    [self setUIfeatures];
+    [self loadProfile];
     // Do any additional setup after loading the view.
 }
 
@@ -40,7 +40,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setUIfeatures {
+-(void)loadProfile {
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
     self.jobTitleLabel.text = self.user[@"jobTitle"];

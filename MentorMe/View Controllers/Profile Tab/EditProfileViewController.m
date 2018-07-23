@@ -10,8 +10,6 @@
 
 @interface EditProfileViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *nameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *usernameLabel;
-@property (weak, nonatomic) IBOutlet UITextField *emailLabel;
 @property (weak, nonatomic) IBOutlet UITextField *jobTitleLabel;
 @property (weak, nonatomic) IBOutlet UITextField *companyLabel;
 @property (weak, nonatomic) IBOutlet UITextField *majorLabel;
@@ -23,14 +21,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     PFUser* user = [PFUser currentUser];
-    self.nameLabel.text = user[@"name"];
-    self.jobTitleLabel.text = user[@"jobTitle"];
-    self.companyLabel.text = user[@"company"];
-    self.majorLabel.text = user[@"major"];
-    self.schoolLabel.text = user[@"school"];
-    self.emailLabel.text = user[@"email"];
-    self.usernameLabel.text = user[@"username"];
+    self.nameLabel.placeholder = user[@"name"];
+    self.jobTitleLabel.placeholder = user[@"jobTitle"];
+    self.companyLabel.placeholder = user[@"company"];
+    self.majorLabel.placeholder = user[@"major"];
+    self.schoolLabel.placeholder = user[@"school"];
     
 
     // Do any additional setup after loading the view.
@@ -41,23 +38,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)sendInfoToEditViewController:(NSString *)string{
-    [self.nameLabel setText:string];
-}
-
-@synthesize delegate = _delegate;
-- (IBAction)saveEditsButton:(id)sender {
-    [self.delegate changeName:self.nameLabel.text];
-    [self.delegate changeMajor:self.majorLabel.text andSchoold:self.schoolLabel.text];
-    [self.delegate changeJobTitle:self.jobTitleLabel.text andCompany:self.companyLabel.text];
-    //NSLog(@"%@", self.majorLabel.text);
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
-//    ProfileViewController* view = [[ProfileViewController alloc]init];
-//    view.delegate = self;
-    //calls delegate to update info to profile and parse and dismisses edits view controller
-    //viewcontroller.delegate = self;
-}
 
 
 

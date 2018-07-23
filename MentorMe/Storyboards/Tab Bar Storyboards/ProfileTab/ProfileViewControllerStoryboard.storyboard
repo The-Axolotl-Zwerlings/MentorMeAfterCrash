@@ -203,14 +203,6 @@
             </objects>
             <point key="canvasLocation" x="4751.1999999999998" y="28.335832083958024"/>
         </scene>
-        <!--AppointmentDetailsViewController-->
-        <scene sceneID="35g-BK-8Yi">
-            <objects>
-                <viewControllerPlaceholder storyboardName="AppointmentDetailsViewController" id="eu7-wG-gSt" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="VJ2-gf-ky5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5404" y="28"/>
-        </scene>
         <!--EditProfileViewController-->
         <scene sceneID="CsB-d3-Ngb">
             <objects>

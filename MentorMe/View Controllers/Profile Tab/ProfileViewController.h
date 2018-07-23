@@ -44,6 +44,6 @@
 
 
 //methods
--(void)setUIfeatures;
+-(void)loadProfile;
 
 @end

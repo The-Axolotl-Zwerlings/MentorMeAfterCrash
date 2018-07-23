@@ -11,9 +11,7 @@
 #import "Parse/Parse.h"
 
 @protocol profileEditorDelegate <NSObject>
--(void)changeName:(NSString *)newname;
--(void)changeMajor:(NSString *)newmajor andSchoold:(NSString*)newSchool;
--(void)changeJobTitle:(NSString *)newJobTitle andCompany:(NSString*)newCompany;
+-(void)didEditProfile;
 @end
 
 @interface EditProfileViewController : UIViewController
