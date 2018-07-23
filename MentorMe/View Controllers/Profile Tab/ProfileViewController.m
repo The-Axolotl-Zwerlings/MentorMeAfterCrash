@@ -12,8 +12,9 @@
 #import "GiveAdviceTableViewCell.h"
 #import "EditProfileViewController.h"
 #import "Parse/Parse.h"
+#import "PFUser+ExtendedUser.h"
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, profileEditorDelegate>
+@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, EditProfileViewControllerDelegate>
 
 @end
 
@@ -49,10 +50,6 @@
     self.schoolLabel.text = self.user[@"school"];
     self.bioLabel.text = self.user[@"bio"];
     
-    //This isn't doing anything idk why
-    self.lightView.layer.cornerRadius = 6.0;
-    [self.lightView setClipsToBounds:YES];
-    
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 7.0f;
@@ -63,6 +60,14 @@
     
     self.bannerImageView.image = [UIImage imageNamed:@"33996-5-sunrise-clipart"];
 }
+
+- (void) didEditProfile {
+    
+    [self loadProfile];
+    
+}
+
+
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if(tableView == self.getAdviceTableView){
@@ -89,28 +94,7 @@
     }
     
 }
--(void)changeName:(NSString *)newname{
-    _user[@"name"] = newname;
-    [_user saveInBackground];
-    self.nameLabel.text = newname;
-}
--(void)changeMajor:(NSString *)newmajor andSchoold:(NSString *)newSchool{
-    _user[@"major"] = newmajor;
-    _user[@"school"] = newSchool;
-    [_user saveInBackground];
-    self.majorLabel.text = newmajor;
-    self.schoolLabel.text = newSchool;
-    
-}
 
--(void)changeJobTitle:(NSString *)newJobTitle andCompany:(NSString *)newCompany{
-    _user[@"jobTitle"] = newJobTitle;
-    _user[@"school"] = newCompany;
-    [_user saveInBackground];
-    self.jobTitleLabel.text = newJobTitle;
-    self.companyLabel.text = newCompany;
-    
-}
 
 #pragma mark - Navigation
 

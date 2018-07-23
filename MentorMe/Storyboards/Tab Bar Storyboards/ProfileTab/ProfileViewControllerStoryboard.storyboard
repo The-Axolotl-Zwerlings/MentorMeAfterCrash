@@ -88,7 +88,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is where the profile description goes." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaz-qa-25i">
-                                        <rect key="frame" x="8" y="8" width="359" height="28"/>
+                                        <rect key="frame" x="8" y="8" width="359" height="117"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -188,15 +188,12 @@
                         <outlet property="companyLabel" destination="7lt-92-WMd" id="eTL-5f-zai"/>
                         <outlet property="getAdviceTableView" destination="Qj3-f3-6g6" id="XDz-1v-zuQ"/>
                         <outlet property="giveAdviceTableView" destination="DRx-pR-pHS" id="QQU-SX-JR3"/>
-                        <outlet property="greyView" destination="Jaz-qa-25i" id="ghn-1j-yRf"/>
                         <outlet property="jobTitleLabel" destination="Ckn-F6-7hC" id="EY3-30-JGn"/>
-                        <outlet property="lightView" destination="vFF-rS-n66" id="cEq-X6-3NS"/>
                         <outlet property="majorLabel" destination="FH4-lz-5aU" id="AoM-dF-roQ"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
                         <outlet property="schoolLabel" destination="Ksm-aX-X6K" id="qOa-J9-f8y"/>
                         <outlet property="usernameLabel" destination="kMp-22-jnt" id="aYX-0U-7sm"/>
-                        <outlet property="whiteView" destination="12a-GX-X53" id="EE6-hV-wQS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-oN-wgs" userLabel="First Responder" sceneMemberID="firstResponder"/>

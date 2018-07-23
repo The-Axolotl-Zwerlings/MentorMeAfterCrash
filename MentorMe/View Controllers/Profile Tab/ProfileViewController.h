@@ -26,16 +26,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *companyLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *EditBarButton;
-
-
-@property (weak, nonatomic) IBOutlet UIView *whiteView;
-
-//below might not exist anymore
-@property (weak, nonatomic) IBOutlet UILabel *greyView;
-@property (weak, nonatomic) IBOutlet UIView *lightView;
-
-
 @property (weak, nonatomic) IBOutlet UITableView *getAdviceTableView;
 @property (weak, nonatomic) IBOutlet UITableView *giveAdviceTableView;
 @property (strong, nonatomic) NSArray* adviceToGet;

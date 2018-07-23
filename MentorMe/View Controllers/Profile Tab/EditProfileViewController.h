@@ -10,12 +10,12 @@
 #import "ProfileViewController.h"
 #import "Parse/Parse.h"
 
-@protocol profileEditorDelegate <NSObject>
+@protocol EditProfileViewControllerDelegate <NSObject>
 -(void)didEditProfile;
 @end
 
 @interface EditProfileViewController : UIViewController
 
-@property (nonatomic, weak) id<profileEditorDelegate> delegate;
+@property (nonatomic, weak) id<EditProfileViewControllerDelegate> delegate;
 
 @end
