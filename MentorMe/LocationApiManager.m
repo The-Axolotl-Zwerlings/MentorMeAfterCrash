@@ -24,17 +24,16 @@
 
 -(void)fetchDistanceWithOrigin:(NSString *)origin andEnd:(NSString *)end andCompletion:(void(^)(NSDictionary *elementDic,NSError *error))completion{
     
+    NSString *editedOrigin = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    NSString *editedEnd = [end stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+    
     //NSString *api_key = @"AIzaSyAUqVeGY4elRDjM3em7Z-Ydzkltw6PYZHU";
+
+
     
-    NSString *baseURLstring = @"https://maps.googleapis.com/maps/api/distancematrix/json?origins=";
-    NSString *endURLstring = @"&key=AIzaSyAUqVeGY4elRDjM3em7Z-Ydzkltw6PYZHU";
-    NSString *next = [baseURLstring stringByAppendingString:origin];
-    NSString *next2 = [next stringByAppendingString:@"&destinations="];
-    NSString *next3 = [next2 stringByAppendingString:end];
-    NSString *next4 = [next3 stringByAppendingString:endURLstring];
+    NSString *fullURLString = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&key=AIzaSyAUqVeGY4elRDjM3em7Z-Ydzkltw6PYZHU", editedOrigin, editedEnd];
     
-    
-    NSURL *url = [NSURL URLWithString:next4];
+    NSURL *url = [NSURL URLWithString:fullURLString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     NSURLSessionDataTask *task = [self.session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         if (error != nil) {

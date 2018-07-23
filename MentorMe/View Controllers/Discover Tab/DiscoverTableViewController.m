@@ -14,7 +14,7 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
-
+#import "LocationApiManager.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -66,9 +66,7 @@
     if([self.filterArray[1] boolValue]){
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
      }
-//    if([self.filterArray[2] boolValue]){
-//        [usersQuery whereKey:@"location" equalTo:PFUser.currentUser.location];
-//    }
+    
     
     
     
@@ -78,7 +76,13 @@
         
         if(users){
             
-            self.filteredUsers = users;
+            //if they want to filter to nearby users
+            if([self.filterArray[2] boolValue]){
+                [self closeByUsers:users];
+            } else{ //if they don't want to filter location
+                self.filteredUsers = users;
+            }
+            
             [self.discoverTableView reloadData];
             [self.refreshControl endRefreshing];
             NSLog(@"WE GOT THE USERS 😇");
@@ -88,6 +92,22 @@
         
     }];
     
+}
+
+-(void)closeByUsers:(NSArray *)users{
+    NSString *destination = [NSString stringWithFormat:@"%@,%@", PFUser.currentUser.cityLocation,PFUser.currentUser.stateLocation];
+    for(PFUser *user in users){
+        NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
+            LocationApiManager *manager = [LocationApiManager new];
+            [manager fetchDistanceWithOrigin:origin andEnd:destination andCompletion:^(NSDictionary *elementDic, NSError *error) {
+                NSNumber *distance = (NSNumber *)elementDic[@"distance"][@"value"];
+                if([distance floatValue] < 50){
+                    NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.filteredUsers];
+                    [oldArray addObject:user];
+                    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+                }
+            }];
+    }
 }
 
 -(void)fetchFilteredUsersGive{
