@@ -15,8 +15,8 @@
 @property (strong, nonatomic) NSString *bio;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *school;
-//@property (strong, nonatomic) NSString *cityLocation;
-//@property (strong, nonatomic) NSString *stateLocation;
+@property (strong, nonatomic) NSString *cityLocation;
+@property (strong, nonatomic) NSString *stateLocation;
 @property (strong, nonatomic) NSString *jobTitle;
 @property (strong, nonatomic) NSString *company;
 @property (strong, nonatomic) NSString *major;
