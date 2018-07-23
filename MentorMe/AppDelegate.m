@@ -11,7 +11,7 @@
 #import "AppointmentCell.h"
 #import "AppointmentModel.h"
 #import "AppointmentDetailsViewController.h"
-
+#import "LocationApiManager.h"
 @interface AppDelegate ()
 
 @end
@@ -57,9 +57,17 @@
      NSLog(@"Error: %@", error.description);
      }
      }];*/
-      
-    
-     
+//    NSString *origin = @"East Lansing,MI";
+//    NSString *string = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//    
+//    NSString *destination = @"Pasadena,CA";
+//    NSString *string2 = [destination stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+//    
+//    LocationApiManager *manager = [LocationApiManager new];
+//    [manager fetchDistanceWithOrigin:string andEnd:string2 andCompletion:^(NSDictionary *elementDic, NSError *error) {
+//        NSNumber *distance = (NSNumber *)elementDic[@"distance"][@"value"];
+//        NSLog(@"%@", distance);
+//    }];
 
     
 
