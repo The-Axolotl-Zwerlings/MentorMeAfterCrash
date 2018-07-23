@@ -60,8 +60,12 @@
     return cell;
     
     NSLog(@"BYE!");
+<<<<<<< HEAD
 
     
+=======
+    NSLog(@"Hello!");
+>>>>>>> 27f13de5b009a380751106bed215da0b033dcb52
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     PFUser *user = PFUser.currentUser;
