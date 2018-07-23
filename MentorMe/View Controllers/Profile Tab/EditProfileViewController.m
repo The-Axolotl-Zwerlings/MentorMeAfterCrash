@@ -40,12 +40,25 @@
     self.profilePictureImageView.file = user[@"profilePic"];
     
 
-    // Do any additional setup after loading the view.
+    UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
+    
+    
 }
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender
+{
+    [self.view endEditing:YES];
 }
 
 
@@ -103,7 +116,7 @@
     [imageFile saveInBackground];
     
     PFUser *user = [PFUser currentUser];
-    [user setObject:imageFile forKey:@"profilePicture"];
+    [user setObject:imageFile forKey:@"profilePic"];
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
             self.profilePictureImageView.file = user.profilePic;
