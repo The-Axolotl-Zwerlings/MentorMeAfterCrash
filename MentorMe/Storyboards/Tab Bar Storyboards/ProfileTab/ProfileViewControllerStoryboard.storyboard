@@ -53,9 +53,9 @@
                                         <color key="backgroundColor" red="0.81179388220000004" green="0.88697708730000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7lt-92-WMd">
-                                        <rect key="frame" x="247" y="37" width="62" height="17"/>
+                                        <rect key="frame" x="247" y="37" width="120" height="17"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -83,12 +83,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vFF-rS-n66">
+                            <view contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="greyView" translatesAutoresizingMaskIntoConstraints="NO" id="vFF-rS-n66">
                                 <rect key="frame" x="0.0" y="305" width="375" height="133"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is where the profile description goes." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaz-qa-25i">
-                                        <rect key="frame" x="8" y="8" width="359" height="117"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is where the profile description goes." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaz-qa-25i">
+                                        <rect key="frame" x="8" y="8" width="359" height="28"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -151,21 +151,38 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want advice on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfD-3l-xbQ">
+                                <rect key="frame" x="7" y="446" width="163" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I can give advice on" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNB-EM-Bjn">
+                                <rect key="frame" x="193" y="446" width="166" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qd-lc-LZh">
+                                <rect key="frame" x="333" y="69" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Edit"/>
+                                <connections>
+                                    <segue destination="0Tl-lP-dDo" kind="presentation" identifier="profileEditorSegue" id="DUv-EY-XvG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.69854098865666969" green="0.782006468740994" blue="0.83241580310880825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="z1U-1u-W06"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Profile" image="user" id="OpG-5a-Qq5"/>
                     <navigationItem key="navigationItem" title="Profile" id="gyB-e4-0KH">
-                        <barButtonItem key="rightBarButtonItem" title="Edit" id="lJk-fJ-gMK">
-                            <connections>
-                                <segue destination="0Tl-lP-dDo" kind="show" id="IJf-WU-GRy"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="lJk-fJ-gMK"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="EditBarButton" destination="lJk-fJ-gMK" id="g20-ou-djX"/>
                         <outlet property="bannerImageView" destination="fIg-Uc-HH4" id="Uxx-oi-UH3"/>
                         <outlet property="bioLabel" destination="Jaz-qa-25i" id="8tc-2h-aQD"/>
                         <outlet property="companyLabel" destination="7lt-92-WMd" id="eTL-5f-zai"/>
@@ -173,6 +190,7 @@
                         <outlet property="giveAdviceTableView" destination="DRx-pR-pHS" id="QQU-SX-JR3"/>
                         <outlet property="greyView" destination="Jaz-qa-25i" id="ghn-1j-yRf"/>
                         <outlet property="jobTitleLabel" destination="Ckn-F6-7hC" id="EY3-30-JGn"/>
+                        <outlet property="lightView" destination="vFF-rS-n66" id="cEq-X6-3NS"/>
                         <outlet property="majorLabel" destination="FH4-lz-5aU" id="AoM-dF-roQ"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
