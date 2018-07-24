@@ -193,18 +193,45 @@
     //further action later
 }
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-    NSArray* array = @[@"geometry", @"algebra", @"trigonometry", @"trip"];
+    
     NSMutableArray* temporary = [[NSMutableArray alloc]init];
     self.forTableView = [[NSArray alloc]init];
-    for(NSString *curString in array) {
-        NSRange substringRange = [curString rangeOfString:substring];
-        if (substringRange.location == 0) {
-            NSLog(@"%@", curString);
-            [temporary addObject:curString];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
+    [query whereKey:@"subject" hasPrefix:substring];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", subjects.count);
+            // Do something with the found objects
+            for (NSString *subject in subjects) {
+                [temporary addObject:subject];
+            }
             self.forTableView = [NSArray arrayWithArray:temporary];
-           [self.autocompleteTableView1 reloadData];
+            [self.autocompleteTableView1 reloadData];
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
-    }
+    }];
+
+    
+    
+    
+//    NSArray* array = @[@"geometry", @"algebra", @"trigonometry", @"trip"];
+//    NSMutableArray* temporary = [[NSMutableArray alloc]init];
+//    self.forTableView = [[NSArray alloc]init];
+//
+//    for(NSString *curString in array) {
+//        NSRange substringRange = [curString rangeOfString:substring];
+//
+//        if (substringRange.location == 0) {
+//            NSLog(@"%@", curString);
+//            [temporary addObject:curString];
+//            self.forTableView = [NSArray arrayWithArray:temporary];
+//           [self.autocompleteTableView1 reloadData];
+//        }
+//    }
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
