@@ -22,9 +22,17 @@
 }
 
 - (void)layoutCell:(PFUser *)user{
+    
     self.nameLabel.text = user.name;
-    self.schoolLabel.text = user.school;
-    self.jobLabel.text = user.jobTitle;
+
+    NSString *jobTitleAppend = user[@"jobTitle"];
+    NSString *companyLabelAppend = user[@"company"];
+    self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
+    NSString *majorLabelAppend = user[@"major"];
+    NSString *schoolLabelAppend = user[@"school"];
+    self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
+    
+    
     self.profilePicView.image = [UIImage imageNamed:@"user"];
     self.interestsLabel.text = @"";
     if([self.isGivingAdvice boolValue]){
