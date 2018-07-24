@@ -9,8 +9,12 @@
 #import "ProfileViewController.h"
 #import "SignUpViewController.h"
 #import "EditProfileViewController.h"
+
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
+#import "ParseUI.h"
+
+#import "GiveAdviceCollectionViewCell.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
@@ -77,7 +81,9 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
+    GiveAdviceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+    
+    /*MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
     
     NSDictionary *movie = self.movies[indexPath.item];
     
@@ -86,7 +92,7 @@
     NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
     NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
     cell.posterView.image = nil;
-    [cell.posterView setImageWithURL:posterURL];
+    [cell.posterView setImageWithURL:posterURL];*/
     
     return cell;
     
