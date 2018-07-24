@@ -27,6 +27,8 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     
+    self.title = @"Profile";
+    
     self.getAdviceCollectionView.delegate = self;
     self.getAdviceCollectionView.dataSource = self;
     
@@ -93,16 +95,10 @@
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         
-        cellA.backgroundColor = UIColor.greenColor;
-        cellA.interestNameLabel.text = @"LABEL A";
-        
         return cellA;
         
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        
-        cellB.backgroundColor = UIColor.blueColor;
-        cellB.interestNameLabel.text = @"LABEL B";
         
         return cellB;
     }
