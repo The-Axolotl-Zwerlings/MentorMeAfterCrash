@@ -8,8 +8,6 @@
 
 #import "ProfileViewController.h"
 #import "SignUpViewController.h"
-#import "GetAdviceTableViewCell.h"
-#import "GiveAdviceTableViewCell.h"
 #import "EditProfileViewController.h"
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
