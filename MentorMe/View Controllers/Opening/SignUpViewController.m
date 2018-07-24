@@ -10,8 +10,9 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 #import "DiscoverTableViewController.h"
+#import "SignUpGetAdviceTableViewCell.h"
 
-@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -36,6 +37,10 @@
 @property (nonatomic, strong) NSMutableArray* getAdviceInterests;
 @property (nonatomic, strong) NSMutableArray* giveAdviceInterests;
 
+@property (weak, nonatomic) IBOutlet UITableView *autocompleteTableView1;
+@property (strong, nonatomic) NSArray* forTableView;
+
+
 @end
 
 @implementation SignUpViewController
@@ -45,6 +50,12 @@
     // Do any additional setup after loading the view.
     self.getAdviceInterests = [[NSMutableArray alloc] init];
     self.giveAdviceInterests = [[NSMutableArray alloc] init];
+    
+    self.autocompleteTableView1.delegate = self;
+    self.autocompleteTableView1.dataSource = self;
+    self.autocompleteTableView1.scrollEnabled = YES;
+    self.autocompleteTableView1.hidden = YES;
+    //[self.view addSubview:self.autocompleteTableView1];
     
     UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
@@ -169,9 +180,46 @@
 
 
 - (IBAction)getInterestChanged:(id)sender {
-    //NSLog(@"Changing");
+    if(self.getAdviceField.text.length >= 3){
+        NSLog(@"greater");
+        self.autocompleteTableView1.hidden = NO;
+        NSString* typed = self.getAdviceField.text;
+        [self searchAutocompleteEntriesWithSubstring:typed];
+    }
+    else{
+        self.autocompleteTableView1.hidden = YES;
+    }
+   
     //further action later
 }
+- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
+    NSArray* array = @[@"geometry", @"algebra", @"trigonometry", @"trip"];
+    NSMutableArray* temporary = [[NSMutableArray alloc]init];
+    self.forTableView = [[NSArray alloc]init];
+    for(NSString *curString in array) {
+        NSRange substringRange = [curString rangeOfString:substring];
+        if (substringRange.location == 0) {
+            NSLog(@"%@", curString);
+            [temporary addObject:curString];
+            self.forTableView = [NSArray arrayWithArray:temporary];
+           [self.autocompleteTableView1 reloadData];
+        }
+    }
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.forTableView.count;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    SignUpGetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
+    cell.subjectLabel.text = [self.forTableView objectAtIndex: indexPath.row];
+    return cell;
+    
+}
+    
 
 
 #pragma mark - Navigation
