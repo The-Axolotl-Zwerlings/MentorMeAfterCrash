@@ -76,9 +76,10 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="At 4:00pm 5/3/14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVr-Yh-T0S">
-                                        <rect key="frame" x="8" y="35" width="135" height="21"/>
+                                    <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="At" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LVr-Yh-T0S">
+                                        <rect key="frame" x="8" y="35" width="17" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -90,6 +91,13 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8yR-rd-Mp5">
+                                        <rect key="frame" x="33" y="32" width="202" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </scrollView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fDu-6N-3Ui">
@@ -117,6 +125,8 @@
                     </view>
                     <connections>
                         <outlet property="appointmentTypeSegControl" destination="fDu-6N-3Ui" id="GeD-cA-aU3"/>
+                        <outlet property="confirmButton" destination="wec-gQ-D2e" id="PWY-H9-7lu"/>
+                        <outlet property="dateTextField" destination="8yR-rd-Mp5" id="H78-Es-bXO"/>
                         <outlet property="locationLabel" destination="aP7-Fy-dKR" id="7XT-fz-OEM"/>
                         <outlet property="meetingWithLabel" destination="D2W-xW-4SI" id="A1G-Jx-7MD"/>
                         <outlet property="menteeIconView" destination="c54-XS-5Hr" id="JQI-Gh-IcW"/>

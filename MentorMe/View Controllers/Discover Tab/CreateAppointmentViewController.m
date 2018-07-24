@@ -16,7 +16,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *menteeIconView;
 @property (strong, nonatomic) IBOutlet UISegmentedControl *appointmentTypeSegControl;
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfilePicView;
+@property (strong, nonatomic) IBOutlet UIButton *confirmButton;
 @property (strong, nonatomic) IBOutlet UILabel *meetingWithLabel;
+@property (strong, nonatomic) IBOutlet UITextField *dateTextField;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) NSString *meetingType;
@@ -29,7 +31,7 @@
 - (IBAction)createAction:(UIButton *)sender {
     
     
-    [AppointmentModel postAppointment:self.isMentorOfMeeting withPerson:self.otherAttendee withMeetingLocation:self.locationLabel.text withMeetingType:self.meetingTypeDic[@(self.appointmentTypeSegControl.selectedSegmentIndex)] withMeetingDate:[NSDate date] withIsComing:YES withMessage:self.messageTextView.text withCompletion:nil];
+    [AppointmentModel postAppointment:self.isMentorOfMeeting withPerson:self.otherAttendee withMeetingLocation:self.locationLabel.text withMeetingType:self.meetingTypeDic[@(self.appointmentTypeSegControl.selectedSegmentIndex)] withMeetingDate:datePicker.date withIsComing:YES withMessage:self.messageTextView.text withCompletion:nil];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)cancelAction:(UIButton *)sender {
@@ -46,25 +48,48 @@
     
     
     if(self.appointmentTypeSegControl.selectedSegmentIndex == 0){ //coffww
-        self.timeLabel.text = [@"At " stringByAppendingString:@"2:00 pm on 6/1/18"];
+        self.dateTextField.text = [@"At " stringByAppendingString:@"2:00 pm on 6/1/18"];
         self.locationLabel.text = [@"At " stringByAppendingString:@"Red Rock Café"];
     } else if(self.appointmentTypeSegControl.selectedSegmentIndex == 1){ //lunch
-        self.timeLabel.text = [@"At" stringByAppendingString:@"12:00 pm on 6/2/18"];
+        self.dateTextField.text = [@"At" stringByAppendingString:@"12:00 pm on 6/2/18"];
         self.locationLabel.text = [@"At " stringByAppendingString:@"Jimmy Johns"];
     } else{
-        self.timeLabel.text = [@"At" stringByAppendingString:@"9:00pm on 6/3/18"];
+        self.dateTextField.text = [@"At" stringByAppendingString:@"9:00pm on 6/3/18"];
         self.locationLabel.text = [@"On " stringByAppendingString:@"Skype"];
     }
+    
+    
+    datePicker = [[UIDatePicker alloc] init];
+    datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    
+    [self.dateTextField setInputView:datePicker];
+    
+    UIToolbar *toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,0,320,44)];
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(updateDate)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    [toolbar setItems:[NSArray arrayWithObjects:space,doneButton,nil]];
+    [self.dateTextField setInputAccessoryView:toolbar];
+}
+//- (IBAction)changeDate:(UITapGestureRecognizer *)sender {
+//    NSLog(@"Tapped!");
+//    
+//}
+
+-(void)updateDate{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"MMM d, h:mm a"];
+    self.dateTextField.text = [formatter stringFromDate:datePicker.date];
+    [self.dateTextField resignFirstResponder];
 }
 - (IBAction)didChangeType:(UISegmentedControl *)sender {
     if(self.appointmentTypeSegControl.selectedSegmentIndex == 0){ //coffww
-        self.timeLabel.text = [@"At " stringByAppendingString:@"2:00 pm on 6/1/18"];
+        self.dateTextField.text = [@"At " stringByAppendingString:@"2:00 pm on 6/1/18"];
         self.locationLabel.text = [@"At " stringByAppendingString:@"Red Rock Café"];
     } else if(self.appointmentTypeSegControl.selectedSegmentIndex == 1){ //lunch
-        self.timeLabel.text = [@"At" stringByAppendingString:@"12:00 pm on 6/2/18"];
+        self.dateTextField.text = [@"At" stringByAppendingString:@"12:00 pm on 6/2/18"];
         self.locationLabel.text = [@"At " stringByAppendingString:@"Jimmy Johns"];
     } else{
-        self.timeLabel.text = [@"At" stringByAppendingString:@"9:00pm on 6/3/18"];
+        self.dateTextField.text = [@"At" stringByAppendingString:@"9:00pm on 6/3/18"];
         self.locationLabel.text = [@"On " stringByAppendingString:@"Skype"];
     }
 }

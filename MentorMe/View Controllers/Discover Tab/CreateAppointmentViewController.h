@@ -12,6 +12,9 @@
 #import "AppointmentModel.h"
 
 @interface CreateAppointmentViewController : UIViewController
+{
+    UIDatePicker *datePicker;
+}
 @property (nonatomic) BOOL isMentorOfMeeting;
 @property (nonatomic, strong) PFUser *otherAttendee;
 @end
