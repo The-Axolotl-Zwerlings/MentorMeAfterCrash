@@ -59,6 +59,34 @@
     
 }
 
+-(void)updateAppointments{
+    PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
+    PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
+    
+    [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
+    [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
+    
+    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
+    
+    [combinedQuery includeKey:@"mentor.name"];
+    [combinedQuery includeKey:@"mentee.name"];
+    
+    [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            NSDate *currentDate = [NSDate date];
+            for(AppointmentModel *appointment in posts){
+                if([appointment.meetingDate compare:currentDate] != NSOrderedAscending){
+                    appointment.isUpcoming = [NSNumber numberWithBool:NO];
+                } else{
+                    appointment.isUpcoming = [NSNumber numberWithBool:YES];
+                }
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 -(void) fetchFilteredAppointments{
 
     NSInteger index = self.appointmentController.selectedSegmentIndex;
