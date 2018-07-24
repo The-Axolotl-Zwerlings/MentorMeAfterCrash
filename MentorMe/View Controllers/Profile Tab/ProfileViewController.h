@@ -20,10 +20,10 @@
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *jobTitleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *majorLabel;
-@property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
-@property (weak, nonatomic) IBOutlet UILabel *companyLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *educationLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 
 @property (weak, nonatomic) IBOutlet UITableView *getAdviceTableView;
@@ -31,6 +31,7 @@
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
 
+@property (weak, nonatomic) IBOutlet UIView *horizontalView;
 
 
 //methods

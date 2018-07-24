@@ -19,6 +19,7 @@
 		A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494B20FFA5B800DC129F /* AppointmentModel.m */; };
 		A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494E20FFA5C800DC129F /* InterestModel.m */; };
 		A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A495920FFAF8200DC129F /* DiscoverCell.m */; };
+		A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2D321067A5000079B53 /* LocationApiManager.m */; };
 		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
 		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
 		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
@@ -89,6 +90,8 @@
 		A82A494E20FFA5C800DC129F /* InterestModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InterestModel.m; sourceTree = "<group>"; };
 		A82A495820FFAF8200DC129F /* DiscoverCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverCell.h; sourceTree = "<group>"; };
 		A82A495920FFAF8200DC129F /* DiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverCell.m; sourceTree = "<group>"; };
+		A82EB2D221067A5000079B53 /* LocationApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationApiManager.h; sourceTree = "<group>"; };
+		A82EB2D321067A5000079B53 /* LocationApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationApiManager.m; sourceTree = "<group>"; };
 		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -213,6 +216,8 @@
 				A883130620F28D5F00363E48 /* LaunchScreen.storyboard */,
 				A883130920F28D5F00363E48 /* Info.plist */,
 				A883130A20F28D5F00363E48 /* main.m */,
+				A82EB2D221067A5000079B53 /* LocationApiManager.h */,
+				A82EB2D321067A5000079B53 /* LocationApiManager.m */,
 			);
 			path = MentorMe;
 			sourceTree = "<group>";
@@ -616,6 +621,7 @@
 				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
+				A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */,
 				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
 				A8011C812101408C0028E604 /* FilterViewController.m in Sources */,
 				B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */,
