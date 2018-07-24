@@ -27,8 +27,6 @@
 		A883130B20F28D5F00363E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A883130A20F28D5F00363E48 /* main.m */; };
 		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
 		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
-		B2AB7A622102624400625FEE /* GetAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */; };
-		B2AB7A652102625600625FEE /* GiveAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
 		B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */; };
 		B2AB7AB9210697FC00625FEE /* SignUpGetAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7AB8210697FC00625FEE /* SignUpGetAdviceTableViewCell.m */; };
@@ -40,6 +38,7 @@
 		C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D899E20F7CA9900342B39 /* LoginViewController.m */; };
 		C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D89A420F7CE3D00342B39 /* SignUpViewController.m */; };
 		C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */; };
+		C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */; };
 		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
 		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
 		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
@@ -106,10 +105,6 @@
 		A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A883131F20F28D5F00363E48 /* MentorMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeUITests.m; sourceTree = "<group>"; };
 		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B2AB7A602102624400625FEE /* GetAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAdviceTableViewCell.h; sourceTree = "<group>"; };
-		B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAdviceTableViewCell.m; sourceTree = "<group>"; };
-		B2AB7A632102625600625FEE /* GiveAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceTableViewCell.h; sourceTree = "<group>"; };
-		B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceTableViewCell.m; sourceTree = "<group>"; };
 		B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
 		B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
@@ -128,6 +123,8 @@
 		C03D89A420F7CE3D00342B39 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
 		C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
+		C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceCollectionViewCell.h; sourceTree = "<group>"; };
+		C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceCollectionViewCell.m; sourceTree = "<group>"; };
 		C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailsViewController.h; sourceTree = "<group>"; };
 		C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailsViewController.m; sourceTree = "<group>"; };
@@ -279,12 +276,10 @@
 				C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */,
 				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
 				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
-				B2AB7A602102624400625FEE /* GetAdviceTableViewCell.h */,
-				B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */,
-				B2AB7A632102625600625FEE /* GiveAdviceTableViewCell.h */,
-				B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */,
 				B2AB7AB7210697FC00625FEE /* SignUpGetAdviceTableViewCell.h */,
 				B2AB7AB8210697FC00625FEE /* SignUpGetAdviceTableViewCell.m */,
+				C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */,
+				C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -616,8 +611,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B2AB7A652102625600625FEE /* GiveAdviceTableViewCell.m in Sources */,
-				B2AB7A622102624400625FEE /* GetAdviceTableViewCell.m in Sources */,
 				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
@@ -633,6 +626,7 @@
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				B2AB7AB9210697FC00625FEE /* SignUpGetAdviceTableViewCell.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
+				C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */,
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
 				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,

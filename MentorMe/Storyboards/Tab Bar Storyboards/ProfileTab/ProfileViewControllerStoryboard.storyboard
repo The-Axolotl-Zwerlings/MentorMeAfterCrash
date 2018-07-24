@@ -21,10 +21,10 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient image" translatesAutoresizingMaskIntoConstraints="NO" id="nIM-c2-BRQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fIg-Uc-HH4">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="33996-5-sunrise-clipart" translatesAutoresizingMaskIntoConstraints="NO" id="fIg-Uc-HH4" customClass="PFImageView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="136"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="Gzp-x9-8Yf"/>
+                                    <constraint firstAttribute="height" constant="136" id="Gzp-x9-8Yf"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-gb-5SR" customClass="PFImageView">
@@ -82,35 +82,6 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="0gR-0T-ZRF">
-                                <rect key="frame" x="7" y="426" width="74" height="116"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wMX-Ha-b9A">
-                                        <rect key="frame" x="0.0" y="0.0" width="74" height="116"/>
-                                        <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="binoculars" translatesAutoresizingMaskIntoConstraints="NO" id="EUb-HX-AqM">
-                                                <rect key="frame" x="5" y="8" width="64" height="64"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Recruiting" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B2A-Sg-xD3">
-                                                <rect key="frame" x="6" y="80" width="62" height="16"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
-                                </subviews>
-                            </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Occupation Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5s-dA-Lfk">
                                 <rect key="frame" x="158" y="248" width="209" height="21"/>
                                 <constraints>
@@ -121,6 +92,48 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gcx-B1-cMP" userLabel="Get Advice Collection View">
+                                <rect key="frame" x="0.0" y="507" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="5Ae-sB-nYt">
+                                    <size key="itemSize" width="90" height="90"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dvH-0a-qz6">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sHa-a9-XO0" userLabel="Give Advice Collection View">
+                                <rect key="frame" x="0.0" y="394" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gYc-ef-7Vn">
+                                    <size key="itemSize" width="90" height="90"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="rEn-IO-x2w">
+                                        <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" red="0.69854098865666969" green="0.782006468740994" blue="0.83241580310880825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -143,7 +156,7 @@
                             <constraint firstItem="z1U-1u-W06" firstAttribute="trailing" secondItem="Jaz-qa-25i" secondAttribute="trailing" constant="8" id="riK-Qq-cZ8"/>
                             <constraint firstItem="Hdy-gb-5SR" firstAttribute="top" secondItem="z1U-1u-W06" secondAttribute="top" constant="111" id="t9W-9J-O8X"/>
                             <constraint firstItem="6Jp-In-L5a" firstAttribute="leading" secondItem="Hdy-gb-5SR" secondAttribute="trailing" constant="15" id="vPG-rH-jB8"/>
-                            <constraint firstItem="fIg-Uc-HH4" firstAttribute="top" secondItem="fSV-vj-m9l" secondAttribute="top" id="vfy-W3-euD"/>
+                            <constraint firstItem="fIg-Uc-HH4" firstAttribute="top" secondItem="fSV-vj-m9l" secondAttribute="top" constant="64" id="vfy-W3-euD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z1U-1u-W06"/>
                     </view>
@@ -156,6 +169,8 @@
                         <outlet property="bannerImageView" destination="fIg-Uc-HH4" id="Uxx-oi-UH3"/>
                         <outlet property="bioLabel" destination="Jaz-qa-25i" id="8tc-2h-aQD"/>
                         <outlet property="educationLabel" destination="Iz9-DR-Xdy" id="Toe-CI-dx5"/>
+                        <outlet property="getAdviceCollectionView" destination="gcx-B1-cMP" id="wXR-LF-UXU"/>
+                        <outlet property="giveAdviceCollectionView" destination="sHa-a9-XO0" id="oI5-uk-E6t"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="occupationLabel" destination="N5s-dA-Lfk" id="DYg-oP-77b"/>
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
@@ -194,7 +209,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="binoculars" width="64" height="64"/>
+        <image name="33996-5-sunrise-clipart" width="960" height="525"/>
         <image name="gradient image" width="375" height="667"/>
         <image name="user" width="32" height="32"/>
     </resources>
