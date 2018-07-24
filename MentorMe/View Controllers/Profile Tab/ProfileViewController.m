@@ -15,6 +15,7 @@
 #import "ParseUI.h"
 
 #import "GiveAdviceCollectionViewCell.h"
+#import "GetAdviceCollectionViewCell.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
@@ -30,7 +31,7 @@
     self.getAdviceCollectionView.dataSource = self;
     
     self.giveAdviceCollectionView.delegate = self;
-    self.getAdviceCollectionView.delegate = self;
+    self.giveAdviceCollectionView.dataSource = self;
 
     
     self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
@@ -74,28 +75,37 @@
 
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 5;
+    
+    return 15;
+    
 }
 
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    return 1;
+    
+}
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     
-    GiveAdviceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-    
-    /*MovieCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieCollectionCell" forIndexPath:indexPath];
-    
-    NSDictionary *movie = self.movies[indexPath.item];
-    
-    NSString *baseURLString = @"https://image.tmdb.org/t/p/w500";
-    NSString *posterURLString = movie[@"poster_path"];
-    NSString *fullPosterURLString = [baseURLString stringByAppendingString:posterURLString];
-    NSURL *posterURL = [NSURL URLWithString:fullPosterURLString];
-    cell.posterView.image = nil;
-    [cell.posterView setImageWithURL:posterURL];*/
-    
-    return cell;
-    
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        cellA.backgroundColor = UIColor.greenColor;
+        cellA.interestNameLabel.text = @"LABEL A";
+        
+        return cellA;
+        
+    } else {
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        cellB.backgroundColor = UIColor.blueColor;
+        cellB.interestNameLabel.text = @"LABEL B";
+        
+        return cellB;
+    }
 }
 
 
