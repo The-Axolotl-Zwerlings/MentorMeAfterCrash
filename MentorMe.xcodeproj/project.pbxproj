@@ -20,6 +20,9 @@
 		A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A494E20FFA5C800DC129F /* InterestModel.m */; };
 		A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A82A495920FFAF8200DC129F /* DiscoverCell.m */; };
 		A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2D321067A5000079B53 /* LocationApiManager.m */; };
+		A82EB2D62107DDA600079B53 /* Review.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A82EB2D52107DDA600079B53 /* Review.storyboard */; };
+		A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2D82107E0B000079B53 /* ReviewViewController.m */; };
+		A82EB2DC2107E43A00079B53 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2DB2107E43A00079B53 /* RateView.m */; };
 		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
 		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
 		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
@@ -91,6 +94,11 @@
 		A82A495920FFAF8200DC129F /* DiscoverCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverCell.m; sourceTree = "<group>"; };
 		A82EB2D221067A5000079B53 /* LocationApiManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocationApiManager.h; sourceTree = "<group>"; };
 		A82EB2D321067A5000079B53 /* LocationApiManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocationApiManager.m; sourceTree = "<group>"; };
+		A82EB2D52107DDA600079B53 /* Review.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Review.storyboard; sourceTree = "<group>"; };
+		A82EB2D72107E0B000079B53 /* ReviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewViewController.h; sourceTree = "<group>"; };
+		A82EB2D82107E0B000079B53 /* ReviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewViewController.m; sourceTree = "<group>"; };
+		A82EB2DA2107E43A00079B53 /* RateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RateView.h; sourceTree = "<group>"; };
+		A82EB2DB2107E43A00079B53 /* RateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
 		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -265,6 +273,8 @@
 				C0F1018921016301009ADA47 /* Discover Tab */,
 				C0F1018A21016311009ADA47 /* Appointments Tab */,
 				C0F1018B21016327009ADA47 /* Profile Tab */,
+				A82EB2D72107E0B000079B53 /* ReviewViewController.h */,
+				A82EB2D82107E0B000079B53 /* ReviewViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -280,6 +290,8 @@
 				B2AB7AB8210697FC00625FEE /* SignUpGetAdviceTableViewCell.m */,
 				C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */,
 				C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */,
+				A82EB2DA2107E43A00079B53 /* RateView.h */,
+				A82EB2DB2107E43A00079B53 /* RateView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -358,6 +370,7 @@
 			children = (
 				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
 				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
+				A82EB2D52107DDA600079B53 /* Review.storyboard */,
 			);
 			path = AppointmentsTab;
 			sourceTree = "<group>";
@@ -497,6 +510,7 @@
 				A883130520F28D5F00363E48 /* Assets.xcassets in Resources */,
 				C002266920FE5A11007D359B /* AppointmentsViewController.storyboard in Resources */,
 				C002267020FE63BA007D359B /* SignUpViewController.storyboard in Resources */,
+				A82EB2D62107DDA600079B53 /* Review.storyboard in Resources */,
 				B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */,
 				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
 				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
@@ -631,6 +645,8 @@
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
 				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,
 				C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */,
+				A82EB2DC2107E43A00079B53 /* RateView.m in Sources */,
+				A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
