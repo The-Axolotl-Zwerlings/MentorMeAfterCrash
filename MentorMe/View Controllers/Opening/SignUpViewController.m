@@ -23,6 +23,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *getAdviceField;
 @property (weak, nonatomic) IBOutlet UITextField *giveAdviceField;
+@property (strong, nonatomic) IBOutlet UITextField *cityField;
+@property (strong, nonatomic) IBOutlet UITextField *stateField;
 
 
 
@@ -45,6 +47,13 @@
     // Do any additional setup after loading the view.
     self.getAdviceInterests = [[NSMutableArray alloc] init];
     self.giveAdviceInterests = [[NSMutableArray alloc] init];
+    
+    self.title = @"Enter Information";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
+}
+
+-(void)segue{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -75,6 +84,8 @@
     newUser.major = self.majorField.text;
     newUser.getAdviceInterests = [[NSArray alloc]initWithArray:self.getAdviceInterests];
     newUser.giveAdviceInterests = [[NSArray alloc]initWithArray:self.giveAdviceInterests];
+    newUser.cityLocation = self.cityField.text;
+    newUser.stateLocation = self.stateField.text;
     
     if(self.chosenProfilePicture == nil){
         self.chosenProfilePicture = [UIImage imageNamed:@"hipster2"];

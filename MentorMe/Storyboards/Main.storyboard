@@ -37,7 +37,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="SignUp"/>
                                 <connections>
-                                    <segue destination="w9f-Aa-b4d" kind="show" id="1q9-hH-8rd"/>
+                                    <segue destination="w9f-Aa-b4d" kind="presentation" id="1q9-hH-8rd"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V8i-WI-Ffc">
@@ -67,7 +67,7 @@
                                 <state key="normal" title="Login"/>
                                 <connections>
                                     <action selector="onTapLogin:" destination="e8i-D8-L1t" eventType="touchUpInside" id="H94-VM-Dgb"/>
-                                    <segue destination="f2H-of-YX2" kind="show" id="0Sg-Hu-hWY"/>
+                                    <segue destination="f2H-of-YX2" kind="presentation" id="0Sg-Hu-hWY"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="133.59999999999999" y="154.27286356821591"/>
         </scene>
-        <!--SignUpNavController-->
+        <!--SignUpViewController-->
         <scene sceneID="6JB-lG-cPD">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignUpViewController" referencedIdentifier="SignUpNavController" id="w9f-Aa-b4d" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SignUpViewController" id="w9f-Aa-b4d" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Nd3-oo-bt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="813" y="139"/>

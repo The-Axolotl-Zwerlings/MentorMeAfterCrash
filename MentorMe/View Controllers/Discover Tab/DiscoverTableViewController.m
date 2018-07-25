@@ -214,6 +214,7 @@
 //            
             [self dismissViewControllerAnimated:YES completion:nil];
             
+            
             NSLog(@"hey we did it");
         } else{
             NSLog(@"error in logging out");
@@ -224,6 +225,7 @@
 - (IBAction)logoutAction:(UIBarButtonItem *)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error == nil){
+            
             [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"hey we did it");
         } else{
