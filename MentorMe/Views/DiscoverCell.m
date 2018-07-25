@@ -32,9 +32,12 @@
     NSString *schoolLabelAppend = user[@"school"];
     self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
     
+  
+    self.profilePicView.file = user[@"profilePic"];
+    [self.profilePicView loadInBackground];
     
-    self.profilePicView.image = [UIImage imageNamed:@"user"];
-    self.interestsLabel.text = @"";
+    
+    /*self.interestsLabel.text = @"";
     if([self.isGivingAdvice boolValue]){
         for(NSString *interest in user.getAdviceInterests){
             NSString *stringInterest = [interest stringByAppendingString:@", "];
@@ -45,7 +48,7 @@
             NSString *stringInterest = [interest stringByAppendingString:@", "];
             self.interestsLabel.text = [self.interestsLabel.text stringByAppendingString:stringInterest];
         }
-    }
+    }*/
     
 }
 @end
