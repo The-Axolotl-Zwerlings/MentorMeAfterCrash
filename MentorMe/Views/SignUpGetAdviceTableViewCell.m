@@ -1,14 +1,14 @@
 //
-//  GetAdviceTableViewCell.m
+//  SignUpGetAdviceTableViewCell.m
 //  MentorMe
 //
-//  Created by Nihal Riyadh Jemal on 7/20/18.
+//  Created by Nihal Riyadh Jemal on 7/23/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
 
-#import "GetAdviceTableViewCell.h"
+#import "SignUpGetAdviceTableViewCell.h"
 
-@implementation GetAdviceTableViewCell
+@implementation SignUpGetAdviceTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

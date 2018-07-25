@@ -8,12 +8,16 @@
 
 #import "ProfileViewController.h"
 #import "SignUpViewController.h"
-#import "GetAdviceTableViewCell.h"
-#import "GiveAdviceTableViewCell.h"
 #import "EditProfileViewController.h"
-#import "Parse/Parse.h"
 
-@interface ProfileViewController () <UITableViewDelegate, UITableViewDataSource, profileEditorDelegate>
+#import "Parse/Parse.h"
+#import "PFUser+ExtendedUser.h"
+#import "ParseUI.h"
+
+#import "GiveAdviceCollectionViewCell.h"
+#import "GetAdviceCollectionViewCell.h"
+
+@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
 @end
 
@@ -23,94 +27,94 @@
     [super viewDidLoad];
     self.user = [PFUser currentUser];
     
-    self.getAdviceTableView.delegate = self;
-    self.giveAdviceTableView.delegate = self;
-    self.getAdviceTableView.dataSource = self;
-    self.giveAdviceTableView.dataSource = self;
+    self.title = @"Profile";
+    
+    self.getAdviceCollectionView.delegate = self;
+    self.getAdviceCollectionView.dataSource = self;
+    
+    self.giveAdviceCollectionView.delegate = self;
+    self.giveAdviceCollectionView.dataSource = self;
+
     
     self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
 
+    
     [self loadProfile];
-    // Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)loadProfile {
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
-    self.jobTitleLabel.text = self.user[@"jobTitle"];
-    self.companyLabel.text = self.user[@"company"];
-    self.majorLabel.text = self.user[@"major"];
-    self.schoolLabel.text = self.user[@"school"];
+    NSString *jobTitleAppend = self.user[@"jobTitle"];
+    NSString *companyLabelAppend = self.user[@"company"];
+    self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
+    NSString *majorLabelAppend = self.user[@"major"];
+    NSString *schoolLabelAppend = self.user[@"school"];
+    self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
+    self.bannerImageView.layer.borderWidth = 2.0f;
+    self.bannerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.bioLabel.text = self.user[@"bio"];
-    
-    //This isn't doing anything idk why
-    self.lightView.layer.cornerRadius = 6.0;
-    [self.lightView setClipsToBounds:YES];
-    
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
-    self.profileImageView.layer.borderWidth = 7.0f;
+    self.profileImageView.layer.borderWidth = 4.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.profileImageView.file = nil;
     self.profileImageView.file = self.user[@"profilePic"];
     [self.profileImageView loadInBackground];
     
-    self.bannerImageView.image = [UIImage imageNamed:@"33996-5-sunrise-clipart"];
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(tableView == self.getAdviceTableView){
-        return self.adviceToGet.count;
-    }
-    else{
-        return self.adviceToGive.count;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void) didEditProfile {
     
-    if(tableView == self.getAdviceTableView){
-        GetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
-        cell.interestLabel.text = [self.adviceToGet objectAtIndex: indexPath.row];
+    [self loadProfile];
+    
+}
+
+
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return 15;
+    
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    return 1;
+    
+}
+
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         
-        return cell;
-    }
-    else{
-        GiveAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CellIdentifier" forIndexPath:indexPath];
-        cell.interestLabel.text = [self.adviceToGive objectAtIndex: indexPath.row];
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         
-        return cell;
+        return cellA;
+        
+    } else {
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        return cellB;
     }
-    
-}
--(void)changeName:(NSString *)newname{
-    _user[@"name"] = newname;
-    [_user saveInBackground];
-    self.nameLabel.text = newname;
-}
--(void)changeMajor:(NSString *)newmajor andSchoold:(NSString *)newSchool{
-    _user[@"major"] = newmajor;
-    _user[@"school"] = newSchool;
-    [_user saveInBackground];
-    self.majorLabel.text = newmajor;
-    self.schoolLabel.text = newSchool;
-    
 }
 
--(void)changeJobTitle:(NSString *)newJobTitle andCompany:(NSString *)newCompany{
-    _user[@"jobTitle"] = newJobTitle;
-    _user[@"school"] = newCompany;
-    [_user saveInBackground];
-    self.jobTitleLabel.text = newJobTitle;
-    self.companyLabel.text = newCompany;
-    
-}
+
+
+
+
+
+
+
+
+
+
+
 
 #pragma mark - Navigation
 
