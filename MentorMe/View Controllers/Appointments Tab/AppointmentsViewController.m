@@ -84,7 +84,7 @@
                     
                     [appointment saveInBackground];
                 } else{
-                    appointment.isUpcoming = [NSNumber numberWithBool:YES];
+                    appointment.isUpcoming = [NSNumber numberWithBool:NO];
                     NSMutableArray *old = [NSMutableArray arrayWithArray:self.pastAppointments];
                     [old addObject:appointment];
                     self.pastAppointments = [NSArray arrayWithArray:old];
@@ -168,7 +168,9 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.appointmentsTableView indexPathForCell:tappedCell];
         AppointmentModel *incomingAppointment = self.appointmentsArray[indexPath.row];
+        
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
+        
         appointmentDetailsViewController.appointment = incomingAppointment;
         //appointmentDetailsViewController.delegate = self;
         
