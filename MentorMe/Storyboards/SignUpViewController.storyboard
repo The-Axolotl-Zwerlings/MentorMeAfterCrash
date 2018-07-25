@@ -178,7 +178,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="biV-1Y-Gs8"/>
@@ -201,7 +200,6 @@
                         <outlet property="nameField" destination="GhL-bG-MxI" id="6yW-KJ-2pO"/>
                         <outlet property="passwordField" destination="Drb-On-wRp" id="iRS-Kb-Xos"/>
                         <outlet property="registerButton" destination="1dv-8I-2YA" id="xyV-fx-R5M"/>
-                        <outlet property="stateField" destination="HEQ-wT-iqy" id="S8z-vE-k5r"/>
                         <outlet property="usernameField" destination="ab7-ii-AFd" id="Sza-mh-GcU"/>
                     </connections>
                 </viewController>
