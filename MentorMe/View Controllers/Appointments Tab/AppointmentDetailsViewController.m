@@ -35,6 +35,7 @@
 
 @implementation AppointmentDetailsViewController
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -47,6 +48,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 -(void)loadAppointment{
     NSString *titleString;
     if(self.appointment.mentor.username == PFUser.currentUser.username){
@@ -54,10 +57,13 @@
     } else{
         titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentor.name];
     }
-    
+    if(![self.appointment.isUpcoming boolValue]){
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Write a Review" style:UIBarButtonItemStylePlain target:self action:@selector(random)];
+    } else{
+        self.navigationItem.rightBarButtonItem.title = @"Edit details";
+    }
     
     self.title = titleString;
-    
     self.locationLabel.text = self.appointment.meetingLocation;
     
     //Date
@@ -77,8 +83,10 @@
     //[self.menteeProfileView loadInBackground];
     
 }
+-(void)random{
+    [self performSegueWithIdentifier:@"ReviewSegue" sender:self];
+}
 
-/*
  #pragma mark - Navigation
  
  // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -86,6 +94,6 @@
  // Get the new view controller using [segue destinationViewController].
  // Pass the selected object to the new view controller.
  }
- */
+
 
 @end
