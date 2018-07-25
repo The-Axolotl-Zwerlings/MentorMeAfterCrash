@@ -120,16 +120,17 @@
                         <outlet property="messageTextLabel" destination="D3k-zh-w6h" id="GlV-Pu-aFO"/>
                         <outlet property="timeLabel" destination="EcI-Xa-Ufx" id="Bla-qd-jNq"/>
                         <outlet property="typeMeetingLabel" destination="ZpA-Fk-o1V" id="JyN-ms-IhA"/>
+                        <segue destination="WFH-F4-9Mf" kind="presentation" identifier="ReviewSegue" id="ieB-aN-KlU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9og-Hq-2ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2351.1999999999998" y="185.75712143928038"/>
         </scene>
-        <!--Storyboard Reference-->
+        <!--Review-->
         <scene sceneID="oeF-Mf-hLZ">
             <objects>
-                <viewControllerPlaceholder id="WFH-F4-9Mf" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="Review" id="WFH-F4-9Mf" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSI-dg-cCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2976" y="173"/>
