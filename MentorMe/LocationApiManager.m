@@ -54,8 +54,9 @@
             // optional code for what happens after the alert controller has finished presenting
             //}];
             
-            
+            NSLog(@"in error block");
             completion(nil,error);
+            
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
@@ -71,8 +72,9 @@
             
            
             
-            
+            NSLog(@"in non-error block");
             completion(elementDic,nil);
+            
             //changed for search view
         }
     }];
