@@ -143,43 +143,6 @@
                                     <action selector="onTapAddToGive:" destination="JqI-0m-vkI" eventType="touchUpInside" id="sW2-US-TGE"/>
                                 </connections>
                             </button>
-                            <tableView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Table1" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uzB-Cu-P4v">
-                                <rect key="frame" x="44" y="541" width="233" height="89"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" red="1" green="0.73946611019999997" blue="0.71934054579999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <prototypes>
-                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableView1" rowHeight="32" id="DQX-ST-zkK" customClass="SignUpGetAdviceTableViewCell">
-                                        <rect key="frame" x="0.0" y="28" width="233" height="32"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DQX-ST-zkK" id="rcf-m5-cMs">
-                                            <rect key="frame" x="0.0" y="0.0" width="233" height="31.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Kv-K1-Lzo">
-                                                    <rect key="frame" x="10" y="5" width="217" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PC-4h-5uT">
-                                                    <rect key="frame" x="15" y="1" width="203" height="30"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Add Subject"/>
-                                                    <connections>
-                                                        <action selector="onTapAddNew:" destination="JqI-0m-vkI" eventType="touchUpInside" id="Kfa-oN-3uT"/>
-                                                    </connections>
-                                                </button>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                        <connections>
-                                            <outlet property="addSubjectButton" destination="4PC-4h-5uT" id="5Ys-Au-a2y"/>
-                                            <outlet property="subjectLabel" destination="2Kv-K1-Lzo" id="xZN-20-A66"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter state" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbS-qf-MQJ">
                                 <rect key="frame" x="44" y="446" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -205,7 +168,6 @@
                         <outlet property="addGetAdviceInterestButton" destination="sem-3U-j6i" id="3t1-p5-00c"/>
                         <outlet property="addGiveAdviceInterestButton" destination="e9A-aO-Fqw" id="IBV-Ze-jM2"/>
                         <outlet property="addProfilePictureButton" destination="Kzx-XN-m0l" id="Jla-It-FSd"/>
-                        <outlet property="autocompleteTableView1" destination="uzB-Cu-P4v" id="uQ5-XK-O3q"/>
                         <outlet property="bioField" destination="Erq-G5-e9G" id="fr5-Qn-rkg"/>
                         <outlet property="cityField" destination="QBn-U6-axh" id="SVa-2F-iIU"/>
                         <outlet property="companyField" destination="yu1-eI-G8F" id="nmM-lt-vLW"/>
@@ -218,10 +180,44 @@
                         <outlet property="passwordField" destination="Drb-On-wRp" id="iRS-Kb-Xos"/>
                         <outlet property="registerButton" destination="1dv-8I-2YA" id="xyV-fx-R5M"/>
                         <outlet property="stateField" destination="pbS-qf-MQJ" id="B5U-hO-rOY"/>
+                        <outlet property="tableView" destination="9po-vW-GfI" id="bjQ-1h-LHg"/>
                         <outlet property="usernameField" destination="ab7-ii-AFd" id="Sza-mh-GcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-aP-0d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9po-vW-GfI">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <prototypes>
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" id="K4x-bk-C3l" customClass="AutocompleteTableViewCell">
+                            <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K4x-bk-C3l" id="sfD-xb-6Id">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2e-Nb-dmp">
+                                        <rect key="frame" x="16" y="12" width="208" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGA-3Q-v7E">
+                                        <rect key="frame" x="90" y="6" width="46" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                    </button>
+                                </subviews>
+                            </tableViewCellContentView>
+                            <connections>
+                                <outlet property="addInterestButton" destination="RGA-3Q-v7E" id="307-Xs-80V"/>
+                                <outlet property="interestLabel" destination="f2e-Nb-dmp" id="joY-NJ-hMk"/>
+                            </connections>
+                        </tableViewCell>
+                    </prototypes>
+                </tableView>
             </objects>
             <point key="canvasLocation" x="1988" y="108.39580209895054"/>
         </scene>
