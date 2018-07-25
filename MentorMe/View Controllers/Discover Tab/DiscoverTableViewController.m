@@ -49,6 +49,13 @@
 }
 
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.discoverTableView reloadData];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -79,6 +86,7 @@
             //if they want to filter to nearby users
             if([self.filterArray[2] boolValue]){
                 [self closeByUsers:users];
+                [self.discoverTableView reloadData];
             } else{ //if they don't want to filter location
                 self.filteredUsers = users;
             }
@@ -96,18 +104,23 @@
 
 -(void)closeByUsers:(NSArray *)users{
     NSString *destination = [NSString stringWithFormat:@"%@,%@", PFUser.currentUser.cityLocation,PFUser.currentUser.stateLocation];
+    NSMutableArray *oldArray = [[NSMutableArray alloc] init];
     for(PFUser *user in users){
         NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
             LocationApiManager *manager = [LocationApiManager new];
             [manager fetchDistanceWithOrigin:origin andEnd:destination andCompletion:^(NSDictionary *elementDic, NSError *error) {
-                NSNumber *distance = (NSNumber *)elementDic[@"distance"][@"value"];
+                NSNumber *distance = (NSNumber *)elementDic[@"value"];
                 if([distance floatValue] < 50){
-                    NSMutableArray *oldArray = [NSMutableArray arrayWithArray:self.filteredUsers];
                     [oldArray addObject:user];
-                    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+                    NSLog(@"Added a new user %@", user.name);
                 }
             }];
+        
     }
+    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+    [self.discoverTableView reloadData];
+    
+    
 }
 
 -(void)fetchFilteredUsersGive{

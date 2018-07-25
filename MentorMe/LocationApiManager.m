@@ -59,11 +59,17 @@
         } else {
             NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
             
-            NSLog(@"%@", dataDictionary);
+            //NSLog(@"%@", dataDictionary);
             // TODO: Get the array of movies
             // TODO: Store the movies in a property to use elsewhere
             // TODO: Reload your table view data
-            NSDictionary *elementDic = dataDictionary[@"rows"][0][@"elements"][0];
+            NSDictionary *elementDic = dataDictionary[@"rows"][0][@"elements"][0][@"distance"];
+            
+            if ( elementDic != nil){
+                 //NSLog( @"Element %@", elementDic );
+            }
+            
+           
             
             
             completion(elementDic,nil);
