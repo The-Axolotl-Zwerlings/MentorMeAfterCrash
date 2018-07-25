@@ -205,9 +205,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGA-3Q-v7E">
-                                        <rect key="frame" x="90" y="6" width="46" height="30"/>
+                                        <rect key="frame" x="45" y="6" width="137" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
+                                        <state key="normal" title="Create New Interest"/>
+                                        <connections>
+                                            <action selector="createNewInterest:" destination="JqI-0m-vkI" eventType="touchUpInside" id="uyi-hX-qN1"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </tableViewCellContentView>

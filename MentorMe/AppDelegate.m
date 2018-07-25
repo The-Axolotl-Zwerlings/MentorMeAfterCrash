@@ -30,56 +30,56 @@
     
     [Parse initializeWithConfiguration:config];
     
-    PFObject* interest1 = [PFObject objectWithClassName:@"InterestModel"];
-    interest1[@"subject"] = @"algebra";
-    interest1[@"category"] = @"math";
-    [interest1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"New Appointment saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
-    PFObject* interest2 = [PFObject objectWithClassName:@"InterestModel"];
-    interest2[@"subject"] = @"triangles";
-    interest2[@"category"] = @"math";
-    [interest2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"New Appointment saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
-    PFObject* interest3 = [PFObject objectWithClassName:@"InterestModel"];
-    interest3[@"subject"] = @"trigonometry";
-    interest3[@"category"] = @"math";
-    [interest3 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"New Appointment saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
-    PFObject* interest4 = [PFObject objectWithClassName:@"InterestModel"];
-    interest4[@"subject"] = @"geometry";
-    interest4[@"category"] = @"math";
-    [interest4 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"New Appointment saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
-    PFObject* interest5 = [PFObject objectWithClassName:@"InterestModel"];
-    interest5[@"subject"] = @"trips";
-    interest5[@"category"] = @"math";
-    [interest5 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"New Appointment saved!");
-        } else {
-            NSLog(@"Error: %@", error.description);
-        }
-    }];
+//    PFObject* interest1 = [PFObject objectWithClassName:@"InterestModel"];
+//    interest1[@"subject"] = @"algebra";
+//    interest1[@"category"] = @"math";
+//    [interest1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"New Appointment saved!");
+//        } else {
+//            NSLog(@"Error: %@", error.description);
+//        }
+//    }];
+//    PFObject* interest2 = [PFObject objectWithClassName:@"InterestModel"];
+//    interest2[@"subject"] = @"triangles";
+//    interest2[@"category"] = @"math";
+//    [interest2 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"New Appointment saved!");
+//        } else {
+//            NSLog(@"Error: %@", error.description);
+//        }
+//    }];
+//    PFObject* interest3 = [PFObject objectWithClassName:@"InterestModel"];
+//    interest3[@"subject"] = @"trigonometry";
+//    interest3[@"category"] = @"math";
+//    [interest3 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"New Appointment saved!");
+//        } else {
+//            NSLog(@"Error: %@", error.description);
+//        }
+//    }];
+//    PFObject* interest4 = [PFObject objectWithClassName:@"InterestModel"];
+//    interest4[@"subject"] = @"geometry";
+//    interest4[@"category"] = @"math";
+//    [interest4 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"New Appointment saved!");
+//        } else {
+//            NSLog(@"Error: %@", error.description);
+//        }
+//    }];
+//    PFObject* interest5 = [PFObject objectWithClassName:@"InterestModel"];
+//    interest5[@"subject"] = @"trips";
+//    interest5[@"category"] = @"math";
+//    [interest5 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//        if (succeeded) {
+//            NSLog(@"New Appointment saved!");
+//        } else {
+//            NSLog(@"Error: %@", error.description);
+//        }
+//    }];
      /*PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
      PFUser *newUser = [PFUser currentUser];
     

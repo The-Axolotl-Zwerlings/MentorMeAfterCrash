@@ -275,6 +275,35 @@
         }
 }
 
+- (IBAction)createNewInterest:(id)sender {
+    PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
+    if ([self.getAdviceField hasText]){
+        newInterest[@"subject"] = self.getAdviceField.text;
+        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"New interest saved!");
+                NSString* typed = self.getAdviceField.text;
+                [self searchAutocompleteEntriesWithSubstring:typed];
+                
+            } else {
+                NSLog(@"Error: %@", error.description);
+            }
+        }];
+}
+    if ([self.giveAdviceField hasText]){
+        newInterest[@"subject"] = self.giveAdviceField.text;
+        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+            if (succeeded) {
+                NSLog(@"New interest saved!");
+                NSString* typed = self.giveAdviceField.text;
+                [self searchAutocompleteEntriesWithSubstring:typed];
+                
+            } else {
+                NSLog(@"Error: %@", error.description);
+            }
+        }];
+    }
+}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
