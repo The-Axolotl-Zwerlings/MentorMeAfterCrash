@@ -55,11 +55,6 @@
     self.getAdviceInterests = [[NSMutableArray alloc] init];
     self.giveAdviceInterests = [[NSMutableArray alloc] init];
 
-    
-    
-    
-
-  
     self.title = @"Enter Information";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
   
