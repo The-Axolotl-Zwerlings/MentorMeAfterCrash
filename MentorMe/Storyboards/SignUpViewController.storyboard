@@ -199,7 +199,6 @@
                         <outlet property="addGiveAdviceInterestButton" destination="e9A-aO-Fqw" id="IBV-Ze-jM2"/>
                         <outlet property="addProfilePictureButton" destination="Kzx-XN-m0l" id="Jla-It-FSd"/>
                         <outlet property="autocompleteTableView1" destination="uzB-Cu-P4v" id="uQ5-XK-O3q"/>
-                        <outlet property="autocompleteTableView2" destination="1TO-1Q-j1e" id="e1m-wF-aNM"/>
                         <outlet property="bioField" destination="Erq-G5-e9G" id="fr5-Qn-rkg"/>
                         <outlet property="cityField" destination="QBn-U6-axh" id="SVa-2F-iIU"/>
                         <outlet property="companyField" destination="yu1-eI-G8F" id="nmM-lt-vLW"/>
