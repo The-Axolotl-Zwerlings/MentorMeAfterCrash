@@ -43,6 +43,15 @@
     [self loadProfile];
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self loadProfile];
+    
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -78,7 +87,15 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 15;
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
+        return self.adviceToGet.count;
+        
+    } else {
+        
+        return self.adviceToGive.count;
+        
+    }
     
 }
 
@@ -88,22 +105,19 @@
     
 }
 
-
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
-        
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        
+        cellA.interestNameLabel.text = self.adviceToGet[indexPath.item];
         return cellA;
         
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        cellB.interestNameLabel.text = self.adviceToGive[indexPath.item];
         
         return cellB;
     }
 }
-
 
 
 
