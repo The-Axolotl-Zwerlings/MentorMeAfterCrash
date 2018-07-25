@@ -17,7 +17,8 @@
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *appointmentController;
-
+@property (strong, nonatomic) NSArray *pastAppointments;
+@property (strong, nonatomic) NSArray *upComingAppointments;
 
 @end
 
@@ -33,7 +34,7 @@
     
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
-    
+    [self updateAppointments];
     [self fetchFilteredAppointments];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -59,6 +60,44 @@
     
 }
 
+-(void)updateAppointments{
+    PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
+    PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
+    
+    [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
+    [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
+    
+    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
+    
+    [combinedQuery includeKey:@"mentor.name"];
+    [combinedQuery includeKey:@"mentee.name"];
+    
+    [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (posts != nil) {
+            NSDate *currentDate = [NSDate date];
+            for(AppointmentModel *appointment in posts){
+                if([appointment.meetingDate compare:currentDate] != -1){
+                    appointment.isUpcoming = [NSNumber numberWithBool:YES];
+                    NSMutableArray *old = [NSMutableArray arrayWithArray:self.upComingAppointments];
+                    [old addObject:appointment];
+                    self.upComingAppointments = [NSArray arrayWithArray:old];
+                    
+                    [appointment saveInBackground];
+                } else{
+                    appointment.isUpcoming = [NSNumber numberWithBool:NO];
+                    NSMutableArray *old = [NSMutableArray arrayWithArray:self.pastAppointments];
+                    [old addObject:appointment];
+                    self.pastAppointments = [NSArray arrayWithArray:old];
+                    
+                    [appointment saveInBackground];
+                }
+            }
+        } else {
+            NSLog(@"%@", error.localizedDescription);
+        }
+    }];
+}
+
 -(void) fetchFilteredAppointments{
 
     NSInteger index = self.appointmentController.selectedSegmentIndex;
@@ -77,37 +116,17 @@
     
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
-        
-        
-        [combinedQuery whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:YES]];
-        
-        [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.appointmentsArray = posts;
-                [self.appointmentsTableView reloadData];
-                
-                [self.refreshControl endRefreshing];
-                NSLog(@"WE GOT THE UPCOMING APPOINTMENTS 😇");
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
+
+        self.appointmentsArray = self.upComingAppointments;
+        [self.appointmentsTableView reloadData];
+        [self.refreshControl endRefreshing];
     } else {
         NSLog( @"Fetching Past Appointments...");
-        [combinedQuery whereKey:@"isUpcoming" equalTo:[NSNumber numberWithBool:NO]];
+
+        self.appointmentsArray = self.pastAppointments;
+        [self.appointmentsTableView reloadData];
+        [self.refreshControl endRefreshing];
         
-        [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
-            if (posts != nil) {
-                self.appointmentsArray = nil;
-                self.appointmentsArray = (NSMutableArray *)posts;
-                [self.appointmentsTableView reloadData];
-                [self.refreshControl endRefreshing];
-                NSLog(@"WE GOT THE PAST APPOINTMENTS 😇");
-                
-            } else {
-                NSLog(@"%@", error.localizedDescription);
-            }
-        }];
     }
 }
 
@@ -149,7 +168,9 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.appointmentsTableView indexPathForCell:tappedCell];
         AppointmentModel *incomingAppointment = self.appointmentsArray[indexPath.row];
+        
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
+        
         appointmentDetailsViewController.appointment = incomingAppointment;
         //appointmentDetailsViewController.delegate = self;
         

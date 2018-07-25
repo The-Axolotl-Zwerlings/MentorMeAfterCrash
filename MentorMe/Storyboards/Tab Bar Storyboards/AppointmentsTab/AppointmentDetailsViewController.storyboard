@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Appointment Details View Controller-->
+        <!--Title-->
         <scene sceneID="8sr-0e-1pK">
             <objects>
                 <viewController id="sa2-5N-IFZ" customClass="AppointmentDetailsViewController" sceneMemberID="viewController">
@@ -106,7 +106,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1dS-Bf-j09"/>
                     </view>
-                    <navigationItem key="navigationItem" id="HQW-Ou-h7k"/>
+                    <navigationItem key="navigationItem" title="Title" id="o54-SP-SDv">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="LGe-qP-Xcl"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="VCbutton" destination="YxE-UT-L7M" id="Ydp-YC-2JG"/>
                         <outlet property="coffeeButton" destination="0Mn-O6-Cs8" id="q8X-vY-Tme"/>
@@ -118,11 +120,20 @@
                         <outlet property="messageTextLabel" destination="D3k-zh-w6h" id="GlV-Pu-aFO"/>
                         <outlet property="timeLabel" destination="EcI-Xa-Ufx" id="Bla-qd-jNq"/>
                         <outlet property="typeMeetingLabel" destination="ZpA-Fk-o1V" id="JyN-ms-IhA"/>
+                        <segue destination="WFH-F4-9Mf" kind="presentation" identifier="ReviewSegue" id="ieB-aN-KlU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9og-Hq-2ja" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1412" y="185.75712143928038"/>
+            <point key="canvasLocation" x="2351.1999999999998" y="185.75712143928038"/>
+        </scene>
+        <!--Review-->
+        <scene sceneID="oeF-Mf-hLZ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Review" id="WFH-F4-9Mf" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cSI-dg-cCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2976" y="173"/>
         </scene>
     </scenes>
 </document>

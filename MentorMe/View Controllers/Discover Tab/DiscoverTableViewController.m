@@ -132,30 +132,6 @@
     
 }
 
-- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company andLocation:(NSNumber *)location{
-    
-    NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
-    [old replaceObjectAtIndex:0 withObject:school];
-    NSArray *newAr = [NSArray arrayWithArray:old];
-    self.filterArray = newAr;
-
-    NSMutableArray *old1 = [NSMutableArray arrayWithArray:self.filterArray];
-    [old1 replaceObjectAtIndex:1 withObject:company];
-    NSArray *newAr1 = [NSArray arrayWithArray:old1];
-    self.filterArray = newAr1;
-
-
-    NSMutableArray *old2 = [NSMutableArray arrayWithArray:self.filterArray];
-    [old replaceObjectAtIndex:2 withObject:location];
-    NSArray *newAr2 = [NSArray arrayWithArray:old2];
-    self.filterArray = newAr2;
-    
-}
-
-
-
-
-
 
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
@@ -171,23 +147,13 @@
         [self fetchFilteredUsersGet];
     }
     
-    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -214,6 +180,7 @@
 //            
             [self dismissViewControllerAnimated:YES completion:nil];
             
+            
             NSLog(@"hey we did it");
         } else{
             NSLog(@"error in logging out");
@@ -224,6 +191,7 @@
 - (IBAction)logoutAction:(UIBarButtonItem *)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
         if(error == nil){
+            
             [self dismissViewControllerAnimated:YES completion:nil];
             NSLog(@"hey we did it");
         } else{
@@ -250,8 +218,11 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
         PFUser *incomingMentor = self.filteredUsers[indexPath.row];
+        
+        
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
+
         if(self.mentorMenteeSegControl.selectedSegmentIndex == 0){
             mentorDetailsViewController.isMentorOfMeeting = NO;
         } else{

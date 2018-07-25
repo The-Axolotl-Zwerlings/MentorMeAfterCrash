@@ -13,15 +13,26 @@
 #import "ParseUI.h"
 #import "CreateAppointmentViewController.h"
 
-@interface MentorDetailsViewController ()
-@property (weak, nonatomic) IBOutlet PFImageView *profilePictureImageView;
-@property (weak, nonatomic) IBOutlet UILabel *mentorName;
+#import "GetAdviceCollectionViewCell.h"
+#import "GiveAdviceCollectionViewCell.h"
+
+@interface MentorDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (weak, nonatomic) IBOutlet PFImageView *bannerImage;
+@property (weak, nonatomic) IBOutlet PFImageView *profileImage;
+
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
-@property (weak, nonatomic) IBOutlet UITextView *mentorDescription;
-@property (weak, nonatomic) IBOutlet UITextView *giveAdviceText;
-@property (weak, nonatomic) IBOutlet UITextView *getAdviceText;
+@property (weak, nonatomic) IBOutlet UITextView *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+@property (strong, nonatomic) NSArray* adviceToGet;
+@property (strong, nonatomic) NSArray* adviceToGive;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
 
 @end
 
@@ -29,7 +40,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadPerson];
+    [self loadMentor];
+    
+    self.getAdviceCollectionView.delegate = self;
+    self.getAdviceCollectionView.dataSource = self;
+    self.giveAdviceCollectionView.delegate = self;
+    self.giveAdviceCollectionView.dataSource = self;
+    
+    self.adviceToGet = [[NSArray alloc]initWithArray:self.mentor[@"getAdviceInterests"]];
+    self.adviceToGive = [[NSArray alloc]initWithArray:self.mentor[@"giveAdviceInterests"]];
 }
 
 
@@ -38,26 +57,14 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void) loadPerson {
+- (void) loadMentor {
     
-    //self.profilePictureImageView.file = self.mentor.profilePic;
-    self.mentorName.text = self.mentor.name;
-    self.occupationLabel.text = [[self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
-    self.locationLabel.text = @"Lives in Mountain View, CA";
-    self.educationLabel.text = [@"Attends " stringByAppendingString: self.mentor.school];
-    self.mentorDescription.text = self.mentor.bio;
-    
-    if( self.mentor.giveAdviceInterests.count != 0 ){
-        self.giveAdviceText.text = self.mentor.giveAdviceInterests[0];
-    } else {
-        self.giveAdviceText.text = @"None at the moment";
-    }
-    
-    if( self.mentor.getAdviceInterests.count != 0 ){
-        self.getAdviceText.text = self.mentor.getAdviceInterests[0];
-    } else {
-        self.getAdviceText.text = @"None at the moment";
-    }
+    self.profileImage.file = self.mentor.profilePic;
+    self.nameLabel.text = self.mentor.name;
+    self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
+    self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
+    self.descriptionLabel.text = self.mentor.bio;
+
 }
 
 - (void) refreshData {
@@ -65,7 +72,47 @@
     
 }
 
+/**************   COLLECTION VIEW ***********/
 
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return 1;
+    
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    return 1;
+    
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
+        NSLog (@"HereB");
+        
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        return cellA;
+        
+    } else {
+        NSLog (@"HereC");
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        return cellB;
+    }
+}
+
+
+
+- (IBAction)onTapCancel:(id)sender {
+    
+    NSLog(@"Cancel Button");
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
 
 
 
@@ -82,6 +129,5 @@
         
     }
 }
-
 
 @end

@@ -26,6 +26,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
 @property (weak, nonatomic) IBOutlet UITextField *getAdviceField;
 @property (weak, nonatomic) IBOutlet UITextField *giveAdviceField;
+@property (strong, nonatomic) IBOutlet UITextField *cityField;
+@property (strong, nonatomic) IBOutlet UITextField *stateField;
 
 @property (weak, nonatomic) IBOutlet UIButton *addProfilePictureButton;
 @property (weak, nonatomic) IBOutlet UIButton *addGetAdviceInterestButton;
@@ -52,8 +54,15 @@
     // Do any additional setup after loading the view.
     self.getAdviceInterests = [[NSMutableArray alloc] init];
     self.giveAdviceInterests = [[NSMutableArray alloc] init];
+
     
     
+    
+
+  
+    self.title = @"Enter Information";
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
+  
     //Setting Table View Delegate & Data Source
     self.autocompleteTableView1.delegate = self;
     self.autocompleteTableView1.dataSource = self;
@@ -69,11 +78,15 @@
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
+
 }
 
-- (void)handleSingleTap:(UITapGestureRecognizer *) sender
-{
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender{
     [self.view endEditing:YES];
+}
+
+-(void)segue{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -115,6 +128,8 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     newUser.major = self.majorField.text;
     newUser.getAdviceInterests = [[NSArray alloc]initWithArray:self.getAdviceInterests];
     newUser.giveAdviceInterests = [[NSArray alloc]initWithArray:self.giveAdviceInterests];
+    newUser.cityLocation = self.cityField.text;
+    newUser.stateLocation = self.stateField.text;
     
     
     /*********************************** User Profile Picture Options ******************************************/

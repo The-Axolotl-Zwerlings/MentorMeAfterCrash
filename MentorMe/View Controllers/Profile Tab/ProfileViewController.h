@@ -16,7 +16,7 @@
 
 @property (strong, nonatomic) PFUser* user;
 
-@property (weak, nonatomic) IBOutlet UIImageView *bannerImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *bannerImageView;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -26,13 +26,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
 
-@property (weak, nonatomic) IBOutlet UITableView *getAdviceTableView;
-@property (weak, nonatomic) IBOutlet UITableView *giveAdviceTableView;
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
 
-@property (weak, nonatomic) IBOutlet UIView *horizontalView;
-
+@property (weak, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
+@property (weak, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
 
 //methods
 -(void)loadProfile;

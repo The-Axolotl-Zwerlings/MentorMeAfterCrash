@@ -10,9 +10,9 @@
 #import "ParseUI.h"
 @interface DiscoverCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *jobLabel;
-@property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
-@property (strong, nonatomic) IBOutlet UILabel *interestsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
+@property (strong, nonatomic) IBOutlet UILabel *educationLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *interestsLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *profilePicView;
 @property (strong, nonatomic) NSNumber *isGivingAdvice;
 -(void)layoutCell:(PFUser *)user;
