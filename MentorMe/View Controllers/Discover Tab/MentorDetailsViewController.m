@@ -139,6 +139,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"createAppointmentSegue"]){
+        
         CreateAppointmentViewController *createAppointViewController = [segue destinationViewController];
         createAppointViewController.isMentorOfMeeting = self.isMentorOfMeeting;
         createAppointViewController.otherAttendee = self.mentor;
