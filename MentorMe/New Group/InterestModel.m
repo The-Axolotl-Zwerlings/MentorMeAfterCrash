@@ -23,7 +23,7 @@
 
 +(void) addInterest: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers withIcon: (PFFile *) icon {
     
-    PFObject* interest = [PFObject objectWithClassName:@"InterestsModel"];
+    PFObject* interest = [PFObject objectWithClassName:@"InterestModel"];
     interest[@"category"] = theCategory;
     interest[@"subject"] = theSubject;
     interest[@"users"] = theUsers;

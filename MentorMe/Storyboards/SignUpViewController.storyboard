@@ -75,30 +75,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kzx-XN-m0l">
-                                <rect key="frame" x="44" y="576" width="287" height="30"/>
+                                <rect key="frame" x="44" y="589" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add Profile Picture"/>
                                 <connections>
                                     <action selector="onTapAddProfilePicture:" destination="JqI-0m-vkI" eventType="touchUpInside" id="nHj-gr-z2W"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dv-8I-2YA">
-                                <rect key="frame" x="44" y="614" width="287" height="42"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.19246419270833334" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                <state key="normal" title="Register">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="onTapRegister:" destination="JqI-0m-vkI" eventType="touchUpInside" id="wTT-vv-crD"/>
-                                    <segue destination="ygy-Yk-x3g" kind="presentation" identifier="segueToTabBarViewController" id="kId-JX-dkC"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GhL-bG-MxI">
@@ -125,21 +106,16 @@
                                     <action selector="getInterestChanged:" destination="JqI-0m-vkI" eventType="editingChanged" id="sZS-FC-R67"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="give advice interes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S55-lz-wKa">
-                                <rect key="frame" x="44" y="470" width="233" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give advice interes" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S55-lz-wKa">
+                                <rect key="frame" x="44" y="558" width="233" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9A-aO-Fqw">
-                                <rect key="frame" x="293" y="469" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
                                 <connections>
-                                    <action selector="onTapAddToGive:" destination="JqI-0m-vkI" eventType="touchUpInside" id="sW2-US-TGE"/>
+                                    <action selector="giveInterestsChanged:" destination="JqI-0m-vkI" eventType="editingChanged" id="iCn-1w-hYi"/>
                                 </connections>
-                            </button>
+                            </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sem-3U-j6i">
                                 <rect key="frame" x="293" y="432" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -148,15 +124,40 @@
                                     <action selector="onTapAddToGet:" destination="JqI-0m-vkI" eventType="touchUpInside" id="7CQ-Qy-4vc"/>
                                 </connections>
                             </button>
-
-
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uzB-Cu-P4v">
-                                <rect key="frame" x="44" y="462" width="233" height="89"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1dv-8I-2YA">
+                                <rect key="frame" x="44" y="621" width="287" height="42"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19246419270833334" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapRegister:" destination="JqI-0m-vkI" eventType="touchUpInside" id="wTT-vv-crD"/>
+                                    <segue destination="ygy-Yk-x3g" kind="presentation" identifier="segueToTabBarViewController" id="kId-JX-dkC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9A-aO-Fqw">
+                                <rect key="frame" x="293" y="558" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="onTapAddToGive:" destination="JqI-0m-vkI" eventType="touchUpInside" id="sW2-US-TGE"/>
+                                </connections>
+                            </button>
+                            <tableView hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="Table1" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uzB-Cu-P4v">
+                                <rect key="frame" x="44" y="461" width="233" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" red="1" green="0.73946611019999997" blue="0.71934054579999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CellIdentifier" rowHeight="32" id="DQX-ST-zkK" customClass="SignUpGetAdviceTableViewCell">
+                                    <tableViewCell opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TableView1" rowHeight="32" id="DQX-ST-zkK" customClass="SignUpGetAdviceTableViewCell">
                                         <rect key="frame" x="0.0" y="28" width="233" height="32"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="DQX-ST-zkK" id="rcf-m5-cMs">
@@ -170,9 +171,18 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4PC-4h-5uT">
+                                                    <rect key="frame" x="15" y="1" width="203" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Add Subject"/>
+                                                    <connections>
+                                                        <action selector="onTapAddNew:" destination="JqI-0m-vkI" eventType="touchUpInside" id="Kfa-oN-3uT"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="addSubjectButton" destination="4PC-4h-5uT" id="5Ys-Au-a2y"/>
                                             <outlet property="subjectLabel" destination="2Kv-K1-Lzo" id="xZN-20-A66"/>
                                         </connections>
                                     </tableViewCell>
@@ -189,6 +199,7 @@
                         <outlet property="addGiveAdviceInterestButton" destination="e9A-aO-Fqw" id="IBV-Ze-jM2"/>
                         <outlet property="addProfilePictureButton" destination="Kzx-XN-m0l" id="Jla-It-FSd"/>
                         <outlet property="autocompleteTableView1" destination="uzB-Cu-P4v" id="uQ5-XK-O3q"/>
+                        <outlet property="autocompleteTableView2" destination="1TO-1Q-j1e" id="e1m-wF-aNM"/>
                         <outlet property="bioField" destination="Erq-G5-e9G" id="fr5-Qn-rkg"/>
                         <outlet property="cityField" destination="QBn-U6-axh" id="SVa-2F-iIU"/>
                         <outlet property="companyField" destination="yu1-eI-G8F" id="nmM-lt-vLW"/>
