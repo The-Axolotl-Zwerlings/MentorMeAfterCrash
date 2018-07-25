@@ -30,11 +30,7 @@
 		A883130B20F28D5F00363E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A883130A20F28D5F00363E48 /* main.m */; };
 		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
 		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
-
 		B276C21B2107A1020052CB3F /* SignUpGiveAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B276C21A2107A1020052CB3F /* SignUpGiveAdviceTableViewCell.m */; };
-		B2AB7A622102624400625FEE /* GetAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */; };
-		B2AB7A652102625600625FEE /* GiveAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */; };
-
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
 		B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */; };
 		B2AB7AB9210697FC00625FEE /* SignUpGetAdviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7AB8210697FC00625FEE /* SignUpGetAdviceTableViewCell.m */; };
@@ -119,14 +115,8 @@
 		A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A883131F20F28D5F00363E48 /* MentorMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeUITests.m; sourceTree = "<group>"; };
 		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-
 		B276C2192107A1020052CB3F /* SignUpGiveAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpGiveAdviceTableViewCell.h; sourceTree = "<group>"; };
 		B276C21A2107A1020052CB3F /* SignUpGiveAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpGiveAdviceTableViewCell.m; sourceTree = "<group>"; };
-		B2AB7A602102624400625FEE /* GetAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAdviceTableViewCell.h; sourceTree = "<group>"; };
-		B2AB7A612102624400625FEE /* GetAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAdviceTableViewCell.m; sourceTree = "<group>"; };
-		B2AB7A632102625600625FEE /* GiveAdviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceTableViewCell.h; sourceTree = "<group>"; };
-		B2AB7A642102625600625FEE /* GiveAdviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceTableViewCell.m; sourceTree = "<group>"; };
-
 		B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
 		B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
@@ -304,17 +294,14 @@
 				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
 				B2AB7AB7210697FC00625FEE /* SignUpGetAdviceTableViewCell.h */,
 				B2AB7AB8210697FC00625FEE /* SignUpGetAdviceTableViewCell.m */,
-
 				B276C2192107A1020052CB3F /* SignUpGiveAdviceTableViewCell.h */,
 				B276C21A2107A1020052CB3F /* SignUpGiveAdviceTableViewCell.m */,
-
 				C072AB942107994100912A25 /* GetAdviceCollectionViewCell.h */,
 				C072AB952107994100912A25 /* GetAdviceCollectionViewCell.m */,
 				C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */,
 				C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */,
 				A82EB2DA2107E43A00079B53 /* RateView.h */,
 				A82EB2DB2107E43A00079B53 /* RateView.m */,
-
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -650,11 +637,8 @@
 			files = (
 				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
-
 				B276C21B2107A1020052CB3F /* SignUpGiveAdviceTableViewCell.m in Sources */,
-
 				C072AB962107994100912A25 /* GetAdviceCollectionViewCell.m in Sources */,
-
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
 				A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */,
 				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
@@ -845,13 +829,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				DEVELOPMENT_TEAM = M963N7PF23;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.murratay45.MentorMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murr.MentorMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -863,13 +847,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				DEVELOPMENT_TEAM = M963N7PF23;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.murratay45.MentorMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.murr.MentorMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
