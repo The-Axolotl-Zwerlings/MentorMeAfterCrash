@@ -216,8 +216,11 @@
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
         PFUser *incomingMentor = self.filteredUsers[indexPath.row];
+        
+        
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
+
         if(self.mentorMenteeSegControl.selectedSegmentIndex == 0){
             mentorDetailsViewController.isMentorOfMeeting = NO;
         } else{

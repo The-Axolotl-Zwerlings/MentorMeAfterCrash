@@ -19,8 +19,5 @@
 @property ( strong, nonatomic ) PFUser *mentor;
 @property (nonatomic) BOOL isMentorOfMeeting;
 
-@property (weak, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
-@property (weak, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
-
 
 @end

@@ -26,7 +26,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
 @property (weak, nonatomic) IBOutlet UITextView *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
+@property (strong, nonatomic) NSArray* adviceToGet;
+@property (strong, nonatomic) NSArray* adviceToGive;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
 
 @end
 
@@ -40,6 +46,9 @@
     self.getAdviceCollectionView.dataSource = self;
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
+    
+    self.adviceToGet = [[NSArray alloc]initWithArray:self.mentor[@"getAdviceInterests"]];
+    self.adviceToGive = [[NSArray alloc]initWithArray:self.mentor[@"giveAdviceInterests"]];
 }
 
 
@@ -50,11 +59,11 @@
 
 - (void) loadMentor {
     
-    /*self.profileImage.file = self.mentor.profilePic;
+    self.profileImage.file = self.mentor.profilePic;
     self.nameLabel.text = self.mentor.name;
     self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
     self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
-    self.descriptionLabel.text = self.mentor.bio;*/
+    self.descriptionLabel.text = self.mentor.bio;
 
 }
 
@@ -63,7 +72,47 @@
     
 }
 
+/**************   COLLECTION VIEW ***********/
 
+- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    
+    return 1;
+    
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    
+    return 1;
+    
+}
+
+- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
+        NSLog (@"HereB");
+        
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        return cellA;
+        
+    } else {
+        NSLog (@"HereC");
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        return cellB;
+    }
+}
+
+
+
+- (IBAction)onTapCancel:(id)sender {
+    
+    NSLog(@"Cancel Button");
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    
+}
 
 
 
