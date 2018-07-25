@@ -43,6 +43,8 @@
     [super viewDidLoad];
     [self loadMentor];
     
+    self.title = self.mentor.name;
+    
     self.getAdviceCollectionView.delegate = self;
     self.getAdviceCollectionView.dataSource = self;
     self.giveAdviceCollectionView.delegate = self;
