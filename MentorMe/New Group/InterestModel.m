@@ -22,7 +22,7 @@
 
 +(void) something: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers{
     
-    PFObject* interest = [PFObject objectWithClassName:@"InterestsModel"];
+    PFObject* interest = [PFObject objectWithClassName:@"InterestModel"];
     interest[@"category"] = theCategory;
     interest[@"subject"] = theSubject;
     interest[@"users"] = theUsers;
