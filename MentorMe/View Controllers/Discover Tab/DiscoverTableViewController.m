@@ -133,6 +133,8 @@
 }
 
 
+
+
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
     //if we are going to give advice
@@ -231,6 +233,15 @@
         }
         
     }
+}
+
+
+- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company andLocation:(NSNumber *)location {
+    NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
+    [old replaceObjectAtIndex:0 withObject:school];
+    [old replaceObjectAtIndex:1 withObject:company];
+    [old replaceObjectAtIndex:2 withObject:location];
+    self.filterArray = [NSArray arrayWithArray:old];
 }
 
 
