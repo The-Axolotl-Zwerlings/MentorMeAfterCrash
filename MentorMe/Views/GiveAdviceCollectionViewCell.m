@@ -7,7 +7,10 @@
 //
 
 #import "GiveAdviceCollectionViewCell.h"
-
+#import "Parse/Parse.h"
+#import "InterestModel.h"
+#import "ParseUI.h"
+#import "PFUser+ExtendedUser.h"
 
 @implementation GiveAdviceCollectionViewCell 
 

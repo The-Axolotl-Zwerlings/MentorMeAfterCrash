@@ -12,6 +12,7 @@
 #import "Parse/Parse.h"
 #import "ParseUI.h"
 #import "CreateAppointmentViewController.h"
+#import "InterestModel.h"
 
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
@@ -49,7 +50,15 @@
     
     self.adviceToGet = [[NSArray alloc]initWithArray:self.mentor[@"getAdviceInterests"]];
     self.adviceToGive = [[NSArray alloc]initWithArray:self.mentor[@"giveAdviceInterests"]];
+    
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.layer.masksToBounds;
+    
+    
 }
+
+
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -60,11 +69,12 @@
 - (void) loadMentor {
     
     self.profileImage.file = self.mentor.profilePic;
+    self.usernameLabel.text = self.mentor.username;
     self.nameLabel.text = self.mentor.name;
     self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
     self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
     self.descriptionLabel.text = self.mentor.bio;
-
+    
 }
 
 - (void) refreshData {
@@ -76,7 +86,15 @@
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return 1;
+    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
+        return self.adviceToGet.count;
+        
+    } else {
+        
+        return self.adviceToGive.count;
+        
+    }
     
 }
 
@@ -88,16 +106,13 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
-        
-        NSLog (@"HereB");
-        
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        
+        cellA.interestNameLabel.text = self.adviceToGet[indexPath.item];
         return cellA;
         
     } else {
-        NSLog (@"HereC");
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        cellB.interestNameLabel.text = self.adviceToGive[indexPath.item];
         
         return cellB;
     }
@@ -109,7 +124,6 @@
     
     NSLog(@"Cancel Button");
     
-    [self dismissViewControllerAnimated:YES completion:nil];
     
     
 }

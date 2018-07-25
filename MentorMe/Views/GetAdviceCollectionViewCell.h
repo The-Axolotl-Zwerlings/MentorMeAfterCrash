@@ -11,9 +11,13 @@
 #import "Parse/Parse.h"
 #import "ParseUI.h"
 #import "PFUser+ExtendedUser.h"
+#import "InterestModel.h"
 
 @interface GetAdviceCollectionViewCell : UICollectionViewCell
 @property (weak, nonatomic) IBOutlet PFImageView *interestIcon;
 @property (weak, nonatomic) IBOutlet UILabel *interestNameLabel;
+@property (weak, nonatomic) InterestModel *interest;
+
+
 
 @end

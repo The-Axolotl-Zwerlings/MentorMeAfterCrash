@@ -13,8 +13,7 @@
 @dynamic category;
 @dynamic subject;
 @dynamic users;
-@dynamic iconForDetails;
-@dynamic iconForFeed;
+@dynamic icon;
 
 
 +(NSString *)parseClassName{
@@ -22,14 +21,14 @@
 }
 
 
-+(void) addInterest: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers withSmallIcon: (PFImageView *) iconForFeed withLargeIcon: (PFImageView *) iconForDetails{
++(void) addInterest: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers withIcon: (PFFile *) icon {
     
     PFObject* interest = [PFObject objectWithClassName:@"InterestsModel"];
     interest[@"category"] = theCategory;
     interest[@"subject"] = theSubject;
     interest[@"users"] = theUsers;
-    interest[@"iconForFeed"] = iconForFeed;
-    interest[@"iconForDetails"] = iconForDetails;
+    interest[@"icon"] = icon;
+
     
     
     [interest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
