@@ -10,9 +10,9 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 #import "DiscoverTableViewController.h"
-#import "SignUpGetAdviceTableViewCell.h"
+#import "AutocompleteTableViewCell.h"
 #import "InterestModel.h"
-#import "SignUpGiveAdviceTableViewCell.h"
+
 
 @interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
@@ -39,11 +39,10 @@
 @property (nonatomic, strong) NSMutableArray* getAdviceInterests;
 @property (nonatomic, strong) NSMutableArray* giveAdviceInterests;
 
-@property (weak, nonatomic) IBOutlet UITableView *autocompleteTableView1;
-@property (weak, nonatomic) IBOutlet UITableView *autocompleteTableView2;
 
 @property (strong, nonatomic) NSArray* forTableView;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -59,16 +58,10 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
   
     //Setting Table View Delegate & Data Source
-    self.autocompleteTableView1.delegate = self;
-    self.autocompleteTableView1.dataSource = self;
-    self.autocompleteTableView1.scrollEnabled = YES;
-    self.autocompleteTableView1.hidden = YES;
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.scrollEnabled = YES;
 
-    self.autocompleteTableView2.delegate = self;
-    self.autocompleteTableView2.dataSource = self;
-    self.autocompleteTableView2.scrollEnabled = YES;
-    self.autocompleteTableView2.hidden = YES;
-    
     UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -87,16 +80,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)onTapAddNew:(id)sender {
-    PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
-        newInterest[@"subject"] = self.getAdviceField.text;
-}
-
-- (void)tableView:(UITableView *)tableView
-didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
 }
 
 - (IBAction)onTapAddToGet:(id)sender {
@@ -212,50 +195,49 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 - (IBAction)getInterestChanged:(id)sender {
     if(self.getAdviceField.text.length >= 3){
         NSLog(@"greater");
-        self.autocompleteTableView1.hidden = NO;
+        [self.view addSubview:self.tableView];
+        self.tableView.frame = CGRectMake(44, 542, 233, 90);
         NSString* typed = self.getAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
         //[self.autocompleteTableView1 reloadData];
     }
     else{
-        self.autocompleteTableView1.hidden = YES;
+        [self.tableView removeFromSuperview];
     }
 }
 - (IBAction)giveInterestsChanged:(id)sender {
     if(self.giveAdviceField.text.length >= 3){
         NSLog(@"greater");
-        self.autocompleteTableView2.hidden = NO;
+        [self.view addSubview:self.tableView];
+        self.tableView.frame = CGRectMake(44, 588, 233, 90);
         NSString* typed = self.giveAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
         //[self.autocompleteTableView2 reloadData];
     }
     else{
-        self.autocompleteTableView2.hidden = YES;
+        [self.tableView removeFromSuperview];
     }
 }
 
 /******************************* Autocomplete Using Parse ********************************/
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
     
-    NSMutableArray* temporary = [[NSMutableArray alloc]init];
-    self.forTableView = [[NSArray alloc]init];
     
+    //self.forTableView = [[NSArray alloc]init];
     PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
     [query whereKey:@"subject" hasPrefix:substring];
     [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
+            NSMutableArray* temporary = [[NSMutableArray alloc]init];
             for (InterestModel *interest in subjects) {
                 [temporary addObject:interest.subject];
                 }
-            self.forTableView = [NSArray arrayWithArray:temporary];
-            
-            //we enter both if statements which is uneccesary, so improve this mwthod later
-            [self.autocompleteTableView1 reloadData];
-            [self.autocompleteTableView2 reloadData];
+            self.forTableView = [[NSArray alloc]initWithArray:temporary];
+            //[NSArray arrayWithArray:temporary];
+            [self.tableView reloadData];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
-            
         }
     }];
 
@@ -263,7 +245,6 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if([tableView isEqual:self.autocompleteTableView1]){
         if(self.forTableView == nil || self.forTableView.count == 0){
         return 1;
         }
@@ -271,59 +252,28 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
         NSLog(@"%lu", self.forTableView.count);
         return (self.forTableView.count);
         }
-    }
-    else{
-        if(self.forTableView == nil || self.forTableView.count == 0){
-            return 1;
-        }
-        else{
-            NSLog(@"%lu", self.forTableView.count);
-            return (self.forTableView.count);
-        }
-    }
 }
 
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if([tableView isEqual:self.autocompleteTableView1]){
 
-        SignUpGetAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableView1" forIndexPath:indexPath];
-        cell.addSubjectButton.hidden = YES;
+        AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
+        cell.addInterestButton.hidden = YES;
         
         if(self.forTableView == nil || self.forTableView.count == 0){
             NSLog(@"IN IF1");
-            cell.addSubjectButton.hidden = NO;
-            cell.subjectLabel.hidden = YES;
+            cell.addInterestButton.hidden = NO;
+            cell.interestLabel.hidden = YES;
             return cell;
         }
         else{
             NSLog(@"IN ELSE1");
-            cell.addSubjectButton.hidden = YES;
-            cell.subjectLabel.text = [self.forTableView objectAtIndex: indexPath.row];
+            cell.addInterestButton.hidden = YES;
+            cell.interestLabel.text = self.forTableView [indexPath.row];
+            cell.interestLabel.hidden = NO;
+           // [self.forTableView objectAtIndex: indexPath.row];
             return cell;
         }
-    }
-    else{
-        SignUpGiveAdviceTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TableView2" forIndexPath:indexPath];
-        cell.addSubjectButton.hidden = YES;
-        
-        if(self.forTableView == nil || self.forTableView.count == 0){
-            NSLog(@"IN IF2");
-            cell.addSubjectButton.hidden = NO;
-            cell.subjectLabel.hidden = YES;
-            return cell;
-        }
-        else{
-            NSLog(@"IN ELSE2");
-            cell.addSubjectButton.hidden = YES;
-            cell.subjectLabel.text = [self.forTableView objectAtIndex: indexPath.row];
-            return cell;
-        }
-    }
 }
-
-
 
 #pragma mark - Navigation
 

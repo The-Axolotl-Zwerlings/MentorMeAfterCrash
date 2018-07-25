@@ -1,14 +1,14 @@
 //
-//  SignUpGiveAdviceTableViewCell.m
+//  AutocompleteTableViewCell.m
 //  MentorMe
 //
-//  Created by Nihal Riyadh Jemal on 7/24/18.
+//  Created by Nihal Riyadh Jemal on 7/25/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
 
-#import "SignUpGiveAdviceTableViewCell.h"
+#import "AutocompleteTableViewCell.h"
 
-@implementation SignUpGiveAdviceTableViewCell
+@implementation AutocompleteTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];

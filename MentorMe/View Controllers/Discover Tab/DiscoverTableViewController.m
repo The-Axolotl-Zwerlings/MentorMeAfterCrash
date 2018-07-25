@@ -109,16 +109,31 @@
         NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
             LocationApiManager *manager = [LocationApiManager new];
             [manager fetchDistanceWithOrigin:origin andEnd:destination andCompletion:^(NSDictionary *elementDic, NSError *error) {
-                NSNumber *distance = (NSNumber *)elementDic[@"value"];
-                if([distance floatValue] < 50){
-                    [oldArray addObject:user];
-                    NSLog(@"Added a new user %@", user.name);
-                }
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    NSNumber *distance = (NSNumber *)elementDic[@"value"];
+                    if([distance floatValue] < 50){
+                        [oldArray addObject:user];
+                        NSLog(@"Added a new user %@", user.name);
+                        NSLog(@"%lu",oldArray.count);
+                    }
+                    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+                    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
+                    [self.discoverTableView reloadData];
+                });
+//                NSNumber *distance = (NSNumber *)elementDic[@"value"];
+//                if([distance floatValue] < 50){
+//                    [oldArray addObject:user];
+//                    NSLog(@"Added a new user %@", user.name);
+//                    NSLog(@"%lu",oldArray.count);
+//                }
             }];
+        NSLog(@"%lu",oldArray.count);
         
+    
     }
-    self.filteredUsers = [NSArray arrayWithArray:oldArray];
-    [self.discoverTableView reloadData];
+//    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+//    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
+//    [self.discoverTableView reloadData];
     
     
 }
@@ -182,7 +197,7 @@
     
     [cell layoutCell:self.filteredUsers[indexPath.row]];
     
-    
+    NSLog(@"doing some hard work making cells");
     return cell;
 }
 
