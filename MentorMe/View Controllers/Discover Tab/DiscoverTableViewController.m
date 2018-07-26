@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
+
+
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -74,9 +76,6 @@
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
      }
     
-    
-    
-    
     //[usersQuery orderByDescending:@"createdAt"];
     
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -105,8 +104,14 @@
 -(void)closeByUsers:(NSArray *)users{
     NSString *destination = [NSString stringWithFormat:@"%@,%@", PFUser.currentUser.cityLocation,PFUser.currentUser.stateLocation];
     NSMutableArray *oldArray = [[NSMutableArray alloc] init];
+    
+    
+    dispatch_queue_t locationQueue = dispatch_queue_create("location Queue",NULL);
+    
     for(PFUser *user in users){
-        NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
+        
+        dispatch_async(locationQueue, ^{
+            NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
             LocationApiManager *manager = [LocationApiManager new];
             [manager fetchDistanceWithOrigin:origin andEnd:destination andCompletion:^(NSDictionary *elementDic, NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -120,14 +125,16 @@
                     NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
                     [self.discoverTableView reloadData];
                 });
-//                NSNumber *distance = (NSNumber *)elementDic[@"value"];
-//                if([distance floatValue] < 50){
-//                    [oldArray addObject:user];
-//                    NSLog(@"Added a new user %@", user.name);
-//                    NSLog(@"%lu",oldArray.count);
-//                }
+                //                NSNumber *distance = (NSNumber *)elementDic[@"value"];
+                //                if([distance floatValue] < 50){
+                //                    [oldArray addObject:user];
+                //                    NSLog(@"Added a new user %@", user.name);
+                //                    NSLog(@"%lu",oldArray.count);
+                //                }
             }];
-        NSLog(@"%lu",oldArray.count);
+            NSLog(@"%lu",oldArray.count);
+        });
+        
         
     
     }
@@ -179,6 +186,9 @@
     
 }
 
+
+/***** TABLE VIEW ******/
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -191,15 +201,26 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
+    cell.userForCell = self.filteredUsers[indexPath.item];
     
+    [cell layoutCell:cell.userForCell];
     
-    [cell layoutCell:self.filteredUsers[indexPath.row]];
+    cell.getCollectionView.delegate = cell;
+    cell.getCollectionView.dataSource = cell;
     
-    NSLog(@"doing some hard work making cells");
+    cell.giveCollectionView.delegate = cell;
+    cell.giveCollectionView.dataSource = cell;
+    
+    [cell reloadInputViews];
+    
     return cell;
 }
+
+
+
 
 - (IBAction)logoutButtonAction:(UIButton *)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {

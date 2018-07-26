@@ -50,8 +50,9 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self.appointmentsTableView reloadData];
     [self fetchFilteredAppointments];
+    [self.appointmentsTableView reloadData];
+
     
 }
 - (IBAction)didChangeIndex:(id)sender {
@@ -103,16 +104,7 @@
     NSInteger index = self.appointmentController.selectedSegmentIndex;
                                                          
     
-    PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
-    PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
     
-    [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
-    [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
-    
-    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
-    
-    [combinedQuery includeKey:@"mentor.name"];
-    [combinedQuery includeKey:@"mentee.name"];
     
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
@@ -151,13 +143,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     AppointmentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppointmentCell"];
-    
     AppointmentModel *newAppointment = self.appointmentsArray[indexPath.row];
-    
     cell.appointment = newAppointment;
-    
     NSLog( @"Loading new cell" );
-    
     return cell;
 }
 
@@ -172,6 +160,8 @@
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
         
         appointmentDetailsViewController.appointment = incomingAppointment;
+        appointmentDetailsViewController.appointmentWith = [PFUser currentUser];
+        
         //appointmentDetailsViewController.delegate = self;
         
     }

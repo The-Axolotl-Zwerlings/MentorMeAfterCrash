@@ -20,6 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *meetingLocation;
 @property (weak, nonatomic) IBOutlet UILabel *meetingType;
 @property (nonatomic) BOOL isMentor;
-@property (strong, nonatomic) IBOutlet UILabel *mentorOrMenteeLabel;
+//@property (strong, nonatomic) IBOutlet UILabel *mentorOrMenteeLabel;
 
 @end
