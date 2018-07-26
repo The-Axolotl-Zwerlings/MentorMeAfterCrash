@@ -59,13 +59,13 @@
 - (void) loadAppointmentDetails {
     if(self.appointmentTypeSegControl.selectedSegmentIndex == 0){ //coffww
         self.dateTextField.text = @"2:00 pm on 6/1/18";
-        self.locationLabel.text = @"at Red Rock Café";
+        self.locationLabel.text = @"Red Rock Café";
     } else if(self.appointmentTypeSegControl.selectedSegmentIndex == 1){ //lunch
         self.dateTextField.text = @"12:00 pm on 6/2/18";
-        self.locationLabel.text = @"at Jimmy Johns";
+        self.locationLabel.text = @"Jimmy Johns";
     } else{
         self.dateTextField.text = @"9:00pm on 6/3/18";
-        self.locationLabel.text = @"via Skype";
+        self.locationLabel.text = @"Skype";
     }
 }
 

@@ -18,15 +18,13 @@
 @dynamic meetingDate;
 @dynamic meetingType;
 
-@dynamic isUpcoming;
-
 
 +(nonnull NSString *)parseClassName{
     return @"AppointmentModel";
 }
 
 
-+ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL) isUpcoming withMessage:(NSString *)message withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
++ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withMessage:(NSString *)message withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
     
     PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
     
@@ -37,7 +35,6 @@
     appointment[@"meetingLocation"] = meetingLocation;
     appointment[@"meetingType"] = meetingType;
     appointment[@"meetingDate"] = meetingDate;
-    appointment[@"isUpcoming"] = @(isUpcoming);
     appointment[@"message"] = message;
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

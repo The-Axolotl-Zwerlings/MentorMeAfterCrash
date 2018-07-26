@@ -62,13 +62,23 @@
     
     
     
+    //3. Update labels and images
+    
+    //Location
+    NSString *location = [@" at " stringByAppendingString: self.appointment.meetingLocation];
+    //Date
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"MMM d, h:mm a"];
+    NSString *date = [@" on " stringByAppendingString: [formatter stringFromDate:self.appointment.meetingDate]];
     
+    //Meeting type
+    NSString *type = self.appointment.meetingType;
     
-    self.meetingDate.text = [formatter stringFromDate:appointment.meetingDate];
-    self.meetingType.text = self.appointment.meetingType;
-    self.meetingLocation.text = self.appointment.meetingLocation;
+    NSString *fullDetails = [[type stringByAppendingString:location] stringByAppendingString:date];
+    self.meetingSummaryLabel.text = fullDetails;
+    
+    [self.meetingSummaryLabel sizeToFit];
+
         
     
 }

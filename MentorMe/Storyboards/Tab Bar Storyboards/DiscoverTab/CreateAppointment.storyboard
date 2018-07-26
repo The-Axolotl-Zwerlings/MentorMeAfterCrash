@@ -113,6 +113,9 @@
                                         <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <action selector="didChangeType" destination="MY9-ZN-1zH" eventType="editingDidEnd" id="aBV-ce-YDu"/>
+                                        </connections>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="At Red Rock Café" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aP7-Fy-dKR">
                                         <rect key="frame" x="10" y="75" width="300" height="25"/>
@@ -132,9 +135,6 @@
                                     <segment title="Coffee"/>
                                     <segment title="Video Chat"/>
                                 </segments>
-                                <connections>
-                                    <action selector="didChangeType:" destination="MY9-ZN-1zH" eventType="valueChanged" id="J33-1T-xhu"/>
-                                </connections>
                             </segmentedControl>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ESA-Pg-j11">
                                 <rect key="frame" x="0.0" y="200" width="187" height="21"/>
