@@ -62,6 +62,9 @@
     self.tableView.dataSource = self;
     self.tableView.scrollEnabled = YES;
 
+    self.addGetAdviceInterestButton.enabled = NO;
+    self.addGiveAdviceInterestButton.enabled = NO;
+    
     UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
@@ -85,10 +88,13 @@
 - (IBAction)onTapAddToGet:(id)sender {
     [self.getAdviceInterests addObject:self.getAdviceField.text];
     self.getAdviceField.text = nil;
+    self.addGetAdviceInterestButton.enabled = NO;
 }
 - (IBAction)onTapAddToGive:(id)sender {
     [self.giveAdviceInterests addObject:self.giveAdviceField.text];
-    self.giveAdviceField.text = nil;}
+    self.giveAdviceField.text = nil;
+    self.addGiveAdviceInterestButton.enabled = NO;
+}
 
 -(void)registerUser  {
     // initialize a user object
@@ -203,6 +209,7 @@
     }
     else{
         [self.tableView removeFromSuperview];
+        
     }
 }
 - (IBAction)giveInterestsChanged:(id)sender {
@@ -226,13 +233,21 @@
     //self.forTableView = [[NSArray alloc]init];
     PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
     [query whereKey:@"subject" hasPrefix:substring];
+    //[query whereKey:@"subject" notEqualTo:substring];
     [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
             for (InterestModel *interest in subjects) {
-                [temporary addObject:interest.subject];
+                if(substring == interest.subject){
+                [self.tableView removeFromSuperview];
+            
                 }
+                else{
+                [temporary addObject:interest.subject];
+                self.addGetAdviceInterestButton.enabled = NO;
+                }
+            }
             self.forTableView = [[NSArray alloc]initWithArray:temporary];
             //[NSArray arrayWithArray:temporary];
             [self.tableView reloadData];
@@ -284,6 +299,7 @@
                 NSLog(@"New interest saved!");
                 NSString* typed = self.getAdviceField.text;
                 [self searchAutocompleteEntriesWithSubstring:typed];
+                self.addGetAdviceInterestButton.enabled = YES;
                 
             } else {
                 NSLog(@"Error: %@", error.description);
@@ -297,12 +313,29 @@
                 NSLog(@"New interest saved!");
                 NSString* typed = self.giveAdviceField.text;
                 [self searchAutocompleteEntriesWithSubstring:typed];
+                 self.addGiveAdviceInterestButton.enabled = YES;
                 
             } else {
                 NSLog(@"Error: %@", error.description);
             }
         }];
     }
+}
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath     *)indexPath
+{
+    AutocompleteTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+     if ([self.getAdviceField hasText]){
+         self.getAdviceField.text = cell.interestLabel.text;
+         [self.tableView removeFromSuperview];
+         self.addGetAdviceInterestButton.enabled = YES;
+     }
+    if ([self.giveAdviceField hasText]){
+        self.giveAdviceField.text = cell.interestLabel.text;
+        [self.tableView removeFromSuperview];
+        self.addGiveAdviceInterestButton.enabled = YES;
+    }
+    
 }
 #pragma mark - Navigation
 
