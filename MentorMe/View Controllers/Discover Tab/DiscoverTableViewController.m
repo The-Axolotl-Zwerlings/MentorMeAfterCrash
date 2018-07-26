@@ -15,6 +15,8 @@
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
+
+
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
@@ -191,13 +193,21 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
+    cell.userForCell = self.filteredUsers[indexPath.item];
     
+    [cell layoutCell:cell.userForCell];
     
-    [cell layoutCell:self.filteredUsers[indexPath.row]];
+    cell.getCollectionView.delegate = cell;
+    cell.getCollectionView.dataSource = cell;
     
-    NSLog(@"doing some hard work making cells");
+    cell.giveCollectionView.delegate = cell;
+    cell.giveCollectionView.dataSource = cell;
+    
+    [cell reloadInputViews];
+    
     return cell;
 }
 

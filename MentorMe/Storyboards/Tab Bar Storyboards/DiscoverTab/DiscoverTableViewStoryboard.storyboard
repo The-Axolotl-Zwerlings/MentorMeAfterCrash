@@ -101,7 +101,7 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hji-zQ-QQM">
                                                     <rect key="frame" x="15" y="143" width="345" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="qU4-D4-4j6">
                                                         <size key="itemSize" width="115" height="40"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -125,7 +125,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </view>
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="10"/>
@@ -138,7 +138,7 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Da-rJ-ktU" userLabel="Give Collection View">
                                                     <rect key="frame" x="16" y="191" width="345" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zjs-eF-Cl2">
                                                         <size key="itemSize" width="115" height="40"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -162,7 +162,7 @@
                                                                     </label>
                                                                 </subviews>
                                                             </view>
-                                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <color key="backgroundColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                                     <integer key="value" value="10"/>
@@ -177,6 +177,8 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="educationLabel" destination="PUk-H0-1uB" id="RzJ-co-YpO"/>
+                                            <outlet property="getCollectionView" destination="hji-zQ-QQM" id="QUI-Ky-frl"/>
+                                            <outlet property="giveCollectionView" destination="0Da-rJ-ktU" id="bWj-wk-bng"/>
                                             <outlet property="nameLabel" destination="dx8-Px-Rv3" id="rgL-oE-yxB"/>
                                             <outlet property="occupationLabel" destination="D15-jg-cBc" id="Iyk-So-t3W"/>
                                             <outlet property="profilePicView" destination="Ccj-O1-eS4" id="TcJ-sP-pfr"/>

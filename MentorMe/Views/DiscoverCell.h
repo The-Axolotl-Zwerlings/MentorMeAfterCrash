@@ -9,14 +9,24 @@
 #import <UIKit/UIKit.h>
 #import "ParseUI.h"
 #import "Parse/Parse.h"
+#import "PFUser+ExtendedUser.h"
 
 @interface DiscoverCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *educationLabel;
-//@property (strong, nonatomic) IBOutlet UILabel *interestsLabel;
 @property (strong, nonatomic) IBOutlet PFImageView *profilePicView;
 @property (strong, nonatomic) NSNumber *isGivingAdvice;
 
--(void)layoutCell:(PFUser *)user;
+@property (strong, nonatomic) IBOutlet UICollectionView *getCollectionView;
+@property (strong, nonatomic) IBOutlet UICollectionView *giveCollectionView;
+
+@property (nonatomic, strong) NSArray *getInterests;
+@property (nonatomic, strong) NSArray *giveInterets;
+
+@property (strong, nonatomic) PFUser *userForCell;
+
+- (void)layoutCell:(PFUser *)user;
+
+
 @end

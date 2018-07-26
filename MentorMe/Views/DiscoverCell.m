@@ -11,7 +11,34 @@
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
 
+@interface DiscoverCell () <UICollectionViewDataSource, UICollectionViewDelegate>
+
+@end
+
 @implementation DiscoverCell
+
+
+-(id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+   
+    if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) return nil;
+
+    self.getCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    self.getCollectionView.dataSource = self;
+    self.getCollectionView.delegate = self;
+    
+    self.giveCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
+    self.giveCollectionView.dataSource = self;
+    self.giveCollectionView.delegate = self;
+    
+    
+    self.giveInterets = self.userForCell.giveAdviceInterests;
+    self.getInterests = self.userForCell.getAdviceInterests;
+
+    return self;
+
+    
+    
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -39,6 +66,35 @@
     self.profilePicView.file = user[@"profilePic"];
     [self.profilePicView loadInBackground];
     
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return 1;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if( collectionView == self.getCollectionView){
+        return self.getInterests.count;
+    } else {
+        return self.giveInterets.count;
+    }
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ( [collectionView isEqual:self.getCollectionView] ){
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        cellA.interestNameLabel.text = self.getInterests[indexPath.item];
+        return cellA;
+        
+    } else {
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        cellB.interestNameLabel.text = self.giveInterets[indexPath.item];
+        
+        return cellB;
+    }
 }
 
 
