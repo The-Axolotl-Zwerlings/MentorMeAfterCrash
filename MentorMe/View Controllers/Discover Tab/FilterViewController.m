@@ -81,19 +81,21 @@
     
     config.tagCornerRadius = 7;
     
-    for(InterestModel *interest in PFUser.currentUser.giveAdviceInterests){
-        config = [TTGTextTagConfig new];
-        config.extraData = interest;
-        [_giveAdviceTTGView addTag:interest.subject withConfig:config];
-    }
-    for(InterestModel *interest in PFUser.currentUser.getAdviceInterests){
-        config = [TTGTextTagConfig new];
-        config.extraData = interest;
-        [_getAdviceTTGView addTag:interest.subject withConfig:config];
-    }
+//    for(InterestModel *interest in PFUser.currentUser.giveAdviceInterests){
+//        config = [TTGTextTagConfig new];
+//        config.extraData = interest;
+//        [_giveAdviceTTGView addTag:interest.subject withConfig:config];
+//    }
+//    for(InterestModel *interest in PFUser.currentUser.getAdviceInterests){
+//        config = [TTGTextTagConfig new];
+//        config.extraData = interest;
+//        [_getAdviceTTGView addTag:interest.subject withConfig:config];
+//    }
+    
     
     self.getAdviceTTGView.defaultConfig = config;
-    
+    [self.getAdviceTTGView addTags:PFUser.currentUser.getAdviceInterests];
+    [self.giveAdviceTTGView addTags:PFUser.currentUser.giveAdviceInterests];
     
     
     
