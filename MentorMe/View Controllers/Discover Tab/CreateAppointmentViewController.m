@@ -116,7 +116,6 @@
 
 - (IBAction)createAction:(UIButton *)sender {
     
-    
     [AppointmentModel postAppointment:self.isMentorOfMeeting withPerson:self.otherAttendee withMeetingLocation:self.locationLabel.text withMeetingType:self.meetingTypeDic[@(self.appointmentTypeSegControl.selectedSegmentIndex)] withMeetingDate:datePicker.date withIsComing:YES withMessage:self.messageTextView.text withCompletion:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];

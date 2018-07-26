@@ -21,15 +21,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wJf-jd-9sV">
                                 <rect key="frame" x="0.0" y="14" width="375" height="653"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.19246419270833334" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="0.71229383680000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </imageView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vYi-iJ-Eyq">
                                 <rect key="frame" x="10" y="75" width="242" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.58935546875" green="0.0" blue="0.7958984375" alpha="1" colorSpace="calibratedRGB"/>
                                 <segments>
                                     <segment title="Get Advice"/>
                                     <segment title="Give Advice"/>
                                 </segments>
+                                <color key="tintColor" red="0.21405707469999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="onEdit:" destination="UGR-cv-PWW" eventType="valueChanged" id="5ms-lf-NEb"/>
                                 </connections>

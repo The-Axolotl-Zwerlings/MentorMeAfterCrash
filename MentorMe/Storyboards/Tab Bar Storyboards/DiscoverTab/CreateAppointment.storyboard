@@ -61,7 +61,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <action selector="createAction:" destination="MY9-ZN-1zH" eventType="touchUpInside" id="SmG-Fj-Oxu"/>
+                                    <action selector="createAction:" destination="MY9-ZN-1zH" eventType="touchUpInside" id="Ws4-Vy-NgP"/>
                                 </connections>
                             </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ynk-2N-wz9">
@@ -203,7 +203,6 @@
                     <connections>
                         <outlet property="appointmentTypeSegControl" destination="fDu-6N-3Ui" id="GeD-cA-aU3"/>
                         <outlet property="cancelButton" destination="elA-0o-3nZ" id="Chv-tJ-Q3b"/>
-                        <outlet property="confirmButton" destination="wec-gQ-D2e" id="PWY-H9-7lu"/>
                         <outlet property="dateTextField" destination="8yR-rd-Mp5" id="H78-Es-bXO"/>
                         <outlet property="locationLabel" destination="aP7-Fy-dKR" id="7XT-fz-OEM"/>
                         <outlet property="meetingWithLabel" destination="D2W-xW-4SI" id="A1G-Jx-7MD"/>
