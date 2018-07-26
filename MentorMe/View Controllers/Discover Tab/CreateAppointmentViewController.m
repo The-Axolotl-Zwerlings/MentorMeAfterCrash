@@ -48,7 +48,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.meetingWithLabel.text = [@"Meeting With " stringByAppendingString:self.otherAttendee.name];
-    self.meetingTypeDic = @{ @(0) : @"coffee", @(1) : @"lunch", @(2) : @"VC"};
+    self.meetingTypeDic = @{ @(0) : @"Coffee", @(1) : @"Lunch", @(2) : @"Video Chat"};
     
     [self loadDateTool];
     [self loadAppointmentDetails];

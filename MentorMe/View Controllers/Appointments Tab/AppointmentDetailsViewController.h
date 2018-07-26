@@ -15,6 +15,7 @@
 @interface AppointmentDetailsViewController : UIViewController
 
 @property (strong, nonatomic) AppointmentModel *appointment;
+@property (strong, nonatomic) PFUser *appointmentWith;
 //@property (weak, nonatomic) id<AppointmentDetailsViewControllerDelegate> delegate;
 
 @end

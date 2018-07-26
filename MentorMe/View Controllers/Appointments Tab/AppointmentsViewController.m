@@ -50,8 +50,9 @@
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-    [self.appointmentsTableView reloadData];
     [self fetchFilteredAppointments];
+    [self.appointmentsTableView reloadData];
+
     
 }
 - (IBAction)didChangeIndex:(id)sender {
@@ -142,13 +143,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     AppointmentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppointmentCell"];
-    
     AppointmentModel *newAppointment = self.appointmentsArray[indexPath.row];
-    
     cell.appointment = newAppointment;
-    
     NSLog( @"Loading new cell" );
-    
     return cell;
 }
 
@@ -163,6 +160,8 @@
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
         
         appointmentDetailsViewController.appointment = incomingAppointment;
+        appointmentDetailsViewController.appointmentWith = [PFUser currentUser];
+        
         //appointmentDetailsViewController.delegate = self;
         
     }
