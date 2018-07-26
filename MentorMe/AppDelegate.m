@@ -30,6 +30,7 @@
     
     [Parse initializeWithConfiguration:config];
     
+
    /* PFObject* interest1 = [PFObject objectWithClassName:@"InterestModel"];
     interest1[@"subject"] = @"algebra";
     interest1[@"category"] = @"math";
@@ -81,6 +82,7 @@
         }
     }];
      PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
+
      PFUser *newUser = [PFUser currentUser];
     
     
