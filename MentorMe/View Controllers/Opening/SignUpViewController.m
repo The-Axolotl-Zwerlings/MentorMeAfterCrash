@@ -89,6 +89,10 @@
     [self.getAdviceInterests addObject:self.getAdviceField.text];
     self.getAdviceField.text = nil;
     self.addGetAdviceInterestButton.enabled = NO;
+    
+    /*instead of allowing user to create new interst it will be automatically created when they click add
+     unless the interst already exists then they are just added to the interest*/
+    
 }
 - (IBAction)onTapAddToGive:(id)sender {
     [self.giveAdviceInterests addObject:self.giveAdviceField.text];
@@ -226,6 +230,23 @@
     }
 }
 
+-(void)buttonEnabler: (id)sender {
+    // when sender is get
+        //if text in field matches any in tableview
+        //collapse view
+        //enable get button
+        //else disable button
+    
+    //when sender is give
+        //if text in field matches any in tableview
+        //collapse view
+        //enable give button
+        //else disable button
+    
+    
+    //this should all be in text did change
+    
+}
 /******************************* Autocomplete Using Parse ********************************/
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
     
@@ -294,6 +315,7 @@
     PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
     if ([self.getAdviceField hasText]){
         newInterest[@"subject"] = self.getAdviceField.text;
+        
         [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
             if (succeeded) {
                 NSLog(@"New interest saved!");
