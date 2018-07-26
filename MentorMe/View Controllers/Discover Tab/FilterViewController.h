@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol FilterDelegate
--(void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company andLocation:(NSNumber *)location;
+- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests;
 @end
 @interface FilterViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;

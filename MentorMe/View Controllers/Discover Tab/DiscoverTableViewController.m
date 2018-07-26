@@ -23,6 +23,8 @@
 @property (strong, nonatomic) NSArray *filteredUsers;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (strong, nonatomic) NSArray *filterArray;
+@property (strong, nonatomic) NSArray *filterGive;
+@property (strong, nonatomic) NSArray *filterGet;
 @property (nonatomic) BOOL getAdvice;
 @end
 
@@ -35,13 +37,14 @@
     self.title = @"Discover";
     
     NSNumber* noObj = [NSNumber numberWithBool:NO];
-    self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,nil];
+    self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,noObj,nil];
     
     self.discoverTableView.delegate = self;
     self.discoverTableView.dataSource = self;
     // Do any additional setup after loading the view.
     
     [self fetchFilteredUsersGet];
+    
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchFilteredUsersGet) forControlEvents:UIControlEventValueChanged];
@@ -74,7 +77,9 @@
     }
     if([self.filterArray[1] boolValue]){
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
-     }
+    }
+    
+    
     
     //[usersQuery orderByDescending:@"createdAt"];
     
@@ -89,6 +94,10 @@
             } else{ //if they don't want to filter location
                 self.filteredUsers = users;
             }
+            if([self.filterArray[3] boolValue]){
+                [self interestedUsers];
+                [self.discoverTableView reloadData];
+            }
             
             [self.discoverTableView reloadData];
             [self.refreshControl endRefreshing];
@@ -99,6 +108,28 @@
         
     }];
     
+}
+
+-(void)interestedUsers{
+    NSArray *users = self.filteredUsers;
+    NSInteger giveAdvice = self.mentorMenteeSegControl.selectedSegmentIndex;
+    
+    //If you are getting advice (give advice is 0) then get your filterInterests from Get
+    NSMutableSet *filterInterests = giveAdvice == 0 ? [NSMutableSet setWithArray:self.filterGet] : [NSMutableSet setWithArray:self.filterGive];
+    
+    NSMutableArray *newFilteredUsers;
+    
+    for(PFUser *user in users){
+        
+        //if getting advice you want to see an intersection with other people's giving advice
+        //if giving advice you want to see an intersection with other people's getting advice
+        NSMutableSet *usersInterests = giveAdvice == 0 ? [NSMutableSet setWithArray:user.giveAdviceInterests] : [NSMutableSet setWithArray:user.getAdviceInterests] ;
+        if([usersInterests intersectsSet:filterInterests]){
+            [newFilteredUsers addObject:user];
+        }
+        
+    }
+    self.filteredUsers = (NSArray *)newFilteredUsers;
 }
 
 -(void)closeByUsers:(NSArray *)users{
@@ -285,11 +316,12 @@
 }
 
 
-- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company andLocation:(NSNumber *)location {
+- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests{
     NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
     [old replaceObjectAtIndex:0 withObject:school];
     [old replaceObjectAtIndex:1 withObject:company];
     [old replaceObjectAtIndex:2 withObject:location];
+    [old replaceObjectAtIndex:3 withObject:interests];
     self.filterArray = [NSArray arrayWithArray:old];
 }
 
