@@ -30,7 +30,7 @@
     
     [Parse initializeWithConfiguration:config];
     
-    PFObject* interest1 = [PFObject objectWithClassName:@"InterestModel"];
+   /* PFObject* interest1 = [PFObject objectWithClassName:@"InterestModel"];
     interest1[@"subject"] = @"algebra";
     interest1[@"category"] = @"math";
     [interest1 saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
@@ -80,7 +80,7 @@
             NSLog(@"Error: %@", error.description);
         }
     }];
-     /*PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
+     PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
      PFUser *newUser = [PFUser currentUser];
     
     
