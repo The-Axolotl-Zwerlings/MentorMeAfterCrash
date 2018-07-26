@@ -104,8 +104,14 @@
 -(void)closeByUsers:(NSArray *)users{
     NSString *destination = [NSString stringWithFormat:@"%@,%@", PFUser.currentUser.cityLocation,PFUser.currentUser.stateLocation];
     NSMutableArray *oldArray = [[NSMutableArray alloc] init];
+    
+    
+    dispatch_queue_t locationQueue = dispatch_queue_create("location Queue",NULL);
+    
     for(PFUser *user in users){
-        NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
+        
+        dispatch_async(locationQueue, ^{
+            NSString *origin = [NSString stringWithFormat:@"%@,%@", user.cityLocation,user.stateLocation];
             LocationApiManager *manager = [LocationApiManager new];
             [manager fetchDistanceWithOrigin:origin andEnd:destination andCompletion:^(NSDictionary *elementDic, NSError *error) {
                 dispatch_async(dispatch_get_main_queue(), ^{
@@ -119,14 +125,16 @@
                     NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
                     [self.discoverTableView reloadData];
                 });
-//                NSNumber *distance = (NSNumber *)elementDic[@"value"];
-//                if([distance floatValue] < 50){
-//                    [oldArray addObject:user];
-//                    NSLog(@"Added a new user %@", user.name);
-//                    NSLog(@"%lu",oldArray.count);
-//                }
+                //                NSNumber *distance = (NSNumber *)elementDic[@"value"];
+                //                if([distance floatValue] < 50){
+                //                    [oldArray addObject:user];
+                //                    NSLog(@"Added a new user %@", user.name);
+                //                    NSLog(@"%lu",oldArray.count);
+                //                }
             }];
-        NSLog(@"%lu",oldArray.count);
+            NSLog(@"%lu",oldArray.count);
+        });
+        
         
     
     }

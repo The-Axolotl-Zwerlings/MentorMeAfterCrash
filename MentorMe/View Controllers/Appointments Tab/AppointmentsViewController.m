@@ -103,16 +103,7 @@
     NSInteger index = self.appointmentController.selectedSegmentIndex;
                                                          
     
-    PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
-    PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
     
-    [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
-    [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
-    
-    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
-    
-    [combinedQuery includeKey:@"mentor.name"];
-    [combinedQuery includeKey:@"mentee.name"];
     
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
