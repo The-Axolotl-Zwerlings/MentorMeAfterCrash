@@ -74,9 +74,6 @@
         [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
      }
     
-    
-    
-    
     //[usersQuery orderByDescending:@"createdAt"];
     
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -179,6 +176,9 @@
     
 }
 
+
+/***** TABLE VIEW ******/
+
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -200,6 +200,9 @@
     NSLog(@"doing some hard work making cells");
     return cell;
 }
+
+
+
 
 - (IBAction)logoutButtonAction:(UIButton *)sender {
     [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
