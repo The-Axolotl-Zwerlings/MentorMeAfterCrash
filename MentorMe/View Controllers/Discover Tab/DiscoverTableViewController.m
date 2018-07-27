@@ -16,7 +16,7 @@
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
 
-
+#import "InterestModel.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;

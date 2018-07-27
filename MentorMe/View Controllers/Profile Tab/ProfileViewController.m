@@ -17,6 +17,8 @@
 #import "GiveAdviceCollectionViewCell.h"
 #import "GetAdviceCollectionViewCell.h"
 
+#import "InterestModel.h"
+
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
 @end
