@@ -39,6 +39,7 @@
 @property (nonatomic, strong) NSMutableArray* getAdviceInterests;
 @property (nonatomic, strong) NSMutableArray* giveAdviceInterests;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property (strong, nonatomic) NSArray* forTableView;
 
@@ -69,6 +70,11 @@
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
+    
+    
+    CGFloat maxHeight = 1000;
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
 
 }
 

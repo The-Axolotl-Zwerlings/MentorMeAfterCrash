@@ -111,12 +111,18 @@
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellA.interestNameLabel.text = self.adviceToGet[indexPath.item];
+       
+        InterestModel *interestForCell = self.adviceToGet[indexPath.item];
+        cellA.interestNameLabel.text = interestForCell.subject;
+        
         return cellA;
         
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellB.interestNameLabel.text = self.adviceToGive[indexPath.item];
+        
+        InterestModel *interestForCell = self.adviceToGive[indexPath.item];
+        cellB.interestNameLabel.text = interestForCell.subject;
+        
         
         return cellB;
     }
