@@ -43,11 +43,11 @@
     self.discoverTableView.dataSource = self;
     // Do any additional setup after loading the view.
     
-    [self fetchFilteredUsersGet];
+    [self fetchFilteredUsers];
     
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchFilteredUsersGet) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchFilteredUsers) forControlEvents:UIControlEventValueChanged];
     [self.discoverTableView insertSubview:self.refreshControl atIndex:0];
     [self.discoverTableView reloadData];
     
@@ -66,7 +66,7 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)fetchFilteredUsersGet{
+-(void)fetchFilteredUsers{
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"giveAdviceInterests"];
     //[usersQuery whereKey:@"name" notEqualTo:PFUser.currentUser.name];
@@ -176,45 +176,47 @@
     
 }
 
--(void)fetchFilteredUsersGive{
-    PFQuery *usersQuery = [PFUser query];
-    [usersQuery includeKey:@"getAdviceInterests"];
-    //[usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
-    usersQuery.limit = 20;
-    [usersQuery orderByDescending:@"createdAt"];
-    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
-        
-        if(users){
-            
-            self.filteredUsers = users;
-            [self.discoverTableView reloadData];
-            [self.refreshControl endRefreshing];
-            NSLog(@"WE GOT THE USERS 😇");
-        } else{
-            NSLog(@"didn't get the users 🙃");
-        }
-        
-    }];
-    
-}
+//-(void)fetchFilteredUsersGive{
+//    PFQuery *usersQuery = [PFUser query];
+//    [usersQuery includeKey:@"getAdviceInterests"];
+//    //[usersQuery whereKey:@"user" notEqualTo:PFUser.currentUser];
+//    usersQuery.limit = 20;
+//    [usersQuery orderByDescending:@"createdAt"];
+//    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
+//
+//        if(users){
+//
+//            self.filteredUsers = users;
+//            [self.discoverTableView reloadData];
+//            [self.refreshControl endRefreshing];
+//            NSLog(@"WE GOT THE USERS 😇");
+//        } else{
+//            NSLog(@"didn't get the users 🙃");
+//        }
+//
+//    }];
+//
+//}
 
 
 
 
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
-    //if we are going to give advice
-    if(self.mentorMenteeSegControl.selectedSegmentIndex == 1){
-        NSLog( @"Showing people who can give advice" );
-        self.getAdvice = NO;
-        [self fetchFilteredUsersGive];
-        
-    } else{
-        NSLog( @"Showing people need advice" );
-        self.getAdvice = YES;
-        [self fetchFilteredUsersGet];
-    }
+    [self fetchFilteredUsers];
     
+//    //if we are going to give advice
+//    if(self.mentorMenteeSegControl.selectedSegmentIndex == 1){
+//        NSLog( @"Showing people who can give advice" );
+//        self.getAdvice = NO;
+//        [self fetchFilteredUsersGive];
+//
+//    } else{
+//        NSLog( @"Showing people need advice" );
+//        self.getAdvice = YES;
+//        [self fetchFilteredUsersGet];
+//    }
+//
 }
 
 
@@ -316,12 +318,14 @@
 }
 
 
-- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests{
+- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests withGive:(NSArray *)give andGet:(NSArray *)get{
     NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
     [old replaceObjectAtIndex:0 withObject:school];
     [old replaceObjectAtIndex:1 withObject:company];
     [old replaceObjectAtIndex:2 withObject:location];
     [old replaceObjectAtIndex:3 withObject:interests];
+    self.filterGet = get;
+    self.filterGive = give;
     self.filterArray = [NSArray arrayWithArray:old];
 }
 

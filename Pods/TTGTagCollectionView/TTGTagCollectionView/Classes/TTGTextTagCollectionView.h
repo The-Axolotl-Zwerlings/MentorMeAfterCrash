@@ -136,6 +136,8 @@
 @property (nonatomic, assign) BOOL showsHorizontalScrollIndicator;
 @property (nonatomic, assign) BOOL showsVerticalScrollIndicator;
 
+
+
 // Reload
 - (void)reload;
 
@@ -190,6 +192,9 @@
 - (NSArray <NSString *> *)allSelectedTags;
 
 - (NSArray <NSString *> *)allNotSelectedTags;
+
+
+- (NSArray *)getConfigsAtSelected;
 
 /**
  * Returns the index of the tag located at the specified point.
