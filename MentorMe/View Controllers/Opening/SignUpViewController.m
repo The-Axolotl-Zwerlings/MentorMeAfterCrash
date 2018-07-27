@@ -36,8 +36,8 @@
 
 @property (nonatomic, strong) UIImage* chosenProfilePicture;
 @property (nonatomic, strong) UIImage* resizedProfilePicture;
-@property (nonatomic, strong) NSMutableArray* getAdviceInterests;
-@property (nonatomic, strong) NSMutableArray* giveAdviceInterests;
+@property (nonatomic, strong) NSArray* getAdviceInterests;
+@property (nonatomic, strong) NSArray* giveAdviceInterests;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
@@ -52,8 +52,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.getAdviceInterests = [[NSMutableArray alloc] init];
-    self.giveAdviceInterests = [[NSMutableArray alloc] init];
+    self.getAdviceInterests = [[NSArray alloc]init];
+    self.giveAdviceInterests = [[NSArray alloc]init];
 
     self.title = @"Enter Information";
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
@@ -93,7 +93,7 @@
 
 - (IBAction)onTapAddToGet:(id)sender {
 
-    
+    NSMutableArray *getAdviceMutable = [NSMutableArray arrayWithArray:self.getAdviceInterests];
     
     PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
     [query whereKey:@"subject" equalTo:self.getAdviceField.text];
@@ -102,7 +102,7 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu scores.", objects.count);
             // Do something with the found objects
-            [self.getAdviceInterests addObject:objects];
+            [getAdviceMutable addObject:objects[0]];
             self.getAdviceField.text = nil;
             self.addGetAdviceInterestButton.enabled = NO;
         } else {
@@ -117,10 +117,12 @@
     
     /*stretch - instead of allowing user to create new interst it will be automatically created when they click add
      unless the interst already exists then they are just added to the interest*/
-    
+    self.getAdviceInterests = [NSArray arrayWithArray:getAdviceMutable];
     
 }
 - (IBAction)onTapAddToGive:(id)sender {
+    NSMutableArray *giveAdviceMutable = [NSMutableArray arrayWithArray:self.giveAdviceInterests];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
     [query whereKey:@"subject" equalTo:self.giveAdviceField.text];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -128,7 +130,7 @@
             // The find succeeded.
             NSLog(@"Successfully retrieved %lu scores.", objects.count);
             // Do something with the found objects
-            [self.giveAdviceInterests addObject:objects];
+            [giveAdviceMutable addObject:objects[0]];
             self.giveAdviceField.text = nil;
             self.addGiveAdviceInterestButton.enabled = NO;
         }
@@ -141,6 +143,8 @@
     //    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
     //    self.giveAdviceField.text = nil;
     //    self.addGiveAdviceInterestButton.enabled = NO;
+    self.giveAdviceInterests = [NSArray arrayWithArray:giveAdviceMutable];
+    
 }
 
 -(void)registerUser  {
@@ -157,8 +161,8 @@
     newUser.company = self.companyField.text;
     newUser.school = self.institutionField.text;
     newUser.major = self.majorField.text;
-    newUser.getAdviceInterests = [[NSArray alloc]initWithArray:self.getAdviceInterests];
-    newUser.giveAdviceInterests = [[NSArray alloc]initWithArray:self.giveAdviceInterests];
+    newUser.getAdviceInterests = [NSArray arrayWithArray:self.getAdviceInterests];
+    newUser.giveAdviceInterests = [NSArray arrayWithArray:self.giveAdviceInterests];
     newUser.cityLocation = self.cityField.text;
     newUser.stateLocation = self.stateField.text;
     
