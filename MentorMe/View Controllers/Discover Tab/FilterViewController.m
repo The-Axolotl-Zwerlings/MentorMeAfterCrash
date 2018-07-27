@@ -81,16 +81,28 @@
     
     config.tagCornerRadius = 7;
     
-    for(InterestModel *interest in PFUser.currentUser.giveAdviceInterests){
-        config = [TTGTextTagConfig new];
-        config.extraData = interest;
-        [_giveAdviceTTGView addTag:interest.subject withConfig:config];
-    }
-    for(InterestModel *interest in PFUser.currentUser.getAdviceInterests){
-        config = [TTGTextTagConfig new];
-        config.extraData = interest;
-        [_getAdviceTTGView addTag:interest.subject withConfig:config];
-    }
+    PFQuery *queryforCurrentUser = [PFUser query];
+    [queryforCurrentUser includeKey:@"giveAdviceInterests"];
+    [queryforCurrentUser includeKey:@"getAdviceInterests"];
+    [queryforCurrentUser includeKey:@"username"];
+    [queryforCurrentUser whereKey:@"username" equalTo:PFUser.currentUser[@"username"]];
+    [queryforCurrentUser findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(error == nil){
+            PFUser *user = objects[0];
+            for(InterestModel *interest in user.giveAdviceInterests){
+                TTGTextTagConfig *config = [TTGTextTagConfig new];
+                config.extraData = interest;
+                [self.giveAdviceTTGView addTag:interest.subject withConfig:config];
+            }
+            for(InterestModel *interest in user.getAdviceInterests){
+                TTGTextTagConfig *config = [TTGTextTagConfig new];
+                config.extraData = interest;
+                [self.getAdviceTTGView addTag:interest.subject withConfig:config];
+            }
+        }
+    }];
+    
+
 
     
     self.getAdviceTTGView.defaultConfig = config;
