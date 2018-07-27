@@ -81,21 +81,21 @@
     
     config.tagCornerRadius = 7;
     
-//    for(InterestModel *interest in PFUser.currentUser.giveAdviceInterests){
-//        config = [TTGTextTagConfig new];
-//        config.extraData = interest;
-//        [_giveAdviceTTGView addTag:interest.subject withConfig:config];
-//    }
-//    for(InterestModel *interest in PFUser.currentUser.getAdviceInterests){
-//        config = [TTGTextTagConfig new];
-//        config.extraData = interest;
-//        [_getAdviceTTGView addTag:interest.subject withConfig:config];
-//    }
-    
+    for(InterestModel *interest in PFUser.currentUser.giveAdviceInterests){
+        config = [TTGTextTagConfig new];
+        config.extraData = interest;
+        [_giveAdviceTTGView addTag:interest.subject withConfig:config];
+    }
+    for(InterestModel *interest in PFUser.currentUser.getAdviceInterests){
+        config = [TTGTextTagConfig new];
+        config.extraData = interest;
+        [_getAdviceTTGView addTag:interest.subject withConfig:config];
+    }
+
     
     self.getAdviceTTGView.defaultConfig = config;
-    [self.getAdviceTTGView addTags:PFUser.currentUser.getAdviceInterests];
-    [self.giveAdviceTTGView addTags:PFUser.currentUser.giveAdviceInterests];
+//    [self.getAdviceTTGView addTags:PFUser.currentUser.getAdviceInterests];
+//    [self.giveAdviceTTGView addTags:PFUser.currentUser.giveAdviceInterests];
     
     
     
@@ -159,7 +159,18 @@
     
     self.filterPreferences = [NSArray arrayWithObjects:school,company,location,interests,nil];
     
-    [self.delegate didChangeSchool:school withCompany:company withLocation:location andInterests:interests];
+    NSMutableArray *giveData;
+    NSMutableArray *getData;
+    NSArray *configsGetAdvice = [self.getAdviceTTGView getConfigsAtSelected];
+    NSArray *configsGiveAdvice = [self.giveAdviceTTGView getConfigsAtSelected];
+    for(TTGTextTagConfig *config in configsGetAdvice){
+        [getData addObject:config.extraData];
+    }
+    for(TTGTextTagConfig *config in configsGiveAdvice){
+        [giveData addObject:config.extraData];
+    }
+    
+    [self.delegate didChangeSchool:school withCompany:company withLocation:location andInterests:interests withGive:[NSArray arrayWithArray:giveData] andGet:[NSArray arrayWithArray:getData]];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
