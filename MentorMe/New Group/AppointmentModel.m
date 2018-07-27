@@ -37,6 +37,7 @@
     appointment[@"meetingDate"] = meetingDate;
     appointment[@"message"] = message;
     appointment[@"isUpcoming"] = @(isUpcoming);
+    NSLog(@"Test");
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
