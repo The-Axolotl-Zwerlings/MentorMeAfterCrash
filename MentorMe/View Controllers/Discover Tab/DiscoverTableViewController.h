@@ -10,7 +10,7 @@
 
 @protocol DiscoverTableViewControllerDelegate;
 
-@interface DiscoverTableViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+@interface DiscoverTableViewController : UIViewController <UITableViewDelegate,UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *discoverTableView;
 @property (weak, nonatomic) id <DiscoverTableViewControllerDelegate> delegate;
 

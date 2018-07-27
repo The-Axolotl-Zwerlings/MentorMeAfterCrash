@@ -62,40 +62,33 @@
     NSString *schoolLabelAppend = user[@"school"];
     self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
     
+    [self.educationLabel sizeToFit];
     
     self.profilePicView.file = user[@"profilePic"];
     [self.profilePicView loadInBackground];
     
+    self.profilePicView.layer.masksToBounds = true;
+    self.profilePicView.layer.borderWidth = 5;
+    self.profilePicView.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
+    self.profilePicView.layer.cornerRadius = self.profilePicView.frame.size.width /2;
+    
 }
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath
 {
-    return 1;
+    self.getCollectionView.dataSource = dataSourceDelegate;
+    self.getCollectionView.delegate = dataSourceDelegate;
+    
+    //self.giveCollectionView.dataSource = dataSourceDelegate;
+    //self.giveCollectionView.delegate = dataSourceDelegate;
+    
+   // self.getCollectionView.indexPath = indexPath;
+    [self.getCollectionView setContentOffset:self.getCollectionView.contentOffset animated:NO];
+    
+    [self.getCollectionView reloadData];
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-    if( collectionView == self.getCollectionView){
-        return self.getInterests.count;
-    } else {
-        return self.giveInterets.count;
-    }
-}
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    if ( [collectionView isEqual:self.getCollectionView] ){
-        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellA.interestNameLabel.text = self.getInterests[indexPath.item];
-        return cellA;
-        
-    } else {
-        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellB.interestNameLabel.text = self.giveInterets[indexPath.item];
-        
-        return cellB;
-    }
-}
 
 
 @end

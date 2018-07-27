@@ -66,6 +66,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+
 -(void)fetchFilteredUsersGet{
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"giveAdviceInterests"];
@@ -199,6 +201,14 @@
 }
 
 
+- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests{
+    NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
+    [old replaceObjectAtIndex:0 withObject:school];
+    [old replaceObjectAtIndex:1 withObject:company];
+    [old replaceObjectAtIndex:2 withObject:location];
+    [old replaceObjectAtIndex:3 withObject:interests];
+    self.filterArray = [NSArray arrayWithArray:old];
+}
 
 
 - (IBAction)onEdit:(UISegmentedControl *)sender {
@@ -239,16 +249,45 @@
     
     [cell layoutCell:cell.userForCell];
     
-    cell.getCollectionView.delegate = cell;
-    cell.getCollectionView.dataSource = cell;
-    
-    cell.giveCollectionView.delegate = cell;
-    cell.giveCollectionView.dataSource = cell;
-    
     [cell reloadInputViews];
     
     return cell;
 }
+
+
+
+
+/***** COLLECTION VIEW ******/
+
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+
+    return 2;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+    
+    return cell;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -316,14 +355,7 @@
 }
 
 
-- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests{
-    NSMutableArray *old = [NSMutableArray arrayWithArray:self.filterArray];
-    [old replaceObjectAtIndex:0 withObject:school];
-    [old replaceObjectAtIndex:1 withObject:company];
-    [old replaceObjectAtIndex:2 withObject:location];
-    [old replaceObjectAtIndex:3 withObject:interests];
-    self.filterArray = [NSArray arrayWithArray:old];
-}
+
 
 
 @end
