@@ -64,7 +64,11 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 5;
+     if( [collectionView isEqual:self.getCollectionView] ){
+         return self.getInterests.count;
+     } else {
+         return self.giveInterets.count;
+     }
 }
 
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
