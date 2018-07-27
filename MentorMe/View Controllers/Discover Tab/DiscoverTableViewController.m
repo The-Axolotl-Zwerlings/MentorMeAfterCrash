@@ -69,7 +69,7 @@
 
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"giveAdviceInterests"];
-    
+    [usersQuery includeKey:@"getAdviceInterests"];
     //[usersQuery whereKey:@"name" notEqualTo:PFUser.currentUser.name];
     usersQuery.limit = 20;
     [usersQuery orderByDescending:@"createdAt"];
