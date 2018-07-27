@@ -20,11 +20,10 @@
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
-@property (strong, nonatomic) NSArray *filteredUsers;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (strong, nonatomic) NSArray *filterArray;
-@property (strong, nonatomic) NSArray *filterGive;
-@property (strong, nonatomic) NSArray *filterGet;
+
+
+
 @property (nonatomic) BOOL getAdvice;
 @end
 
@@ -238,7 +237,10 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.filteredUsers.count;
+    NSLog( @"%lu", self.filteredUsers.count );
+    
+    return 12;
+    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -247,43 +249,21 @@
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
     cell.userForCell = self.filteredUsers[indexPath.item];
     
+    cell.getInterests = cell.userForCell.getAdviceInterests;
+    cell.giveInterets = cell.userForCell.giveAdviceInterests;
+    
+    cell.getCollectionView.delegate = cell;
+    cell.getCollectionView.dataSource = cell;
+    
+    cell.giveCollectionView.delegate = cell;
+    cell.giveCollectionView.dataSource = cell;
+    
     [cell layoutCell:cell.userForCell];
     
     [cell reloadInputViews];
     
     return cell;
 }
-
-
-
-
-/***** COLLECTION VIEW ******/
-
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-
-    return 2;
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-    
-    return cell;
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

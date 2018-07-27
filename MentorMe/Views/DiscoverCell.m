@@ -11,33 +11,16 @@
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
 
-@interface DiscoverCell () <UICollectionViewDataSource, UICollectionViewDelegate>
-
-@end
-
 @implementation DiscoverCell
 
-
--(id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
-   
-    if (!(self = [super initWithStyle:style reuseIdentifier:reuseIdentifier])) return nil;
-
-    self.getCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-    self.getCollectionView.dataSource = self;
-    self.getCollectionView.delegate = self;
+- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        // Initialization code
+    }
     
-    self.giveCollectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:[[UICollectionViewFlowLayout alloc] init]];
-    self.giveCollectionView.dataSource = self;
-    self.giveCollectionView.delegate = self;
-    
-    
-    self.giveInterets = self.userForCell.giveAdviceInterests;
-    self.getInterests = self.userForCell.getAdviceInterests;
-
     return self;
-
-    
-    
 }
 
 - (void)awakeFromNib {
@@ -60,7 +43,7 @@
     self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
     NSString *majorLabelAppend = user[@"major"];
     NSString *schoolLabelAppend = user[@"school"];
-    self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
+    //self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
     
     [self.educationLabel sizeToFit];
     
@@ -74,20 +57,37 @@
     
 }
 
-- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    self.getCollectionView.dataSource = dataSourceDelegate;
-    self.getCollectionView.delegate = dataSourceDelegate;
-    
-    //self.giveCollectionView.dataSource = dataSourceDelegate;
-    //self.giveCollectionView.delegate = dataSourceDelegate;
-    
-   // self.getCollectionView.indexPath = indexPath;
-    [self.getCollectionView setContentOffset:self.getCollectionView.contentOffset animated:NO];
-    
-    [self.getCollectionView reloadData];
+    return 1;
 }
 
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if( [collectionView isEqual:self.getCollectionView] ){
+        
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        [cellA reloadInputViews];
+        return cellA;
+        
+    } else {
+        
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        
+        [cellB reloadInputViews];
+        return cellB;
+        
+        
+    }
+    
+}
 
 
 

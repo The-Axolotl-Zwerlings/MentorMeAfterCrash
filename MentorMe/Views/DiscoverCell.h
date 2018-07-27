@@ -11,13 +11,10 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 
-@interface MentorMe : UICollectionView
 
-@property (nonatomic, strong) NSIndexPath *indexPath;
 
-@end
+@interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@interface DiscoverCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *educationLabel;
@@ -32,7 +29,6 @@
 
 @property (strong, nonatomic) PFUser *userForCell;
 
-- (void)setCollectionViewDataSourceDelegate:(id<UICollectionViewDataSource, UICollectionViewDelegate>)dataSourceDelegate indexPath:(NSIndexPath *)indexPath;
 - (void)layoutCell:(PFUser *)user;
 
 
