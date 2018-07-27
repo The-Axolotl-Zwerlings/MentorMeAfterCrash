@@ -14,4 +14,25 @@
 
 @implementation GetAdviceCollectionViewCell
 
+- (id)initWithFrame:(CGRect)frame
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        // Initialization code
+    }
+    return self;
+}
+
+- (void)reloadInputViews
+{
+    self.interestNameLabel.text = @"NICO";
+    NSLog( @"Loaded text on cell");
+}
+
+- (void)drawRect:(CGRect)rect
+{
+    [self reloadInputViews];
+    // Drawing code
+}
+
 @end

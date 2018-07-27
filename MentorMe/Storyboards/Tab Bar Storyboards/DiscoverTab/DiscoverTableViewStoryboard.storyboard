@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -48,9 +49,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient image" translatesAutoresizingMaskIntoConstraints="NO" id="Cq1-Fm-5kX" userLabel="Background Rounded">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gradient image" translatesAutoresizingMaskIntoConstraints="NO" id="Cq1-Fm-5kX" userLabel="Background Rounded">
                                                     <rect key="frame" x="5" y="5" width="365" height="240"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -58,41 +58,24 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5kv-8v-I2o" userLabel="Profile Background">
-                                                    <rect key="frame" x="15" y="15" width="110" height="110"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="55"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Nico Salinas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-Px-Rv3">
-                                                    <rect key="frame" x="143" y="18" width="208" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nico Salinas" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dx8-Px-Rv3">
+                                                    <rect key="frame" x="135" y="21" width="225" height="27.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="23"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Software Engineering Intern at Facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D15-jg-cBc" userLabel="Occupation Label">
-                                                    <rect key="frame" x="143" y="47" width="217" height="45"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Software Engineering Intern at Facebook" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D15-jg-cBc" userLabel="Occupation Label">
+                                                    <rect key="frame" x="135" y="54" width="230" height="38.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Massachusets Institute of Technology, BS in Computer Science 2021" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-H0-1uB" userLabel="Education Label">
-                                                    <rect key="frame" x="143" y="92" width="224" height="38"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ccj-O1-eS4" customClass="PFImageView">
-                                                    <rect key="frame" x="20" y="20" width="100" height="100"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ccj-O1-eS4" customClass="PFImageView">
+                                                    <rect key="frame" x="20" y="21" width="100" height="100"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="IbI-KQ-aVa"/>
+                                                        <constraint firstAttribute="width" constant="100" id="e2B-oE-Z45"/>
+                                                    </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                             <integer key="value" value="50"/>
@@ -103,7 +86,8 @@
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="hji-zQ-QQM">
                                                     <rect key="frame" x="15" y="143" width="345" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <inset key="scrollIndicatorInsets" minX="5" minY="0.0" maxX="5" maxY="0.0"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="qU4-D4-4j6">
                                                         <size key="itemSize" width="115" height="40"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -134,13 +118,16 @@
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outlet property="interestNameLabel" destination="myx-Ij-DG1" id="W0b-JY-NnG"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="0Da-rJ-ktU" userLabel="Give Collection View">
                                                     <rect key="frame" x="16" y="191" width="345" height="40"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zjs-eF-Cl2">
                                                         <size key="itemSize" width="115" height="40"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -171,11 +158,40 @@
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <outlet property="interestNameLabel" destination="u9B-RL-5VD" id="Okb-a5-6Fb"/>
+                                                            </connections>
                                                         </collectionViewCell>
                                                     </cells>
                                                 </collectionView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Massachusets Institute of Technology, BS in Computer Science 2021" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PUk-H0-1uB" userLabel="Education Label">
+                                                    <rect key="frame" x="135" y="98" width="225" height="38"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="38" id="XI8-yQ-pJq"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="Cq1-Fm-5kX" secondAttribute="bottom" constant="5" id="073-9D-YPe"/>
+                                                <constraint firstItem="D15-jg-cBc" firstAttribute="leading" secondItem="Ccj-O1-eS4" secondAttribute="trailing" constant="15" id="BMP-U6-nx7"/>
+                                                <constraint firstItem="PUk-H0-1uB" firstAttribute="top" secondItem="D15-jg-cBc" secondAttribute="bottom" constant="5" id="D7a-k9-bEr"/>
+                                                <constraint firstItem="PUk-H0-1uB" firstAttribute="leading" secondItem="Ccj-O1-eS4" secondAttribute="trailing" constant="15" id="F16-TZ-G7S"/>
+                                                <constraint firstAttribute="trailing" secondItem="dx8-Px-Rv3" secondAttribute="trailing" constant="15" id="Hhd-bo-k68"/>
+                                                <constraint firstItem="PUk-H0-1uB" firstAttribute="trailing" secondItem="iAe-Mt-q9V" secondAttribute="trailingMargin" id="I1N-Hv-PCB"/>
+                                                <constraint firstItem="Ccj-O1-eS4" firstAttribute="top" secondItem="iAe-Mt-q9V" secondAttribute="topMargin" constant="10" id="Inr-zF-CVL"/>
+                                                <constraint firstItem="dx8-Px-Rv3" firstAttribute="top" secondItem="iAe-Mt-q9V" secondAttribute="topMargin" constant="10" id="Mlv-C0-inq"/>
+                                                <constraint firstAttribute="trailing" secondItem="Cq1-Fm-5kX" secondAttribute="trailing" constant="5" id="Njz-Yk-EMV"/>
+                                                <constraint firstItem="Cq1-Fm-5kX" firstAttribute="top" secondItem="iAe-Mt-q9V" secondAttribute="top" constant="5" id="Pmy-TG-UHj"/>
+                                                <constraint firstItem="Cq1-Fm-5kX" firstAttribute="leading" secondItem="iAe-Mt-q9V" secondAttribute="leading" constant="5" id="Qo1-qg-q4i"/>
+                                                <constraint firstItem="D15-jg-cBc" firstAttribute="top" secondItem="dx8-Px-Rv3" secondAttribute="bottom" constant="5.5" id="aE1-U2-TfS"/>
+                                                <constraint firstItem="Ccj-O1-eS4" firstAttribute="leading" secondItem="iAe-Mt-q9V" secondAttribute="leadingMargin" constant="5" id="boR-Mk-aTR"/>
+                                                <constraint firstItem="dx8-Px-Rv3" firstAttribute="leading" secondItem="Ccj-O1-eS4" secondAttribute="trailing" constant="15" id="mzM-hf-JBJ"/>
+                                                <constraint firstItem="D15-jg-cBc" firstAttribute="trailing" secondItem="iAe-Mt-q9V" secondAttribute="trailingMargin" constant="5" id="vhk-tU-35r"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="educationLabel" destination="PUk-H0-1uB" id="RzJ-co-YpO"/>
