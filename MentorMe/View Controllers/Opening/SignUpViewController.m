@@ -249,7 +249,13 @@
     if(self.getAdviceField.text.length >= 3){
         NSLog(@"greater");
         [self.view addSubview:self.tableView];
-        self.tableView.frame = CGRectMake(44, 542, 233, 90);
+        CGRect intermediate = [self.getAdviceField frame];
+        CGRect tablePosition;
+        tablePosition.size.width = intermediate.size.width;
+        tablePosition.size.height = 90;
+        tablePosition.origin.x = intermediate.origin.x;
+        tablePosition.origin.y = intermediate.origin.y + 95;
+        self.tableView.frame = tablePosition;
         NSString* typed = self.getAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
     }
@@ -262,7 +268,13 @@
     if(self.giveAdviceField.text.length >= 3){
         NSLog(@"greater");
         [self.view addSubview:self.tableView];
-        self.tableView.frame = CGRectMake(44, 588, 233, 90);
+        CGRect intermediate = [self.giveAdviceField frame];
+        CGRect tablePosition;
+        tablePosition.size.width = intermediate.size.width;
+        tablePosition.size.height = 90;
+        tablePosition.origin.x = intermediate.origin.x;
+        tablePosition.origin.y = intermediate.origin.y + 95;
+        self.tableView.frame = tablePosition;
         NSString* typed = self.giveAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
     }
