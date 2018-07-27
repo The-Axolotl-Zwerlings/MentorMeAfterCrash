@@ -105,6 +105,7 @@
             [getAdviceMutable addObject:objects[0]];
             self.getAdviceField.text = nil;
             self.addGetAdviceInterestButton.enabled = NO;
+            self.getAdviceInterests = [NSArray arrayWithArray:getAdviceMutable];
         } else {
             // Log details of the failure
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -117,7 +118,7 @@
     
     /*stretch - instead of allowing user to create new interst it will be automatically created when they click add
      unless the interst already exists then they are just added to the interest*/
-    self.getAdviceInterests = [NSArray arrayWithArray:getAdviceMutable];
+    
     
 }
 - (IBAction)onTapAddToGive:(id)sender {
