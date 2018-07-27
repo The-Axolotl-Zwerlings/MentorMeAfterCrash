@@ -61,12 +61,23 @@
 -(void)loadProfile {
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
+    
     NSString *jobTitleAppend = self.user[@"jobTitle"];
     NSString *companyLabelAppend = self.user[@"company"];
     self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
+    
     NSString *majorLabelAppend = self.user[@"major"];
     NSString *schoolLabelAppend = self.user[@"school"];
     self.educationLabel.text = [[[@"Studied " stringByAppendingString:majorLabelAppend] stringByAppendingString:@" at " ] stringByAppendingString: schoolLabelAppend];
+    
+    NSString *cityLabelAppend = self.user[@"cityLocation"];
+    NSString *stateLabelAppend = self.user[@"stateLocation"];
+    
+    self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
+    
+    
+    
+    
     self.bannerImageView.layer.borderWidth = 2.0f;
     self.bannerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.bioLabel.text = self.user[@"bio"];

@@ -174,7 +174,10 @@
         newUser.profilePic = [self getPFFileFromImage:self.chosenProfilePicture];
     }
     else {
-        self.resizedProfilePicture = [self resizeThisImage:self.chosenProfilePicture withSize:self.chosenProfilePicture.size];
+        
+        CGSize newSize = CGSizeMake(100,100);
+        
+        self.resizedProfilePicture = [self resizeThisImage:self.chosenProfilePicture withSize:newSize];
         newUser.profilePic = [self getPFFileFromImage:self.resizedProfilePicture];
     }
     

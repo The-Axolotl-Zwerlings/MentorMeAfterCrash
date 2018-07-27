@@ -25,6 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *bioLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
