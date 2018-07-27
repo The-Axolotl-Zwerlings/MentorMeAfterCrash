@@ -90,7 +90,7 @@
     self.getAdviceField.text = nil;
     self.addGetAdviceInterestButton.enabled = NO;
     
-    /*instead of allowing user to create new interst it will be automatically created when they click add
+    /*stretch - instead of allowing user to create new interst it will be automatically created when they click add
      unless the interst already exists then they are just added to the interest*/
     
 }
@@ -209,7 +209,6 @@
         self.tableView.frame = CGRectMake(44, 542, 233, 90);
         NSString* typed = self.getAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
-        //[self.autocompleteTableView1 reloadData];
     }
     else{
         [self.tableView removeFromSuperview];
@@ -223,38 +222,17 @@
         self.tableView.frame = CGRectMake(44, 588, 233, 90);
         NSString* typed = self.giveAdviceField.text;
         [self searchAutocompleteEntriesWithSubstring:typed];
-        //[self.autocompleteTableView2 reloadData];
     }
     else{
         [self.tableView removeFromSuperview];
     }
 }
 
--(void)buttonEnabler: (id)sender {
-    // when sender is get
-        //if text in field matches any in tableview
-        //collapse view
-        //enable get button
-        //else disable button
-    
-    //when sender is give
-        //if text in field matches any in tableview
-        //collapse view
-        //enable give button
-        //else disable button
-    
-    
-    //this should all be in text did change
-    
-}
 /******************************* Autocomplete Using Parse ********************************/
 - (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-    
-    
-    //self.forTableView = [[NSArray alloc]init];
+  
     PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
     [query whereKey:@"subject" hasPrefix:substring];
-    //[query whereKey:@"subject" notEqualTo:substring];
     [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
@@ -263,23 +241,17 @@
                 if(self.getAdviceField.text == interest.subject){
                     [self.tableView removeFromSuperview];
                     self.addGetAdviceInterestButton.enabled = YES;
-                 
                 }
                 else if(self.giveAdviceField.text == interest.subject){
                     [self.tableView removeFromSuperview];
                     self.addGiveAdviceInterestButton.enabled = YES;
                     }
-//                if(substring == interest.subject){
-//                [self.tableView removeFromSuperview];
-//
-                //              }
                 else{
                 [temporary addObject:interest.subject];
                 self.addGetAdviceInterestButton.enabled = NO;
                 }
             }
             self.forTableView = [[NSArray alloc]initWithArray:temporary];
-            //[NSArray arrayWithArray:temporary];
             [self.tableView reloadData];
         } else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -315,7 +287,6 @@
             cell.addInterestButton.hidden = YES;
             cell.interestLabel.text = self.forTableView [indexPath.row];
             cell.interestLabel.hidden = NO;
-           // [self.forTableView objectAtIndex: indexPath.row];
             return cell;
         }
 }
