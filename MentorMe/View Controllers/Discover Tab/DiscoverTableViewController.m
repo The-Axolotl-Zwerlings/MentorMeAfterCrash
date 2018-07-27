@@ -260,6 +260,10 @@
     cell.giveCollectionView.delegate = cell;
     cell.giveCollectionView.dataSource = cell;
     
+    [cell.getCollectionView setShowsHorizontalScrollIndicator:NO];
+    [cell.giveCollectionView setShowsHorizontalScrollIndicator:NO];
+    
+    
     [cell layoutCell:cell.userForCell];
     
     [cell reloadInputViews];
