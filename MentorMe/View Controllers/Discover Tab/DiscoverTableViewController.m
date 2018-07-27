@@ -240,7 +240,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog( @"%lu", self.filteredUsers.count );
     
-    return 12;
+    return self.filteredUsers.count;
     
 }
 
