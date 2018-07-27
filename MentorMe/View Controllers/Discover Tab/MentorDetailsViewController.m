@@ -54,8 +54,10 @@
     self.adviceToGive = [[NSArray alloc]initWithArray:self.mentor[@"giveAdviceInterests"]];
     
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
-    self.profileImage.layer.masksToBounds;
-    
+    self.profileImage.layer.masksToBounds = true;
+    self.profileImage.layer.borderWidth = 5;
+    self.profileImage.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
+
     
 }
 

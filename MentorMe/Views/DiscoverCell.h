@@ -11,7 +11,10 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 
-@interface DiscoverCell : UITableViewCell
+
+
+@interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (strong, nonatomic) IBOutlet UILabel *educationLabel;
