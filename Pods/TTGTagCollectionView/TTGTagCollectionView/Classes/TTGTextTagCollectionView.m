@@ -202,6 +202,16 @@
     return self;
 }
 
+-(NSArray *)getConfigsAtSelected{
+    NSMutableArray *configs;
+    for(int i = 0; i < _tagLabels.count; ++i){
+        if(_tagLabels[i].selected){
+            [configs addObject:_tagLabels[i]];
+        }
+    }
+    return [NSArray arrayWithArray:configs];
+}
+
 - (void)commonInit {
     if (_tagCollectionView) {
         return;
