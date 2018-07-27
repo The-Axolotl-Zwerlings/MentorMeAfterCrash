@@ -32,14 +32,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9l-h7-X6H">
-                                <rect key="frame" x="27" y="339" width="50" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="SignUp"/>
-                                <connections>
-                                    <segue destination="w9f-Aa-b4d" kind="presentation" id="1q9-hH-8rd"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V8i-WI-Ffc">
                                 <rect key="frame" x="34" y="275" width="313" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -68,6 +60,14 @@
                                 <connections>
                                     <action selector="onTapLogin:" destination="e8i-D8-L1t" eventType="touchUpInside" id="H94-VM-Dgb"/>
                                     <segue destination="f2H-of-YX2" kind="presentation" id="0Sg-Hu-hWY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m9l-h7-X6H">
+                                <rect key="frame" x="34" y="339" width="102" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Sign Up"/>
+                                <connections>
+                                    <segue destination="w9f-Aa-b4d" kind="presentation" id="1q9-hH-8rd"/>
                                 </connections>
                             </button>
                         </subviews>

@@ -73,9 +73,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Education Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iz9-DR-Xdy">
-                                <rect key="frame" x="158" y="274" width="195" height="58"/>
+                                <rect key="frame" x="158" y="274" width="195" height="21"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="58" id="QwF-j6-wpa"/>
+                                    <constraint firstAttribute="height" constant="21" id="QwF-j6-wpa"/>
                                     <constraint firstAttribute="width" constant="195" id="Wa8-Wn-fTK"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -196,6 +196,16 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0V-cw-ant">
+                                <rect key="frame" x="158" y="299" width="209" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="9Y8-hL-qsc"/>
+                                    <constraint firstAttribute="width" constant="209" id="cOC-VC-Msq"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.69854098865666969" green="0.782006468740994" blue="0.83241580310880825" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -209,9 +219,11 @@
                             <constraint firstAttribute="bottom" secondItem="nIM-c2-BRQ" secondAttribute="bottom" id="QAS-If-XK3"/>
                             <constraint firstItem="N5s-dA-Lfk" firstAttribute="leading" secondItem="Hdy-gb-5SR" secondAttribute="trailing" constant="15" id="RAn-pV-uui"/>
                             <constraint firstItem="fIg-Uc-HH4" firstAttribute="leading" secondItem="z1U-1u-W06" secondAttribute="leading" id="TUs-aF-5li"/>
+                            <constraint firstItem="h0V-cw-ant" firstAttribute="leading" secondItem="Hdy-gb-5SR" secondAttribute="trailing" constant="15" id="Vbp-1h-knc"/>
                             <constraint firstItem="kMp-22-jnt" firstAttribute="top" secondItem="6Jp-In-L5a" secondAttribute="bottom" constant="6" id="Z7f-YI-IZk"/>
                             <constraint firstItem="Jaz-qa-25i" firstAttribute="top" secondItem="Hdy-gb-5SR" secondAttribute="bottom" constant="8" id="d4t-c8-kuB"/>
                             <constraint firstItem="Jaz-qa-25i" firstAttribute="leading" secondItem="z1U-1u-W06" secondAttribute="leading" constant="7" id="f1c-Q5-BGJ"/>
+                            <constraint firstItem="h0V-cw-ant" firstAttribute="top" secondItem="Iz9-DR-Xdy" secondAttribute="bottom" constant="4" id="hxk-H4-Q42"/>
                             <constraint firstItem="N5s-dA-Lfk" firstAttribute="top" secondItem="kMp-22-jnt" secondAttribute="bottom" constant="2" id="jLV-uV-Ngk"/>
                             <constraint firstItem="Hdy-gb-5SR" firstAttribute="leading" secondItem="z1U-1u-W06" secondAttribute="leading" constant="7" id="pfB-b7-8pb"/>
                             <constraint firstItem="Iz9-DR-Xdy" firstAttribute="leading" secondItem="Hdy-gb-5SR" secondAttribute="trailing" constant="15" id="r6s-PZ-i5p"/>
@@ -233,6 +245,7 @@
                         <outlet property="educationLabel" destination="Iz9-DR-Xdy" id="Toe-CI-dx5"/>
                         <outlet property="getAdviceCollectionView" destination="sHa-a9-XO0" id="S17-mZ-d8m"/>
                         <outlet property="giveAdviceCollectionView" destination="gcx-B1-cMP" id="VcJ-7I-B4V"/>
+                        <outlet property="locationLabel" destination="h0V-cw-ant" id="Fhn-ri-zxl"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="occupationLabel" destination="N5s-dA-Lfk" id="DYg-oP-77b"/>
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
