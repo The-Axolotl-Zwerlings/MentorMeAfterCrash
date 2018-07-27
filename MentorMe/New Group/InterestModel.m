@@ -20,7 +20,9 @@
     return @"InterestModel";
 }
 
-
+-(NSString *)getSubject{
+    return self.subject;
+}
 +(void) addInterest: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers withIcon: (PFFile *) icon {
     
     PFObject* interest = [PFObject objectWithClassName:@"InterestModel"];
