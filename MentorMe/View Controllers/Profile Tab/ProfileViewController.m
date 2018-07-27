@@ -27,32 +27,48 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.user = [PFUser currentUser];
     
-    self.title = @"Profile";
-    
-    self.getAdviceCollectionView.delegate = self;
-    self.getAdviceCollectionView.dataSource = self;
-    
-    self.giveAdviceCollectionView.delegate = self;
-    self.giveAdviceCollectionView.dataSource = self;
-    
-    
-    self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
-    self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
-    
-    
-    [self loadProfile];
+    [self getCurrentUser];
+
+
 }
 
-- (void) viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self loadProfile];
-    
-}
+//- (void) viewWillAppear:(BOOL)animated{
+//
+//    [super viewWillAppear:animated];
+//
+//    [self loadProfile];
+//
+//}
 
+-(void)getCurrentUser{
+    PFQuery *queryforCurrentUser = [PFUser query];
+    [queryforCurrentUser includeKey:@"giveAdviceInterests"];
+    [queryforCurrentUser includeKey:@"getAdviceInterests"];
+    [queryforCurrentUser includeKey:@"username"];
+    [queryforCurrentUser whereKey:@"username" equalTo:PFUser.currentUser[@"username"]];
+    [queryforCurrentUser findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
+        if(error == nil && objects[0] != nil){
+            
+            self.user = objects[0];
+            
+            self.title = @"Profile";
+            
+            self.getAdviceCollectionView.delegate = self;
+            self.getAdviceCollectionView.dataSource = self;
+            
+            self.giveAdviceCollectionView.delegate = self;
+            self.giveAdviceCollectionView.dataSource = self;
+            
+            
+            self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
+            self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
+            [self loadProfile];
+        } else{
+            NSLog(@"didn't get user");
+        }
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

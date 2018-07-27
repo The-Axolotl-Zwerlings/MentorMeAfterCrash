@@ -68,6 +68,7 @@
 -(void)fetchFilteredUsers{
 
     PFQuery *usersQuery = [PFUser query];
+    [usersQuery includeKey:@"profilePic"];
     [usersQuery includeKey:@"giveAdviceInterests"];
     [usersQuery includeKey:@"getAdviceInterests"];
     //[usersQuery whereKey:@"name" notEqualTo:PFUser.currentUser.name];
