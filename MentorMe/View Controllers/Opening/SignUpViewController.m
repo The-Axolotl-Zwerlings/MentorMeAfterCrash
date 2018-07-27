@@ -134,6 +134,7 @@
             [giveAdviceMutable addObject:objects[0]];
             self.giveAdviceField.text = nil;
             self.addGiveAdviceInterestButton.enabled = NO;
+            self.giveAdviceInterests = [NSArray arrayWithArray:giveAdviceMutable];
         }
         else {
             // Log details of the failure
@@ -144,7 +145,7 @@
     //    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
     //    self.giveAdviceField.text = nil;
     //    self.addGiveAdviceInterestButton.enabled = NO;
-    self.giveAdviceInterests = [NSArray arrayWithArray:giveAdviceMutable];
+    
     
 }
 

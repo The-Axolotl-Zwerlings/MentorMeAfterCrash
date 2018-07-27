@@ -112,16 +112,18 @@
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
        
-        InterestModel *interestForCell = self.adviceToGet[indexPath.item];
-        cellA.interestNameLabel.text = interestForCell.subject;
+        cellA.interest = self.adviceToGet[indexPath.item];
+        [cellA reloadInputViews];
         
         return cellA;
         
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         
-        InterestModel *interestForCell = self.adviceToGive[indexPath.item];
-        cellB.interestNameLabel.text = interestForCell.subject;
+        cellB.interest = self.adviceToGive[indexPath.item];
+        
+        
+        [cellB reloadInputViews];
         
         
         return cellB;

@@ -36,11 +36,11 @@
     
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
-
+    
     
     self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
-
+    
     
     [self loadProfile];
 }
@@ -98,44 +98,44 @@
 }
 
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
-    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
-        
-        return self.adviceToGet.count;
-        
-    } else {
-        
-        return self.adviceToGive.count;
-        
-    }
-    
-}
 
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    
+
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
     return 1;
-    
 }
 
-- (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+    if( [collectionView isEqual:self.getAdviceCollectionView] ){
+        return self.adviceToGet.count;
+    } else {
+        return self.adviceToGive.count;
+    }
+}
+
+- (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if( [collectionView isEqual:self.getAdviceCollectionView] ){
+        
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellA.interestNameLabel.text = ((InterestModel *)self.adviceToGet[indexPath.item]).subject;
+        cellA.interest = self.adviceToGet[indexPath.item];
+        [cellA reloadInputViews];
         return cellA;
         
     } else {
-        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellB.interestNameLabel.text = ((InterestModel *)self.adviceToGive[indexPath.item]).subject;
         
+        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        cellB.interest = self.adviceToGive[indexPath.item];
+        [cellB reloadInputViews];
         return cellB;
+        
+        
     }
+    
 }
-
-
-
-
-
 
 
 
