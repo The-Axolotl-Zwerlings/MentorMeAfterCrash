@@ -92,18 +92,55 @@
 }
 
 - (IBAction)onTapAddToGet:(id)sender {
-    [self.getAdviceInterests addObject:self.getAdviceField.text];
-    self.getAdviceField.text = nil;
-    self.addGetAdviceInterestButton.enabled = NO;
+
+    
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
+    [query whereKey:@"subject" equalTo:self.getAdviceField.text];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", objects.count);
+            // Do something with the found objects
+            [self.getAdviceInterests addObject:objects];
+            self.getAdviceField.text = nil;
+            self.addGetAdviceInterestButton.enabled = NO;
+        } else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    //    [self.getAdviceInterests addObject:self.getAdviceField.text];
+    //    self.getAdviceField.text = nil;
+    //    self.addGetAdviceInterestButton.enabled = NO;
     
     /*stretch - instead of allowing user to create new interst it will be automatically created when they click add
      unless the interst already exists then they are just added to the interest*/
     
+    
 }
 - (IBAction)onTapAddToGive:(id)sender {
-    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
-    self.giveAdviceField.text = nil;
-    self.addGiveAdviceInterestButton.enabled = NO;
+    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
+    [query whereKey:@"subject" equalTo:self.giveAdviceField.text];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            // The find succeeded.
+            NSLog(@"Successfully retrieved %lu scores.", objects.count);
+            // Do something with the found objects
+            [self.giveAdviceInterests addObject:objects];
+            self.giveAdviceField.text = nil;
+            self.addGiveAdviceInterestButton.enabled = NO;
+        }
+        else {
+            // Log details of the failure
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+    
+    //    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
+    //    self.giveAdviceField.text = nil;
+    //    self.addGiveAdviceInterestButton.enabled = NO;
 }
 
 -(void)registerUser  {
