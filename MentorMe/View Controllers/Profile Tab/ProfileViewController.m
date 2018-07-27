@@ -38,8 +38,8 @@
     self.giveAdviceCollectionView.dataSource = self;
 
     
-    self.adviceToGet = [[NSArray alloc]initWithArray:self.user[@"getAdviceInterests"]];
-    self.adviceToGive = [[NSArray alloc]initWithArray:self.user[@"giveAdviceInterests"]];
+    self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
+    self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
 
     
     [self loadProfile];

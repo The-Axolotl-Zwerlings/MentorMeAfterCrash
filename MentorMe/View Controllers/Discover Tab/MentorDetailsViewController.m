@@ -50,8 +50,8 @@
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
     
-    self.adviceToGet = [[NSArray alloc]initWithArray:self.mentor[@"getAdviceInterests"]];
-    self.adviceToGive = [[NSArray alloc]initWithArray:self.mentor[@"giveAdviceInterests"]];
+    self.adviceToGet = [NSArray arrayWithArray:self.mentor[@"getAdviceInterests"]];
+    self.adviceToGive = [NSArray arrayWithArray:self.mentor[@"giveAdviceInterests"]];
     
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.layer.masksToBounds = true;
