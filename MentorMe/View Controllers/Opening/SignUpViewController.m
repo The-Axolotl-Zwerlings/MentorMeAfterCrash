@@ -260,10 +260,19 @@
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
             for (InterestModel *interest in subjects) {
-                if(substring == interest.subject){
-                [self.tableView removeFromSuperview];
-            
+                if(self.getAdviceField.text == interest.subject){
+                    [self.tableView removeFromSuperview];
+                    self.addGetAdviceInterestButton.enabled = YES;
+                 
                 }
+                else if(self.giveAdviceField.text == interest.subject){
+                    [self.tableView removeFromSuperview];
+                    self.addGiveAdviceInterestButton.enabled = YES;
+                    }
+//                if(substring == interest.subject){
+//                [self.tableView removeFromSuperview];
+//
+                //              }
                 else{
                 [temporary addObject:interest.subject];
                 self.addGetAdviceInterestButton.enabled = NO;
