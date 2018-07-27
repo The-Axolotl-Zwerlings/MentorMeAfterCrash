@@ -251,7 +251,7 @@
     cell.userForCell = self.filteredUsers[indexPath.item];
     
     cell.getInterests = cell.userForCell.getAdviceInterests;
-    cell.giveInterets = cell.userForCell.giveAdviceInterests;
+    cell.giveInterests = cell.userForCell.giveAdviceInterests;
     
     cell.getCollectionView.delegate = cell;
     cell.getCollectionView.dataSource = cell;

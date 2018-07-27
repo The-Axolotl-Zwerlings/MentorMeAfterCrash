@@ -67,7 +67,7 @@
      if( [collectionView isEqual:self.getCollectionView] ){
          return self.getInterests.count;
      } else {
-         return self.giveInterets.count;
+         return self.giveInterests.count;
      }
 }
 
@@ -77,14 +77,14 @@
     if( [collectionView isEqual:self.getCollectionView] ){
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        //cellA.interest = self.getInterests[indexPath.item];
+        cellA.interest = self.getInterests[indexPath.item];
         [cellA reloadInputViews];
         return cellA;
         
     } else {
         
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-         //cellB.interest = self.getInterests[indexPath.item];
+        cellB.interest = ((InterestModel *)self.giveInterests[indexPath.item]);
         [cellB reloadInputViews];
         return cellB;
         

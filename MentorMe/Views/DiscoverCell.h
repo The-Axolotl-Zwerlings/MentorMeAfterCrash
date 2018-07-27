@@ -25,7 +25,7 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *giveCollectionView;
 
 @property (nonatomic, strong) NSArray *getInterests;
-@property (nonatomic, strong) NSArray *giveInterets;
+@property (nonatomic, strong) NSArray *giveInterests;
 
 @property (strong, nonatomic) PFUser *userForCell;
 
