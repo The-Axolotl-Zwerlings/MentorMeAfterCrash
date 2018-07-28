@@ -42,4 +42,13 @@
     }];
     
 }
+
++(NSArray *)giveMeSubjects:(NSArray *)arrayOfInterests{
+    NSMutableArray *subjects = [[NSMutableArray alloc]init];
+    for(InterestModel *interest in arrayOfInterests){
+        [subjects addObject:interest.subject];
+        
+    }
+    return [NSArray arrayWithArray:subjects];
+}
 @end

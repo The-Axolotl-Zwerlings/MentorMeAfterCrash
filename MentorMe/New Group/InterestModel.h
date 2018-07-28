@@ -21,4 +21,5 @@
 +(void) addInterest: (NSString*) theSubject inCategory: (NSString*) theCategory withUsers:(PFRelation*) theUsers withIcon: (PFFile *) icon;
 
 -(NSString *)getSubject;
++(NSArray *)giveMeSubjects:(NSArray *)arrayOfInterests;
 @end

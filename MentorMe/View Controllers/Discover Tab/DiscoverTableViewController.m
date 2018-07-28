@@ -116,17 +116,22 @@
     NSArray *users = self.filteredUsers;
     NSInteger giveAdvice = self.mentorMenteeSegControl.selectedSegmentIndex;
     
-    //If you are getting advice (give advice is 0) then get your filterInterests from Get
-    NSMutableSet *filterInterests = giveAdvice == 0 ? [NSMutableSet setWithArray:self.filterGet] : [NSMutableSet setWithArray:self.filterGive];
+
     
-    NSMutableArray *newFilteredUsers;
+    //If you are getting advice (give advice is 0) then get your filterInterests from Get
+    NSSet *filterInterests = giveAdvice == 0 ? [NSSet setWithArray:[InterestModel giveMeSubjects:self.filterGet]] : [NSSet setWithArray:[InterestModel giveMeSubjects:self.filterGive]];
+    
+    
+    
+    NSMutableArray *newFilteredUsers = [[NSMutableArray alloc]init];
     
     for(PFUser *user in users){
         
         //if getting advice you want to see an intersection with other people's giving advice
         //if giving advice you want to see an intersection with other people's getting advice
-        NSMutableSet *usersInterests = giveAdvice == 0 ? [NSMutableSet setWithArray:user.giveAdviceInterests] : [NSMutableSet setWithArray:user.getAdviceInterests] ;
-        if([usersInterests intersectsSet:filterInterests]){
+        NSSet *usersInterests = giveAdvice == 0 ? [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]] : [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]] ;
+        BOOL intersect = [usersInterests intersectsSet:filterInterests];
+        if(intersect != NO){
             [newFilteredUsers addObject:user];
         }
         

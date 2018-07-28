@@ -171,15 +171,15 @@
     
     self.filterPreferences = [NSArray arrayWithObjects:school,company,location,interests,nil];
     
-    NSMutableArray *giveData;
-    NSMutableArray *getData;
+    NSMutableArray *giveData = [[NSMutableArray alloc]init];
+    NSMutableArray *getData = [[NSMutableArray alloc]init];
     NSArray *configsGetAdvice = [self.getAdviceTTGView getConfigsAtSelected];
     NSArray *configsGiveAdvice = [self.giveAdviceTTGView getConfigsAtSelected];
     for(TTGTextTagConfig *config in configsGetAdvice){
-        [getData addObject:config.extraData];
+        [getData addObject:((InterestModel *)config.extraData)];
     }
     for(TTGTextTagConfig *config in configsGiveAdvice){
-        [giveData addObject:config.extraData];
+        [giveData addObject:((InterestModel *)config.extraData)];
     }
     
     [self.delegate didChangeSchool:school withCompany:company withLocation:location andInterests:interests withGive:[NSArray arrayWithArray:giveData] andGet:[NSArray arrayWithArray:getData]];

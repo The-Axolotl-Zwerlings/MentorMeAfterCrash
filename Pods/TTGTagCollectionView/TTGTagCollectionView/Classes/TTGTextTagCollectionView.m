@@ -203,10 +203,11 @@
 }
 
 -(NSArray *)getConfigsAtSelected{
-    NSMutableArray *configs;
+    NSMutableArray *configs = [[NSMutableArray alloc]init];
     for(int i = 0; i < _tagLabels.count; ++i){
-        if(_tagLabels[i].selected){
-            [configs addObject:_tagLabels[i]];
+        if(((TTGTextTagLabel *)_tagLabels[i]).selected){
+            TTGTextTagLabel *label = ((TTGTextTagLabel *)_tagLabels[i]);
+            [configs addObject:label.config];
         }
     }
     return [NSArray arrayWithArray:configs];
