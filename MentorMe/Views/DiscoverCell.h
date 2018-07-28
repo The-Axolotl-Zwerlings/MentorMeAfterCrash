@@ -10,10 +10,13 @@
 #import "ParseUI.h"
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
+#import "QuartzCore/CALayer.h"
 
 
 
 @interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+
+@property (weak, nonatomic) IBOutlet UIImageView *shadowView;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
