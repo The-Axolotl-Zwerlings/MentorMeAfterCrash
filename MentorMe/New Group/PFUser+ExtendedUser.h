@@ -22,7 +22,9 @@
 @property (strong, nonatomic) NSString *major;
 @property (strong, nonatomic) NSArray *giveAdviceInterests;
 @property (strong, nonatomic) NSArray *getAdviceInterests;
-
+@property (strong, nonatomic) NSNumber *numOfRates;
+@property (strong, nonatomic) NSNumber *totalRating;
+@property (strong, nonatomic) NSArray *complimentsArray;
 
 @property (strong, nonatomic) PFRelation* usersNearby;
 @property (strong, nonatomic) NSNumber *meetupNumber;

@@ -12,6 +12,27 @@
 
 @implementation PFUser (ExtendedUser)
 
+//Ratings
+-(void)setNumOfRates:(NSNumber *)numOfRates{
+    self[@"numOfRates"] = numOfRates;
+}
+-(NSNumber *)numOfRates{
+    return self[@"numOfRates"];
+}
+
+-(void)setTotalRating:(NSNumber *)totalRating{
+    self[@"totalRating"] = totalRating;
+}
+-(NSNumber *)totalRating{
+    return self[@"totalRating"];
+}
+
+- (void)setComplimentsArray:(NSArray *)complimentsArray{
+    self[@"complimentsArray"] = complimentsArray;
+}
+-(NSArray *)complimentsArray{
+    return self[@"complimentsArray"];
+}
 
 //City
 -(void)setCityLocation:(NSString *)cityLocation{

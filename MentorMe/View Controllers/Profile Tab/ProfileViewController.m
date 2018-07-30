@@ -70,12 +70,9 @@
             
             self.giveAdviceCollectionView.delegate = self;
             self.giveAdviceCollectionView.dataSource = self;
+
             
-            
-            self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
-            self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
             [self loadProfile];
-            
             [self.refreshControl endRefreshing];
         } else{
             NSLog(@"didn't get user");
@@ -87,7 +84,12 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)loadProfile {
+-(void)loadProfile{
+
+    self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
+    self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
+    
+    
     self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
     
@@ -109,20 +111,25 @@
     
     self.bannerImageView.layer.borderWidth = 2.0f;
     self.bannerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.bioLabel.text = self.user[@"bio"];
+    self.bioLabel.text = self.user.bio;
+    
+    self.profileImageView.file = self.user.profilePic;
+    [self.profileImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(error == nil){
+            NSLog(@"We did it!");
+        }
+    }];
+    
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.profileImageView.file = nil;
-    self.profileImageView.file = self.user[@"profilePic"];
-    [self.profileImageView loadInBackground];
-    
+
 }
 
 - (void) didEditProfile {
     
-    [self loadProfile];
+    [self getCurrentUser];
     
 }
 
@@ -168,7 +175,9 @@
 
 
 
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+}
 
 
 

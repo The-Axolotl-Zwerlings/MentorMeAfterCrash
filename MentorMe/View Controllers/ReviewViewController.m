@@ -10,7 +10,17 @@
 
 @interface ReviewViewController () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *commentsTextView;
+@property (strong, nonatomic) IBOutlet UILabel *reviewForLabel;
+@property (strong, nonatomic) IBOutlet UIButton *doneButton;
 @property (strong, nonatomic) NSArray *complimentsArray;
+/*Compliments Array
+ 0 - Great Convo
+ 1 - Down to Earth
+ 2 - Useful Advice
+ 3 - Friendly
+ 4 - Super Knowledgeable
+*/
+
 @end
 
 @implementation ReviewViewController
@@ -45,6 +55,32 @@
     [self.scrollView setContentOffset:offset];
     [UIView commitAnimations];
 }
+
+
+- (void)viewDidLoad {
+    
+    self.commentsTextView.delegate = self;
+    [super viewDidLoad];
+    
+    self.reviewForLabel.text = [@"Review for " stringByAppendingString:self.reviewee.name];
+    
+    
+    // Stuff relating to star rating view
+    self.ratingView.notSelectedImage = [UIImage imageNamed:@"star-empty.png"];
+    self.ratingView.halfSelectedImage = [UIImage imageNamed:@"star-half.png"];
+    self.ratingView.fullSelectedImage = [UIImage imageNamed:@"star-full.png"];
+    self.ratingView.rating = 0;
+    self.ratingView.editable = YES;
+    self.ratingView.maxRating = 5;
+    self.ratingView.delegate = self;
+    
+    self.doneButton.layer.cornerRadius = 4;
+    
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 400);
+    
+}
+
 - (IBAction)doneAction:(UIButton *)sender {
     NSMutableArray *mutableCompliments = [[NSMutableArray alloc]init];
     [mutableCompliments addObject:[NSNumber numberWithBool:self.greatConvoButton.isSelected]];
@@ -53,28 +89,20 @@
     [mutableCompliments addObject:[NSNumber numberWithBool:self.friendlyButton.isSelected]];
     [mutableCompliments addObject:[NSNumber numberWithBool:self.superKnowledgeButton.isSelected]];
     self.complimentsArray = [NSArray arrayWithArray:mutableCompliments];
-}
-
-- (void)viewDidLoad {
     
-    self.commentsTextView.delegate = self;
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.ratingView.notSelectedImage = [UIImage imageNamed:@"star-empty.png"];
-    self.ratingView.halfSelectedImage = [UIImage imageNamed:@"star-half.png"];
-    self.ratingView.fullSelectedImage = [UIImage imageNamed:@"star-full.png"];
-    self.ratingView.rating = 0;
-    self.ratingView.editable = YES;
-    self.ratingView.maxRating = 5;
-    self.ratingView.delegate = self;
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 400);
+    //assign values to PFUser
+    self.reviewee.complimentsArray = self.complimentsArray;
+    self.reviewee.numOfRates = [NSNumber numberWithFloat:[self.reviewee.numOfRates floatValue] + 1 ];
+    self.reviewee.totalRating = [NSNumber numberWithFloat:([self.reviewee.totalRating floatValue] + self.ratingView.rating)];
     
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 // Add to bottom
 - (void)rateView:(RateView *)rateView ratingDidChange:(float)rating {
-    self.starLabel.text = [NSString stringWithFormat:@"Rating: %f", rating];
+    NSString* formattedNumber = [NSString stringWithFormat:@"%.f", rating];
+    self.starLabel.text = [NSString stringWithFormat:@"Rating: %@ stars", formattedNumber];
+    
 }
 
 
@@ -82,15 +110,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-//- (IBAction)tappedOutsdie:(UITapGestureRecognizer *)sender {
-//    [self.commentsTextView resignFirstResponder];
-//    [UIView beginAnimations:nil context:NULL];
-//    [UIView setAnimationDuration:0.35f];
-//    CGPoint offset = self.scrollView.contentOffset;
-//    offset.y -= 280; // You can change this, but 200 doesn't create any problems
-//    [self.scrollView setContentOffset:offset];
-//    [UIView commitAnimations];
-//}
+- (IBAction)tappedOutsdie:(UITapGestureRecognizer *)sender {
+    if([self.commentsTextView isFirstResponder]){
+        [self.commentsTextView resignFirstResponder];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.35f];
+        CGPoint offset = self.scrollView.contentOffset;
+        offset.y -= 280; // You can change this, but 200 doesn't create any problems
+        [self.scrollView setContentOffset:offset];
+        [UIView commitAnimations];
+    }
+}
 
 /*
 #pragma mark - Navigation
