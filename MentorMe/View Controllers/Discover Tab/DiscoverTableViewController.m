@@ -263,7 +263,7 @@
     if( [cell.isGivingAdvice integerValue] == 1 ){
         
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
     
