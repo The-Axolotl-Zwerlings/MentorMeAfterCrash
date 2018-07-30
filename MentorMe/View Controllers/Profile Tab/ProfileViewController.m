@@ -21,6 +21,9 @@
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation ProfileViewController
@@ -29,6 +32,14 @@
     [super viewDidLoad];
     
     [self getCurrentUser];
+    
+    
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 800);
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(getCurrentUser) forControlEvents:UIControlEventValueChanged];
+    [self.scrollView addSubview:self.refreshControl];
 
 
 }
@@ -64,6 +75,8 @@
             self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
             self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
             [self loadProfile];
+            
+            [self.refreshControl endRefreshing];
         } else{
             NSLog(@"didn't get user");
         }
