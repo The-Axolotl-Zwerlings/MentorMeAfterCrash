@@ -95,7 +95,13 @@
     self.reviewee.numOfRates = [NSNumber numberWithFloat:[self.reviewee.numOfRates floatValue] + 1 ];
     self.reviewee.totalRating = [NSNumber numberWithFloat:([self.reviewee.totalRating floatValue] + self.ratingView.rating)];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.reviewee saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
+    
+    
 }
 
 // Add to bottom

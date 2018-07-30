@@ -129,8 +129,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GwC-iO-Bgu"/>
                         <connections>
-                            <outletCollection property="gestureRecognizers" destination="4dr-yh-5ac" appends="YES" id="tc2-uY-Ux8"/>
-                            <outletCollection property="gestureRecognizers" destination="4dr-yh-5ac" appends="YES" id="7Of-oZ-F8L"/>
+                            <outletCollection property="gestureRecognizers" destination="8K0-Ib-bOm" appends="YES" id="IkN-Cv-p4a"/>
                         </connections>
                     </view>
                     <connections>
@@ -148,9 +147,9 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zb0-M9-Sm4" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="4dr-yh-5ac">
+                <tapGestureRecognizer id="8K0-Ib-bOm">
                     <connections>
-                        <action selector="tappedOutsdie:" destination="Nyq-eC-H0W" id="QC5-vj-Hd4"/>
+                        <action selector="tappedOutsdie:" destination="Nyq-eC-H0W" id="tP4-aJ-OFY"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
