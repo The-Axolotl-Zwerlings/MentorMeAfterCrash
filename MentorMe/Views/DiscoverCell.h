@@ -16,7 +16,7 @@
 
 @interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UIImageView *shadowView;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;

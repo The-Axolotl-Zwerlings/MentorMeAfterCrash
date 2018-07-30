@@ -49,20 +49,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.65000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5q0-F9-udk">
-                                                    <rect key="frame" x="5" y="5" width="365" height="240"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.19246419270000001" green="0.4856228298611111" blue="0.70705837673611116" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                            <integer key="value" value="20"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                                    </userDefinedRuntimeAttributes>
-                                                </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Cq1-Fm-5kX" userLabel="Background Rounded">
                                                     <rect key="frame" x="10" y="10" width="355" height="230"/>
-                                                    <color key="backgroundColor" red="0.10579427083333333" green="0.750244140625" blue="0.97306315104166663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="backgroundColor" red="0.19246419270000001" green="0.4856228299" blue="0.70705837670000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -230,6 +219,7 @@
                                                 <constraint firstItem="D15-jg-cBc" firstAttribute="trailing" secondItem="iAe-Mt-q9V" secondAttribute="trailingMargin" constant="5" id="vhk-tU-35r"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.19246419270000001" green="0.4856228299" blue="0.70705837670000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="educationLabel" destination="PUk-H0-1uB" id="RzJ-co-YpO"/>
                                             <outlet property="getCollectionView" destination="hji-zQ-QQM" id="QUI-Ky-frl"/>
@@ -237,7 +227,6 @@
                                             <outlet property="nameLabel" destination="dx8-Px-Rv3" id="rgL-oE-yxB"/>
                                             <outlet property="occupationLabel" destination="D15-jg-cBc" id="Iyk-So-t3W"/>
                                             <outlet property="profilePicView" destination="Ccj-O1-eS4" id="TcJ-sP-pfr"/>
-                                            <outlet property="shadowView" destination="5q0-F9-udk" id="gs2-Fi-ceM"/>
                                             <segue destination="RbV-D6-zF5" kind="show" identifier="segueToMentorDetailsViewController" id="Fbe-TJ-6Mo"/>
                                         </connections>
                                     </tableViewCell>

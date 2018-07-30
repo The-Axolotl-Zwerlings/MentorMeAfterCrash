@@ -56,7 +56,11 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self fetchFilteredUsers];
+    
     [self.discoverTableView reloadData];
+    
+    
     
 }
 
@@ -255,6 +259,26 @@
     
     DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
+    
+    if( [cell.isGivingAdvice integerValue] == 1 ){
+        
+        cell.profilePicView.layer.borderWidth = 5;
+        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
+        cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
+        cell.profilePicView.layer.masksToBounds = true;
+    
+        
+    } else {
+        
+        cell.profilePicView.layer.borderWidth = 5;
+        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
+        cell.profilePicView.layer.masksToBounds = true;
+        
+
+        
+    }
+    
     cell.userForCell = self.filteredUsers[indexPath.item];
     
     cell.getInterests = cell.userForCell.getAdviceInterests;
@@ -312,6 +336,12 @@
         }
     }];
 }
+
+
+
+
+
+
 
 #pragma mark - Navigation
 

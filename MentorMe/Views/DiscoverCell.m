@@ -51,11 +51,6 @@
     self.profilePicView.file = user[@"profilePic"];
     [self.profilePicView loadInBackground];
     
-    self.profilePicView.layer.masksToBounds = true;
-    self.profilePicView.layer.borderWidth = 5;
-    self.profilePicView.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
-    self.profilePicView.layer.cornerRadius = self.profilePicView.frame.size.width /2;
-    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
