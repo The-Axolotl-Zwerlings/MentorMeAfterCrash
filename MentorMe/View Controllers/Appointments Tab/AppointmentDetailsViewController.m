@@ -50,14 +50,17 @@
     self.menteeProfileView.layer.masksToBounds = true;
     self.menteeProfileView.layer.cornerRadius = self.menteeProfileView.frame.size.width / 2;
     
+    PFUser *otherAttendee;
+    
     //1. Check if current user is mentor or mentee of meeting
     if(self.appointment.mentor.username == PFUser.currentUser.username){
-        titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentee.name];
-        self.menteeProfileView.file = self.appointment.mentee.profilePic;
+        otherAttendee = self.appointment.mentee;
     } else{
-        titleString = [@"Meeting with " stringByAppendingString:self.appointment.mentor.name];
-        self.menteeProfileView.file = self.appointment.mentor.profilePic;
+        otherAttendee = self.appointment.mentor;
     }
+    
+    titleString = [@"Meeting with " stringByAppendingString:otherAttendee.name];
+    self.menteeProfileView.file = otherAttendee.profilePic;
     
     //2. Check if appointment is upcoming or past
     if(![self.appointment.isUpcoming boolValue]){
@@ -69,6 +72,9 @@
     //3. Update labels and images
     
     self.meetingTitleLabel.text = titleString;
+    
+    self.aboutUserLabel.text = [@"About " stringByAppendingString:otherAttendee.name];
+    self.mentorBioLabel.text = otherAttendee.bio;
     
     //Location
     NSString *location = [@" at " stringByAppendingString: self.appointment.meetingLocation];
@@ -84,8 +90,7 @@
     self.meetingDetailsLabel.text = fullDetails;
     
     
-    self.aboutUserLabel.text = [@"About " stringByAppendingString:self.appointment.mentor.name];
-    self.mentorBioLabel.text = self.appointment.mentor.bio;
+   
     
     
 }

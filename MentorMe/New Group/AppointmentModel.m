@@ -47,6 +47,13 @@
         }
     }];
 }
- 
+
++(PFUser *)otherAttendee:(AppointmentModel *)appointment{
+    if(PFUser.currentUser.username == appointment.mentor.username){
+        return appointment.mentee;
+    } else{
+        return appointment.mentor;
+    }
+}
 
 @end

@@ -21,6 +21,7 @@
 
 @property (weak, nonatomic) IBOutlet PFImageView *bannerImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UILabel *rating;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
@@ -58,7 +59,14 @@
     self.profileImage.layer.borderWidth = 5;
     self.profileImage.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
 
-    
+    if(self.mentor[@"numOfRates"] != nil){
+        NSNumber *average = [NSNumber numberWithFloat:[self.mentor.totalRating floatValue]/[self.mentor.numOfRates floatValue]];
+        self.rating.text = [NSString stringWithFormat:@"%@ stars", average];
+    } else{
+        self.mentor.numOfRates = [NSNumber numberWithInteger:0];
+        self.mentor.totalRating = [NSNumber numberWithInteger:0];
+        self.rating.text = @"Not rated yet!";
+    }
 }
 
 
@@ -81,10 +89,6 @@
     
 }
 
-- (void) refreshData {
-    
-    
-}
 
 /**************   COLLECTION VIEW ***********/
 

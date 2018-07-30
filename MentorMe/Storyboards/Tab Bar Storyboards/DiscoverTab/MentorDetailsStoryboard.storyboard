@@ -46,7 +46,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="This is where the profile description goes." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="dDp-cG-CCL">
-                                <rect key="frame" x="7" y="319" width="360" height="56"/>
+                                <rect key="frame" x="7" y="327" width="360" height="56"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -173,6 +173,17 @@
                                     <segue destination="JOT-0i-AnV" kind="presentation" identifier="createAppointmentSegue" id="DQC-j8-DWX"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="star-full" translatesAutoresizingMaskIntoConstraints="NO" id="twC-vT-CL0">
+                                <rect key="frame" x="17" y="293" width="18" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H1X-ZJ-d0f">
+                                <rect key="frame" x="40" y="292" width="110" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="iRZ-gU-sZv"/>
@@ -186,6 +197,7 @@
                         <outlet property="nameLabel" destination="QyV-4U-BPF" id="Nrp-Ow-eOf"/>
                         <outlet property="occupationLabel" destination="bUa-0O-Va6" id="BWs-DJ-pSj"/>
                         <outlet property="profileImage" destination="zSO-Tf-EDB" id="4jN-9g-wGz"/>
+                        <outlet property="rating" destination="H1X-ZJ-d0f" id="aXg-Zj-Z3r"/>
                         <outlet property="usernameLabel" destination="iN4-dm-LPI" id="DbK-YF-OvO"/>
                     </connections>
                 </viewController>
@@ -214,5 +226,6 @@
     </scenes>
     <resources>
         <image name="gradient image" width="375" height="667"/>
+        <image name="star-full" width="32" height="32"/>
     </resources>
 </document>
