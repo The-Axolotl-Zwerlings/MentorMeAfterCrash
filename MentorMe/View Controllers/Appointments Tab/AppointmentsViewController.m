@@ -160,7 +160,7 @@
         AppointmentDetailsViewController * appointmentDetailsViewController = [segue destinationViewController];
         
         appointmentDetailsViewController.appointment = incomingAppointment;
-        appointmentDetailsViewController.appointmentWith = [PFUser currentUser];
+        appointmentDetailsViewController.appointmentWith = [AppointmentModel otherAttendee:incomingAppointment];
         
         //appointmentDetailsViewController.delegate = self;
         
