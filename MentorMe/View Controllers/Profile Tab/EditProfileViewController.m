@@ -78,11 +78,15 @@
 
     currUser.profilePic = self.profilePictureImageView.file;
     
-    [currUser saveInBackground];
+    [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            [self.delegate didEditProfile];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+        
+    }];
+
     
-    [self.delegate didEditProfile];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)onTapPhotoLibraryButton:(id)sender {

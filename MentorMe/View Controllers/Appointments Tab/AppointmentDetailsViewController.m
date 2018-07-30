@@ -10,7 +10,7 @@
 #import "ParseUI.h"
 #import "Parse.h"
 #import "DateTools.h"
-
+#import "ReviewViewController.h"
 @interface AppointmentDetailsViewController ()
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfileView;
 
@@ -101,6 +101,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if([segue.identifier isEqualToString:@"ReviewSegue"]){
+        ReviewViewController *reviewViewController = [segue destinationViewController];
+        reviewViewController.reviewee = self.appointmentWith;
+    }
 }
 
 
