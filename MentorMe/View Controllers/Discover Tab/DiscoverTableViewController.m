@@ -266,6 +266,9 @@
         cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
+        
+        cell.getCollectionView.hidden = true;
+         cell.giveCollectionView.hidden = false;
     
         
     } else {
@@ -274,6 +277,9 @@
         cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
+        
+        cell.getCollectionView.hidden = false;
+        cell.giveCollectionView.hidden = true;
         
 
         
