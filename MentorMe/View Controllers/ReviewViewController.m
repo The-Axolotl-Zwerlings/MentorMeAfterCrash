@@ -94,7 +94,7 @@
     
                                  
     [Review postReview:self.reviewee withRating:[NSNumber numberWithFloat:self.ratingView.rating] andComplimentsArray:self.complimentsArray];
-    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 
