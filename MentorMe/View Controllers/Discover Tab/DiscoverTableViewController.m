@@ -56,9 +56,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
     [self fetchFilteredUsers];
-    
     [self.discoverTableView reloadData];
     
     
