@@ -12,6 +12,8 @@ target 'MentorMe' do
   pod 'ParseUI'
   pod 'AFNetworking'
   pod 'TTGTagCollectionView'
+ pod 'ChameleonFramework'
+  
   target 'MentorMeTests' do
     inherit! :search_paths
     # Pods for testing
