@@ -7,7 +7,7 @@
 //
 
 #import "ReviewViewController.h"
-
+#import "Review.h"
 @interface ReviewViewController () <UITextViewDelegate>
 @property (strong, nonatomic) IBOutlet UITextView *commentsTextView;
 @property (strong, nonatomic) IBOutlet UILabel *reviewForLabel;
@@ -90,16 +90,10 @@
     [mutableCompliments addObject:[NSNumber numberWithBool:self.superKnowledgeButton.isSelected]];
     self.complimentsArray = [NSArray arrayWithArray:mutableCompliments];
     
-    //assign values to PFUser
-    self.reviewee.complimentsArray = self.complimentsArray;
-    self.reviewee.numOfRates = [NSNumber numberWithFloat:[self.reviewee.numOfRates floatValue] + 1 ];
-    self.reviewee.totalRating = [NSNumber numberWithFloat:([self.reviewee.totalRating floatValue] + self.ratingView.rating)];
     
-    [self.reviewee saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if(succeeded){
-            [self dismissViewControllerAnimated:YES completion:nil];
-        }
-    }];
+    
+                                 
+    [Review postReview:self.reviewee withRating:[NSNumber numberWithFloat:self.ratingView.rating] andComplimentsArray:self.complimentsArray];
     
     
 }
@@ -126,6 +120,9 @@
         [self.scrollView setContentOffset:offset];
         [UIView commitAnimations];
     }
+}
+- (IBAction)cancelButton:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*
