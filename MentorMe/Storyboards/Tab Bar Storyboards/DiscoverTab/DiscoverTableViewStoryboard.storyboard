@@ -131,6 +131,7 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
+                                                                <outlet property="backgroundCell" destination="YyH-jW-kci" id="Wbr-IV-Mn0"/>
                                                                 <outlet property="interestNameLabel" destination="myx-Ij-DG1" id="W0b-JY-NnG"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -158,7 +159,7 @@
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehr-2p-Blk">
                                                                         <rect key="frame" x="5" y="5" width="105" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <color key="backgroundColor" red="0.21405707469999999" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" red="0.0078431372549019607" green="0.22352941176470587" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -183,6 +184,7 @@
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                             <connections>
+                                                                <outlet property="backgroundCell" destination="ehr-2p-Blk" id="jpH-H4-5Da"/>
                                                                 <outlet property="interestNameLabel" destination="u9B-RL-5VD" id="Okb-a5-6Fb"/>
                                                             </connections>
                                                         </collectionViewCell>
@@ -230,16 +232,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-m9-tSJ">
-                                <rect key="frame" x="327" y="72" width="32" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="search">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="dzt-CT-4AJ"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmf-HO-7dG">
                                 <rect key="frame" x="16" y="71" width="32" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -247,6 +239,16 @@
                                 <state key="normal" image="user"/>
                                 <connections>
                                     <action selector="logoutButtonAction:" destination="UGR-cv-PWW" eventType="touchUpInside" id="Cpx-g8-ozL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7s-m9-tSJ">
+                                <rect key="frame" x="335" y="72" width="31" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="220951-200">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="dzt-CT-4AJ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -309,6 +311,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="220951-200" width="200" height="200"/>
         <image name="search" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>

@@ -72,8 +72,11 @@
     
     if( [collectionView isEqual:self.getCollectionView] ){
         
+        
+        
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.getInterests[indexPath.item];
+
         [cellA reloadInputViews];
         return cellA;
         
@@ -81,6 +84,8 @@
         
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = ((InterestModel *)self.giveInterests[indexPath.item]);
+        
+        
         [cellB reloadInputViews];
         return cellB;
         

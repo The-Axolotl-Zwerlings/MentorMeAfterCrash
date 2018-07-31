@@ -16,6 +16,8 @@
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
 
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
+
 #import "InterestModel.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
@@ -262,13 +264,18 @@
     
     if( [cell.isGivingAdvice integerValue] == 1 ){
         
+        UIColor *newColor = [UIColor colorWithRed:0.01 green:0.22 blue:0.29 alpha:1.0];
+        
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(newColor.CGColor);;
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
         
+        
         cell.getCollectionView.hidden = true;
-         cell.giveCollectionView.hidden = false;
+        cell.giveCollectionView.hidden = false;
+        
+        cell.getCollectionView.alwaysBounceHorizontal = YES;
     
         
     } else {
@@ -280,6 +287,8 @@
         
         cell.getCollectionView.hidden = false;
         cell.giveCollectionView.hidden = true;
+        
+        cell.getCollectionView.alwaysBounceHorizontal = YES;
         
 
         

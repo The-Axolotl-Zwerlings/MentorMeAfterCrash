@@ -15,7 +15,7 @@
 #import "MentorDetailsViewController.h"
 
 @interface GetAdviceCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet PFImageView *interestIcon;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundCell;
 @property (weak, nonatomic) IBOutlet UILabel *interestNameLabel;
 @property (weak, nonatomic) InterestModel *interest;
 
