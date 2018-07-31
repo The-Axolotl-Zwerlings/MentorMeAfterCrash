@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"appointments";
+    self.title = @"Appointments";
     
     
     self.appointmentsTableView.delegate = self;
@@ -145,7 +145,6 @@
     AppointmentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"AppointmentCell"];
     AppointmentModel *newAppointment = self.appointmentsArray[indexPath.row];
     cell.appointment = newAppointment;
-    NSLog( @"Loading new cell" );
     return cell;
 }
 

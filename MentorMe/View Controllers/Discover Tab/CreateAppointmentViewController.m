@@ -8,18 +8,15 @@
 
 #import "CreateAppointmentViewController.h"
 #import "ParseUI.h"
-#import "Parse.h"
+#import "Parse/Parse.h"
 
 @interface CreateAppointmentViewController ()
 
 
-
-@property (strong, nonatomic) IBOutlet UIImageView *mentorIconView;
 @property (strong, nonatomic) IBOutlet PFImageView *mentorProfilePicView;
 @property (weak, nonatomic) IBOutlet UILabel *mentorNameLabel;
 
 
-@property (strong, nonatomic) IBOutlet UIImageView *menteeIconView;
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfilePicView;
 @property (weak, nonatomic) IBOutlet UILabel *menteeNameLabel;
 
@@ -58,13 +55,10 @@
 
 - (void) loadAppointmentDetails {
     if(self.appointmentTypeSegControl.selectedSegmentIndex == 0){ //coffww
-        self.dateTextField.text = @"2:00 pm on 6/1/18";
         self.locationLabel.text = @"Red Rock Café";
     } else if(self.appointmentTypeSegControl.selectedSegmentIndex == 1){ //lunch
-        self.dateTextField.text = @"12:00 pm on 6/2/18";
         self.locationLabel.text = @"Jimmy Johns";
     } else{
-        self.dateTextField.text = @"9:00pm on 6/3/18";
         self.locationLabel.text = @"Skype";
     }
 }
@@ -75,26 +69,36 @@
     PFUser *myUser = [PFUser currentUser];
     PFUser *otherUser = self.otherAttendee;
     
-    self.menteeProfilePicView.file = myUser.profilePic;
-    self.mentorProfilePicView.file = otherUser.profilePic;
+    self.mentorProfilePicView.layer.borderWidth = 5;
+    self.mentorProfilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+    self.mentorProfilePicView.layer.masksToBounds = true;
+    self.menteeProfilePicView.layer.borderWidth = 5;
+    self.menteeProfilePicView.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+    self.menteeProfilePicView.layer.masksToBounds = true;
     
-    self.menteeNameLabel.text = myUser.name;
-    self.mentorNameLabel.text = otherUser.name;
-    
-
-    
-    
+    if( self.isMentorOfMeeting == false){
+        self.mentorProfilePicView.file = myUser.profilePic;
+        self.menteeProfilePicView.file = otherUser.profilePic;
+        self.mentorNameLabel.text = myUser.name;
+        self.menteeNameLabel.text = otherUser.name;
+        self.mentorProfilePicView.layer.cornerRadius = self.mentorProfilePicView.frame.size.width/2;
+        self.menteeProfilePicView.layer.cornerRadius = self.menteeProfilePicView.frame.size.width/2;
+    } else {
+        self.menteeProfilePicView.file = myUser.profilePic;
+        self.mentorProfilePicView.file = otherUser.profilePic;
+        self.menteeNameLabel.text = myUser.name;
+        self.mentorNameLabel.text = otherUser.name;
+        self.mentorProfilePicView.layer.cornerRadius = self.mentorProfilePicView.frame.size.width/2;
+        self.menteeProfilePicView.layer.cornerRadius = self.menteeProfilePicView.frame.size.width/2;
+    }
     
     self.sendMessageLabel.text = [[@"Send " stringByAppendingString:otherUser.name] stringByAppendingString:@" a message: "];
-    
-    
     
 }
 
 - (void) loadDateTool {
     datePicker = [[UIDatePicker alloc] init];
     datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    
     [self.dateTextField setInputView:datePicker];
     
     UIToolbar *toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0,0,320,44)];
@@ -102,7 +106,6 @@
     UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolbar setItems:[NSArray arrayWithObjects:space,doneButton,nil]];
     [self.dateTextField setInputAccessoryView:toolbar];
-    
 }
 
 

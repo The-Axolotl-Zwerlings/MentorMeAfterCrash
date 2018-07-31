@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PFUser+ExtendedUser.h"
-#import "Parse.h"
+#import "Parse/Parse.h"
 #import "AppointmentModel.h"
 
 @interface CreateAppointmentViewController : UIViewController

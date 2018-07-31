@@ -202,16 +202,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Boz-sC-X5P" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKq-Pz-vAR">
-                    <rect key="frame" x="0.0" y="0.0" width="95" height="13"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="13" id="H2f-rW-ZcS"/>
-                        <constraint firstAttribute="width" constant="95" id="h8f-el-KOu"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="12"/>
-                    <color key="textColor" red="0.24190549680000001" green="0.39807945509999998" blue="0.60693276039999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </objects>
             <point key="canvasLocation" x="2018.4000000000001" y="152.47376311844079"/>
         </scene>

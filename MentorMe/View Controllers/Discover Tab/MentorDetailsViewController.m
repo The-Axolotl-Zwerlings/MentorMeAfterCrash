@@ -57,7 +57,12 @@
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
     self.profileImage.layer.masksToBounds = true;
     self.profileImage.layer.borderWidth = 5;
-    self.profileImage.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
+    
+    if( self.isMentorOfMeeting == false ) {
+        self.profileImage.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+    } else {
+       self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+    }
 
     if(self.mentor[@"numOfRates"] != nil){
         NSNumber *average = [NSNumber numberWithFloat:[self.mentor.totalRating floatValue]/[self.mentor.numOfRates floatValue]];
@@ -93,54 +98,34 @@
 /**************   COLLECTION VIEW ***********/
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
-        
         return self.adviceToGet.count;
-        
     } else {
-        
         return self.adviceToGive.count;
-        
     }
-    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    
     return 1;
-    
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-       
         cellA.interest = self.adviceToGet[indexPath.item];
         [cellA reloadInputViews];
-        
         return cellA;
-        
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        
         cellB.interest = self.adviceToGive[indexPath.item];
-        
-        
         [cellB reloadInputViews];
-        
-        
         return cellB;
     }
 }
 
-
-
 - (IBAction)onTapCancel:(id)sender {
     
     NSLog(@"Cancel Button");
-    
-    
     
 }
 

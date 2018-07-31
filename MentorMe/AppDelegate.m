@@ -30,48 +30,9 @@
     
     [Parse initializeWithConfiguration:config];
     
-/*
-     PFUser *newUser = [PFUser currentUser];
-    
-    
-     newUser.name = @"Mike Schroepfer";
-     newUser.jobTitle = @"CTO at Facebook";
-     newUser.school = @"Stanford University";
-      
-     appointment[@"mentorName"] = newUser.name;
-     appointment[@"mentor"] = newUser;
-     appointment[@"mentee"] = [PFUser currentUser];
-     appointment[@"meetingLocation"] = @"Menlo Park Building 24";
-     appointment[@"meetingType"] = @"Dinner in MPK 24.1Z2";
-     appointment[@"isUpcoming"] = @NO;
-    
-    
-    
-     
-     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-     if (succeeded) {
-     NSLog(@"New Appointment saved!");
-     } else {
-     NSLog(@"Error: %@", error.description);
-     }
-     }];*/
-//    NSString *origin = @"East Lansing,MI";
-//    NSString *string = [origin stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//    
-//    NSString *destination = @"Pasadena,CA";
-//    NSString *string2 = [destination stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-//    
-//    LocationApiManager *manager = [LocationApiManager new];
-//    [manager fetchDistanceWithOrigin:string andEnd:string2 andCompletion:^(NSDictionary *elementDic, NSError *error) {
-//        NSNumber *distance = (NSNumber *)elementDic[@"distance"][@"value"];
-//        NSLog(@"%@", distance);
-//    }];
-
-    
 
     if (PFUser.currentUser) {
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"TabBarViewControllerStoryboard" bundle:nil];
-        NSLog(@"already logged on");
         self.window.rootViewController = [storyboard instantiateViewControllerWithIdentifier:@"TabBarNavigationController"];
     }
     
