@@ -45,7 +45,7 @@
         
         self.otherAttendeeProfilePic.layer.masksToBounds = true;
         self.otherAttendeeProfilePic.layer.borderWidth = 5;
-        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
+        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
         self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
         
     } else{

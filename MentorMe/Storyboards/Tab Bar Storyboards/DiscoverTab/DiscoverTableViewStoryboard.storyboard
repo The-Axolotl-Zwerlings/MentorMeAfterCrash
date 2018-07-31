@@ -111,7 +111,7 @@
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                <integer key="value" value="5"/>
+                                                                                <integer key="value" value="15"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -159,11 +159,11 @@
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehr-2p-Blk">
                                                                         <rect key="frame" x="5" y="5" width="105" height="30"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                        <color key="backgroundColor" red="0.0078431372549019607" green="0.22352941176470587" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <color key="backgroundColor" red="0.0" green="0.99143940210000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                                                <integer key="value" value="5"/>
+                                                                                <integer key="value" value="15"/>
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
@@ -221,6 +221,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.19246419270000001" green="0.4856228299" blue="0.70705837670000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
+                                            <outlet property="backgroundImage" destination="Cq1-Fm-5kX" id="fpl-1z-Fii"/>
                                             <outlet property="educationLabel" destination="PUk-H0-1uB" id="RzJ-co-YpO"/>
                                             <outlet property="getCollectionView" destination="hji-zQ-QQM" id="QUI-Ky-frl"/>
                                             <outlet property="giveCollectionView" destination="0Da-rJ-ktU" id="bWj-wk-bng"/>

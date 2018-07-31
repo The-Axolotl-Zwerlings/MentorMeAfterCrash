@@ -13,6 +13,7 @@
 #import "Parse/Parse.h"
 #import "ParseUI.h"
 #import "PFUser+ExtendedUser.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;

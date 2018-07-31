@@ -11,10 +11,13 @@
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 #import "QuartzCore/CALayer.h"
+#import <ChameleonFramework/Chameleon.h>
+
 
 
 
 @interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *occupationLabel;

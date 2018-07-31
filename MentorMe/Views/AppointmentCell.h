@@ -10,6 +10,7 @@
 #import "Parse/Parse.h"
 #import "ParseUI.h"
 #import "AppointmentModel.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @interface AppointmentCell : UITableViewCell
 

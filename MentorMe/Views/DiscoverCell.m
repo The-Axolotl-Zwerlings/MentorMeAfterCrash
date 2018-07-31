@@ -10,6 +10,7 @@
 #import "PFUser+ExtendedUser.h"
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @implementation DiscoverCell
 
