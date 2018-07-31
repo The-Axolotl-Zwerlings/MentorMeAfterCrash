@@ -16,9 +16,11 @@
 #import "Review.h"
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
+#import "ComplimentCell.h"
 
 @interface MentorDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
-
+@property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
+@property (strong, nonatomic) NSArray *complimentsArray;
 @property (weak, nonatomic) IBOutlet PFImageView *bannerImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *rating;
@@ -56,19 +58,36 @@
 
 -(void)getRating{
     __block NSNumber *starRating = nil;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Review"];
     [query includeKey:@"reviewee"];
     [query whereKey:@"reviewee" equalTo:self.mentor];
     [query findObjectsInBackgroundWithBlock:^(NSArray *reviews, NSError * _Nullable error) {
         if(reviews){
+            NSNumber *no = [NSNumber numberWithBool:NO];
+            NSMutableArray *cumulativeCompliments = [[NSMutableArray alloc] initWithObjects:no,no,no,no,no,nil];
+            int i = 0;
             float totalRating = 0;
             for(Review *review in reviews){
                 totalRating += [review.rating floatValue];
+                
+                
+                //increment i so we are only updating compliments that have no's still
+                while(review.complimentsArray[i] != no){
+                    ++i;
+                }
+                for(int j = i; j < 5; ++j){
+                    [cumulativeCompliments replaceObjectAtIndex:j withObject:[NSNumber numberWithBool:YES]];
+                }
+                
             }
             starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
             
             NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
             self.rating.text = [NSString stringWithFormat:@"%@ stars", formattedNumber];
+            self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
+            
+            
         }
     }];
     
@@ -113,9 +132,12 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         return self.adviceToGet.count;
-    } else {
+    } else if([collectionView isEqual:self.complimentsCollectionView]){
+        return self.complimentsArray.count;
+    }else {
         return self.adviceToGive.count;
     }
+    
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -128,6 +150,10 @@
         cellA.interest = self.adviceToGet[indexPath.item];
         [cellA reloadInputViews];
         return cellA;
+    } else if([collectionView isEqual:self.complimentsCollectionView]){
+        ComplimentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentCell" forIndexPath:indexPath];
+        
+        
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
