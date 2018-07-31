@@ -13,7 +13,7 @@
 #import "ParseUI.h"
 #import "CreateAppointmentViewController.h"
 #import "InterestModel.h"
-
+#import "Review.h"
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
 
@@ -69,7 +69,23 @@
     }
 }
 
-
+-(void)getRating{
+    __block NSNumber *starRating = nil;
+    PFQuery *query = [PFQuery queryWithClassName:@"Review"];
+    [query includeKey:@"reviewee.username"];
+    [query whereKey:@"reviewee.username" equalTo:self.mentor.username];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *reviews, NSError * _Nullable error) {
+        if(reviews){
+            float totalRating = 0;
+            for(Review *review in reviews){
+                totalRating += [review.rating floatValue];
+            }
+            starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
+            
+        }
+    }];
+    
+}
 
 
 
