@@ -13,7 +13,7 @@
 
 @interface Review : PFObject <PFSubclassing>
 
-@property (strong, nonatomic) PFUser *reviewer;
+
 @property (strong, nonatomic) PFUser *reviewee;
 
 @property (strong, nonatomic) NSNumber *rating;
@@ -28,5 +28,5 @@
  4 - Super Knowledgeable
  */
 
-+(void)postReview:(PFUser *)reviewer withReviewee:(PFUser *)reviewee withRating:(NSNumber *)rating andComplimentsArray:(NSArray *)compliments;
++(void)postReview:(PFUser *)reviewee withRating:(NSNumber *)rating andComplimentsArray:(NSArray *)compliments;
 @end

@@ -34,7 +34,7 @@
     
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
-    [self updateAppointments];
+    
     [self fetchFilteredAppointments];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
@@ -73,24 +73,30 @@
     [combinedQuery includeKey:@"mentor.name"];
     [combinedQuery includeKey:@"mentee.name"];
     
+    
+    NSMutableArray *oldPast = [[NSMutableArray alloc]init];
+    NSMutableArray *oldUpcoming = [[NSMutableArray alloc]init];
+    
+    
     [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             NSDate *currentDate = [NSDate date];
             for(AppointmentModel *appointment in posts){
                 if([appointment.meetingDate compare:currentDate] != -1){
                     appointment.isUpcoming = [NSNumber numberWithBool:YES];
-                    NSMutableArray *old = [NSMutableArray arrayWithArray:self.upComingAppointments];
-                    [old addObject:appointment];
-                    self.upComingAppointments = [NSArray arrayWithArray:old];
                     
-                    [appointment saveInBackground];
+                    [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        
+                        self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
+                    }];
                 } else{
                     appointment.isUpcoming = [NSNumber numberWithBool:NO];
-                    NSMutableArray *old = [NSMutableArray arrayWithArray:self.pastAppointments];
-                    [old addObject:appointment];
-                    self.pastAppointments = [NSArray arrayWithArray:old];
                     
-                    [appointment saveInBackground];
+                    [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        [oldPast addObject:appointment];
+                        self.pastAppointments = [NSArray arrayWithArray:oldPast];
+                    }];
+                    
                 }
             }
         } else {
@@ -100,6 +106,8 @@
 }
 
 -(void) fetchFilteredAppointments{
+    
+    [self updateAppointments];
 
     NSInteger index = self.appointmentController.selectedSegmentIndex;
                                                          

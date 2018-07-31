@@ -64,14 +64,7 @@
        self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
     }
 
-    if(self.mentor[@"numOfRates"] != nil){
-        NSNumber *average = [NSNumber numberWithFloat:[self.mentor.totalRating floatValue]/[self.mentor.numOfRates floatValue]];
-        self.rating.text = [NSString stringWithFormat:@"%@ stars", average];
-    } else{
-        self.mentor.numOfRates = [NSNumber numberWithInteger:0];
-        self.mentor.totalRating = [NSNumber numberWithInteger:0];
-        self.rating.text = @"Not rated yet!";
-    }
+    [self getRating];
 }
 
 -(void)getRating{
@@ -86,7 +79,7 @@
                 totalRating += [review.rating floatValue];
             }
             starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
-            
+            self.rating.text = [NSString stringWithFormat:@"%@ stars", starRating];
         }
     }];
     

@@ -10,7 +10,7 @@
 
 @implementation Review
 @dynamic reviewee;
-@dynamic reviewer;
+
 @dynamic rating;
 @dynamic complimentsArray;
 
@@ -18,12 +18,11 @@
     return @"Review";
 }
 
-+(void)postReview:(PFUser *)reviewer withReviewee:(PFUser *)reviewee withRating:(NSNumber *)rating andComplimentsArray:(NSArray *)compliments{
++(void)postReview:(PFUser *)reviewee withRating:(NSNumber *)rating andComplimentsArray:(NSArray *)compliments{
     
     
     PFObject *review = [PFObject objectWithClassName:@"Review"];
     review[@"reviewee"] = reviewee;
-    review[@"reviewer"] = reviewer;
     review[@"rating"] = rating;
     review[@"complimentsArray"] = compliments;
     
