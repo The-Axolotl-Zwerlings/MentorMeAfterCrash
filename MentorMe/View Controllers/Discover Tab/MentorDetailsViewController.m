@@ -51,27 +51,14 @@
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
     
-    self.adviceToGet = [NSArray arrayWithArray:self.mentor[@"getAdviceInterests"]];
-    self.adviceToGive = [NSArray arrayWithArray:self.mentor[@"giveAdviceInterests"]];
     
-    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
-    self.profileImage.layer.masksToBounds = true;
-    self.profileImage.layer.borderWidth = 5;
-    
-    if( self.isMentorOfMeeting == false ) {
-        self.profileImage.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
-    } else {
-       self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
-    }
-
-    [self getRating];
 }
 
 -(void)getRating{
     __block NSNumber *starRating = nil;
     PFQuery *query = [PFQuery queryWithClassName:@"Review"];
-    [query includeKey:@"reviewee.username"];
-    [query whereKey:@"reviewee.username" equalTo:self.mentor.username];
+    [query includeKey:@"reviewee"];
+    [query whereKey:@"reviewee" equalTo:self.mentor];
     [query findObjectsInBackgroundWithBlock:^(NSArray *reviews, NSError * _Nullable error) {
         if(reviews){
             float totalRating = 0;
@@ -79,7 +66,9 @@
                 totalRating += [review.rating floatValue];
             }
             starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
-            self.rating.text = [NSString stringWithFormat:@"%@ stars", starRating];
+            
+            NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
+            self.rating.text = [NSString stringWithFormat:@"%@ stars", formattedNumber];
         }
     }];
     
@@ -100,6 +89,21 @@
     self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
     self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
     self.descriptionLabel.text = self.mentor.bio;
+    
+    self.adviceToGet = [NSArray arrayWithArray:self.mentor[@"getAdviceInterests"]];
+    self.adviceToGive = [NSArray arrayWithArray:self.mentor[@"giveAdviceInterests"]];
+    
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width / 2;
+    self.profileImage.layer.masksToBounds = true;
+    self.profileImage.layer.borderWidth = 5;
+    
+    if( self.isMentorOfMeeting == false ) {
+        self.profileImage.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+    } else {
+        self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+    }
+    
+    [self getRating];
     
 }
 
@@ -138,6 +142,9 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadMentor];
+}
 
 
 #pragma mark - Navigation

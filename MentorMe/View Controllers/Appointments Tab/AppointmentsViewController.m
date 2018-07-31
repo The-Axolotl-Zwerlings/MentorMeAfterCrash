@@ -63,6 +63,9 @@
 }
 
 -(void)updateAppointments{
+    
+    
+    //Query for appointments that the current user is engaged in
     PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
     PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
     
@@ -74,7 +77,7 @@
     [combinedQuery includeKey:@"mentor.name"];
     [combinedQuery includeKey:@"mentee.name"];
     
-    
+    //Used for adding elements to the pastAppointments Array and Upcoming Appointments array
     NSMutableArray *oldPast = [[NSMutableArray alloc]init];
     NSMutableArray *oldUpcoming = [[NSMutableArray alloc]init];
     
@@ -83,6 +86,8 @@
         if (posts != nil) {
             NSDate *currentDate = [NSDate date];
             for(AppointmentModel *appointment in posts){
+                
+                //if appointment is in the future, edit it accordingly
                 if([appointment.meetingDate compare:currentDate] != -1){
                     appointment.isUpcoming = [NSNumber numberWithBool:YES];
                     
@@ -90,6 +95,8 @@
                         
                         self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
                     }];
+                    
+                    //else make it not upcoming
                 } else{
                     appointment.isUpcoming = [NSNumber numberWithBool:NO];
                     
@@ -108,8 +115,10 @@
 
 -(void) fetchFilteredAppointments{
     
+    //gets the appointments and updates their status of upcoming or not
     [self updateAppointments];
 
+    //0 is upcoming , 1 is past
     NSInteger index = self.appointmentController.selectedSegmentIndex;
                                                          
     

@@ -26,6 +26,12 @@
     review[@"rating"] = rating;
     review[@"complimentsArray"] = compliments;
     
+    [review saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(error == nil){
+            NSLog(@"Saved appointment!");
+        }
+    }];
+    
 }
 
 +(NSNumber * _Nullable)getStarRating:(PFUser *)reviewee{
