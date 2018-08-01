@@ -24,7 +24,6 @@
 		A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2D82107E0B000079B53 /* ReviewViewController.m */; };
 		A82EB2DC2107E43A00079B53 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2DB2107E43A00079B53 /* RateView.m */; };
 		A83DEAD9210FC21A002799DC /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DEAD8210FC21A002799DC /* Review.m */; };
-		A83DEADC211111BD002799DC /* ComplimentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DEADB211111BD002799DC /* ComplimentCell.m */; };
 		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
 		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
 		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
@@ -104,8 +103,6 @@
 		A82EB2DB2107E43A00079B53 /* RateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
 		A83DEAD7210FC21A002799DC /* Review.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		A83DEAD8210FC21A002799DC /* Review.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
-		A83DEADA211111BD002799DC /* ComplimentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplimentCell.h; sourceTree = "<group>"; };
-		A83DEADB211111BD002799DC /* ComplimentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplimentCell.m; sourceTree = "<group>"; };
 		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -305,8 +302,6 @@
 				A82EB2DB2107E43A00079B53 /* RateView.m */,
 				B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */,
 				B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */,
-				A83DEADA211111BD002799DC /* ComplimentCell.h */,
-				A83DEADB211111BD002799DC /* ComplimentCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -644,7 +639,6 @@
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
 				C072AB962107994100912A25 /* GetAdviceCollectionViewCell.m in Sources */,
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
-				A83DEADC211111BD002799DC /* ComplimentCell.m in Sources */,
 				A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */,
 				A83DEAD9210FC21A002799DC /* Review.m in Sources */,
 				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
