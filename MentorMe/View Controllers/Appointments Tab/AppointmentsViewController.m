@@ -30,7 +30,7 @@
     [super viewDidLoad];
     
     self.title = @"Appointments";
-    
+    self.tabBarController.navigationItem.title = @"Appointments";
     
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
@@ -48,6 +48,8 @@
 }
 
 - (void) viewWillAppear:(BOOL)animated {
+    
+    self.tabBarController.navigationItem.title = @"Appointments";
     
     [super viewWillAppear:animated];
     [self fetchFilteredAppointments];

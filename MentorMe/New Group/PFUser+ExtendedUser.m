@@ -39,13 +39,6 @@
     return self[@"profilePic"];
 }
 
-//Background Pic
--(PFFile *)backgroundPic{
-    return self[@"backgroundPic"];
-}
--(void)setBackgroundPic:(PFFile *)backgroundPic{
-    self[@"backgroundPic"] = backgroundPic;
-}
 
 //Bio
 -(void)setBio:(NSString *)bio{

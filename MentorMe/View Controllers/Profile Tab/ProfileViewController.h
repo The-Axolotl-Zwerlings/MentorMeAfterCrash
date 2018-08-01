@@ -16,7 +16,6 @@
 
 @property (strong, nonatomic) PFUser* user;
 
-@property (weak, nonatomic) IBOutlet PFImageView *bannerImageView;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *usernameLabel;

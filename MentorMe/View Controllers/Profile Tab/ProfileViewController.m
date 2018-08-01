@@ -33,7 +33,7 @@
     
     [self getCurrentUser];
     
-    
+    self.tabBarController.navigationItem.title = @"Profile";
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 800);
     
@@ -42,6 +42,14 @@
     [self.scrollView addSubview:self.refreshControl];
 
 
+}
+
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+     [self getCurrentUser];
+    self.tabBarController.navigationItem.title = @"Profile";
+    
 }
 
 //- (void) viewWillAppear:(BOOL)animated{
@@ -106,11 +114,6 @@
     
     self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
     
-    
-    
-    
-    self.bannerImageView.layer.borderWidth = 2.0f;
-    self.bannerImageView.layer.borderColor = [UIColor whiteColor].CGColor;
     self.bioLabel.text = self.user.bio;
     
     self.profileImageView.file = self.user.profilePic;
@@ -173,11 +176,6 @@
     
 }
 
-
-
-- (void)viewWillAppear:(BOOL)animated{
-    
-}
 
 
 

@@ -11,7 +11,6 @@
 
 @interface PFUser (ExtendedUser)
 @property (strong,nonatomic) PFFile *profilePic;
-@property (strong, nonatomic) PFFile *backgroundPic;
 @property (strong, nonatomic) NSString *bio;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *school;

@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     self.title = @"Discover";
+    self.tabBarController.navigationItem.title = @"Discover";
     
     NSNumber* noObj = [NSNumber numberWithBool:NO];
     self.filterArray = [[NSArray alloc] initWithObjects:noObj,noObj,noObj,noObj,nil];
@@ -55,7 +56,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    self.tabBarController.navigationItem.title = @"Discover";
     [self fetchFilteredUsers];
     
     [self.discoverTableView reloadData];

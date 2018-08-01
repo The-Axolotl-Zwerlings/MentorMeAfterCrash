@@ -152,6 +152,7 @@
         return cellA;
     } else if([collectionView isEqual:self.complimentsCollectionView]){
         ComplimentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentCell" forIndexPath:indexPath];
+        return cell;
         
         
     } else {
