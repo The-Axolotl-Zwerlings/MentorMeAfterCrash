@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Discover Table View Controller-->
+        <!--Discover-->
         <scene sceneID="l9m-sm-sK1">
             <objects>
                 <viewController storyboardIdentifier="DiscoverTableViewController" id="UGR-cv-PWW" customClass="DiscoverTableViewController" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vYi-iJ-Eyq">
-                                <rect key="frame" x="12" y="76" width="285" height="29"/>
+                                <rect key="frame" x="12" y="76" width="312" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
@@ -221,10 +221,10 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8m-DH-fIL">
-                                <rect key="frame" x="327" y="74" width="32" height="32"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8m-DH-fIL">
+                                <rect key="frame" x="332" y="78" width="24" height="24"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="search"/>
+                                <state key="normal" image="equalizer"/>
                                 <connections>
                                     <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="FZ0-6J-H2o"/>
                                 </connections>
@@ -233,7 +233,7 @@
                         <color key="backgroundColor" red="0.48627450979999998" green="0.82745098039999998" blue="0.69411764710000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="z0l-7Z-vq7"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="search" id="gFU-Ug-nO4"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="search" id="gFU-Ug-nO4"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="discoverTableView" destination="aaj-sI-BIJ" id="MA9-8V-tlg"/>
@@ -262,6 +262,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="equalizer" width="24" height="24"/>
         <image name="search" width="32" height="32"/>
     </resources>
 </document>

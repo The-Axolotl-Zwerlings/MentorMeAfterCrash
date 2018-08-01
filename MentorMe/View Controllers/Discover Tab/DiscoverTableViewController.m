@@ -22,8 +22,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 
-
-
 @property (nonatomic) BOOL getAdvice;
 @end
 
@@ -220,6 +218,11 @@
     self.filterArray = [NSArray arrayWithArray:old];
 }
 
+- (void) didChangeFilters{
+    
+    NSLog( @"Filters have been changed ");
+    
+}
 
 - (IBAction)onEdit:(UISegmentedControl *)sender {
     
@@ -316,45 +319,6 @@
 
 
 
-
-
-
-
-- (IBAction)logoutButtonAction:(UIButton *)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        if(error == nil){
-//            AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-//            UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-//            LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"MainViewController"];
-//            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            
-            
-            NSLog(@"hey we did it");
-        } else{
-            NSLog(@"error in logging out");
-        }
-    }];
-}
-
-- (IBAction)logoutAction:(UIBarButtonItem *)sender {
-    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
-        if(error == nil){
-            
-            [self dismissViewControllerAnimated:YES completion:nil];
-            NSLog(@"hey we did it");
-        } else{
-            NSLog(@"error in logging out");
-        }
-    }];
-}
-
-
-
-
-
-
-
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -369,12 +333,9 @@
         filterViewController.getAdvice = self.getAdvice;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         
-        
         UITableViewCell *tappedCell = sender;
         NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
         PFUser *incomingMentor = self.filteredUsers[indexPath.row];
-        
-        
         
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
