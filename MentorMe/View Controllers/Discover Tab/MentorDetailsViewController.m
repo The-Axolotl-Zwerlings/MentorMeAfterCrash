@@ -16,7 +16,7 @@
 #import "Review.h"
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
-#import "ComplimentCell.h"
+//#import "ComplimentCell.h"
 
 @interface MentorDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
@@ -132,9 +132,9 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         return self.adviceToGet.count;
-    } else if([collectionView isEqual:self.complimentsCollectionView]){
+    } /*else if([collectionView isEqual:self.complimentsCollectionView]){
         return self.complimentsArray.count;
-    }else {
+    }*/else {
         return self.adviceToGive.count;
     }
     
@@ -150,12 +150,14 @@
         cellA.interest = self.adviceToGet[indexPath.item];
         [cellA reloadInputViews];
         return cellA;
-    } else if([collectionView isEqual:self.complimentsCollectionView]){
+    } /*else if([collectionView isEqual:self.complimentsCollectionView]){
         ComplimentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentCell" forIndexPath:indexPath];
         return cell;
         
+        return cell;
         
-    } else {
+        
+    } */ else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
         [cellB reloadInputViews];
