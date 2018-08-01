@@ -300,6 +300,11 @@
     [cell.getCollectionView setShowsHorizontalScrollIndicator:NO];
     [cell.giveCollectionView setShowsHorizontalScrollIndicator:NO];
     
+    cell.getCollectionView.alwaysBounceHorizontal = YES;
+    cell.giveCollectionView.alwaysBounceHorizontal = YES;
+    
+    cell.backgroundColor = [UIColor colorWithRed:0.14 green:0.20 blue:0.28 alpha:1.0];
+    
     
     [cell layoutCell:cell.userForCell];
     

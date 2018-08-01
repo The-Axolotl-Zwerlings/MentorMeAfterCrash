@@ -39,8 +39,6 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     
-    
-    
     [self.refreshControl addTarget:self action:@selector(fetchFilteredAppointments) forControlEvents:UIControlEventValueChanged];
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.appointmentsTableView reloadData];
@@ -121,25 +119,80 @@
 
     //0 is upcoming , 1 is past
     NSInteger index = self.appointmentController.selectedSegmentIndex;
-                                                         
-    
-    
-    
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
-
+        
         self.appointmentsArray = self.upComingAppointments;
+       // if( self.upComingAppointments.count == 0){
+        
+       // [self checkAppointmentLoader];
+        
+       // } else {
+        self.appointmentsTableView.hidden = false;
+       // [self checkAppointmentLoader];
         [self.appointmentsTableView reloadData];
         [self.refreshControl endRefreshing];
+       // }
+        
     } else {
         NSLog( @"Fetching Past Appointments...");
-
+        
         self.appointmentsArray = self.pastAppointments;
+        //if( self.pastAppointments.count == 0){
+        
+        //[self checkAppointmentLoader];
+        
+        //} else {
+        NSLog( @"%lu", self.pastAppointments.count );
+        //[self checkAppointmentLoader];
         [self.appointmentsTableView reloadData];
         [self.refreshControl endRefreshing];
+        //}
         
     }
 }
+
+- (void) checkAppointmentLoader {
+    
+    UILabel *noAppointmentsLabel;
+    
+    if(![self.noAppointmentsScreenView isDescendantOfView:self.view]) {
+        
+        float startingHeight = self.appointmentsTableView.frame.size.height;
+        float actualY = self.appointmentsTableView.frame.origin.y;
+        
+        self.noAppointmentsScreenView = [[UIView alloc] initWithFrame:CGRectMake(0, actualY, self.view.frame.size.width, startingHeight)];
+        [self.appointmentsTableView addSubview:self.noAppointmentsScreenView];
+        self.noAppointmentsScreenView.backgroundColor = [UIColor whiteColor];
+        
+        NSLog( @"AAAA" );
+        noAppointmentsLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.noAppointmentsScreenView.frame.size.width*0.25, self.noAppointmentsScreenView.frame.size.height*0.4, self.noAppointmentsScreenView.frame.size.width*0.5, 100)];
+        noAppointmentsLabel.textColor = [UIColor blackColor];
+        noAppointmentsLabel.font = [UIFont systemFontOfSize:15];
+        noAppointmentsLabel.text = @"No Upcoming Appointments Found";
+        noAppointmentsLabel.numberOfLines = 0;
+        noAppointmentsLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        noAppointmentsLabel.textAlignment = NSTextAlignmentCenter;
+        
+        
+        [self.noAppointmentsScreenView addSubview:noAppointmentsLabel];
+        self.appointmentsTableView.hidden = true;
+        self.noAppointmentsScreenView.hidden = false;
+        noAppointmentsLabel.hidden = false;
+        
+        
+    } else {
+        
+        NSLog( @"BBBB" );
+        
+        [self.noAppointmentsScreenView removeFromSuperview];
+        self.noAppointmentsScreenView.hidden = YES;
+        noAppointmentsLabel.hidden = YES;
+        
+    }
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

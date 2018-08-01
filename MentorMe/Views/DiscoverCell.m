@@ -17,6 +17,7 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        
   
     }
     
@@ -38,6 +39,7 @@
 - (void)layoutCell:(PFUser *)user{
     
     self.nameLabel.text = user.name;
+    
     
     NSString *jobTitleAppend = user[@"jobTitle"];
     NSString *companyLabelAppend = user[@"company"];
@@ -75,6 +77,7 @@
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.getInterests[indexPath.item];
         [cellA reloadInputViews];
+        
         return cellA;
         
     } else {

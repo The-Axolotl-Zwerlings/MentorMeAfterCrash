@@ -15,6 +15,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *appointmentsTableView;
 @property (strong, nonatomic) NSArray *appointmentsArray;
 
+@property (strong, nonatomic) UIView *noAppointmentsScreenView;
+
 
 
 
