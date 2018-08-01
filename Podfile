@@ -13,6 +13,8 @@ target 'MentorMe' do
   pod 'AFNetworking'
   pod 'TTGTagCollectionView'
   pod 'ChameleonFramework'
+  pod 'TLTagsControl', :git => 'https://github.com/mohlman3/TLTagsControl.git'
+  
   
   target 'MentorMeTests' do
     inherit! :search_paths
