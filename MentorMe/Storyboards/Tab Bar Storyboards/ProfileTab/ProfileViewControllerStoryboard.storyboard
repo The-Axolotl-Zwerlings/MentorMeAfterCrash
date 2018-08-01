@@ -198,11 +198,20 @@
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
                         <outlet property="profileScreenView" destination="fSV-vj-m9l" id="3VF-ui-aoz"/>
                         <outlet property="scrollView" destination="hCG-VC-Jd3" id="Ilc-mh-meX"/>
+                        <segue destination="1WQ-Wk-iXr" kind="presentation" identifier="backToLogin" id="VlE-xu-a07"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-oN-wgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4751.1999999999998" y="28.335832083958024"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="f5T-Hy-g7A">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="1WQ-Wk-iXr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VeU-N2-bXt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5337" y="-210"/>
         </scene>
         <!--EditProfileViewController-->
         <scene sceneID="CsB-d3-Ngb">
