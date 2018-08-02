@@ -15,7 +15,7 @@
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
-
+#import "MBProgressHUD.h"
 #import "InterestModel.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
@@ -71,7 +71,7 @@
 }
 
 -(void)fetchFilteredUsers{
-
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *usersQuery = [PFUser query];
     [usersQuery includeKey:@"profilePic"];
     [usersQuery includeKey:@"giveAdviceInterests"];
@@ -109,6 +109,7 @@
             [self.discoverTableView reloadData];
             [self.refreshControl endRefreshing];
             NSLog(@"WE GOT THE USERS 😇");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         } else{
             NSLog(@"didn't get the users 🙃");
         }
