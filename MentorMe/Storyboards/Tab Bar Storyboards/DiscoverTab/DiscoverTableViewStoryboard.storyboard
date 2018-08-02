@@ -221,6 +221,7 @@
                     <connections>
                         <outlet property="discoverTableView" destination="aaj-sI-BIJ" id="MA9-8V-tlg"/>
                         <outlet property="mentorMenteeSegControl" destination="vYi-iJ-Eyq" id="7oL-GB-Pho"/>
+                        <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="d4Z-Dm-b3k"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anQ-We-Gm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
