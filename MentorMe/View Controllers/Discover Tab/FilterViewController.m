@@ -22,7 +22,6 @@
 }
 @end
 
-
 @interface FilterViewController () <TTGTextTagCollectionViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *schoolLabel;
@@ -33,7 +32,6 @@
 @property (strong, nonatomic) IBOutlet TTGTextTagCollectionView *getAdviceTTGView;
 @property (strong, nonatomic) IBOutlet TTGTextTagCollectionView *giveAdviceTTGView;
 
-
 @end
 
 @implementation FilterViewController
@@ -41,21 +39,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    if(self.filterPreferences == nil){
-        self.filterPreferences = [NSArray arrayWithObjects:@(0),@(0),@(0),@(0),nil];
-    }
-
+    // Do any additional setup after loading the view
+    
+    self.selectedGetFilters = [[NSMutableArray alloc] init];
+    self.selectedGiveFilters = [[NSMutableArray alloc] init];
+    
     [self loadTitles];
     self.giveAdviceTTGView.delegate = self;
     self.getAdviceTTGView.delegate = self;
     [self loadTagCollectionViews];
-   
     
-    [self.schoolSwitch setOn:[self.filterPreferences[0] boolValue]];
-    [self.companySwitch setOn:[self.filterPreferences[1] boolValue]];
-    [self.locationSwitch setOn:[self.filterPreferences[2] boolValue]];
-    [self.interestsSwitchs setOn:![self.filterPreferences[3] boolValue]];
+    [self checkSelectedTags:self.giveAdviceTTGView withArrayOfIndices:self.selectedIndexGive];
+    [self checkSelectedTags:self.getAdviceTTGView withArrayOfIndices:self.selectedIndexGet];
+   
+    [self.schoolSwitch setOn:false];
+    [self.companySwitch setOn:false];
+    [self.locationSwitch setOn:false];
+    
+    
+    
 }
 
 - (void) loadTitles {
@@ -72,6 +74,18 @@
 
 - (void) loadTagCollectionViews{
     
+    self.getAdviceTTGView.scrollView.alwaysBounceHorizontal = YES;
+    self.giveAdviceTTGView.scrollView.alwaysBounceHorizontal = YES;
+    
+    self.getAdviceTTGView.scrollView.showsHorizontalScrollIndicator = NO;
+    self.giveAdviceTTGView.scrollView.showsHorizontalScrollIndicator = NO;
+    
+    self.getAdviceTTGView.scrollView.alwaysBounceVertical = YES;
+    self.giveAdviceTTGView.scrollView.alwaysBounceVertical = YES;
+    
+    self.getAdviceTTGView.scrollView.showsVerticalScrollIndicator = NO;
+    self.giveAdviceTTGView.scrollView.showsVerticalScrollIndicator = NO;
+    
     //1. Initialize Tag Collection Views
     TTGTextTagConfig *config = self.giveAdviceTTGView.defaultConfig;
     
@@ -82,7 +96,7 @@
     config.tagSelectedTextColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagBackgroundColor = [UIColor colorWithRed:0.98 green:0.91 blue:0.43 alpha:1.00];
     config.tagSelectedBackgroundColor = [UIColor colorWithRed:0.97 green:0.64 blue:0.27 alpha:1.00];
-    self.giveAdviceTTGView.horizontalSpacing = 6.0;
+    self.giveAdviceTTGView.horizontalSpacing = 8.0;
     self.giveAdviceTTGView.verticalSpacing = 8.0;
     config.tagBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagSelectedBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
@@ -94,27 +108,26 @@
     config.tagShadowRadius = 0.5f;
     config.tagCornerRadius = 50;
     
+    //3. Fetch Query to Fill Tags
     PFQuery *queryforCurrentUser = [PFUser query];
-    [queryforCurrentUser includeKey:@"giveAdviceInterests"];
-    [queryforCurrentUser includeKey:@"getAdviceInterests"];
-    [queryforCurrentUser includeKey:@"username"];
+    NSArray *queryStrings = [NSArray arrayWithObjects:@"giveAdviceInterests", @"getAdviceInterests", @"username", nil];
+    [queryforCurrentUser includeKeys:queryStrings];
     [queryforCurrentUser whereKey:@"username" equalTo:PFUser.currentUser[@"username"]];
     [queryforCurrentUser findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if(error == nil){
-            PFUser *user = objects[0];
-            for(InterestModel *interest in user.giveAdviceInterests){
+            PFUser *myUser = [objects firstObject];
+            for(InterestModel *interest in myUser.giveAdviceInterests){
                 TTGTextTagConfig *config = [TTGTextTagConfig new];
                 config.extraData = interest;
                 [self.giveAdviceTTGView addTag:interest.subject withConfig:config];
             }
-            for(InterestModel *interest in user.getAdviceInterests){
+            for(InterestModel *interest in myUser.getAdviceInterests){
                 TTGTextTagConfig *config = [TTGTextTagConfig new];
                 config.extraData = interest;
                 [self.getAdviceTTGView addTag:interest.subject withConfig:config];
             }
         }
     }];
-    
     self.getAdviceTTGView.defaultConfig = config;
     
 }
@@ -125,53 +138,55 @@
 }
 
 
+- (void) checkSelectedTags:(TTGTextTagCollectionView *)textTagCollectionView withArrayOfIndices:(NSMutableArray *)arrayOfIndices {
+    NSLog(@"Checking selected tags");
+    
 
-- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected tagConfig:(TTGTextTagConfig *)config{
-    NSLog(@"you tapped %@", tagText);
+    
+    for( NSNumber* index in arrayOfIndices ){
+        [self.getAdviceTTGView setTagAtIndex:@(2) selected:YES];
+        [textTagCollectionView setTagAtIndex: index selected:YES];
+        NSLog(@"%@", index);
+    }
+    
 }
 
 
 
-
-
-
+- (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected tagConfig:(TTGTextTagConfig *)config{
+    
+    if( textTagCollectionView == self.getAdviceTTGView ){
+        [self.selectedGetFilters addObject:tagText];
+        NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+        
+        if( self.selectedIndexGet == nil ){
+            self.selectedIndexGet = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+        } else {
+            [self.selectedIndexGet addObject:indexAsNumber];
+        }
+        NSLog(@"%@", [self.selectedIndexGet firstObject]);
+    } else {
+        [self.selectedGiveFilters addObject:tagText];
+        NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+        
+        if( self.selectedIndexGive == nil ){
+            self.selectedIndexGive = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+        } else {
+            [self.selectedIndexGive addObject:indexAsNumber];
+        }
+        NSLog(@"%@", [self.selectedIndexGive firstObject]);
+    }
+}
 
 
 
 /**** BUTTON OUTLETS *****/
-
-
-
 - (IBAction)onTapBack:(id)sender {
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
-
-
-
 - (IBAction)onTapConfirm:(UIBarButtonItem *)sender {
-    
-    NSNumber *school = [NSNumber numberWithBool:[self.schoolSwitch isOn]];
-    NSNumber *location = [NSNumber numberWithBool:[self.locationSwitch isOn]];
-    NSNumber *company = [NSNumber numberWithBool:[self.companySwitch isOn]];
-    NSNumber *interests = [NSNumber numberWithBool:[self.interestsSwitchs isOn]];
-    
-    self.filterPreferences = [NSArray arrayWithObjects:school,company,location,interests,nil];
-    
-    NSMutableArray *giveData = [[NSMutableArray alloc]init];
-    NSMutableArray *getData = [[NSMutableArray alloc]init];
-    NSArray *configsGetAdvice = [self.getAdviceTTGView getConfigsAtSelected];
-    NSArray *configsGiveAdvice = [self.giveAdviceTTGView getConfigsAtSelected];
-    for(TTGTextTagConfig *config in configsGetAdvice){
-        [getData addObject:((InterestModel *)config.extraData)];
-    }
-    for(TTGTextTagConfig *config in configsGiveAdvice){
-        [giveData addObject:((InterestModel *)config.extraData)];
-    }
-    
-    [self.delegate didChangeSchool:school withCompany:company withLocation:location andInterests:interests withGive:[NSArray arrayWithArray:giveData] andGet:[NSArray arrayWithArray:getData]];
+    [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
