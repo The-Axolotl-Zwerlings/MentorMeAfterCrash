@@ -45,6 +45,7 @@
     self.selectedGiveFilters = [[NSMutableArray alloc] init];
     
     [self loadTitles];
+    
     self.giveAdviceTTGView.delegate = self;
     self.getAdviceTTGView.delegate = self;
     [self loadTagCollectionViews];
@@ -61,6 +62,9 @@
 }
 
 - (void) loadTitles {
+    
+    NSLog(@" loadTitles ");
+    
     PFUser *myUser = [PFUser currentUser];
     self.schoolLabel.text =  [@"Attends " stringByAppendingString: myUser.school];
     self.companyLabel.text = [@"Works at " stringByAppendingString: myUser.company];
@@ -70,6 +74,9 @@
     self.schoolLabel.adjustsFontSizeToFitWidth = YES;
     self.companyLabel.adjustsFontSizeToFitWidth = YES;
     self.locationLabel.adjustsFontSizeToFitWidth = YES;
+    [self.schoolSwitch setOn:false];
+    [self.companySwitch setOn:false];
+    [self.locationSwitch setOn:false];
 }
 
 - (void) loadTagCollectionViews{
@@ -88,20 +95,26 @@
     
     //1. Initialize Tag Collection Views
     TTGTextTagConfig *config = self.giveAdviceTTGView.defaultConfig;
-    
    
     //2. Set Tag Properties
     config.tagTextFont = [UIFont boldSystemFontOfSize:18.0f];
+    
     config.tagTextColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagSelectedTextColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
+    
     config.tagBackgroundColor = [UIColor colorWithRed:0.98 green:0.91 blue:0.43 alpha:1.00];
     config.tagSelectedBackgroundColor = [UIColor colorWithRed:0.97 green:0.64 blue:0.27 alpha:1.00];
+    
     self.giveAdviceTTGView.horizontalSpacing = 8.0;
     self.giveAdviceTTGView.verticalSpacing = 8.0;
+    self.getAdviceTTGView.horizontalSpacing = 8.0;
+    self.getAdviceTTGView.verticalSpacing = 8.0;
+    
     config.tagBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagSelectedBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagBorderWidth = 1;
     config.tagSelectedBorderWidth = 1;
+    
     config.tagShadowColor = [UIColor blackColor];
     config.tagShadowOffset = CGSizeMake(0, 0.3);
     config.tagShadowOpacity = 0.3f;

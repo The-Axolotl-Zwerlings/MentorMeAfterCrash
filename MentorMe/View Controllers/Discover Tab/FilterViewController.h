@@ -13,8 +13,11 @@
 
 @interface FilterViewController : UIViewController
 @property (weak, nonatomic) id<FilterDelegate> delegate;
+
+
 @property (strong, nonatomic) NSMutableArray *selectedGetFilters;
 @property (strong, nonatomic) NSMutableArray *selectedGiveFilters;
+
 @property (strong, nonatomic) NSMutableArray *selectedInterests;
 
 @property (nonatomic) BOOL getAdvice;
