@@ -28,6 +28,8 @@
 @property (nonatomic, strong) NSArray *getInterests;
 @property (nonatomic, strong) NSArray *giveInterests;
 
+@property (weak, nonatomic) IBOutlet UILabel *statusLineLabel;
+
 @property (strong, nonatomic) PFUser *userForCell;
 
 - (void)layoutCell:(PFUser *)user;

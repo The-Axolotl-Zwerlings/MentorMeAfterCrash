@@ -26,7 +26,7 @@
 - (void)reloadInputViews
 {
     self.interestNameLabel.text = self.interest.subject;
-    NSLog( @"Loaded text on cell");
+    //NSLog( @"Loaded text on cell");
 }
 
 - (void)drawRect:(CGRect)rect
