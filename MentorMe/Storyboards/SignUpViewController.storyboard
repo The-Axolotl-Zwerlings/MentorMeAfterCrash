@@ -199,7 +199,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <prototypes>
-                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" id="K4x-bk-C3l" customClass="AutocompleteTableViewCell">
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="K4x-bk-C3l" customClass="AutocompleteTableViewCell">
                             <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K4x-bk-C3l" id="sfD-xb-6Id">
@@ -224,7 +224,6 @@
                                 </subviews>
                             </tableViewCellContentView>
                             <connections>
-                                <outlet property="addInterestButton" destination="RGA-3Q-v7E" id="307-Xs-80V"/>
                                 <outlet property="interestLabel" destination="f2e-Nb-dmp" id="joY-NJ-hMk"/>
                             </connections>
                         </tableViewCell>

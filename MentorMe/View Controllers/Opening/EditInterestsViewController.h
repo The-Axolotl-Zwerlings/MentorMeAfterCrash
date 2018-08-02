@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface EditInterestsViewController : UIViewController
-
+-(void)passString:(NSString *)string;
 @end

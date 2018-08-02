@@ -338,17 +338,17 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
         AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
-        cell.addInterestButton.hidden = YES;
+        //cell.addInterestButton.hidden = YES;
         
         if(self.forTableView == nil || self.forTableView.count == 0){
             NSLog(@"IN IF1");
-            cell.addInterestButton.hidden = NO;
+            //cell.addInterestButton.hidden = NO;
             cell.interestLabel.hidden = YES;
             return cell;
         }
         else{
             NSLog(@"IN ELSE1");
-            cell.addInterestButton.hidden = YES;
+            //cell.addInterestButton.hidden = YES;
             cell.interestLabel.text = self.forTableView [indexPath.row];
             cell.interestLabel.hidden = NO;
             return cell;

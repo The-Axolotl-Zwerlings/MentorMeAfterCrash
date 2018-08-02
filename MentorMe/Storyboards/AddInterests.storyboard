@@ -55,6 +55,7 @@
                     <connections>
                         <outlet property="getAdviceField" destination="VBa-Pa-JdX" id="0Uk-Hc-ItF"/>
                         <outlet property="giveAdviceField" destination="fl8-ta-PIg" id="vd0-22-YTy"/>
+                        <outlet property="interestsTableView" destination="s8N-RW-Z2p" id="H3G-bg-RL9"/>
                         <outlet property="saveChangesButton" destination="m2v-9a-vzf" id="zea-XN-Dry"/>
                     </connections>
                 </viewController>
@@ -64,13 +65,34 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <prototypes>
-                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WDV-uO-e7H">
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" id="WDV-uO-e7H" customClass="AutocompleteTableViewCell">
                             <rect key="frame" x="0.0" y="28" width="240" height="44"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WDV-uO-e7H" id="kfl-uR-8RA">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frf-Q0-wK0">
+                                        <rect key="frame" x="16" y="12" width="208" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mrv-VY-Oum">
+                                        <rect key="frame" x="56" y="7" width="128" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Make New Subject"/>
+                                        <connections>
+                                            <action selector="makeNewInterest:" destination="A9G-a4-gd4" eventType="touchUpInside" id="Cdt-qD-QFt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                             </tableViewCellContentView>
+                            <connections>
+                                <outlet property="interestLabel" destination="frf-Q0-wK0" id="9fb-jG-nCT"/>
+                                <outlet property="makeInterestButton" destination="Mrv-VY-Oum" id="5E1-PK-ym7"/>
+                            </connections>
                         </tableViewCell>
                     </prototypes>
                 </tableView>
