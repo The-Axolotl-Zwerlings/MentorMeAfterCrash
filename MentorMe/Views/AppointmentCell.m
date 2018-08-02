@@ -44,9 +44,11 @@
         //self.mentorOrMenteeLabel.text = @"You're the mentor!";
         
         self.otherAttendeeProfilePic.layer.masksToBounds = true;
-        self.otherAttendeeProfilePic.layer.borderWidth = 5;
-        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
+        //self.otherAttendeeProfilePic.layer.borderWidth = 5;
+        //self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
         self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
+        self.rockStatus.text = @"You're the metamorphasis!";
         
     } else{
         self.otherAttendeeName.text = appointment.mentor[@"name"];
@@ -54,10 +56,12 @@
         [self.otherAttendeeProfilePic loadInBackground];
         //self.mentorOrMenteeLabel.text = @"You're the mentee!";
         
-        self.otherAttendeeProfilePic.layer.masksToBounds = true;
-        self.otherAttendeeProfilePic.layer.borderWidth = 5;
-        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        //self.otherAttendeeProfilePic.layer.masksToBounds = true;
+        //self.otherAttendeeProfilePic.layer.borderWidth = 5;
+        //self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.greenColor.CGColor);
         self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
+        self.rockStatus.text = @"You're the pebble!";
     }
     
     

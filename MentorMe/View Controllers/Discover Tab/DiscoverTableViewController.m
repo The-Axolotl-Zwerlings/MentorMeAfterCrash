@@ -67,7 +67,7 @@
     PFQuery *usersQuery = [PFUser query];
     NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
     [usersQuery includeKeys:stringsToQueryAllUsers];
-    [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+    //[usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
     usersQuery.limit = 20;
     [usersQuery orderByDescending:@"createdAt"];
     [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -84,6 +84,9 @@
         }
     }];
 }
+//- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
+//    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:sender];
+//}
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
     

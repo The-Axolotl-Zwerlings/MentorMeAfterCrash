@@ -29,7 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Appointments";
+    //self.title = @"Appointments";
     self.tabBarController.navigationItem.title = @"Appointments";
     
     self.appointmentsTableView.delegate = self;
