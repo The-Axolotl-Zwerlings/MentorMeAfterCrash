@@ -14,10 +14,15 @@
 @property (strong, nonatomic) IBOutlet UITableView *discoverTableView;
 @property (weak, nonatomic) id <DiscoverTableViewControllerDelegate> delegate;
 
-@property (strong, nonatomic) NSArray *filteredUsers;
-@property (strong, nonatomic) NSArray *filterArray;
+@property (strong, nonatomic) NSMutableArray *filteredUsersFromQuery;
+@property (strong, nonatomic) NSArray *allUsersFromQuery;
+
+@property (strong, nonatomic) NSMutableArray *filtersToSearchGetWith;
+@property (strong, nonatomic) NSMutableArray *filtersToSearchGiveWith;
 
 @property (strong, nonatomic) NSArray *filterGive;
 @property (strong, nonatomic) NSArray *filterGet;
 
+@property (strong, nonatomic) NSMutableArray *getIndex;
+@property (strong, nonatomic) NSMutableArray *giveIndex;
 @end

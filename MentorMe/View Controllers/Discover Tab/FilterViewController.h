@@ -8,12 +8,23 @@
 
 #import <UIKit/UIKit.h>
 @protocol FilterDelegate
-- (void)didChangeSchool:(NSNumber *)school withCompany:(NSNumber *)company withLocation:(NSNumber *)location andInterests:(NSNumber *)interests withGive:(NSArray *)give andGet:(NSArray *)get;
+- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *) incomingGetIndices withGiveIndex:(NSMutableArray *) incomingGiveIndices;
 @end
+
 @interface FilterViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
-@property (nonatomic) BOOL getAdvice;
 @property (weak, nonatomic) id<FilterDelegate> delegate;
-@property (strong, nonatomic) NSArray *filterPreferences;
+@property (strong, nonatomic) NSMutableArray *selectedGetFilters;
+@property (strong, nonatomic) NSMutableArray *selectedGiveFilters;
+@property (strong, nonatomic) NSMutableArray *selectedInterests;
+
+@property (nonatomic) BOOL getAdvice;
+@property (strong, nonatomic) IBOutlet UISwitch *schoolSwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *companySwitch;
+@property (strong, nonatomic) IBOutlet UISwitch *locationSwitch;
+
+@property (strong, nonatomic) NSMutableArray *selectedIndexGet;
+@property (strong, nonatomic) NSMutableArray *selectedIndexGive;
+
+
 @end
 
