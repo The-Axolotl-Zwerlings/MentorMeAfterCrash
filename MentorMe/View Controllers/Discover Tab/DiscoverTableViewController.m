@@ -46,13 +46,35 @@
     [self.discoverTableView insertSubview:self.refreshControl atIndex:0];
     [self.discoverTableView reloadData];
     
+    [self loadBarButtons];
+    
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    [self loadBarButtons];
+    
+    [self fetchAllUsers];
     self.tabBarController.navigationItem.title = @"Discover";
     [self.discoverTableView reloadData];
+}
+
+-(void)segueToFilters{
+    [self performSegueWithIdentifier:@"filterSegue" sender:self];
+}
+
+- (void) loadBarButtons {
+    
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    
+    UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,27 +84,31 @@
 
 
 -(void)fetchAllUsers{
-
+    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *usersQuery = [PFUser query];
     NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
     [usersQuery includeKeys:stringsToQueryAllUsers];
-    [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
-    usersQuery.limit = 20;
-    [usersQuery orderByDescending:@"createdAt"];
-    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
-        if(users){
-            self.allUsersFromQuery = users;
-            [self.discoverTableView reloadData];
-            [self.refreshControl endRefreshing];
-
-            NSLog(@"WE GOT THE USERS 😇");
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-        } else{
-            //NSLog(@"didn't get the users 🙃");
-        }
-    }];
+    
+    if ([PFUser currentUser] != nil){
+        
+        [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+        usersQuery.limit = 20;
+        [usersQuery orderByDescending:@"createdAt"];
+        [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
+            if(users){
+                self.allUsersFromQuery = users;
+                [self.discoverTableView reloadData];
+                [self.refreshControl endRefreshing];
+                
+                NSLog(@"WE GOT THE USERS 😇");
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+            } else{
+                //NSLog(@"didn't get the users 🙃");
+            }
+        }];
+    }
 }
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
@@ -143,11 +169,11 @@
         });
         
         
-    
+        
     }
-//    self.filteredUsers = [NSArray arrayWithArray:oldArray];
-//    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
-//    [self.discoverTableView reloadData]
+    //    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+    //    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
+    //    [self.discoverTableView reloadData]
 }
 
 
@@ -156,13 +182,16 @@
 }
 
 
+
+
+
 /***** TABLE VIEW ******/
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-   //1. Check what index we are on
+    //1. Check what index we are on
     
     if( self.filtersToSearchGetWith.count != 0 || self.filtersToSearchGiveWith.count != 0 ) { // this means there are filters selected
         return self.filteredUsersFromQuery.count;
@@ -225,7 +254,7 @@
 
 
 - (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices{
-
+    
     self.getIndex = incomingGetIndices;
     self.giveIndex = incomingGiveIndices;
     
@@ -281,7 +310,7 @@
         
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
-
+        
         if(self.mentorMenteeSegControl.selectedSegmentIndex == 0){
             mentorDetailsViewController.isMentorOfMeeting = NO;
         } else{
