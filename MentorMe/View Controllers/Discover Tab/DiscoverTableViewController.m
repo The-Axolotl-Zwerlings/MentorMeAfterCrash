@@ -15,7 +15,7 @@
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
 #import "LocationApiManager.h"
-
+#import "MBProgressHUD.h"
 #import "InterestModel.h"
 @interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
@@ -60,7 +60,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 -(void)fetchAllUsers{
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     PFQuery *usersQuery = [PFUser query];
     NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
     [usersQuery includeKeys:stringsToQueryAllUsers];
@@ -72,7 +75,10 @@
             self.allUsersFromQuery = users;
             [self.discoverTableView reloadData];
             [self.refreshControl endRefreshing];
-            //NSLog(@"WE GOT THE USERS 😇");
+
+            NSLog(@"WE GOT THE USERS 😇");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         } else{
             //NSLog(@"didn't get the users 🙃");
         }

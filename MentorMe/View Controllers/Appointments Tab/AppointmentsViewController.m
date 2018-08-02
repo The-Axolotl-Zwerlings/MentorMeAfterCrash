@@ -13,13 +13,13 @@
 #import "Parse/Parse.h"
 #import "ParseUI.h"
 #import "PFUser+ExtendedUser.h"
-
+#import "MBProgressHUD.h"
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *appointmentController;
 @property (strong, nonatomic) NSArray *pastAppointments;
 @property (strong, nonatomic) NSArray *upComingAppointments;
-
+@property UILabel *NoAppointments;
 @end
 
 
@@ -43,6 +43,17 @@
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.appointmentsTableView reloadData];
     
+    CGRect labelFrame = CGRectMake(self.view.frame.size.width/4,self.view.frame.size.height/2,200,44);
+    
+    self.NoAppointments = [[UILabel alloc] initWithFrame:labelFrame];
+    
+    self.NoAppointments.backgroundColor = [UIColor clearColor];
+    self.NoAppointments.textColor = [UIColor grayColor];
+    self.NoAppointments.font = [UIFont fontWithName:@"Verdana" size:18.0];
+    
+    self.NoAppointments.numberOfLines = 2;
+    self.NoAppointments.text = @"No appointments";
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -52,6 +63,8 @@
     [super viewWillAppear:animated];
     [self fetchFilteredAppointments];
     [self.appointmentsTableView reloadData];
+    
+    
 
     
 }
@@ -81,6 +94,8 @@
     NSMutableArray *oldUpcoming = [[NSMutableArray alloc]init];
     
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [combinedQuery findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (posts != nil) {
             NSDate *currentDate = [NSDate date];
@@ -106,10 +121,26 @@
                     
                 }
             }
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self displayNoApps];
         } else {
             NSLog(@"%@", error.localizedDescription);
         }
     }];
+}
+
+-(void)displayNoApps{
+    
+    
+    if(self.appointmentsArray.count == 0){
+        [self.view addSubview:self.NoAppointments];
+        [self.view bringSubviewToFront:self.NoAppointments];
+        
+    } else{
+        [self.view sendSubviewToBack:self.NoAppointments];
+    }
+    
+
 }
 
 -(void) fetchFilteredAppointments{
@@ -134,6 +165,8 @@
         [self.refreshControl endRefreshing];
        // }
         
+        
+        
     } else {
         NSLog( @"Fetching Past Appointments...");
         
@@ -150,6 +183,7 @@
         //}
         
     }
+    
 }
 
 - (void) checkAppointmentLoader {
@@ -207,6 +241,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    
     
     return self.appointmentsArray.count;
 }
