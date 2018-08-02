@@ -845,7 +845,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdo7ntknoo9owm.MentorMe;
+
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
+
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -863,7 +867,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdo7ntknoo9owm.MentorMe;
+
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
+
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
