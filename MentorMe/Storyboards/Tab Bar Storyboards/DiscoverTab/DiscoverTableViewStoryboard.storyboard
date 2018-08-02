@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vYi-iJ-Eyq">
-                                <rect key="frame" x="12" y="76" width="312" height="29"/>
+                                <rect key="frame" x="12" y="76" width="352" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <segments>
@@ -212,14 +212,6 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i8m-DH-fIL">
-                                <rect key="frame" x="332" y="78" width="24" height="24"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="equalizer"/>
-                                <connections>
-                                    <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="FZ0-6J-H2o"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.2196078431372549" green="0.54117647058823526" blue="0.41176470588235292" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="z0l-7Z-vq7"/>
@@ -253,7 +245,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="equalizer" width="24" height="24"/>
         <image name="search" width="32" height="32"/>
     </resources>
 </document>

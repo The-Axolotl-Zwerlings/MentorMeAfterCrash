@@ -54,6 +54,9 @@
     self.NoAppointments.numberOfLines = 2;
     self.NoAppointments.text = @"No appointments";
     
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -63,6 +66,10 @@
     [super viewWillAppear:animated];
     [self fetchFilteredAppointments];
     [self.appointmentsTableView reloadData];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    
     
     
 
