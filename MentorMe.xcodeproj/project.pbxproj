@@ -31,9 +31,11 @@
 		A883130B20F28D5F00363E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A883130A20F28D5F00363E48 /* main.m */; };
 		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
 		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
+		B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22101E821123D0C00D2E59F /* EditInterestsViewController.m */; };
 		B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
 		B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */; };
+		B2F0FBD9211239F00054CA73 /* AddInterests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F0FBD8211239F00054CA73 /* AddInterests.storyboard */; };
 		C002266920FE5A11007D359B /* AppointmentsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */; };
 		C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */; };
 		C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C002266D20FE5B70007D359B /* ProfileViewController.m */; };
@@ -117,11 +119,14 @@
 		A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A883131F20F28D5F00363E48 /* MentorMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeUITests.m; sourceTree = "<group>"; };
 		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B22101E721123D0C00D2E59F /* EditInterestsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditInterestsViewController.h; sourceTree = "<group>"; };
+		B22101E821123D0C00D2E59F /* EditInterestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInterestsViewController.m; sourceTree = "<group>"; };
 		B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteTableViewCell.h; sourceTree = "<group>"; };
 		B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteTableViewCell.m; sourceTree = "<group>"; };
 		B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
 		B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
+		B2F0FBD8211239F00054CA73 /* AddInterests.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddInterests.storyboard; sourceTree = "<group>"; };
 		BC60CE26C8A32A3C34A2E255 /* libPods-MentorMe.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MentorMe.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentsViewController.storyboard; sourceTree = "<group>"; };
 		C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
@@ -269,6 +274,7 @@
 				A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */,
 				C002267120FE64FD007D359B /* Main.storyboard */,
 				C002266F20FE63BA007D359B /* SignUpViewController.storyboard */,
+				B2F0FBD8211239F00054CA73 /* AddInterests.storyboard */,
 				C0D040D820FE7000005D4FC2 /* Tab Bar Storyboards */,
 			);
 			path = Storyboards;
@@ -360,6 +366,8 @@
 				C03D899E20F7CA9900342B39 /* LoginViewController.m */,
 				C03D89A320F7CE3D00342B39 /* SignUpViewController.h */,
 				C03D89A420F7CE3D00342B39 /* SignUpViewController.m */,
+				B22101E721123D0C00D2E59F /* EditInterestsViewController.h */,
+				B22101E821123D0C00D2E59F /* EditInterestsViewController.m */,
 			);
 			path = Opening;
 			sourceTree = "<group>";
@@ -514,6 +522,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B2F0FBD9211239F00054CA73 /* AddInterests.storyboard in Resources */,
 				C002267220FE64FD007D359B /* Main.storyboard in Resources */,
 				A883130820F28D5F00363E48 /* LaunchScreen.storyboard in Resources */,
 				A8011C85210141910028E604 /* DiscoverTableViewStoryboard.storyboard in Resources */,
@@ -646,6 +655,7 @@
 				B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */,
 				A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */,
 				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
+				B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */,
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
 				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
 				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
@@ -847,7 +857,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = DFS6245D8K;
+				DEVELOPMENT_TEAM = M963N7PF23;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

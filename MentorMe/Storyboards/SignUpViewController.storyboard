@@ -165,7 +165,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="biV-1Y-Gs8"/>
                     </view>
-                    <navigationItem key="navigationItem" id="kHd-MC-SvK"/>
+                    <navigationItem key="navigationItem" id="kHd-MC-SvK">
+                        <barButtonItem key="rightBarButtonItem" title="Edit Interests" id="eSS-RU-R8I">
+                            <connections>
+                                <segue destination="Ld8-OK-YNc" kind="show" identifier="EditInterests" id="pkf-lz-2ea"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="JobTitleField" destination="rta-BN-a8A" id="Wfr-ck-OFW"/>
                         <outlet property="addGetAdviceInterestButton" destination="sem-3U-j6i" id="3t1-p5-00c"/>
@@ -226,6 +232,14 @@
                 </tableView>
             </objects>
             <point key="canvasLocation" x="1988" y="107.49625187406298"/>
+        </scene>
+        <!--AddInterests-->
+        <scene sceneID="csW-BD-X3n">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="AddInterests" storyboardName="AddInterests" id="Ld8-OK-YNc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LcR-ny-M8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2690" y="26"/>
         </scene>
         <!--TabBarNavigationController-->
         <scene sceneID="QWz-18-ZJN">

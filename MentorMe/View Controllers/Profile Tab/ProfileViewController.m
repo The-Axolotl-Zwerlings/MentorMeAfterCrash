@@ -16,7 +16,7 @@
 
 #import "GiveAdviceCollectionViewCell.h"
 #import "GetAdviceCollectionViewCell.h"
-
+//#import "ParseManager.h"
 #import "InterestModel.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
@@ -37,6 +37,10 @@
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 800);
     
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:nil];
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getCurrentUser) forControlEvents:UIControlEventValueChanged];
     [self.scrollView addSubview:self.refreshControl];
@@ -44,21 +48,42 @@
 
 }
 
+
+-(void)logout{
+    UIAlertController *myalertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    UIAlertAction *action = [UIAlertAction actionWithTitle:@"Logout" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [self logout2];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [myalertController addAction:cancelAction];
+    [myalertController addAction:action];
+    [self presentViewController:myalertController animated:YES completion:nil];
+}
+
+-(void)logout2{
+    [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+        if(error == nil){
+            [self performSegueWithIdentifier:@"backToLogin" sender:self];
+            NSLog(@"hey we did it");
+        } else{
+            NSLog(@"error in logging out");
+        }
+    }];
+}
+
 - (void) viewWillAppear:(BOOL)animated {
     
     [super viewWillAppear:animated];
-     [self getCurrentUser];
+    [self getCurrentUser];
     self.tabBarController.navigationItem.title = @"Profile";
     
 }
 
-//- (void) viewWillAppear:(BOOL)animated{
-//
-//    [super viewWillAppear:animated];
-//
-//    [self loadProfile];
-//
-//}
+
+
+
 
 -(void)getCurrentUser{
     PFQuery *queryforCurrentUser = [PFUser query];
