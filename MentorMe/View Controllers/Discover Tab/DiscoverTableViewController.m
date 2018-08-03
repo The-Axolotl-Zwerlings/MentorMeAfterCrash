@@ -79,30 +79,33 @@
 -(void)fetchAllUsers{
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+
+    PFQuery *usersQuery = [PFUser query];
+    NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
+    [usersQuery includeKeys:stringsToQueryAllUsers];
+    //[usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+    usersQuery.limit = 20;
+    [usersQuery orderByDescending:@"createdAt"];
+    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
+        if(users){
+            self.allUsersFromQuery = users;
+            [self.discoverTableView reloadData];
+            [self.refreshControl endRefreshing];
+
+            NSLog(@"WE GOT THE USERS 😇");
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+
+        } else{
+            //NSLog(@"didn't get the users 🙃");
+        }
+    }];
+
     
-    if( [PFUser currentUser] ){
-        
-        PFQuery *usersQuery = [PFUser query];
-        NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
-        [usersQuery includeKeys:stringsToQueryAllUsers];
-        [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
-        usersQuery.limit = 20;
-        [usersQuery orderByDescending:@"createdAt"];
-        [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
-            if(users){
-                self.allUsersFromQuery = users;
-                [self.discoverTableView reloadData];
-                [self.refreshControl endRefreshing];
-                
-                NSLog(@"WE GOT THE USERS 😇");
-                [MBProgressHUD hideHUDForView:self.view animated:YES];
-                
-            } else{
-                //NSLog(@"didn't get the users 🙃");
-            }
-        }];
-    }
+
 }
+//- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
+//    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:sender];
+//}
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
     
