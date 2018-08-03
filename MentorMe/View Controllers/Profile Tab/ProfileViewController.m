@@ -48,6 +48,20 @@
 
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    
+    [super viewWillAppear:animated];
+    [self getCurrentUser];
+    self.tabBarController.navigationItem.title = @"Profile";
+    
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(segueCode)];
+    
+}
+
+
 -(void)segueCode{
     [self performSegueWithIdentifier:@"EditProfile" sender:self];
 }
@@ -76,18 +90,6 @@
         }
     }];
 }
-
-- (void) viewWillAppear:(BOOL)animated {
-    
-    [super viewWillAppear:animated];
-    [self getCurrentUser];
-    self.tabBarController.navigationItem.title = @"Profile";
-    
-}
-
-
-
-
 
 -(void)getCurrentUser{
     PFQuery *queryforCurrentUser = [PFUser query];
