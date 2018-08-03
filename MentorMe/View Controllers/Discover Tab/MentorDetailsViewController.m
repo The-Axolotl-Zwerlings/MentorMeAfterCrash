@@ -23,17 +23,16 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
 
 @property (strong, nonatomic) NSArray *complimentsArray;
-@property (weak, nonatomic) IBOutlet PFImageView *bannerImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *rating;
 
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIView *ratingVIew;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewMentor;
 
 @property (strong, nonatomic) NSArray* adviceToGet;
@@ -90,10 +89,19 @@ int myCounter;
             }
             starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
             
-            NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
-            self.rating.text = [NSString stringWithFormat:@"%@ stars", formattedNumber];
-            self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
-            [self.complimentsCollectionView reloadData];
+            if( isnan([starRating doubleValue]) == 0 ){
+                self.ratingVIew.hidden = false;
+                 NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
+                self.rating.text = [NSString stringWithFormat:@"%@", formattedNumber];
+                self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
+                [self.complimentsCollectionView reloadData];
+                
+                self.ratingVIew.layer.cornerRadius = 13;
+                self.ratingVIew.layer.masksToBounds = YES;
+                
+            } else {
+                self.ratingVIew.hidden = true;
+            }
             
         }
     }];
@@ -110,11 +118,14 @@ int myCounter;
 - (void) loadMentor {
     
     self.profileImage.file = self.mentor.profilePic;
-    self.usernameLabel.text = self.mentor.username;
     self.nameLabel.text = self.mentor.name;
     self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
     self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
     self.descriptionLabel.text = self.mentor.bio;
+    NSString *cityLabelAppend = self.mentor[@"cityLocation"];
+    NSString *stateLabelAppend = self.mentor[@"stateLocation"];
+    
+    self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
     
     self.adviceToGet = [NSArray arrayWithArray:self.mentor[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.mentor[@"giveAdviceInterests"]];
