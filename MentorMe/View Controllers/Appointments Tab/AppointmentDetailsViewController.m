@@ -51,10 +51,11 @@
     self.menteeProfileView.layer.cornerRadius = self.menteeProfileView.frame.size.width / 2;
     
     PFUser *otherAttendee;
-    
+    BOOL isMentor = NO;
     //1. Check if current user is mentor or mentee of meeting
     if(self.appointment.mentor.username == PFUser.currentUser.username){
         otherAttendee = self.appointment.mentee;
+        isMentor = YES;
     } else{
         otherAttendee = self.appointment.mentor;
     }
@@ -63,9 +64,11 @@
     self.menteeProfileView.file = otherAttendee.profilePic;
     
     //2. Check if appointment is upcoming or past
-    if(![self.appointment.isUpcoming boolValue]){
+    if(![self.appointment.isUpcoming boolValue] && !isMentor){
         self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Write a Review" style:UIBarButtonItemStylePlain target:self action:@selector(random)];
-    } else{
+    } else if(isMentor){
+        self.navigationItem.rightBarButtonItem.title = @"";
+    } else {
         self.navigationItem.rightBarButtonItem.title = @"Edit details";
     }
     

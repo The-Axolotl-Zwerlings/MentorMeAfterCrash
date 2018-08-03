@@ -76,7 +76,7 @@
 
 
 -(void)fetchAllUsers{
-
+  
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     if( [PFUser currentUser] ){
@@ -101,7 +101,11 @@
             }
         }];
     }
+
 }
+//- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
+//    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:sender];
+//}
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
     
