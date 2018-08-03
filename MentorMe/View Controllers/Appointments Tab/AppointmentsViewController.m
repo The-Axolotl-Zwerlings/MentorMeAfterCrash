@@ -15,8 +15,11 @@
 #import "PFUser+ExtendedUser.h"
 #import "MBProgressHUD.h"
 @interface AppointmentsViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *appointmentController;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
+
+
 @property (strong, nonatomic) NSArray *pastAppointments;
 @property (strong, nonatomic) NSArray *upComingAppointments;
 @property UILabel *NoAppointments;
@@ -29,9 +32,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.title = @"Appointments";
-    self.tabBarController.navigationItem.title = @"Appointments";
-    
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
     
@@ -43,38 +43,15 @@
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
     [self.appointmentsTableView reloadData];
     
-    CGRect labelFrame = CGRectMake(self.view.frame.size.width/4,self.view.frame.size.height/2,200,44);
-    
-    self.NoAppointments = [[UILabel alloc] initWithFrame:labelFrame];
-    
-    self.NoAppointments.backgroundColor = [UIColor clearColor];
-    self.NoAppointments.textColor = [UIColor grayColor];
-    self.NoAppointments.font = [UIFont fontWithName:@"Verdana" size:18.0];
-    
-    self.NoAppointments.numberOfLines = 2;
-    self.NoAppointments.text = @"No appointments";
-    
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    
-}
-
-- (void) viewWillAppear:(BOOL)animated {
-    
-    self.tabBarController.navigationItem.title = @"Appointments";
-    
-    [super viewWillAppear:animated];
-    [self fetchFilteredAppointments];
-    [self.appointmentsTableView reloadData];
-    
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     
     
     
-
     
 }
+
+
 - (IBAction)didChangeIndex:(id)sender {
     
     [self fetchFilteredAppointments];
@@ -151,12 +128,9 @@
 }
 
 -(void) fetchFilteredAppointments{
-    
-    //gets the appointments and updates their status of upcoming or not
     [self updateAppointments];
 
-    //0 is upcoming , 1 is past
-    NSInteger index = self.appointmentController.selectedSegmentIndex;
+    NSInteger *index = self.segmentedControl.selectedSegmentIndex;
     if ( index == 0 ){
         NSLog( @"Fetching Upcoming Appointments...");
         
@@ -194,6 +168,16 @@
 }
 
 - (void) checkAppointmentLoader {
+    CGRect labelFrame = CGRectMake(0, 0, self.appointmentsTableView.frame.size.width, self.appointmentsTableView.frame.size.height);
+    
+    self.NoAppointments = [[UILabel alloc] initWithFrame:labelFrame];
+    self.NoAppointments.backgroundColor = [UIColor clearColor];
+    self.NoAppointments.textColor = [UIColor grayColor];
+    self.NoAppointments.font = [UIFont fontWithName:@"Verdana" size:18.0];
+    self.NoAppointments.textAlignment = NSTextAlignmentCenter;
+    
+    self.NoAppointments.numberOfLines = 0;
+    self.NoAppointments.text = @"No appointments";
     
     UILabel *noAppointmentsLabel;
     
@@ -248,9 +232,6 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-    
-    
     return self.appointmentsArray.count;
 }
 
