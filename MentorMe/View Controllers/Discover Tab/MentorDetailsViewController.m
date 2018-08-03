@@ -123,10 +123,13 @@ int myCounter;
     self.profileImage.layer.masksToBounds = true;
     self.profileImage.layer.borderWidth = 5;
     
+    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
+    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
+    
     if( self.isMentorOfMeeting == false ) {
-        self.profileImage.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        self.profileImage.layer.borderColor = CGColorRetain(colorA.CGColor);
     } else {
-        self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+        self.profileImage.layer.borderColor = CGColorRetain(colorB.CGColor);
     }
     
     [self getRating];

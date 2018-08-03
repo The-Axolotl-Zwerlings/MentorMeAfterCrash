@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSArray *giveInterests;
 
 @property (weak, nonatomic) IBOutlet UILabel *statusLineLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @property (strong, nonatomic) PFUser *userForCell;
 
