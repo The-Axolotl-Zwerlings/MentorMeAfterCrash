@@ -56,10 +56,17 @@
                         <outlet property="getAdviceField" destination="VBa-Pa-JdX" id="0Uk-Hc-ItF"/>
                         <outlet property="giveAdviceField" destination="fl8-ta-PIg" id="vd0-22-YTy"/>
                         <outlet property="interestsTableView" destination="s8N-RW-Z2p" id="H3G-bg-RL9"/>
+                        <outlet property="pink" destination="39f-vM-UKs" id="7Hg-SO-q1x"/>
                         <outlet property="saveChangesButton" destination="m2v-9a-vzf" id="zea-XN-Dry"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lI5-gH-ihk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="39f-vM-UKs">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.2527923882" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <viewLayoutGuide key="safeArea" id="gae-I8-wa9"/>
+                </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="s8N-RW-Z2p">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

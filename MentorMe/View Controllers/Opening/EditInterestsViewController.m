@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveChangesButton;
 
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
+@property (strong, nonatomic) IBOutlet UIView *pink;
 
 @property (strong, nonatomic) NSString* store;
 @property (nonatomic, strong) NSArray* getAdviceInterests;
@@ -32,7 +33,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+   // [self.view addSubview:self.interestsTableView];
     [_getAdviceField inputValues];
     
     // Do any additional setup after loading the view.
@@ -46,6 +47,11 @@
     
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
+    
+    [self.view addSubview:self.pink];
+    NSLog(@"something");
+//    self.pink = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    self.pink.backgroundColor = UIColor.cyanColor;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -54,16 +60,21 @@
 }
 
 -(void)passString:(NSString *)string{
-    self.store = string;
+//    [self.view addSubview:self.pink];
+//    [self.view bringSubviewToFront:self.pink];
+//    self.store = string;
+    //CGRect intermediate = [self.getAdviceField frame];
+    //CGRect tablePosition;
+    //tablePosition.size.width = intermediate.size.width;
+    //tablePosition.size.height = 90;
+    //tablePosition.origin.x = intermediate.origin.x;
+    //tablePosition.origin.y = intermediate.origin.y + 95;
+    //self.interestsTableView.frame = tablePosition;
+    //[self.view addSubview:self.interestsTableView];
+    //[self addSubview:self.pink];
     [self searchAutocompleteEntriesWithSubstring:string];
-    CGRect intermediate = [self.getAdviceField frame];
-    CGRect tablePosition;
-    tablePosition.size.width = intermediate.size.width;
-    tablePosition.size.height = 90;
-    tablePosition.origin.x = intermediate.origin.x;
-    tablePosition.origin.y = intermediate.origin.y + 95;
-    self.interestsTableView.frame = tablePosition;
-    [self.view addSubview:self.interestsTableView];
+    
+    
     //NSLog(@"here it is %@" , self.store);
 }
 
