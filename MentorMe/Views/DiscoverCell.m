@@ -53,6 +53,14 @@
     self.profilePicView.file = user[@"profilePic"];
     [self.profilePicView loadInBackground];
     
+    //self.backgroundColor = [UIColor colorWithRed:1.00 green:0.51 blue:0.38 alpha:0.7];
+    
+    self.backgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.backgroundImage.layer.shadowOffset = CGSizeMake(5, 5);
+    self.backgroundImage.layer.shadowOpacity = 0.4;
+    self.backgroundImage.layer.shadowRadius = 3.0;
+    self.backgroundImage.clipsToBounds = NO;
+        
 }
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView

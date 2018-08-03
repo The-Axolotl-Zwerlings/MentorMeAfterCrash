@@ -31,9 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Discover";
+    //self.title = @"Discover";
     self.tabBarController.navigationItem.title = @"Discover";
-    self.tabBarController.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0]};
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
     
@@ -77,30 +76,31 @@
 
 
 -(void)fetchAllUsers{
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    PFQuery *usersQuery = [PFUser query];
-    NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
-    [usersQuery includeKeys:stringsToQueryAllUsers];
-    //[usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
-    usersQuery.limit = 20;
-    [usersQuery orderByDescending:@"createdAt"];
-    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
-        if(users){
-            self.allUsersFromQuery = users;
-            [self.discoverTableView reloadData];
-            [self.refreshControl endRefreshing];
-
-            NSLog(@"WE GOT THE USERS 😇");
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-        } else{
-            //NSLog(@"didn't get the users 🙃");
-        }
-    }];
-
+  
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
+    if( [PFUser currentUser] ){
+        
+        PFQuery *usersQuery = [PFUser query];
+        NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
+        [usersQuery includeKeys:stringsToQueryAllUsers];
+        [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+        usersQuery.limit = 20;
+        [usersQuery orderByDescending:@"createdAt"];
+        [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
+            if(users){
+                self.allUsersFromQuery = users;
+                [self.discoverTableView reloadData];
+                [self.refreshControl endRefreshing];
+                
+                NSLog(@"WE GOT THE USERS 😇");
+                //[MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+            } else{
+                //NSLog(@"didn't get the users 🙃");
+            }
+        }];
+    }
 
 }
 //- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
@@ -202,10 +202,13 @@
         cell.userForCell = self.allUsersFromQuery[indexPath.item];
     }
     
+    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
+    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
+    
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
     if( [cell.isGivingAdvice integerValue] == 1 ){
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(colorA.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
         cell.getCollectionView.hidden = false;
@@ -213,7 +216,7 @@
         cell.statusLineLabel.text = [[@"What " stringByAppendingString:cell.userForCell.name] stringByAppendingString:@" can get advice about:"];
     } else {
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(colorB.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
         cell.getCollectionView.hidden = true;

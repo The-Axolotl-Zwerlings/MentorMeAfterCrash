@@ -20,7 +20,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.LogInButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.LogInButton.layer.borderWidth = 1;
+    self.RegisterButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.RegisterButton.layer.borderWidth = 1;
+    
+    self.LogInButton.layer.cornerRadius = 10;
+    self.LogInButton.layer.masksToBounds = YES;
+    self.RegisterButton.layer.cornerRadius = 10;
+    self.RegisterButton.layer.masksToBounds = YES;
 }
 
 - (void)didReceiveMemoryWarning {
