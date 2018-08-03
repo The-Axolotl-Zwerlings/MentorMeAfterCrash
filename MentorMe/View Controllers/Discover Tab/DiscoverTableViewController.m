@@ -41,6 +41,12 @@
     [self loadBarButtons];
     [self fetchAllUsers];
     
+    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [self.mentorMenteeSegControl setTitleTextAttributes:attributes
+                                         forState:UIControlStateNormal];
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
     [self.discoverTableView insertSubview:self.refreshControl atIndex:0];

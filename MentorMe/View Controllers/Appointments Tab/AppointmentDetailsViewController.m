@@ -42,6 +42,8 @@
     self.aboutUserBackgroundImage.layer.shadowRadius = 3.0;
     self.aboutUserBackgroundImage.clipsToBounds = NO;
     
+
+    
     
 }
 
