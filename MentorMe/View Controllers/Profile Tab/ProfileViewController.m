@@ -102,7 +102,7 @@
             
             self.user = objects[0];
             
-            self.title = @"Profile";
+            //self.title = @"Profile";
             
             self.getAdviceCollectionView.delegate = self;
             self.getAdviceCollectionView.dataSource = self;
