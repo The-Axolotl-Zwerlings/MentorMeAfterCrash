@@ -66,6 +66,16 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xF-gn-XjL">
+                                <rect key="frame" x="75" y="544" width="134" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="GO TO MILESTONE">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VI9-Ka-avq" kind="showDetail" id="egu-hC-pfX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1dS-Bf-j09"/>
@@ -92,6 +102,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cSI-dg-cCu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6732" y="172.71364317841082"/>
+        </scene>
+        <!--Milestone-->
+        <scene sceneID="zXj-9a-AeN">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Milestone" id="VI9-Ka-avq" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dr5-IA-mbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6688" y="604"/>
         </scene>
     </scenes>
     <resources>
