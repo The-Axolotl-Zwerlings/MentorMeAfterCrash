@@ -18,7 +18,10 @@
 
 @property (weak, nonatomic) IBOutlet PFImageView *profileImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+
+@property (weak, nonatomic) IBOutlet UIView *ratingView;
+@property (weak, nonatomic) IBOutlet UIImageView *ratingBackgroundView;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
 
 @property (strong, nonatomic) IBOutlet UIView *profileScreenView;
 

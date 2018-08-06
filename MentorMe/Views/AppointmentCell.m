@@ -12,10 +12,6 @@
 #import "Parse/Parse.h"
 #import "DateTools.h"
 
-
-
-
-
 @implementation AppointmentCell
 
 - (void)awakeFromNib {
@@ -25,40 +21,41 @@
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 
 - (void) setAppointment:(AppointmentModel *)appointment {
    
     _appointment = appointment;
     
-    CGSize newSize = CGSizeMake(self.otherAttendeeProfilePic.frame.size.width, self.otherAttendeeProfilePic.frame.size.width);
+    self.otherAttendeeName.adjustsFontSizeToFitWidth = YES;
     
-
+    self.backgroundImage.layer.shadowColor = UIColor.blackColor.CGColor;
+    self.backgroundImage.layer.shadowOpacity = 0.4;
+    self.backgroundImage.layer.shadowOffset = CGSizeMake(5, 5);
+    self.backgroundImage.layer.shadowRadius = 5;
+    self.backgroundImage.clipsToBounds = NO;
+    
     if([appointment.mentor.username isEqualToString:PFUser.currentUser.username]){
-        self.otherAttendeeName.text = appointment.mentee[@"name"];
+        self.otherAttendeeName.text = appointment.mentee.name;
         self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
-        
         [self.otherAttendeeProfilePic loadInBackground];
-        //self.mentorOrMenteeLabel.text = @"You're the mentor!";
         
-        self.otherAttendeeProfilePic.layer.masksToBounds = true;
-        self.otherAttendeeProfilePic.layer.borderWidth = 5;
-        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.blueColor.CGColor);
-        self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
+        self.rockStatus.text = @"You're the metamorphasis!";
         
     } else{
-        self.otherAttendeeName.text = appointment.mentor[@"name"];
+        self.otherAttendeeName.text = appointment.mentor.name;
         self.otherAttendeeProfilePic.file = appointment.mentor.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
-        //self.mentorOrMenteeLabel.text = @"You're the mentee!";
-        
-        self.otherAttendeeProfilePic.layer.masksToBounds = true;
-        self.otherAttendeeProfilePic.layer.borderWidth = 5;
-        self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
-        self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
+
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
+        self.rockStatus.text = @"You're the pebble!";
     }
+    
+    self.otherAttendeeProfilePic.layer.masksToBounds = true;
+    self.otherAttendeeProfilePic.layer.borderWidth = 3;
+    self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
+    self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
     
     
     

@@ -13,6 +13,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
 @property (weak, nonatomic) IBOutlet UIButton *RegisterButton;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+
 
 @end
 
@@ -20,7 +22,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    /*self.LogInButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.LogInButton.layer.borderWidth = 1;
+    self.RegisterButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.RegisterButton.layer.borderWidth = 1;
+    
+    self.LogInButton.layer.cornerRadius = 10;
+    self.LogInButton.layer.masksToBounds = YES;
+    self.RegisterButton.layer.cornerRadius = 10;
+    self.RegisterButton.layer.masksToBounds = YES;*/
+    
+    self.backgroundImageView.layer.shadowOffset = CGSizeMake(0, 5);
+    self.backgroundImageView.layer.shadowRadius = 5;
+    self.backgroundImageView.layer.shadowColor = UIColor.blackColor.CGColor;
+    self.backgroundImageView.layer.shadowOpacity = 1;
+    
+    
+    UIImageView *newImageA = [[UIImageView alloc] initWithFrame:CGRectMake(self.usernameField.frame.origin.x, self.usernameField.frame.origin.y + self.usernameField.frame.size.height, self.usernameField.frame.size.width, 1)];
+    newImageA.backgroundColor = [UIColor blackColor];
+    
+    UIImageView *newImageB = [[UIImageView alloc] initWithFrame:CGRectMake(self.passwordField.frame.origin.x, self.passwordField.frame.origin.y + self.passwordField.frame.size.height, self.passwordField.frame.size.width, 1)];
+    newImageA.backgroundColor = [UIColor blackColor];
+    newImageB.backgroundColor = [UIColor blackColor];
+    
+    [self.view addSubview:newImageA];
+    [self.view addSubview:newImageB];
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {

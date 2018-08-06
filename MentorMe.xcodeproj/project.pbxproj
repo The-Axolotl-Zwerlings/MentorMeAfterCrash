@@ -24,6 +24,7 @@
 		A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2D82107E0B000079B53 /* ReviewViewController.m */; };
 		A82EB2DC2107E43A00079B53 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2DB2107E43A00079B53 /* RateView.m */; };
 		A83DEAD9210FC21A002799DC /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DEAD8210FC21A002799DC /* Review.m */; };
+		A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */; };
 		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
 		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
 		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
@@ -105,6 +106,8 @@
 		A82EB2DB2107E43A00079B53 /* RateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RateView.m; sourceTree = "<group>"; };
 		A83DEAD7210FC21A002799DC /* Review.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		A83DEAD8210FC21A002799DC /* Review.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
+		A87C16CD21136F87001AC0B5 /* ComplimentsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplimentsCell.h; sourceTree = "<group>"; };
+		A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplimentsCell.m; sourceTree = "<group>"; };
 		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -308,6 +311,8 @@
 				A82EB2DB2107E43A00079B53 /* RateView.m */,
 				B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */,
 				B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */,
+				A87C16CD21136F87001AC0B5 /* ComplimentsCell.h */,
+				A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -659,6 +664,7 @@
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
 				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
 				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
+				A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */,
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
 				C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */,
@@ -845,7 +851,17 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.nihalj.MentorMe;
+||||||| merged common ancestors
+
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
+
+
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
+>>>>>>> bb86e68a7799a1542e3d0e3f2052fac50f37f607
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -857,13 +873,23 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M963N7PF23;
+				DEVELOPMENT_TEAM = DFS6245D8K;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.nihalj.MentorMe;
+||||||| merged common ancestors
+
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
+
+
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
+>>>>>>> bb86e68a7799a1542e3d0e3f2052fac50f37f607
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

@@ -13,9 +13,12 @@
 
 @interface AppointmentCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 @property (strong, nonatomic) AppointmentModel *appointment;
 @property (weak, nonatomic) IBOutlet PFImageView *otherAttendeeProfilePic;
 @property (weak, nonatomic) IBOutlet UILabel *otherAttendeeName;
+@property (strong, nonatomic) IBOutlet UIImageView *menteeMentorIcon;
+@property (strong, nonatomic) IBOutlet UILabel *rockStatus;
 
 @property (weak, nonatomic) IBOutlet UILabel *meetingSummaryLabel;
 

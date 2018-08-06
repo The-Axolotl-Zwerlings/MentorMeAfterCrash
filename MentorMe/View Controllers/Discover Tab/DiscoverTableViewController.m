@@ -31,20 +31,27 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"Discover";
+    //self.title = @"Discover";
     self.tabBarController.navigationItem.title = @"Discover";
-    self.tabBarController.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0]};
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
+    
     self.discoverTableView.delegate = self;
     self.discoverTableView.dataSource = self;
-    
+    [self loadBarButtons];
     [self fetchAllUsers];
+    
+    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
+                                                           forKey:NSFontAttributeName];
+    [self.mentorMenteeSegControl setTitleTextAttributes:attributes
+                                         forState:UIControlStateNormal];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
     [self.discoverTableView insertSubview:self.refreshControl atIndex:0];
     [self.discoverTableView reloadData];
+    
     
 }
 
@@ -52,7 +59,20 @@
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
+    
+    [self loadBarButtons];
+    
     [self.discoverTableView reloadData];
+}
+
+- (void) loadBarButtons {
+    
+    self.tabBarController.navigationItem.leftBarButtonItem = nil;
+    UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
+    self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
+    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -62,28 +82,36 @@
 
 
 -(void)fetchAllUsers{
+  
+    //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    if( [PFUser currentUser] ){
+        
+        PFQuery *usersQuery = [PFUser query];
+        NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
+        [usersQuery includeKeys:stringsToQueryAllUsers];
+        [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+        usersQuery.limit = 20;
+        [usersQuery orderByDescending:@"createdAt"];
+        [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
+            if(users){
+                self.allUsersFromQuery = users;
+                [self.discoverTableView reloadData];
+                [self.refreshControl endRefreshing];
+                
+                NSLog(@"WE GOT THE USERS 😇");
+                //[MBProgressHUD hideHUDForView:self.view animated:YES];
+                
+            } else{
+                //NSLog(@"didn't get the users 🙃");
+            }
+        }];
+    }
 
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    PFQuery *usersQuery = [PFUser query];
-    NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
-    [usersQuery includeKeys:stringsToQueryAllUsers];
-    [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
-    usersQuery.limit = 20;
-    [usersQuery orderByDescending:@"createdAt"];
-    [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
-        if(users){
-            self.allUsersFromQuery = users;
-            [self.discoverTableView reloadData];
-            [self.refreshControl endRefreshing];
-
-            NSLog(@"WE GOT THE USERS 😇");
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-
-        } else{
-            //NSLog(@"didn't get the users 🙃");
-        }
-    }];
 }
+//- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
+//    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:sender];
+//}
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
     
@@ -180,10 +208,13 @@
         cell.userForCell = self.allUsersFromQuery[indexPath.item];
     }
     
+    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
+    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
+    
     cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
     if( [cell.isGivingAdvice integerValue] == 1 ){
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(colorA.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
         cell.getCollectionView.hidden = false;
@@ -191,7 +222,7 @@
         cell.statusLineLabel.text = [[@"What " stringByAppendingString:cell.userForCell.name] stringByAppendingString:@" can get advice about:"];
     } else {
         cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+        cell.profilePicView.layer.borderColor = CGColorRetain(colorB.CGColor);
         cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
         cell.profilePicView.layer.masksToBounds = true;
         cell.getCollectionView.hidden = true;
@@ -220,6 +251,10 @@
 }
 
 
+- (void) segueToFilters {
+    [self performSegueWithIdentifier:@"filterSegue" sender:self];
+}
+
 
 /*** DELEGATE METHODS  ***/
 
@@ -231,9 +266,6 @@
     
     
     if( incomingGetInterests.count != nil){
-        
-        
-        
         self.filtersToSearchGetWith = nil;
         self.filtersToSearchGetWith = incomingGetInterests;
         [self fetchUsersWithSelectedInterests:self.filtersToSearchGetWith];
@@ -244,8 +276,6 @@
         self.filtersToSearchGiveWith = incomingGiveInterests;
         [self fetchUsersWithSelectedInterests:self.filtersToSearchGiveWith];
     }
-    
-    
     [self.discoverTableView reloadData];
     
 }

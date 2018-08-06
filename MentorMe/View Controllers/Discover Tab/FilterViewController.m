@@ -41,6 +41,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view
     
+    
     self.selectedGetFilters = [[NSMutableArray alloc] init];
     self.selectedGiveFilters = [[NSMutableArray alloc] init];
     
@@ -56,7 +57,8 @@
     [self.companySwitch setOn:false];
     [self.locationSwitch setOn:false];
     
-    
+    [self.getAdviceTTGView setTagAtIndex:0 selected:YES];
+    [self.giveAdviceTTGView setTagAtIndex:0 selected:YES];
     
 }
 
@@ -92,10 +94,10 @@
    
     //2. Set Tag Properties
     config.tagTextFont = [UIFont boldSystemFontOfSize:18.0f];
-    config.tagTextColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
-    config.tagSelectedTextColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
-    config.tagBackgroundColor = [UIColor colorWithRed:0.98 green:0.91 blue:0.43 alpha:1.00];
-    config.tagSelectedBackgroundColor = [UIColor colorWithRed:0.97 green:0.64 blue:0.27 alpha:1.00];
+    config.tagTextColor                 = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
+    config.tagSelectedTextColor         = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
+    config.tagBackgroundColor           = [UIColor colorWithRed:0.98 green:0.91 blue:0.43 alpha:1.00];
+    config.tagSelectedBackgroundColor   = [UIColor colorWithRed:0.00 green:0.64 blue:0.27 alpha:1.00];
     self.giveAdviceTTGView.horizontalSpacing = 8.0;
     self.giveAdviceTTGView.verticalSpacing = 8.0;
     config.tagBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
@@ -130,6 +132,7 @@
     }];
     self.getAdviceTTGView.defaultConfig = config;
     
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -139,16 +142,13 @@
 
 
 - (void) checkSelectedTags:(TTGTextTagCollectionView *)textTagCollectionView withArrayOfIndices:(NSMutableArray *)arrayOfIndices {
-    NSLog(@"Checking selected tags");
     
-
-    
-    for( NSNumber* index in arrayOfIndices ){
-        [self.getAdviceTTGView setTagAtIndex:@(2) selected:YES];
-        [textTagCollectionView setTagAtIndex: index selected:YES];
-        NSLog(@"%@", index);
+    if( arrayOfIndices != nil ){
+        NSLog(@"Checking selected tags");
+        for( NSNumber* index in arrayOfIndices ){
+            NSLog(@"%@", index);
+        }
     }
-    
 }
 
 

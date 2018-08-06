@@ -16,21 +16,25 @@
 #import "Review.h"
 #import "GetAdviceCollectionViewCell.h"
 #import "GiveAdviceCollectionViewCell.h"
-//#import "ComplimentCell.h"
+#import "ComplimentsCell.h"
 
 @interface MentorDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
+
 @property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
+
 @property (strong, nonatomic) NSArray *complimentsArray;
-@property (weak, nonatomic) IBOutlet PFImageView *bannerImage;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *rating;
 
+@property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
+@property (weak, nonatomic) IBOutlet UIView *ratingVIew;
+
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
-@property (weak, nonatomic) IBOutlet UITextView *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollViewMentor;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
 
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
@@ -42,17 +46,37 @@
 
 @implementation MentorDetailsViewController
 
+int myCounter;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
     [self loadMentor];
     
     self.title = self.mentor.name;
     
+    self.scrollViewMentor.showsVerticalScrollIndicator = NO;
+    self.scrollViewMentor.alwaysBounceVertical = YES;
+    
     self.getAdviceCollectionView.delegate = self;
     self.getAdviceCollectionView.dataSource = self;
+    
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
     
+    self.complimentsCollectionView.dataSource = self;
+    self.complimentsCollectionView.delegate = self;
+    
+    self.getAdviceCollectionView.alwaysBounceHorizontal = YES;
+    self.getAdviceCollectionView.showsHorizontalScrollIndicator = NO;
+    
+    self.giveAdviceCollectionView.alwaysBounceHorizontal = YES;
+    self.giveAdviceCollectionView.showsHorizontalScrollIndicator = NO;
+    
+    self.complimentsCollectionView.alwaysBounceHorizontal = YES;
+    self.complimentsCollectionView.showsHorizontalScrollIndicator = NO;
     
 }
 
@@ -66,27 +90,34 @@
         if(reviews){
             NSNumber *no = [NSNumber numberWithBool:NO];
             NSMutableArray *cumulativeCompliments = [[NSMutableArray alloc] initWithObjects:no,no,no,no,no,nil];
-            int i = 0;
             float totalRating = 0;
             for(Review *review in reviews){
                 totalRating += [review.rating floatValue];
                 
                 
-                //increment i so we are only updating compliments that have no's still
-                while(review.complimentsArray[i] != no){
-                    ++i;
-                }
-                for(int j = i; j < 5; ++j){
-                    [cumulativeCompliments replaceObjectAtIndex:j withObject:[NSNumber numberWithBool:YES]];
+                for(int i = 0; i < 5; ++i){
+                    if(review.complimentsArray[i] == [NSNumber numberWithBool:YES]){
+                        NSNumber *newTotalOfCompliment = [NSNumber numberWithFloat:([cumulativeCompliments[i] floatValue] + 1)];
+                        [cumulativeCompliments replaceObjectAtIndex:i withObject:newTotalOfCompliment];
+                    }
                 }
                 
             }
             starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
             
-            NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
-            self.rating.text = [NSString stringWithFormat:@"%@ stars", formattedNumber];
-            self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
-            
+            if( isnan([starRating doubleValue]) == 0 ){
+                self.ratingVIew.hidden = false;
+                 NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
+                self.rating.text = [NSString stringWithFormat:@"%@", formattedNumber];
+                self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
+                [self.complimentsCollectionView reloadData];
+                
+                self.ratingVIew.layer.cornerRadius = 13;
+                self.ratingVIew.layer.masksToBounds = YES;
+                
+            } else {
+                self.ratingVIew.hidden = true;
+            }
             
         }
     }];
@@ -103,11 +134,14 @@
 - (void) loadMentor {
     
     self.profileImage.file = self.mentor.profilePic;
-    self.usernameLabel.text = self.mentor.username;
     self.nameLabel.text = self.mentor.name;
     self.occupationLabel.text = [[ self.mentor.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.mentor.company];
     self.educationLabel.text = [[[ @"Studied " stringByAppendingString:self.mentor.major] stringByAppendingString:@" at "] stringByAppendingString:self.mentor.school];
     self.descriptionLabel.text = self.mentor.bio;
+    NSString *cityLabelAppend = self.mentor[@"cityLocation"];
+    NSString *stateLabelAppend = self.mentor[@"stateLocation"];
+    
+    self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
     
     self.adviceToGet = [NSArray arrayWithArray:self.mentor[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.mentor[@"giveAdviceInterests"]];
@@ -116,13 +150,21 @@
     self.profileImage.layer.masksToBounds = true;
     self.profileImage.layer.borderWidth = 5;
     
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.nameLabel sizeToFit];
+    
+    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
+    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
+    
     if( self.isMentorOfMeeting == false ) {
-        self.profileImage.layer.borderColor = CGColorRetain(UIColor.yellowColor.CGColor);
+        self.profileImage.layer.borderColor = CGColorRetain(colorA.CGColor);
     } else {
-        self.profileImage.layer.borderColor = CGColorRetain(UIColor.cyanColor.CGColor);
+        self.profileImage.layer.borderColor = CGColorRetain(colorB.CGColor);
     }
     
     [self getRating];
+    
     
 }
 
@@ -132,9 +174,19 @@
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         return self.adviceToGet.count;
-    } /*else if([collectionView isEqual:self.complimentsCollectionView]){
-        return self.complimentsArray.count;
-    }*/else {
+    } else if([collectionView isEqual:self.complimentsCollectionView]){
+        if(self.complimentsArray != nil){
+            int count = 0;
+            for(int i = 0; i < 5; ++i){
+                if(self.complimentsArray[i] != [NSNumber numberWithBool:NO]){
+                    ++count;
+                }
+            }
+            return count;
+        } else{
+            return 0;
+        }
+    }else {
         return self.adviceToGive.count;
     }
     
@@ -150,14 +202,20 @@
         cellA.interest = self.adviceToGet[indexPath.item];
         [cellA reloadInputViews];
         return cellA;
-    } /*else if([collectionView isEqual:self.complimentsCollectionView]){
-        ComplimentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentCell" forIndexPath:indexPath];
+    } else if([collectionView isEqual:self.complimentsCollectionView]){
+        ComplimentsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentsCell" forIndexPath:indexPath];
+        if(indexPath.item == 0){
+            myCounter = 0;
+        }
+        while(self.complimentsArray[myCounter] == [NSNumber numberWithBool:NO]){
+            ++myCounter;
+        }
+        [cell formatCellWithIndex:[NSNumber numberWithInteger:myCounter] andCount:(self.complimentsArray[myCounter])];
+        
+        ++myCounter;
         return cell;
         
-        return cell;
-        
-        
-    } */ else {
+    } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
         [cellB reloadInputViews];
@@ -165,15 +223,11 @@
     }
 }
 
-- (IBAction)onTapCancel:(id)sender {
-    
-    NSLog(@"Cancel Button");
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadMentor];
 }
+
 
 
 #pragma mark - Navigation

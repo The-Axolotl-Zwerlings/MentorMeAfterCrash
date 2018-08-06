@@ -154,7 +154,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.87655207790000678" green="0.84151512545601537" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="1" green="0.51372549020000002" blue="0.38431372549999998" alpha="1" colorSpace="calibratedRGB"/>
                         <viewLayoutGuide key="safeArea" id="qFK-zc-YjB"/>
                     </view>
                     <connections>

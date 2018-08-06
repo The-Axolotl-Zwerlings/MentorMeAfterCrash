@@ -26,7 +26,14 @@
 
 - (void)reloadInputViews
 {
-    self.interestNameLabel.text = self.interest.subject;
+    self.interestNameLabel.text = [@"#" stringByAppendingString: self.interest.subject];
+    
+    self.backgroundImage.layer.borderColor = UIColor.whiteColor.CGColor;
+    self.backgroundImage.layer.borderWidth = 2;
+    
+    self.backgroundImage.layer.masksToBounds = YES;
+    self.backgroundImage.layer.cornerRadius = self.backgroundImage.frame.size.height/2;
+    
     //NSLog( @"Loaded text on cell");
 }
 
