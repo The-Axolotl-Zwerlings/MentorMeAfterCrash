@@ -34,6 +34,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewMentor;
+@property (weak, nonatomic) IBOutlet UIButton *connectButton;
 
 @property (strong, nonatomic) NSArray* adviceToGet;
 @property (strong, nonatomic) NSArray* adviceToGive;
@@ -50,17 +51,32 @@ int myCounter;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.view.frame.size.height*2)];
+    
+    [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
     [self loadMentor];
     
     self.title = self.mentor.name;
     
+    self.scrollViewMentor.showsVerticalScrollIndicator = NO;
+    self.scrollViewMentor.alwaysBounceVertical = YES;
+    
     self.getAdviceCollectionView.delegate = self;
     self.getAdviceCollectionView.dataSource = self;
+    
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
+    
     self.complimentsCollectionView.dataSource = self;
     self.complimentsCollectionView.delegate = self;
+    
+    self.getAdviceCollectionView.alwaysBounceHorizontal = YES;
+    self.getAdviceCollectionView.showsHorizontalScrollIndicator = NO;
+    
+    self.giveAdviceCollectionView.alwaysBounceHorizontal = YES;
+    self.giveAdviceCollectionView.showsHorizontalScrollIndicator = NO;
+    
+    self.complimentsCollectionView.alwaysBounceHorizontal = YES;
+    self.complimentsCollectionView.showsHorizontalScrollIndicator = NO;
     
 }
 
@@ -134,6 +150,10 @@ int myCounter;
     self.profileImage.layer.masksToBounds = true;
     self.profileImage.layer.borderWidth = 5;
     
+    self.nameLabel.textAlignment = NSTextAlignmentCenter;
+    
+    [self.nameLabel sizeToFit];
+    
     UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
     UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
     
@@ -203,11 +223,6 @@ int myCounter;
     }
 }
 
-- (IBAction)onTapCancel:(id)sender {
-    
-    NSLog(@"Cancel Button");
-    
-}
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadMentor];

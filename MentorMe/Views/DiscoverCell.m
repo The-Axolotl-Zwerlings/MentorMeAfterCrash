@@ -13,29 +13,27 @@
 
 @implementation DiscoverCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        
-  
-    }
-    
-    return self;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
+    [super setHighlighted:highlighted animated:animated];
+    self.backgroundImage.backgroundColor = backgroundColor;
+    
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+    self.backgroundImage.backgroundColor = backgroundColor;
 }
-
 - (void)layoutCell:(PFUser *)user{
     
     self.nameLabel.text = user.name;
