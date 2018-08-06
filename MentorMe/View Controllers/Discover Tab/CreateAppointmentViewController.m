@@ -32,6 +32,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *meetingWithLabel;
 @property (strong, nonatomic) IBOutlet UITextField *dateTextField;
 @property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UIView *detailView;
 
 @property (strong, nonatomic) NSString *meetingType;
 @property (strong, nonatomic) NSDictionary *meetingTypeDic;
@@ -46,7 +47,8 @@
     // Do any additional setup after loading the view.
     self.meetingWithLabel.text = [@"Meeting With " stringByAppendingString:self.otherAttendee.name];
     self.meetingTypeDic = @{ @(0) : @"Coffee", @(1) : @"Lunch", @(2) : @"Video Chat"};
-    
+    self.detailView.layer.cornerRadius = 16;
+    self.detailView.clipsToBounds = YES;
     [self loadDateTool];
     [self loadAppointmentDetails];
     [self loadProfiles];
@@ -55,11 +57,11 @@
 
 - (void) loadAppointmentDetails {
     if(self.appointmentTypeSegControl.selectedSegmentIndex == 0){ //coffww
-        self.locationLabel.text = @"Red Rock Café";
+        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Jimmy Johns"];
     } else if(self.appointmentTypeSegControl.selectedSegmentIndex == 1){ //lunch
-        self.locationLabel.text = @"Jimmy Johns";
+        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Red Rock Café"];
     } else{
-        self.locationLabel.text = @"Skype";
+        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Skype"];
     }
 }
 
@@ -79,6 +81,7 @@
     if( self.isMentorOfMeeting == false){
         self.mentorProfilePicView.file = myUser.profilePic;
         self.menteeProfilePicView.file = otherUser.profilePic;
+        
         self.mentorNameLabel.text = myUser.name;
         self.menteeNameLabel.text = otherUser.name;
         self.mentorProfilePicView.layer.cornerRadius = self.mentorProfilePicView.frame.size.width/2;
@@ -93,7 +96,8 @@
     }
     
     self.sendMessageLabel.text = [[@"Send " stringByAppendingString:otherUser.name] stringByAppendingString:@" a message: "];
-    
+    [self.menteeProfilePicView loadInBackground];
+    [self.mentorProfilePicView loadInBackground];
 }
 
 - (void) loadDateTool {
@@ -128,14 +132,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-
-- (IBAction)didChangeType {
+- (IBAction)didChangeDate:(UITextField *)sender {
     [self loadAppointmentDetails];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)didChangeSegControl:(UISegmentedControl *)sender {
+    [self loadAppointmentDetails];
 }
 
 /*
