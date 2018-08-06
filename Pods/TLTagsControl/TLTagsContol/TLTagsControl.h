@@ -16,6 +16,13 @@
 
 @end
 
+@protocol TLDataHandler <NSObject>
+
+- (void)addString: (TLTagsControl *)tagControl withString:(NSString*)typed;
+- (void) passingArray:(NSArray*) subjectsArray;
+
+@end
+
 typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
     TLTagsControlModeEdit,
     TLTagsControlModeList,
@@ -23,20 +30,21 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 
 @interface TLTagsControl : UIScrollView
 
-@property (nonatomic, strong) UITextField *tagInputField_;
-
 @property (nonatomic, strong) NSMutableArray *tags;
 @property (nonatomic, strong) UIColor *tagsBackgroundColor;
 @property (nonatomic, strong) UIColor *tagsTextColor;
 @property (nonatomic, strong) UIColor *tagsDeleteButtonColor;
 @property (nonatomic, strong) NSString *tagPlaceholder;
 @property (nonatomic) TLTagsControlMode mode;
+@property (nonatomic, strong) NSMutableArray* toCreate;
 
 @property (assign, nonatomic) id<TLTagsControlDelegate> tapDelegate;
+@property (weak, nonatomic) id<TLDataHandler> dataHandler;
 
 - (id)initWithFrame:(CGRect)frame andTags:(NSArray *)tags withTagsControlMode:(TLTagsControlMode)mode;
 
 - (void)addTag:(NSString *)tag;
+- (void)emptyField;
 - (void)reloadTagSubviews;
-
+- (void)triggerPassing;
 @end

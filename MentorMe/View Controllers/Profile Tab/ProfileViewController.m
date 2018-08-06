@@ -19,6 +19,8 @@
 //#import "ParseManager.h"
 #import "InterestModel.h"
 
+#import "Review.h"
+
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -35,11 +37,14 @@
     
     self.tabBarController.navigationItem.title = @"Profile";
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, 800);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,self.scrollView.frame.size.height+100);
     
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.scrollView.alwaysBounceVertical = YES;
+    self.scrollView.showsVerticalScrollIndicator = NO;
     
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(segueCode)];
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
+    
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getCurrentUser) forControlEvents:UIControlEventValueChanged];
@@ -55,19 +60,37 @@
     self.tabBarController.navigationItem.title = @"Profile";
     
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(logout)];
+    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(segueCode)];
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
     
 }
 
 
--(void)segueCode{
+-(void)onTapEditProfile{
     [self performSegueWithIdentifier:@"EditProfile" sender:self];
 }
 
 
--(void)logout{
+-(void)onTapLogout{
+    
+    /*
+     
+     
+     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+     
+     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+     LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+     
+     NSLog( @"Logging out" );
+     
+     [self dismissViewControllerAnimated:true completion:nil];
+     
+     }
+     
+     */
+    
+    
     UIAlertController *myalertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     UIAlertAction *action = [UIAlertAction actionWithTitle:@"Logout" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
         [self logout2];
@@ -128,8 +151,6 @@
     self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
     
-    
-    self.usernameLabel.text = self.user[@"username"];
     self.nameLabel.text = self.user[@"name"];
     
     NSString *jobTitleAppend = self.user[@"jobTitle"];
@@ -159,6 +180,8 @@
     self.profileImageView.layer.borderWidth = 4.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
 
+    
+    [self getRating];
 }
 
 - (void) didEditProfile {
@@ -188,6 +211,9 @@
 - (UICollectionViewCell *) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     
+    collectionView.alwaysBounceHorizontal = YES;
+    collectionView.showsHorizontalScrollIndicator = NO;
+    
     if( [collectionView isEqual:self.getAdviceCollectionView] ){
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
@@ -204,6 +230,50 @@
         
         
     }
+    
+}
+
+-(void)getRating{
+    __block NSNumber *starRating = nil;
+    
+    PFUser *myUser = [PFUser currentUser];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Review"];
+    [query includeKey:@"reviewee"];
+    [query whereKey:@"reviewee" equalTo:myUser];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *reviews, NSError * _Nullable error) {
+        if(reviews){
+            NSNumber *no = [NSNumber numberWithBool:NO];
+            NSMutableArray *cumulativeCompliments = [[NSMutableArray alloc] initWithObjects:no,no,no,no,no,nil];
+            float totalRating = 0;
+            for(Review *review in reviews){
+                totalRating += [review.rating floatValue];
+                
+                
+                for(int i = 0; i < 5; ++i){
+                    if(review.complimentsArray[i] == [NSNumber numberWithBool:YES]){
+                        NSNumber *newTotalOfCompliment = [NSNumber numberWithFloat:([cumulativeCompliments[i] floatValue] + 1)];
+                        [cumulativeCompliments replaceObjectAtIndex:i withObject:newTotalOfCompliment];
+                    }
+                }
+                
+            }
+            starRating = [NSNumber numberWithFloat:totalRating/reviews.count];
+            
+            if( isnan([starRating doubleValue]) == 0 ){
+                self.ratingView.hidden = false;
+                NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
+                self.ratingLabel.text = [NSString stringWithFormat:@"%@", formattedNumber];
+                
+                self.ratingView.layer.cornerRadius = 13;
+                self.ratingView.layer.masksToBounds = YES;
+                
+            } else {
+                self.ratingView.hidden = true;
+            }
+            
+        }
+    }];
     
 }
 

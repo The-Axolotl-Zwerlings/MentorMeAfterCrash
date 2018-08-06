@@ -13,29 +13,27 @@
 
 @implementation DiscoverCell
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        
-  
-    }
-    
-    return self;
-}
-
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
     
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
+    [super setHighlighted:highlighted animated:animated];
+    self.backgroundImage.backgroundColor = backgroundColor;
+    
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
     [super setSelected:selected animated:animated];
-    
-    // Configure the view for the selected state
+    self.backgroundImage.backgroundColor = backgroundColor;
 }
-
 - (void)layoutCell:(PFUser *)user{
     
     self.nameLabel.text = user.name;
@@ -56,7 +54,7 @@
     //self.backgroundColor = [UIColor colorWithRed:1.00 green:0.51 blue:0.38 alpha:0.7];
     
     self.backgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.backgroundImage.layer.shadowOffset = CGSizeMake(5, 5);
+    self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.backgroundImage.layer.shadowOpacity = 0.4;
     self.backgroundImage.layer.shadowRadius = 3.0;
     self.backgroundImage.clipsToBounds = NO;

@@ -14,7 +14,7 @@
 #import "InterestModel.h"
 
 
-@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -24,26 +24,16 @@
 @property (weak, nonatomic) IBOutlet UITextField *institutionField;
 @property (weak, nonatomic) IBOutlet UITextField *majorField;
 @property (weak, nonatomic) IBOutlet UITextField *nameField;
-@property (weak, nonatomic) IBOutlet UITextField *getAdviceField;
-@property (weak, nonatomic) IBOutlet UITextField *giveAdviceField;
 @property (strong, nonatomic) IBOutlet UITextField *cityField;
 @property (strong, nonatomic) IBOutlet UITextField *stateField;
 
 @property (weak, nonatomic) IBOutlet UIButton *addProfilePictureButton;
-@property (weak, nonatomic) IBOutlet UIButton *addGetAdviceInterestButton;
-@property (weak, nonatomic) IBOutlet UIButton *addGiveAdviceInterestButton;
 @property (weak, nonatomic) IBOutlet UIButton *registerButton;
 
 @property (nonatomic, strong) UIImage* chosenProfilePicture;
 @property (nonatomic, strong) UIImage* resizedProfilePicture;
 @property (nonatomic, strong) NSArray* getAdviceInterests;
 @property (nonatomic, strong) NSArray* giveAdviceInterests;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-
-@property (strong, nonatomic) NSArray* forTableView;
-
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 
@@ -59,22 +49,11 @@
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(segue)];
   
     //Setting Table View Delegate & Data Source
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.scrollEnabled = YES;
-
-    self.addGetAdviceInterestButton.enabled = NO;
-    self.addGiveAdviceInterestButton.enabled = NO;
     
     UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
               initWithTarget:self action:@selector(handleSingleTap:)];
     tapper.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapper];
-    
-    
-    CGFloat maxHeight = 1000;
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, maxHeight);
 
 }
 
@@ -91,27 +70,27 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)onTapAddToGet:(id)sender {
+//- (IBAction)onTapAddToGet:(id)sender {
+//
+//    NSMutableArray *getAdviceMutable = [NSMutableArray arrayWithArray:self.getAdviceInterests];
+//
+//    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
+//    [query whereKey:@"subject" equalTo:self.getAdviceField.text];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Successfully retrieved %lu scores.", objects.count);
+//            // Do something with the found objects
+//            [getAdviceMutable addObject:objects[0]];
+//            self.getAdviceField.text = nil;
+//            self.addGetAdviceInterestButton.enabled = NO;
+//            self.getAdviceInterests = [NSArray arrayWithArray:getAdviceMutable];
+//        } else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
 
-    NSMutableArray *getAdviceMutable = [NSMutableArray arrayWithArray:self.getAdviceInterests];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
-    [query whereKey:@"subject" equalTo:self.getAdviceField.text];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", objects.count);
-            // Do something with the found objects
-            [getAdviceMutable addObject:objects[0]];
-            self.getAdviceField.text = nil;
-            self.addGetAdviceInterestButton.enabled = NO;
-            self.getAdviceInterests = [NSArray arrayWithArray:getAdviceMutable];
-        } else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
     //    [self.getAdviceInterests addObject:self.getAdviceField.text];
     //    self.getAdviceField.text = nil;
     //    self.addGetAdviceInterestButton.enabled = NO;
@@ -120,34 +99,34 @@
      unless the interst already exists then they are just added to the interest*/
     
     
-}
-- (IBAction)onTapAddToGive:(id)sender {
-    NSMutableArray *giveAdviceMutable = [NSMutableArray arrayWithArray:self.giveAdviceInterests];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
-    [query whereKey:@"subject" equalTo:self.giveAdviceField.text];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        if (!error) {
-            // The find succeeded.
-            NSLog(@"Successfully retrieved %lu scores.", objects.count);
-            // Do something with the found objects
-            [giveAdviceMutable addObject:objects[0]];
-            self.giveAdviceField.text = nil;
-            self.addGiveAdviceInterestButton.enabled = NO;
-            self.giveAdviceInterests = [NSArray arrayWithArray:giveAdviceMutable];
-        }
-        else {
-            // Log details of the failure
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-    
+//}
+//- (IBAction)onTapAddToGive:(id)sender {
+//    NSMutableArray *giveAdviceMutable = [NSMutableArray arrayWithArray:self.giveAdviceInterests];
+//
+//    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
+//    [query whereKey:@"subject" equalTo:self.giveAdviceField.text];
+//    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+//        if (!error) {
+//            // The find succeeded.
+//            NSLog(@"Successfully retrieved %lu scores.", objects.count);
+//            // Do something with the found objects
+//            [giveAdviceMutable addObject:objects[0]];
+//            self.giveAdviceField.text = nil;
+//            self.addGiveAdviceInterestButton.enabled = NO;
+//            self.giveAdviceInterests = [NSArray arrayWithArray:giveAdviceMutable];
+//        }
+//        else {
+//            // Log details of the failure
+//            NSLog(@"Error: %@ %@", error, [error userInfo]);
+//        }
+//    }];
+//
     //    [self.giveAdviceInterests addObject:self.giveAdviceField.text];
     //    self.giveAdviceField.text = nil;
     //    self.addGiveAdviceInterestButton.enabled = NO;
     
     
-}
+//}
 
 -(void)registerUser  {
     // initialize a user object
@@ -163,8 +142,6 @@
     newUser.company = self.companyField.text;
     newUser.school = self.institutionField.text;
     newUser.major = self.majorField.text;
-    newUser.getAdviceInterests = [NSArray arrayWithArray:self.getAdviceInterests];
-    newUser.giveAdviceInterests = [NSArray arrayWithArray:self.giveAdviceInterests];
     newUser.cityLocation = self.cityField.text;
     newUser.stateLocation = self.stateField.text;
     
@@ -253,156 +230,39 @@
     [self addProfilePicture];
 }
 
-/**************************** Event When Interests Typed **********************************/
-- (IBAction)getInterestChanged:(id)sender {
-    if(self.getAdviceField.text.length >= 3){
-        NSLog(@"greater");
-        [self.view addSubview:self.tableView];
-        CGRect intermediate = [self.getAdviceField frame];
-        CGRect tablePosition;
-        tablePosition.size.width = intermediate.size.width;
-        tablePosition.size.height = 90;
-        tablePosition.origin.x = intermediate.origin.x;
-        tablePosition.origin.y = intermediate.origin.y + 95;
-        self.tableView.frame = tablePosition;
-        NSString* typed = self.getAdviceField.text;
-        [self searchAutocompleteEntriesWithSubstring:typed];
-    }
-    else{
-        [self.tableView removeFromSuperview];
-        
-    }
-}
-- (IBAction)giveInterestsChanged:(id)sender {
-    if(self.giveAdviceField.text.length >= 3){
-        NSLog(@"greater");
-        [self.view addSubview:self.tableView];
-        CGRect intermediate = [self.giveAdviceField frame];
-        CGRect tablePosition;
-        tablePosition.size.width = intermediate.size.width;
-        tablePosition.size.height = 90;
-        tablePosition.origin.x = intermediate.origin.x;
-        tablePosition.origin.y = intermediate.origin.y + 95;
-        self.tableView.frame = tablePosition;
-        NSString* typed = self.giveAdviceField.text;
-        [self searchAutocompleteEntriesWithSubstring:typed];
-    }
-    else{
-        [self.tableView removeFromSuperview];
-    }
-}
+//- (IBAction)createNewInterest:(id)sender {
+//    PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
+//    if ([self.getAdviceField hasText]){
+//        newInterest[@"subject"] = self.getAdviceField.text;
+//
+//        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if (succeeded) {
+//                NSLog(@"New interest saved!");
+//                NSString* typed = self.getAdviceField.text;
+//                [self searchAutocompleteEntriesWithSubstring:typed];
+//                self.addGetAdviceInterestButton.enabled = YES;
+//
+//            } else {
+//                NSLog(@"Error: %@", error.description);
+//            }
+//        }];
+//}
+//    if ([self.giveAdviceField hasText]){
+//        newInterest[@"subject"] = self.giveAdviceField.text;
+//        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+//            if (succeeded) {
+//                NSLog(@"New interest saved!");
+//                NSString* typed = self.giveAdviceField.text;
+//                [self searchAutocompleteEntriesWithSubstring:typed];
+//                 self.addGiveAdviceInterestButton.enabled = YES;
+//
+//            } else {
+//                NSLog(@"Error: %@", error.description);
+//            }
+//        }];
+//    }
+//}
 
-/******************************* Autocomplete Using Parse ********************************/
-- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-  
-    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
-    [query whereKey:@"subject" hasPrefix:substring];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
-        if (!error) {
-            NSLog(@"Successfully retrieved %lu scores.", subjects.count);
-            NSMutableArray* temporary = [[NSMutableArray alloc]init];
-            for (InterestModel *interest in subjects) {
-                if(self.getAdviceField.text == interest.subject){
-                    [self.tableView removeFromSuperview];
-                    self.addGetAdviceInterestButton.enabled = YES;
-                }
-                else if(self.giveAdviceField.text == interest.subject){
-                    [self.tableView removeFromSuperview];
-                    self.addGiveAdviceInterestButton.enabled = YES;
-                    }
-                else{
-                [temporary addObject:interest.subject];
-                self.addGetAdviceInterestButton.enabled = NO;
-                }
-            }
-            self.forTableView = [[NSArray alloc]initWithArray:temporary];
-            [self.tableView reloadData];
-        } else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
-
-/************************************** TABLE VIEW  THINGS ******************************/
-
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-        if(self.forTableView == nil || self.forTableView.count == 0){
-        return 1;
-        }
-        else{
-        NSLog(@"%lu", self.forTableView.count);
-        return (self.forTableView.count);
-        }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-        AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
-        cell.addInterestButton.hidden = YES;
-        
-        if(self.forTableView == nil || self.forTableView.count == 0){
-            NSLog(@"IN IF1");
-            cell.addInterestButton.hidden = NO;
-            cell.interestLabel.hidden = YES;
-            return cell;
-        }
-        else{
-            NSLog(@"IN ELSE1");
-            cell.addInterestButton.hidden = YES;
-            cell.interestLabel.text = self.forTableView [indexPath.row];
-            cell.interestLabel.hidden = NO;
-            return cell;
-        }
-}
-
-- (IBAction)createNewInterest:(id)sender {
-    PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
-    if ([self.getAdviceField hasText]){
-        newInterest[@"subject"] = self.getAdviceField.text;
-        
-        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"New interest saved!");
-                NSString* typed = self.getAdviceField.text;
-                [self searchAutocompleteEntriesWithSubstring:typed];
-                self.addGetAdviceInterestButton.enabled = YES;
-                
-            } else {
-                NSLog(@"Error: %@", error.description);
-            }
-        }];
-}
-    if ([self.giveAdviceField hasText]){
-        newInterest[@"subject"] = self.giveAdviceField.text;
-        [newInterest saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"New interest saved!");
-                NSString* typed = self.giveAdviceField.text;
-                [self searchAutocompleteEntriesWithSubstring:typed];
-                 self.addGiveAdviceInterestButton.enabled = YES;
-                
-            } else {
-                NSLog(@"Error: %@", error.description);
-            }
-        }];
-    }
-}
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath     *)indexPath
-{
-    AutocompleteTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    
-     if ([self.getAdviceField hasText]){
-         self.getAdviceField.text = cell.interestLabel.text;
-         [self.tableView removeFromSuperview];
-         self.addGetAdviceInterestButton.enabled = YES;
-     }
-    if ([self.giveAdviceField hasText]){
-        self.giveAdviceField.text = cell.interestLabel.text;
-        [self.tableView removeFromSuperview];
-        self.addGiveAdviceInterestButton.enabled = YES;
-    }
-    
-}
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
