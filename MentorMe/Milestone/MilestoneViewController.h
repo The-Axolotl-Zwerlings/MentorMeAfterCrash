@@ -12,5 +12,5 @@
 @interface MilestoneViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) Milestone *milestone;
-
+-(void)setUI;
 @end

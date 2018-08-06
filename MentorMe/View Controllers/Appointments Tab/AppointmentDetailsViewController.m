@@ -10,6 +10,7 @@
 #import "ParseUI.h"
 #import "Parse.h"
 #import "DateTools.h"
+#import "MilestoneViewController.h"
 #import "ReviewViewController.h"
 @interface AppointmentDetailsViewController ()
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfileView;
@@ -89,7 +90,7 @@
     }
     
     //3. Update labels and images
-    
+    self.navigationItem.title = [NSString stringWithFormat:@"%@",otherAttendee.name];
     self.meetingTitleLabel.text = titleString;
     self.aboutUserLabel.text = [@"About " stringByAppendingString:otherAttendee.name];
     self.mentorBioLabel.text = otherAttendee.bio;
@@ -137,6 +138,22 @@
     if([segue.identifier isEqualToString:@"ReviewSegue"]){
         ReviewViewController *reviewViewController = [segue destinationViewController];
         reviewViewController.reviewee = self.appointmentWith;
+    } else if([segue.identifier isEqualToString:@"MilestoneSegue"]){
+        MilestoneViewController *milestoneViewController = [segue destinationViewController];
+        
+        
+        PFQuery *query = [PFQuery queryWithClassName:@"Milestone"];
+        [query whereKey:@"mentor" equalTo:self.appointment.mentor];
+        [query whereKey:@"mentee" equalTo:self.appointment.mentee];
+        [query findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError * _Nullable error) {
+            if(error == nil){
+                milestoneViewController.milestone = milestone[0];
+                [milestoneViewController setUI];
+            }
+            
+        }];
+    
+        
     }
 }
 

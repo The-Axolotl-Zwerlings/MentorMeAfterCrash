@@ -39,10 +39,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZzQ-nh-wMk">
-                                <rect key="frame" x="12" y="391" width="351" height="200"/>
+                                <rect key="frame" x="12" y="391" width="351" height="123"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="qj9-a8-0YB"/>
+                                    <constraint firstAttribute="height" constant="123" id="qj9-a8-0YB"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About User" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EP1-NU-9MC">
@@ -61,29 +61,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xF-gn-XjL">
-                                <rect key="frame" x="75" y="544" width="134" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="GO TO MILESTONE">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <segue destination="VI9-Ka-avq" kind="showDetail" id="egu-hC-pfX"/>
-                                </connections>
-                            </button>
-
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBp-5Q-OAb">
                                 <rect key="frame" x="25" y="300" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8xF-gn-XjL">
+                                <rect key="frame" x="11" y="543" width="120" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                <state key="normal" title="Go to Milestones">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="VI9-Ka-avq" kind="show" identifier="MilestoneSegue" id="egu-hC-pfX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="6tj-0r-NQR" firstAttribute="top" secondItem="MgU-gN-OyU" secondAttribute="topMargin" constant="441" id="T9u-yz-BW9"/>
                             <constraint firstItem="1dS-Bf-j09" firstAttribute="trailing" secondItem="6tj-0r-NQR" secondAttribute="trailing" constant="20" id="mJf-cN-YBL"/>
-                            <constraint firstItem="1dS-Bf-j09" firstAttribute="bottom" secondItem="ZzQ-nh-wMk" secondAttribute="bottom" constant="12" id="po1-A8-yez"/>
+                            <constraint firstItem="1dS-Bf-j09" firstAttribute="bottom" secondItem="ZzQ-nh-wMk" secondAttribute="bottom" constant="89" id="po1-A8-yez"/>
                             <constraint firstItem="ZzQ-nh-wMk" firstAttribute="leading" secondItem="1dS-Bf-j09" secondAttribute="leading" constant="12" id="s5t-ro-96i"/>
                             <constraint firstItem="1dS-Bf-j09" firstAttribute="trailing" secondItem="ZzQ-nh-wMk" secondAttribute="trailing" constant="12" id="xRn-4t-XG8"/>
                             <constraint firstItem="6tj-0r-NQR" firstAttribute="leading" secondItem="1dS-Bf-j09" secondAttribute="leading" constant="20" id="zWu-XP-ZXx"/>

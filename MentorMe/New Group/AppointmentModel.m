@@ -43,6 +43,23 @@
             NSLog(@"Error: %@", error.description);
         }
     }];
+    
+    PFUser *mentor = (isMentor) ? PFUser.currentUser : otherAttendee;
+    PFUser *mentee = (isMentor) ? otherAttendee : PFUser.currentUser;
+    //query for past appointments -- if there are none of this mentor and mentee then make new appointnent
+    //if there are past appointments with these people then incremenet by 1
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Milestone"];
+    [query whereKey:@"mentor" equalTo:mentor];
+    [query whereKey:@"mentee" equalTo:mentee];
+    [query findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError * _Nullable error) {
+        if(milestone.count == 0){
+            [Milestone postMilestoneWithMentor:mentor withMentee:mentee];
+        } else{
+            [milestone[0] updateMeetingNumber];
+        }
+    }];
+    
 }
 
 +(PFUser *)otherAttendee:(AppointmentModel *)appointment{

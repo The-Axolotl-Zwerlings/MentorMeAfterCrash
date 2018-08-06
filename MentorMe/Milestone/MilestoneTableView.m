@@ -45,18 +45,18 @@
 
 - (void)addedTask:(NSString *)taskText{
     unsigned long lastIndex = self.tableViews.count-1;
-    __block UITableView *lastOne = self.tableViews[lastIndex];
-    NSMutableArray *old = [NSMutableArray arrayWithArray:self.tasks[lastIndex]];
-    [old insertObject:taskText atIndex:0];
-    NSMutableArray *newone = [NSMutableArray arrayWithArray:self.tasks];
-    [newone replaceObjectAtIndex:lastIndex withObject:old];
-    self.tasks = [NSArray arrayWithArray:newone];
+    __block UITableView *lastTable = self.tableViews[lastIndex];
+    NSMutableArray *lastTableTasksOld = [NSMutableArray arrayWithArray:self.tasks[lastIndex]];
+    [lastTableTasksOld insertObject:taskText atIndex:0];
+    NSMutableArray *lastTableTasksNew = [NSMutableArray arrayWithArray:self.tasks];
+    [lastTableTasksNew replaceObjectAtIndex:lastIndex withObject:lastTableTasksOld];
+    self.tasks = [NSArray arrayWithArray:lastTableTasksNew];
     
     [UIView animateWithDuration:.3 animations:^{
-        lastOne.frame = CGRectMake(lastOne.frame.origin.x, lastOne.frame.origin.y, lastOne.frame.size.width, (old.count+1)* 45);
-        self.myView.frame = CGRectMake(self.myView.frame.origin.x, self.myView.frame.origin.y, self.myView.frame.size.width, (old.count+1)* 45);
+        lastTable.frame = CGRectMake(lastTable.frame.origin.x, lastTable.frame.origin.y, lastTable.frame.size.width, (lastTableTasksOld.count+1)* 45);
+        self.myView.frame = CGRectMake(self.myView.frame.origin.x, self.myView.frame.origin.y, self.myView.frame.size.width, (lastTableTasksOld.count+1)* 45);
     }];
-    [lastOne reloadData];
+    [lastTable reloadData];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"%@", [NSString stringWithFormat:@"%f", tableView.frame.origin.y]);

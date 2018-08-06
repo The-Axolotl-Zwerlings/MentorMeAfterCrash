@@ -14,6 +14,6 @@
 @property (strong, nonatomic) NSNumber *meetingNumber;
 @property (strong, nonatomic) NSArray *arrayOfArrayOfTasks; //1st element is an array of tasks from 1st meeting, 2nd is array of tasks from 2nd meeting, etc.
 
--(void)postMilestoneWithTasks:(NSArray *)arrayOfArrayOfTasks withMentor:(PFUser *)mentor withMentee:(PFUser *)mentee;
++(void)postMilestoneWithMentor:(PFUser *)mentor withMentee:(PFUser *)mentee;
 -(void)updateMeetingNumber;
 @end

@@ -18,16 +18,22 @@
 
 @implementation MilestoneViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 900)];
-    
-    self.meetingNumber = 1;
-    
-    NSArray *meeting1Tasks = [NSArray arrayWithArray:[[NSMutableArray alloc]init]];
-    self.arrayOfArrays = [NSArray arrayWithObjects:meeting1Tasks, nil];
-    NSMutableArray *arrayOfTableViewsMutable = [[NSMutableArray alloc]init];
 
+-(void)setUI{
+    self.meetingNumber = [self.milestone.meetingNumber intValue];
+    self.arrayOfArrays = self.milestone.arrayOfArrayOfTasks;
+    
+    //if there isn't an array for each meeting yet, make them
+    NSMutableArray *arrayOfArrayMutable = [NSMutableArray arrayWithArray:self.arrayOfArrays];
+    while(arrayOfArrayMutable.count < self.meetingNumber){
+        NSArray *fillIn = [[NSArray alloc]init];
+        [arrayOfArrayMutable addObject:fillIn];
+        
+    }
+    self.arrayOfArrays = [NSArray arrayWithArray:arrayOfArrayMutable];
+    
+    NSMutableArray *arrayOfTableViewsMutable = [[NSMutableArray alloc]init];
+    
     
     for(int i = 0; i < self.meetingNumber; ++i){
         //if it's the first one and there are no tasks
@@ -35,15 +41,15 @@
             
             [self makeView:YES tasksZero:YES andArray:arrayOfTableViewsMutable andIndex:i];
             
-        //if it's the first one and there are tasks
+            //if it's the first one and there are tasks
         } else if(i == 0){
             [self makeView:YES tasksZero:NO andArray:arrayOfTableViewsMutable andIndex:i];
             
-        //if it's not the first one and there aren't tasks
+            //if it's not the first one and there aren't tasks
         } else if(((NSArray *)self.arrayOfArrays[i]).count == 0){
             [self makeView:NO tasksZero:YES andArray:arrayOfTableViewsMutable andIndex:i];
             
-        //not the first one and there are tasks
+            //not the first one and there are tasks
         } else {
             [self makeView:NO tasksZero:NO andArray:arrayOfTableViewsMutable andIndex:i];
             
@@ -60,21 +66,44 @@
         ((UITableView *)self.arrayOfTableViews[i]).dataSource = self.dataSource;
     }
 }
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
+    [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 900)];
+    
+    [self setUI];
+    
+    
+    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    self.milestone[@"arrayOfArrayOfTasks"] = ((MilestoneTableView *)((UITableView *)self.arrayOfTableViews[0]).dataSource).tasks;
+    [self.milestone saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if(succeeded){
+            NSLog(@"We saved it!");
+        }
+    }];
+    
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    
+    NSLog(@"Preparing for segue from milestone");
 }
-*/
+
 
 -(void)makeView:(BOOL)first tasksZero:(BOOL)tasksZero andArray:(NSMutableArray *)mutableArray andIndex:(int)i{
     
@@ -110,7 +139,11 @@
     }
     
     if(!tasksZero){
+        
         heightTable = ((NSArray *)self.arrayOfArrays[0]).count*43;
+        if(i == self.meetingNumber-1){
+            heightTable += 50;
+        }
         heightBar = heightTable;
     }
     
