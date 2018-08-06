@@ -121,6 +121,7 @@
         for(PFUser *user in self.allUsersFromQuery){
             NSSet *otherUserInterests = (self.mentorMenteeSegControl.selectedSegmentIndex == 0) ? [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]] : [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]] ;
             BOOL intersectionOfInterests = [myUserInterestsSet intersectsSet:otherUserInterests];
+            
             if( intersectionOfInterests == YES){
                 if( self.filteredUsersFromQuery == nil ){
                     self.filteredUsersFromQuery = [[NSMutableArray alloc] initWithObjects:user, nil];
