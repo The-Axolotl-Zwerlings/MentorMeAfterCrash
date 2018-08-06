@@ -14,7 +14,7 @@
 #import "InterestModel.h"
 
 
-@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface SignUpViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -142,8 +142,6 @@
     newUser.company = self.companyField.text;
     newUser.school = self.institutionField.text;
     newUser.major = self.majorField.text;
-    newUser.getAdviceInterests = [NSArray arrayWithArray:self.getAdviceInterests];
-    newUser.giveAdviceInterests = [NSArray arrayWithArray:self.giveAdviceInterests];
     newUser.cityLocation = self.cityField.text;
     newUser.stateLocation = self.stateField.text;
     
@@ -232,108 +230,6 @@
     [self addProfilePicture];
 }
 
-/**************************** Event When Interests Typed **********************************/
-//- (IBAction)getInterestChanged:(id)sender {
-//    if(self.getAdviceField.text.length >= 3){
-//        NSLog(@"greater");
-//        [self.view addSubview:self.tableView];
-//        CGRect intermediate = [self.getAdviceField frame];
-//        CGRect tablePosition;
-//        tablePosition.size.width = intermediate.size.width;
-//        tablePosition.size.height = 90;
-//        tablePosition.origin.x = intermediate.origin.x;
-//        tablePosition.origin.y = intermediate.origin.y + 95;
-//        self.tableView.frame = tablePosition;
-//        NSString* typed = self.getAdviceField.text;
-//        [self searchAutocompleteEntriesWithSubstring:typed];
-//    }
-//    else{
-//        [self.tableView removeFromSuperview];
-//
-//    }
-//}
-//- (IBAction)giveInterestsChanged:(id)sender {
-//    if(self.giveAdviceField.text.length >= 3){
-//        NSLog(@"greater");
-//        [self.view addSubview:self.tableView];
-//        CGRect intermediate = [self.giveAdviceField frame];
-//        CGRect tablePosition;
-//        tablePosition.size.width = intermediate.size.width;
-//        tablePosition.size.height = 90;
-//        tablePosition.origin.x = intermediate.origin.x;
-//        tablePosition.origin.y = intermediate.origin.y + 95;
-//        self.tableView.frame = tablePosition;
-//        NSString* typed = self.giveAdviceField.text;
-//        [self searchAutocompleteEntriesWithSubstring:typed];
-//    }
-//    else{
-//        [self.tableView removeFromSuperview];
-//    }
-//}
-
-/******************************* Autocomplete Using Parse ********************************/
-//- (void)searchAutocompleteEntriesWithSubstring:(NSString *)substring {
-//
-//    PFQuery *query = [PFQuery queryWithClassName:@"InterestModel"];
-//    [query whereKey:@"subject" hasPrefix:substring];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *subjects, NSError *error) {
-//        if (!error) {
-//            NSLog(@"Successfully retrieved %lu scores.", subjects.count);
-//            NSMutableArray* temporary = [[NSMutableArray alloc]init];
-//            for (InterestModel *interest in subjects) {
-//                if(self.getAdviceField.text == interest.subject){
-//                    [self.tableView removeFromSuperview];
-//                    self.addGetAdviceInterestButton.enabled = YES;
-//                }
-//                else if(self.giveAdviceField.text == interest.subject){
-//                    [self.tableView removeFromSuperview];
-//                    self.addGiveAdviceInterestButton.enabled = YES;
-//                    }
-//                else{
-//                [temporary addObject:interest.subject];
-//                self.addGetAdviceInterestButton.enabled = NO;
-//                }
-//            }
-//            self.forTableView = [[NSArray alloc]initWithArray:temporary];
-//            [self.tableView reloadData];
-//        } else {
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
-
-/************************************** TABLE VIEW  THINGS ******************************/
-
-//}
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//        if(self.forTableView == nil || self.forTableView.count == 0){
-//        return 1;
-//        }
-//        else{
-//        NSLog(@"%lu", self.forTableView.count);
-//        return (self.forTableView.count);
-//        }
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//
-//        AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
-//        //cell.addInterestButton.hidden = YES;
-//
-//        if(self.forTableView == nil || self.forTableView.count == 0){
-//            NSLog(@"IN IF1");
-//            //cell.addInterestButton.hidden = NO;
-//            cell.interestLabel.hidden = YES;
-//            return cell;
-//        }
-//        else{
-//            NSLog(@"IN ELSE1");
-//            //cell.addInterestButton.hidden = YES;
-//            cell.interestLabel.text = self.forTableView [indexPath.row];
-//            cell.interestLabel.hidden = NO;
-//            return cell;
-//        }
-//}
-
 //- (IBAction)createNewInterest:(id)sender {
 //    PFObject* newInterest = [PFObject objectWithClassName:@"InterestModel"];
 //    if ([self.getAdviceField hasText]){
@@ -366,22 +262,7 @@
 //        }];
 //    }
 //}
-//-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath     *)indexPath
-//{
-//    AutocompleteTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-//
-//     if ([self.getAdviceField hasText]){
-//         self.getAdviceField.text = cell.interestLabel.text;
-//         [self.tableView removeFromSuperview];
-//         self.addGetAdviceInterestButton.enabled = YES;
-//     }
-//    if ([self.giveAdviceField hasText]){
-//        self.giveAdviceField.text = cell.interestLabel.text;
-//        [self.tableView removeFromSuperview];
-//        self.addGiveAdviceInterestButton.enabled = YES;
-//    }
-//
-//}
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation

@@ -112,7 +112,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onTapRegister:" destination="JqI-0m-vkI" eventType="touchUpInside" id="wTT-vv-crD"/>
-                                    <segue destination="ygy-Yk-x3g" kind="presentation" identifier="segueToTabBarViewController" id="kId-JX-dkC"/>
+                                    <segue destination="Ld8-OK-YNc" kind="show" id="Bft-1v-yy6"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kkk-FX-AEQ">
@@ -127,11 +127,7 @@
                         <viewLayoutGuide key="safeArea" id="biV-1Y-Gs8"/>
                     </view>
                     <navigationItem key="navigationItem" id="kHd-MC-SvK">
-                        <barButtonItem key="rightBarButtonItem" title="Edit Interests" id="eSS-RU-R8I">
-                            <connections>
-                                <segue destination="Ld8-OK-YNc" kind="show" identifier="EditInterests" id="pkf-lz-2ea"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Edit Interests" id="eSS-RU-R8I"/>
                     </navigationItem>
                     <connections>
                         <outlet property="JobTitleField" destination="rta-BN-a8A" id="Wfr-ck-OFW"/>

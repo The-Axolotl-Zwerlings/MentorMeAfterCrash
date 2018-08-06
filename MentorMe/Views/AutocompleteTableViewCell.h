@@ -9,7 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface AutocompleteTableViewCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIButton *makeInterestButton;
 @property (weak, nonatomic) IBOutlet UILabel *interestLabel;
 @end

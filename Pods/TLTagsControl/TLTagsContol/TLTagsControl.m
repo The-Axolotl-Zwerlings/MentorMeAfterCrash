@@ -7,13 +7,14 @@
 //
 
 #import "TLTagsControl.h"
+#import "Parse/Parse.h"
 
 @interface TLTagsControl () <UITextFieldDelegate, UIGestureRecognizerDelegate>
-
+@property (strong, nonatomic) UIView* tagView;
 @end
 
 @implementation TLTagsControl {
-    //UITextField                 *self.tagInputField_;
+    UITextField                 *tagInputField_;
     NSMutableArray              *tagSubviews_;
 }
 
@@ -67,23 +68,28 @@
 }
 
 - (void)commonInit {
+    
+    self.toCreate = [[NSMutableArray alloc]init];
+    
     _tags = [NSMutableArray array];
     
     self.layer.cornerRadius = 5;
     
     tagSubviews_ = [NSMutableArray array];
     
-    self.tagInputField_ = [[UITextField alloc] initWithFrame:self.frame];
-    self.tagInputField_.layer.cornerRadius = 5;
-    self.tagInputField_.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.tagInputField_.backgroundColor = [UIColor whiteColor];
-    self.tagInputField_.delegate = self;
-    self.tagInputField_.font = [UIFont fontWithName:@"HelveticaNeue" size:14];
-    self.tagInputField_.placeholder = @"tag";
-    self.tagInputField_.autocorrectionType = UITextAutocorrectionTypeNo;
+    tagInputField_ = [[UITextField alloc] initWithFrame:self.frame];
+    tagInputField_ .layer.cornerRadius = 5;
+    tagInputField_ .layer.borderColor = [UIColor lightGrayColor].CGColor;
+    //tagInputField_ .backgroundColor = [UIColor whiteColor];
+    tagInputField_ .delegate = self;
+    tagInputField_ .font = [UIFont fontWithName:@"HelveticaNeue" size:14];
+    //tagInputField_ .placeholder = @"tag";
+    tagInputField_ .autocorrectionType = UITextAutocorrectionTypeNo;
+    [tagInputField_  addTarget:self action:@selector(valueChangedMethodcall:) forControlEvents:UIControlEventAllEditingEvents];
+    NSLog(@"Step 1 added control to field");
     
     if (_mode == TLTagsControlModeEdit) {
-        [self addSubview:self.tagInputField_];
+        [self addSubview:tagInputField_ ];
     }
 }
 
@@ -121,7 +127,7 @@
     }
     
     if (_mode == TLTagsControlModeEdit) {
-        frame = self.tagInputField_.frame;
+        frame = tagInputField_ .frame;
         frame.size.height = self.frame.size.height;
         frame.origin.y = 0;
         
@@ -132,12 +138,12 @@
             frame.origin.x = view.frame.origin.x + view.frame.size.width + 4;
         }
         
-        if (self.frame.size.width - self.tagInputField_.frame.origin.x > 100) {
+        if (self.frame.size.width - tagInputField_ .frame.origin.x > 100) {
             frame.size.width = self.frame.size.width - frame.origin.x - 12;
         } else {
             frame.size.width = 100;
         }
-        self.tagInputField_.frame = frame;
+        tagInputField_ .frame = frame;
     } else {
         UIView *lastTag = tagSubviews_.lastObject;
         if (lastTag != nil) {
@@ -152,7 +158,7 @@
     
     self.contentSize = contentSize;
     
-    self.tagInputField_.placeholder = (_tagPlaceholder == nil) ? @"tag" : _tagPlaceholder;
+    tagInputField_ .placeholder = (_tagPlaceholder == nil) ? @"tag" : _tagPlaceholder;
 }
 
 - (void)addTag:(NSString *)tag {
@@ -170,7 +176,7 @@
     
     if (contentSize.width > self.frame.size.width) {
         if (_mode == TLTagsControlModeEdit) {
-            offset.x = self.tagInputField_.frame.origin.x + self.tagInputField_.frame.size.width - self.frame.size.width;
+            offset.x = tagInputField_ .frame.origin.x + tagInputField_ .frame.size.width - self.frame.size.width;
         } else {
             UIView *lastTag = tagSubviews_.lastObject;
             offset.x = lastTag.frame.origin.x + lastTag.frame.size.width - self.frame.size.width;
@@ -194,28 +200,31 @@
                                                                                                       green:0.91
                                                                                                        blue:0.925
                                                                                                       alpha:1];
+
     UIColor *tagTextColor = _tagsTextColor != nil ? _tagsTextColor : [UIColor darkGrayColor];
     UIColor *tagDeleteButtonColor = _tagsDeleteButtonColor != nil ? _tagsDeleteButtonColor : [UIColor blackColor];
     
     
     
     for (NSString *tag in _tags) {
-        float width = [tag boundingRectWithSize:CGSizeMake(3000,self.tagInputField_.frame.size.height)
+        float width = [tag boundingRectWithSize:CGSizeMake(3000,tagInputField_ .frame.size.height)
                                         options:NSStringDrawingUsesLineFragmentOrigin
-                                     attributes:@{NSFontAttributeName:self.tagInputField_.font}
+                                     attributes:@{NSFontAttributeName:tagInputField_ .font}
                                         context:nil].size.width;
         
-        UIView *tagView = [[UIView alloc] initWithFrame:self.tagInputField_.frame];
-        CGRect tagFrame = tagView.frame;
-        tagView.layer.cornerRadius = 5;
-        tagFrame.origin.y = self.tagInputField_.frame.origin.y;
-        tagView.backgroundColor = tagBackgrounColor;
+        self.tagView = [[UIView alloc] initWithFrame:tagInputField_ .frame];
+        CGRect tagFrame = self.tagView.frame;
+        self.tagView.layer.cornerRadius = 5;
+        tagFrame.origin.y = tagInputField_ .frame.origin.y;
+
+        self.tagView.backgroundColor = tagBackgrounColor;
+        
         
         UILabel *tagLabel = [[UILabel alloc] init];
         CGRect labelFrame = tagLabel.frame;
-        tagLabel.font = self.tagInputField_.font;
+        tagLabel.font = tagInputField_ .font;
         labelFrame.size.width = width + 16;
-        labelFrame.size.height = self.tagInputField_.frame.size.height;
+        labelFrame.size.height = tagInputField_ .frame.size.height;
         tagLabel.text = tag;
         tagLabel.textColor = tagTextColor;
         tagLabel.textAlignment = NSTextAlignmentCenter;
@@ -223,12 +232,12 @@
         tagLabel.layer.cornerRadius = 5;
         
         if (_mode == TLTagsControlModeEdit) {
-            UIButton *deleteTagButton = [[UIButton alloc] initWithFrame:self.tagInputField_.frame];
+            UIButton *deleteTagButton = [[UIButton alloc] initWithFrame:tagInputField_ .frame];
             CGRect buttonFrame = deleteTagButton.frame;
-            [deleteTagButton.titleLabel setFont:self.tagInputField_.font];
+            [deleteTagButton.titleLabel setFont:tagInputField_ .font];
             [deleteTagButton addTarget:self action:@selector(deleteTagButton:) forControlEvents:UIControlEventTouchUpInside];
             buttonFrame.size.width = deleteTagButton.frame.size.height;
-            buttonFrame.size.height = self.tagInputField_.frame.size.height;
+            buttonFrame.size.height = tagInputField_ .frame.size.height;
             [deleteTagButton setTag:tagSubviews_.count];
             [deleteTagButton setTitle:@"✕" forState:UIControlStateNormal];
             [deleteTagButton setTitleColor:tagDeleteButtonColor forState:UIControlStateNormal];
@@ -237,14 +246,14 @@
             
             deleteTagButton.frame = buttonFrame;
             tagFrame.size.width = labelFrame.size.width + buttonFrame.size.width;
-            [tagView addSubview:deleteTagButton];
+            [self.tagView addSubview:deleteTagButton];
             labelFrame.origin.x = 0;
         } else {
             tagFrame.size.width = labelFrame.size.width + 5;
             labelFrame.origin.x = (tagFrame.size.width - labelFrame.size.width) * 0.5;
         }
         
-        [tagView addSubview:tagLabel];
+        [self.tagView addSubview:tagLabel];
         labelFrame.origin.y = 0;
         UIView *lastView = tagSubviews_.lastObject;
         
@@ -253,32 +262,43 @@
         }
         
         tagLabel.frame = labelFrame;
-        tagView.frame = tagFrame;
-        [tagSubviews_ addObject:tagView];
-        [self addSubview:tagView];
+        self.tagView.frame = tagFrame;
+        [tagSubviews_ addObject:self.tagView];
+        [self addSubview:self.tagView];
     }
     
     
     if (_mode == TLTagsControlModeEdit) {
-        if (self.tagInputField_.superview == nil) {
-            [self addSubview:self.tagInputField_];
+        if (tagInputField_ .superview == nil) {
+            [self addSubview:tagInputField_ ];
         }
-        CGRect frame = self.tagInputField_.frame;
+        CGRect frame = tagInputField_ .frame;
         if (tagSubviews_.count == 0) {
             frame.origin.x = 7;
         } else {
             UIView *view = tagSubviews_.lastObject;
             frame.origin.x = view.frame.origin.x + view.frame.size.width + 4;
         }
-        self.tagInputField_.frame = frame;
+        tagInputField_ .frame = frame;
         
     } else {
-        if (self.tagInputField_.superview != nil) {
-            [self.tagInputField_ removeFromSuperview];
+        if (tagInputField_ .superview != nil) {
+            [tagInputField_ removeFromSuperview];
         }
     }
     
     [self setNeedsLayout];
+}
+
+- (IBAction)valueChangedMethodcall:(UITextField *)sender {
+    [self.dataHandler addString:self withString:tagInputField_.text];
+    NSLog(@"step 2 detected text change and call method");
+}
+-(void)emptyField{
+    tagInputField_.text = @"";
+}
+-(void)triggerPassing{
+    [self.dataHandler passingArray:self.toCreate];
 }
 
 #pragma mark - buttons handlers
@@ -286,8 +306,12 @@
 - (void)deleteTagButton:(UIButton *)sender {
     UIView *view = sender.superview;
     [view removeFromSuperview];
-    
     NSInteger index = [tagSubviews_ indexOfObject:view];
+    [self.toCreate enumerateObjectsUsingBlock:^(NSString *s, NSUInteger x, BOOL *stop) {
+        if ([s isEqualToString:[_tags objectAtIndex:index]]) {
+            [self.toCreate removeObjectAtIndex:x];
+        }
+    }];
     [_tags removeObjectAtIndex:index];
     [self reloadTagSubviews];
 }
@@ -295,14 +319,17 @@
 - (void)tagButtonPressed:(id)sender {
     UIButton *button = sender;
     
-    self.tagInputField_.text = @"";
+    tagInputField_ .text = @"";
     [self addTag:button.titleLabel.text];
 }
+
 
 #pragma mark - textfield stuff
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField.text.length > 0) {
+        [self.toCreate addObject:textField.text];
+        // save object
         NSString *tag = textField.text;
         textField.text = @"";
         [self addTag:tag];
