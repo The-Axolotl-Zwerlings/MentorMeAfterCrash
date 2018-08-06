@@ -10,7 +10,6 @@
 
 @interface AutocompleteTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIButton *makeInterestButton;
 @property (weak, nonatomic) IBOutlet UILabel *interestLabel;
-@property (weak, nonatomic) IBOutlet UIButton *addInterestButton;
-
 @end
