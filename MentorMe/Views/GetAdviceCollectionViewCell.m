@@ -33,6 +33,8 @@
     
     self.backgroundImage.layer.masksToBounds = YES;
     self.backgroundImage.layer.cornerRadius = self.backgroundImage.frame.size.height/2;
+    
+    
 }
 
 - (void)drawRect:(CGRect)rect
