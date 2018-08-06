@@ -99,6 +99,7 @@
                 if([appointment.meetingDate compare:currentDate] != -1){
                     appointment.isUpcoming = [NSNumber numberWithBool:YES];
                     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        [oldUpcoming addObject:appointment];
                         self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
                     }];
                     //else make it not upcoming

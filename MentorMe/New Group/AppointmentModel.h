@@ -10,7 +10,7 @@
 #import "PFUser+ExtendedUser.h"
 #import "Parse/Parse.h"
 #import "ParseUI.h"
-
+#import "Milestone.h"
 @interface AppointmentModel : PFObject <PFSubclassing>
 
 @property (nonatomic, strong ) PFUser *mentor;

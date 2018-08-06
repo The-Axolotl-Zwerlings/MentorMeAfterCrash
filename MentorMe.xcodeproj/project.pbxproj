@@ -25,6 +25,11 @@
 		A82EB2DC2107E43A00079B53 /* RateView.m in Sources */ = {isa = PBXBuildFile; fileRef = A82EB2DB2107E43A00079B53 /* RateView.m */; };
 		A83DEAD9210FC21A002799DC /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = A83DEAD8210FC21A002799DC /* Review.m */; };
 		A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */; };
+		A87C16D12113F7BE001AC0B5 /* Milestone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */; };
+		A87C16D42113F7E5001AC0B5 /* MilestoneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */; };
+		A87C16D721140365001AC0B5 /* MilestoneTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16D621140365001AC0B5 /* MilestoneTableView.m */; };
+		A87C16DA21140998001AC0B5 /* MilestoneCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16D921140998001AC0B5 /* MilestoneCell.m */; };
+		A87C16DD211413BD001AC0B5 /* AddCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A87C16DC211413BD001AC0B5 /* AddCell.m */; };
 		A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A88312FC20F28D5C00363E48 /* AppDelegate.m */; };
 		A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A883130120F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard */; };
 		A883130520F28D5F00363E48 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A883130420F28D5F00363E48 /* Assets.xcassets */; };
@@ -32,6 +37,7 @@
 		A883130B20F28D5F00363E48 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A883130A20F28D5F00363E48 /* main.m */; };
 		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
 		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
+		A8A28C022117B50E009EA5EB /* Milestone.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A28C012117B50E009EA5EB /* Milestone.m */; };
 		B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22101E821123D0C00D2E59F /* EditInterestsViewController.m */; };
 		B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
@@ -108,6 +114,15 @@
 		A83DEAD8210FC21A002799DC /* Review.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		A87C16CD21136F87001AC0B5 /* ComplimentsCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComplimentsCell.h; sourceTree = "<group>"; };
 		A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComplimentsCell.m; sourceTree = "<group>"; };
+		A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Milestone.storyboard; sourceTree = "<group>"; };
+		A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MilestoneViewController.h; sourceTree = "<group>"; };
+		A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MilestoneViewController.m; sourceTree = "<group>"; };
+		A87C16D521140365001AC0B5 /* MilestoneTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MilestoneTableView.h; sourceTree = "<group>"; };
+		A87C16D621140365001AC0B5 /* MilestoneTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MilestoneTableView.m; sourceTree = "<group>"; };
+		A87C16D821140998001AC0B5 /* MilestoneCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MilestoneCell.h; sourceTree = "<group>"; };
+		A87C16D921140998001AC0B5 /* MilestoneCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MilestoneCell.m; sourceTree = "<group>"; };
+		A87C16DB211413BD001AC0B5 /* AddCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddCell.h; sourceTree = "<group>"; };
+		A87C16DC211413BD001AC0B5 /* AddCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddCell.m; sourceTree = "<group>"; };
 		A88312F820F28D5C00363E48 /* MentorMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MentorMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A88312FB20F28D5C00363E48 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		A88312FC20F28D5C00363E48 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +137,8 @@
 		A883131B20F28D5F00363E48 /* MentorMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MentorMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A883131F20F28D5F00363E48 /* MentorMeUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MentorMeUITests.m; sourceTree = "<group>"; };
 		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8A28C002117B50E009EA5EB /* Milestone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Milestone.h; sourceTree = "<group>"; };
+		A8A28C012117B50E009EA5EB /* Milestone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Milestone.m; sourceTree = "<group>"; };
 		B22101E721123D0C00D2E59F /* EditInterestsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditInterestsViewController.h; sourceTree = "<group>"; };
 		B22101E821123D0C00D2E59F /* EditInterestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInterestsViewController.m; sourceTree = "<group>"; };
 		B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteTableViewCell.h; sourceTree = "<group>"; };
@@ -202,6 +219,24 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		A87C16DE2114BE74001AC0B5 /* Milestone */ = {
+			isa = PBXGroup;
+			children = (
+				A8A28C002117B50E009EA5EB /* Milestone.h */,
+				A8A28C012117B50E009EA5EB /* Milestone.m */,
+				A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */,
+				A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */,
+				A87C16D521140365001AC0B5 /* MilestoneTableView.h */,
+				A87C16D621140365001AC0B5 /* MilestoneTableView.m */,
+				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
+				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
+				A87C16DB211413BD001AC0B5 /* AddCell.h */,
+				A87C16DC211413BD001AC0B5 /* AddCell.m */,
+				A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */,
+			);
+			path = Milestone;
+			sourceTree = "<group>";
+		};
 		A88312EF20F28D5C00363E48 = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +262,7 @@
 		A88312FA20F28D5C00363E48 /* MentorMe */ = {
 			isa = PBXGroup;
 			children = (
+				A87C16DE2114BE74001AC0B5 /* Milestone */,
 				C05743DB20FFBAF900A6F529 /* Views */,
 				A82A494320FFA26200DC129F /* Models */,
 				C002266520FE578B007D359B /* Storyboards */,
@@ -538,6 +574,7 @@
 				B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */,
 				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
 				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
+				A87C16D12113F7BE001AC0B5 /* Milestone.storyboard in Resources */,
 				A8011C832101415C0028E604 /* Filters.storyboard in Resources */,
 				C0F1018E2101647F009ADA47 /* MentorDetailsStoryboard.storyboard in Resources */,
 				A8011C87210167040028E604 /* CreateAppointment.storyboard in Resources */,
@@ -652,6 +689,7 @@
 				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
 				C072AB962107994100912A25 /* GetAdviceCollectionViewCell.m in Sources */,
+				A8A28C022117B50E009EA5EB /* Milestone.m in Sources */,
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
 				A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */,
 				A83DEAD9210FC21A002799DC /* Review.m in Sources */,
@@ -659,20 +697,24 @@
 				A8011C812101408C0028E604 /* FilterViewController.m in Sources */,
 				B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */,
 				A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */,
+				A87C16D721140365001AC0B5 /* MilestoneTableView.m in Sources */,
 				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
 				B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */,
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
+				A87C16D42113F7E5001AC0B5 /* MilestoneViewController.m in Sources */,
 				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
 				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
 				A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */,
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
 				C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */,
+				A87C16DD211413BD001AC0B5 /* AddCell.m in Sources */,
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
 				C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */,
 				C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */,
 				A82EB2DC2107E43A00079B53 /* RateView.m in Sources */,
+				A87C16DA21140998001AC0B5 /* MilestoneCell.m in Sources */,
 				B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */,
 				A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */,
 			);
@@ -852,7 +894,7 @@
 					"@executable_path/Frameworks",
 				);
 
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkn.MentorMe;
 
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -871,7 +913,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
+
+				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkn.MentorMe;
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
