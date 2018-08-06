@@ -18,20 +18,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBa-Pa-JdX" customClass="TLTagsControl">
-                                <rect key="frame" x="21" y="103" width="332" height="57"/>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VBa-Pa-JdX" customClass="TLTagsControl">
+                                <rect key="frame" x="21" y="103" width="332" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-ta-PIg" customClass="TLTagsControl">
-                                <rect key="frame" x="21" y="253" width="332" height="58"/>
+                            <view alpha="0.5" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fl8-ta-PIg" customClass="TLTagsControl">
+                                <rect key="frame" x="21" y="253" width="332" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2v-9a-vzf">
                                 <rect key="frame" x="130" y="365" width="98" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Save Changes"/>
+                                <connections>
+                                    <action selector="atSaveChanges:" destination="A9G-a4-gd4" eventType="touchUpInside" id="rPP-1R-Yca"/>
+                                    <segue destination="Xm6-Ee-8G9" kind="showDetail" id="BJp-BI-ZkW"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want advice on ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6y-b6-pRF">
                                 <rect key="frame" x="21" y="74" width="234" height="21"/>
@@ -48,7 +54,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="FiC-pg-f0E"/>
                     </view>
                     <navigationItem key="navigationItem" id="vau-tH-j5I"/>
@@ -63,41 +69,45 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="s8N-RW-Z2p">
                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="sectionIndexBackgroundColor" red="0.73490225730000003" green="1" blue="0.1212144431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <prototypes>
-                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" id="WDV-uO-e7H" customClass="AutocompleteTableViewCell">
-                            <rect key="frame" x="0.0" y="28" width="240" height="44"/>
+                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" rowHeight="36" id="WDV-uO-e7H" customClass="AutocompleteTableViewCell">
+                            <rect key="frame" x="0.0" y="28" width="240" height="36"/>
                             <autoresizingMask key="autoresizingMask"/>
-                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WDV-uO-e7H" id="kfl-uR-8RA">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
+                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.80000000000000004" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WDV-uO-e7H" id="kfl-uR-8RA">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="35.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frf-Q0-wK0">
-                                        <rect key="frame" x="16" y="12" width="208" height="21"/>
+                                        <rect key="frame" x="16" y="7" width="208" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                        <color key="shadowColor" red="0.46035832040000002" green="0.47374866910000002" blue="0.47747328369999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mrv-VY-Oum">
-                                        <rect key="frame" x="56" y="7" width="128" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Make New Subject"/>
-                                        <connections>
-                                            <action selector="makeNewInterest:" destination="A9G-a4-gd4" eventType="touchUpInside" id="Cdt-qD-QFt"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
+                                <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" red="0.73490225730000003" green="1" blue="0.1212144431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableViewCellContentView>
+                            <color key="backgroundColor" red="0.73490225727400094" green="1" blue="0.12121444305415008" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
                                 <outlet property="interestLabel" destination="frf-Q0-wK0" id="9fb-jG-nCT"/>
-                                <outlet property="makeInterestButton" destination="Mrv-VY-Oum" id="5E1-PK-ym7"/>
                             </connections>
                         </tableViewCell>
                     </prototypes>
                 </tableView>
             </objects>
             <point key="canvasLocation" x="73" y="-72"/>
+        </scene>
+        <!--TabBarNavigationController-->
+        <scene sceneID="5g1-xw-75P">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="TabBarNavigationController" storyboardName="TabBarViewControllerStoryboard" referencedIdentifier="TabBarNavigationController" id="Xm6-Ee-8G9" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9jL-ZL-xCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="690" y="-101"/>
         </scene>
     </scenes>
 </document>

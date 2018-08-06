@@ -81,45 +81,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Get advice interest" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jPx-bc-9rm">
-                                <rect key="frame" x="44" y="566" width="233" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="getInterestChanged:" destination="JqI-0m-vkI" eventType="editingChanged" id="sZS-FC-R67"/>
-                                </connections>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Give advice interest" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S55-lz-wKa">
-                                <rect key="frame" x="44" y="528" width="233" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="giveInterestsChanged:" destination="JqI-0m-vkI" eventType="editingChanged" id="iCn-1w-hYi"/>
-                                </connections>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sem-3U-j6i">
-                                <rect key="frame" x="293" y="566" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                                <state key="disabled">
-                                    <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="onTapAddToGet:" destination="JqI-0m-vkI" eventType="touchUpInside" id="7CQ-Qy-4vc"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e9A-aO-Fqw">
-                                <rect key="frame" x="293" y="528" width="30" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Add"/>
-                                <connections>
-                                    <action selector="onTapAddToGive:" destination="JqI-0m-vkI" eventType="touchUpInside" id="sW2-US-TGE"/>
-                                </connections>
-                            </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter state" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pbS-qf-MQJ">
                                 <rect key="frame" x="44" y="471" width="287" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -151,7 +112,7 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onTapRegister:" destination="JqI-0m-vkI" eventType="touchUpInside" id="wTT-vv-crD"/>
-                                    <segue destination="ygy-Yk-x3g" kind="presentation" identifier="segueToTabBarViewController" id="kId-JX-dkC"/>
+                                    <segue destination="Ld8-OK-YNc" kind="show" id="Bft-1v-yy6"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kkk-FX-AEQ">
@@ -166,69 +127,25 @@
                         <viewLayoutGuide key="safeArea" id="biV-1Y-Gs8"/>
                     </view>
                     <navigationItem key="navigationItem" id="kHd-MC-SvK">
-                        <barButtonItem key="rightBarButtonItem" title="Edit Interests" id="eSS-RU-R8I">
-                            <connections>
-                                <segue destination="Ld8-OK-YNc" kind="show" identifier="EditInterests" id="pkf-lz-2ea"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Edit Interests" id="eSS-RU-R8I"/>
                     </navigationItem>
                     <connections>
                         <outlet property="JobTitleField" destination="rta-BN-a8A" id="Wfr-ck-OFW"/>
-                        <outlet property="addGetAdviceInterestButton" destination="sem-3U-j6i" id="3t1-p5-00c"/>
-                        <outlet property="addGiveAdviceInterestButton" destination="e9A-aO-Fqw" id="IBV-Ze-jM2"/>
                         <outlet property="addProfilePictureButton" destination="Kzx-XN-m0l" id="Jla-It-FSd"/>
                         <outlet property="bioField" destination="Erq-G5-e9G" id="fr5-Qn-rkg"/>
                         <outlet property="cityField" destination="QBn-U6-axh" id="SVa-2F-iIU"/>
                         <outlet property="companyField" destination="yu1-eI-G8F" id="nmM-lt-vLW"/>
                         <outlet property="emailField" destination="Kkk-FX-AEQ" id="soG-TA-Dah"/>
-                        <outlet property="getAdviceField" destination="jPx-bc-9rm" id="BnW-6f-mxJ"/>
-                        <outlet property="giveAdviceField" destination="S55-lz-wKa" id="29C-V5-QnE"/>
                         <outlet property="institutionField" destination="obL-E3-5cC" id="cyU-um-MfR"/>
                         <outlet property="majorField" destination="JeO-sg-r5V" id="kzL-T9-mhl"/>
                         <outlet property="nameField" destination="GhL-bG-MxI" id="6yW-KJ-2pO"/>
                         <outlet property="passwordField" destination="Drb-On-wRp" id="iRS-Kb-Xos"/>
                         <outlet property="registerButton" destination="1dv-8I-2YA" id="xyV-fx-R5M"/>
                         <outlet property="stateField" destination="pbS-qf-MQJ" id="B5U-hO-rOY"/>
-                        <outlet property="tableView" destination="9po-vW-GfI" id="bjQ-1h-LHg"/>
                         <outlet property="usernameField" destination="ab7-ii-AFd" id="Sza-mh-GcU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hdb-aP-0d5" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="9po-vW-GfI">
-                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <prototypes>
-                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="K4x-bk-C3l" customClass="AutocompleteTableViewCell">
-                            <rect key="frame" x="0.0" y="28" width="240" height="44"/>
-                            <autoresizingMask key="autoresizingMask"/>
-                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="K4x-bk-C3l" id="sfD-xb-6Id">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f2e-Nb-dmp">
-                                        <rect key="frame" x="16" y="12" width="208" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGA-3Q-v7E">
-                                        <rect key="frame" x="45" y="6" width="137" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Create New Interest"/>
-                                        <connections>
-                                            <action selector="createNewInterest:" destination="JqI-0m-vkI" eventType="touchUpInside" id="uyi-hX-qN1"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </tableViewCellContentView>
-                            <connections>
-                                <outlet property="interestLabel" destination="f2e-Nb-dmp" id="joY-NJ-hMk"/>
-                            </connections>
-                        </tableViewCell>
-                    </prototypes>
-                </tableView>
             </objects>
             <point key="canvasLocation" x="1988" y="107.49625187406298"/>
         </scene>
