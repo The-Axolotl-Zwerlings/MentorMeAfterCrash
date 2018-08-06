@@ -851,17 +851,9 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.nihalj.MentorMe;
-||||||| merged common ancestors
 
-
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
-
-
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
->>>>>>> bb86e68a7799a1542e3d0e3f2052fac50f37f607
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -879,17 +871,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-<<<<<<< HEAD
-				PRODUCT_BUNDLE_IDENTIFIER = com.nihalj.MentorMe;
-||||||| merged common ancestors
-
-
-				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkno.MentorMe;
-
-
-=======
 				PRODUCT_BUNDLE_IDENTIFIER = com.youdo6ntkn.MentorMe;
->>>>>>> bb86e68a7799a1542e3d0e3f2052fac50f37f607
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
