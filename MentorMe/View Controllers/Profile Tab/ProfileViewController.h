@@ -10,9 +10,13 @@
 #import "ParseUI/ParseUI.h"
 #import "Parse/Parse.h"
 
+@protocol DataPasser <NSObject>
+-(void)update:(NSArray*)one and:(NSArray*)two;
+@end
 
 @interface ProfileViewController : UIViewController
 //outlets for everything in the viewcontroller
+@property (nonatomic, weak) id<DataPasser> dataPasserDelegate;
 
 @property (strong, nonatomic) PFUser* user;
 

@@ -21,6 +21,9 @@
 
 #import "Review.h"
 
+#import "EditInterestsViewController.h"
+#import "TLTagsControl.h"
+
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
@@ -34,6 +37,8 @@
     [super viewDidLoad];
     
     [self getCurrentUser];
+    
+    //something.delegate = self;
     
     self.tabBarController.navigationItem.title = @"Profile";
     
@@ -288,6 +293,13 @@
         UIViewController *newController = segue.destinationViewController;
         EditProfileViewController *editorVC = (EditProfileViewController *) newController;
         editorVC.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"toEditInterests"]){
+      
+       // EditProfileViewController* instance = [segue destinationViewController];
+        self.dataPasserDelegate = [segue destinationViewController];
+            //alter original storyboard
+        [self.dataPasserDelegate update:self.adviceToGet and: self.adviceToGive];
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
