@@ -127,11 +127,13 @@
                 self.appointmentsArray = self.pastAppointments;
                 if( self.pastAppointments.count == 0){
                     self.noAppointmentsView.hidden = false;
+                    
                 } else {
                     self.noAppointmentsView.hidden = true;;
-                    [self.appointmentsTableView reloadData];
-                    [self.refreshControl endRefreshing];
+                    ;
                 }
+                [self.appointmentsTableView reloadData];
+                [self.refreshControl endRefreshing];
             }
             
         } else {
