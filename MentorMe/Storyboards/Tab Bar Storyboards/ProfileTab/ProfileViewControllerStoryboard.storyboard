@@ -44,14 +44,16 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Occupation Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5s-dA-Lfk">
                                         <rect key="frame" x="79" y="214" width="271" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-gb-5SR" customClass="PFImageView">
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hdy-gb-5SR" customClass="PFImageView">
                                         <rect key="frame" x="137" y="20" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.81179388220000004" green="0.88697708730000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <gestureRecognizers/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="gcx-B1-cMP" userLabel="Give Advice Collection View">
                                         <rect key="frame" x="8" y="506" width="351" height="40"/>
@@ -218,6 +220,8 @@
                         <outlet property="educationLabel" destination="Iz9-DR-Xdy" id="Toe-CI-dx5"/>
                         <outlet property="getAdviceCollectionView" destination="sHa-a9-XO0" id="S17-mZ-d8m"/>
                         <outlet property="giveAdviceCollectionView" destination="gcx-B1-cMP" id="VcJ-7I-B4V"/>
+                        <outlet property="largeImage" destination="E7z-cy-ZjQ" id="ySh-cf-oX0"/>
+                        <outlet property="largeImageView" destination="6jq-55-O3h" id="S9J-Kz-KST"/>
                         <outlet property="locationLabel" destination="h0V-cw-ant" id="Fhn-ri-zxl"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="occupationLabel" destination="N5s-dA-Lfk" id="DYg-oP-77b"/>
@@ -229,6 +233,19 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ch3-oN-wgs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="6jq-55-O3h">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="E7z-cy-ZjQ" customClass="PFImageView">
+                            <rect key="frame" x="15" y="15" width="270" height="270"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="1" green="0.73946611019999997" blue="0.71934054579999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <viewLayoutGuide key="safeArea" id="T8c-qJ-me2"/>
+                </view>
             </objects>
             <point key="canvasLocation" x="4751.1999999999998" y="28.335832083958024"/>
         </scene>

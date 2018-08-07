@@ -28,6 +28,9 @@
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *largeImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *largeImage;
+
 
 @end
 
@@ -69,7 +72,37 @@
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
     
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    [self.profileImageView addGestureRecognizer:singleFingerTap];
+    
+    UITapGestureRecognizer *dismissFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismissSingleTap:)];
+    [self.view addGestureRecognizer:dismissFingerTap];
+
 }
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self.view addSubview:self.largeImageView];
+    [self.largeImageView setFrame:CGRectMake(self.view.frame.origin.x+37.5, self.view.frame.origin.y+127, 300, 300)];
+    self.largeImage.file = self.user.profilePic;
+    [self.largeImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(error == nil){
+            NSLog(@"We did it!");
+        }
+    }];
+    
+    
+}
+- (void)dismissSingleTap:(UITapGestureRecognizer *)recognizer
+    {
+        [self.largeImageView removeFromSuperview];
+    }
+       
+    
+    //Do stuff here...
 
 
 -(void)onTapEditProfile{
@@ -281,6 +314,8 @@
     }];
     
 }
+
+
 
 
 
