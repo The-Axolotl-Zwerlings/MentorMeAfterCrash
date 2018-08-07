@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Review View Controller-->
+        <!--Title-->
         <scene sceneID="Dc3-Gy-o3E">
             <objects>
                 <viewController id="Nyq-eC-H0W" customClass="ReviewViewController" sceneMemberID="viewController">
@@ -24,115 +24,82 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Review for Michael Jackson Jr." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Z9-zq-Wmq">
                                         <rect key="frame" x="13" y="59" width="347" height="90"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="32"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="27"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDS-3d-QLx">
-                                        <rect key="frame" x="231" y="300" width="107" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <state key="normal" title="Down to Earth">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="touch2:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="9wA-nj-Y9H"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqE-ql-CVU">
-                                        <rect key="frame" x="172" y="432" width="166" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <state key="normal" title="Super Knowledgeable">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="touch5:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="Joz-Rg-d1T"/>
-                                        </connections>
-                                    </button>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Any other comments..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6f4-gN-2Gq">
-                                        <rect key="frame" x="16" y="493" width="337" height="77"/>
+                                        <rect key="frame" x="16" y="450" width="344" height="120"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGX-XX-0VY">
-                                        <rect key="frame" x="28" y="432" width="62" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <state key="normal" title="Friendly">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="touch4:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="AV4-tw-PJH"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HTJ-IS-eRO">
-                                        <rect key="frame" x="134" y="376" width="105" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <state key="normal" title="Useful Advice">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="touch3:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="dP0-hH-Oli"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0bc-vU-Ggv" customClass="RateView">
-                                        <rect key="frame" x="16" y="157" width="343" height="62"/>
+                                        <rect key="frame" x="16" y="164" width="343" height="62"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="0.8035986866" blue="0.76621323939999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <color key="backgroundColor" red="0.67241556410000003" green="0.71247607449999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </view>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a2j-mE-SMG">
-                                        <rect key="frame" x="231" y="604" width="72" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                        <state key="normal" title="Done">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="doneAction:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="hx4-aA-Fec"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stars" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-rc-y1s">
-                                        <rect key="frame" x="115" y="243" width="143" height="21"/>
+                                        <rect key="frame" x="115" y="249" width="143" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJC-pi-Rxd">
-                                        <rect key="frame" x="28" y="300" width="147" height="32"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="9Kx-fu-q4R">
+                                        <rect key="frame" x="11" y="306" width="349" height="84"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <color key="tintColor" red="0.21318638118130195" green="0.37227154030923959" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                        <state key="normal" title="Great Conversation">
-                                            <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="touch1:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="YCS-Rp-3bV"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x0D-Yn-lBL">
-                                        <rect key="frame" x="65" y="604" width="72" height="36"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="cancelButton:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="hPP-rB-Fy2"/>
-                                            <action selector="doneAction:" destination="Nyq-eC-H0W" eventType="touchUpInside" id="Ssa-MB-DuO"/>
-                                        </connections>
-                                    </button>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Wzn-yK-MBc">
+                                            <size key="itemSize" width="78" height="78"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComplimentsCell" id="kjF-U3-PEt" customClass="ComplimentsCell">
+                                                <rect key="frame" x="12" y="3" width="78" height="78"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lK3-gu-81h">
+                                                            <rect key="frame" x="16" y="7" width="47" height="47"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7W-4b-Ip5">
+                                                            <rect key="frame" x="2" y="58" width="74" height="17"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="10"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2mh-6R-IkL">
+                                                            <rect key="frame" x="53" y="3" width="14" height="14"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="tintColor" red="1" green="0.38056090300000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                            <state key="normal" title="+">
+                                                                <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <state key="selected" title="-"/>
+                                                        </button>
+                                                    </subviews>
+                                                </view>
+                                                <connections>
+                                                    <outlet property="complimentIcon" destination="lK3-gu-81h" id="Rbg-Jg-2dG"/>
+                                                    <outlet property="complimentLabel" destination="T7W-4b-Ip5" id="b8R-ec-z2q"/>
+                                                    <outlet property="selectButton" destination="2mh-6R-IkL" id="XME-9L-M5b"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                 </subviews>
                                 <gestureRecognizers/>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="0.8035986866" blue="0.76621323939999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.6705882352941176" green="0.71372549019607845" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="VzB-mv-jeC" firstAttribute="bottom" secondItem="GwC-iO-Bgu" secondAttribute="bottom" id="3QA-Nb-73l"/>
@@ -145,18 +112,14 @@
                             <outletCollection property="gestureRecognizers" destination="8K0-Ib-bOm" appends="YES" id="IkN-Cv-p4a"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="IsK-nX-a0p"/>
                     <connections>
                         <outlet property="commentsTextView" destination="6f4-gN-2Gq" id="mnz-Ef-FeG"/>
-                        <outlet property="doneButton" destination="a2j-mE-SMG" id="jDS-ho-N5U"/>
-                        <outlet property="downToEarthButton" destination="NDS-3d-QLx" id="R4y-eT-60k"/>
-                        <outlet property="friendlyButton" destination="IGX-XX-0VY" id="qNg-s6-0vJ"/>
-                        <outlet property="greatConvoButton" destination="sJC-pi-Rxd" id="e64-q9-wbc"/>
+                        <outlet property="complimentsCollectionView" destination="9Kx-fu-q4R" id="QlL-Co-2Qc"/>
                         <outlet property="ratingView" destination="0bc-vU-Ggv" id="ZtM-kz-MOY"/>
                         <outlet property="reviewForLabel" destination="2Z9-zq-Wmq" id="r9z-HR-97t"/>
                         <outlet property="scrollView" destination="VzB-mv-jeC" id="E9m-az-Jmp"/>
                         <outlet property="starLabel" destination="rPK-rc-y1s" id="gmY-UG-vSe"/>
-                        <outlet property="superKnowledgeButton" destination="qqE-ql-CVU" id="jBl-e2-e6O"/>
-                        <outlet property="usefulAdviceButton" destination="HTJ-IS-eRO" id="Ctz-MU-P5r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zb0-M9-Sm4" userLabel="First Responder" sceneMemberID="firstResponder"/>

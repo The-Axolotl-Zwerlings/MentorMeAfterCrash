@@ -8,7 +8,13 @@
 
 #import "ReviewViewController.h"
 #import "Review.h"
-@interface ReviewViewController () <UITextViewDelegate>
+#import "ReviewDataDelegate.h"
+#import "ComplimentsCell.h"
+@interface ReviewViewController () <UITextViewDelegate, AddCompliment>
+@property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
+@property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
+@property (strong, nonatomic) id<UICollectionViewDataSource> dataSource;
+@property (strong, nonatomic) id<UICollectionViewDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UITextView *commentsTextView;
 @property (strong, nonatomic) IBOutlet UILabel *reviewForLabel;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
@@ -64,7 +70,9 @@
     
     self.reviewForLabel.text = [@"Review for " stringByAppendingString:self.reviewee.name];
     
-    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Save" style:UIBarButtonItemStyleDone target:self action:@selector(doneAction)];
+
+    self.navigationItem.title = @"Review";
     // Stuff relating to star rating view
     self.ratingView.notSelectedImage = [UIImage imageNamed:@"star-empty.png"];
     self.ratingView.halfSelectedImage = [UIImage imageNamed:@"star-half.png"];
@@ -79,24 +87,24 @@
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 400);
     
+    
+    ReviewDataDelegate *reviewDataDelegate = [[ReviewDataDelegate alloc]initWithOrigin:self];
+    
+    self.delegate = reviewDataDelegate;
+    self.dataSource = reviewDataDelegate;
+    self.complimentsCollectionView.dataSource = self.dataSource;
+    self.complimentsCollectionView.delegate = self.delegate;
+    
+    self.complimentsArray = [NSArray arrayWithObjects:@(0),@(0),@(0),@(0),@(0),nil];
 }
 
-- (IBAction)doneAction:(UIButton *)sender {
-    NSMutableArray *mutableCompliments = [[NSMutableArray alloc]init];
-    [mutableCompliments addObject:[NSNumber numberWithBool:self.greatConvoButton.isSelected]];
-    [mutableCompliments addObject:[NSNumber numberWithBool:self.downToEarthButton.isSelected]];
-    [mutableCompliments addObject:[NSNumber numberWithBool:self.usefulAdviceButton.isSelected]];
-    [mutableCompliments addObject:[NSNumber numberWithBool:self.friendlyButton.isSelected]];
-    [mutableCompliments addObject:[NSNumber numberWithBool:self.superKnowledgeButton.isSelected]];
-    self.complimentsArray = [NSArray arrayWithArray:mutableCompliments];
-    
-    
-    
+-(void)doneAction{
                                  
     [Review postReview:self.reviewee withRating:[NSNumber numberWithFloat:self.ratingView.rating] andComplimentsArray:self.complimentsArray];
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
+
 
 // Add to bottom
 - (void)rateView:(RateView *)rateView ratingDidChange:(float)rating {
@@ -121,9 +129,7 @@
         [UIView commitAnimations];
     }
 }
-- (IBAction)cancelButton:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 /*
 #pragma mark - Navigation
@@ -134,5 +140,12 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)changeCompliment:(NSNumber *)index andSelectedStatus:(NSNumber *)selected{
+    NSMutableArray *complimentMutable = [NSMutableArray arrayWithArray:self.complimentsArray];
+    [complimentMutable replaceObjectAtIndex:[index integerValue] withObject:selected];
+    self.complimentsArray = complimentMutable;
+}
+
 
 @end

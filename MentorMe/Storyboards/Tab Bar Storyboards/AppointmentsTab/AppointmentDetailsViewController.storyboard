@@ -99,7 +99,7 @@
                         <outlet property="meetingTitleLabel" destination="3x3-zk-ald" id="oLg-HP-8hJ"/>
                         <outlet property="menteeProfileView" destination="Gfh-6b-aGB" id="Pc2-AU-Hx6"/>
                         <outlet property="mentorBioLabel" destination="6tj-0r-NQR" id="rIP-mT-CGL"/>
-                        <segue destination="WFH-F4-9Mf" kind="presentation" identifier="ReviewSegue" id="ieB-aN-KlU"/>
+                        <segue destination="WFH-F4-9Mf" kind="show" identifier="ReviewSegue" id="ieB-aN-KlU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9og-Hq-2ja" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -38,6 +38,7 @@
 		A883131520F28D5F00363E48 /* MentorMeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131420F28D5F00363E48 /* MentorMeTests.m */; };
 		A883132020F28D5F00363E48 /* MentorMeUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A883131F20F28D5F00363E48 /* MentorMeUITests.m */; };
 		A8A28C022117B50E009EA5EB /* Milestone.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A28C012117B50E009EA5EB /* Milestone.m */; };
+		A8A28C05211904E5009EA5EB /* ReviewDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A28C04211904E5009EA5EB /* ReviewDataDelegate.m */; };
 		B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22101E821123D0C00D2E59F /* EditInterestsViewController.m */; };
 		B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
@@ -139,6 +140,8 @@
 		A883132120F28D5F00363E48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A8A28C002117B50E009EA5EB /* Milestone.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Milestone.h; sourceTree = "<group>"; };
 		A8A28C012117B50E009EA5EB /* Milestone.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Milestone.m; sourceTree = "<group>"; };
+		A8A28C03211904E5009EA5EB /* ReviewDataDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReviewDataDelegate.h; sourceTree = "<group>"; };
+		A8A28C04211904E5009EA5EB /* ReviewDataDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReviewDataDelegate.m; sourceTree = "<group>"; };
 		B22101E721123D0C00D2E59F /* EditInterestsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditInterestsViewController.h; sourceTree = "<group>"; };
 		B22101E821123D0C00D2E59F /* EditInterestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInterestsViewController.m; sourceTree = "<group>"; };
 		B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteTableViewCell.h; sourceTree = "<group>"; };
@@ -206,6 +209,8 @@
 		A82A494320FFA26200DC129F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A8A28C002117B50E009EA5EB /* Milestone.h */,
+				A8A28C012117B50E009EA5EB /* Milestone.m */,
 				A83DEAD7210FC21A002799DC /* Review.h */,
 				A83DEAD8210FC21A002799DC /* Review.m */,
 				A82A494A20FFA5B800DC129F /* AppointmentModel.h */,
@@ -213,6 +218,7 @@
 				A82A494D20FFA5C800DC129F /* InterestModel.h */,
 				A82A494E20FFA5C800DC129F /* InterestModel.m */,
 				A82A494720FFA3FE00DC129F /* PFUser+ExtendedUser.h */,
+				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
 				A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */,
 			);
 			name = Models;
@@ -222,17 +228,6 @@
 		A87C16DE2114BE74001AC0B5 /* Milestone */ = {
 			isa = PBXGroup;
 			children = (
-				A8A28C002117B50E009EA5EB /* Milestone.h */,
-				A8A28C012117B50E009EA5EB /* Milestone.m */,
-				A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */,
-				A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */,
-				A87C16D521140365001AC0B5 /* MilestoneTableView.h */,
-				A87C16D621140365001AC0B5 /* MilestoneTableView.m */,
-				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
-				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
-				A87C16DB211413BD001AC0B5 /* AddCell.h */,
-				A87C16DC211413BD001AC0B5 /* AddCell.m */,
-				A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */,
 			);
 			path = Milestone;
 			sourceTree = "<group>";
@@ -262,6 +257,7 @@
 		A88312FA20F28D5C00363E48 /* MentorMe */ = {
 			isa = PBXGroup;
 			children = (
+				A8A28C062119052E009EA5EB /* ViewControllerDataDelegateSources */,
 				A87C16DE2114BE74001AC0B5 /* Milestone */,
 				C05743DB20FFBAF900A6F529 /* Views */,
 				A82A494320FFA26200DC129F /* Models */,
@@ -297,6 +293,17 @@
 			path = MentorMeUITests;
 			sourceTree = "<group>";
 		};
+		A8A28C062119052E009EA5EB /* ViewControllerDataDelegateSources */ = {
+			isa = PBXGroup;
+			children = (
+				A8A28C03211904E5009EA5EB /* ReviewDataDelegate.h */,
+				A8A28C04211904E5009EA5EB /* ReviewDataDelegate.m */,
+				A87C16D521140365001AC0B5 /* MilestoneTableView.h */,
+				A87C16D621140365001AC0B5 /* MilestoneTableView.m */,
+			);
+			path = ViewControllerDataDelegateSources;
+			sourceTree = "<group>";
+		};
 		B63B0D592BFEC95D505C6CEF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -326,8 +333,6 @@
 				C0F1018921016301009ADA47 /* Discover Tab */,
 				C0F1018A21016311009ADA47 /* Appointments Tab */,
 				C0F1018B21016327009ADA47 /* Profile Tab */,
-				A82EB2D72107E0B000079B53 /* ReviewViewController.h */,
-				A82EB2D82107E0B000079B53 /* ReviewViewController.m */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -335,6 +340,10 @@
 		C05743DB20FFBAF900A6F529 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
+				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
+				A87C16DB211413BD001AC0B5 /* AddCell.h */,
+				A87C16DC211413BD001AC0B5 /* AddCell.m */,
 				C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */,
 				C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */,
 				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
@@ -381,10 +390,14 @@
 		C0F1018A21016311009ADA47 /* Appointments Tab */ = {
 			isa = PBXGroup;
 			children = (
+				A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */,
+				A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */,
 				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
 				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
 				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
 				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
+				A82EB2D72107E0B000079B53 /* ReviewViewController.h */,
+				A82EB2D82107E0B000079B53 /* ReviewViewController.m */,
 			);
 			path = "Appointments Tab";
 			sourceTree = "<group>";
@@ -419,7 +432,6 @@
 				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
 				A8011C822101415C0028E604 /* Filters.storyboard */,
 				C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */,
-				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
 			);
 			path = DiscoverTab;
 			sourceTree = "<group>";
@@ -429,6 +441,7 @@
 			children = (
 				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
 				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
+				A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */,
 				A82EB2D52107DDA600079B53 /* Review.storyboard */,
 			);
 			path = AppointmentsTab;
@@ -708,6 +721,7 @@
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
 				C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */,
+				A8A28C05211904E5009EA5EB /* ReviewDataDelegate.m in Sources */,
 				A87C16DD211413BD001AC0B5 /* AddCell.m in Sources */,
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
@@ -893,9 +907,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkn.MentorMe;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -913,9 +925,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-
 				PRODUCT_BUNDLE_IDENTIFIER = com.youdontkn.MentorMe;
-
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
