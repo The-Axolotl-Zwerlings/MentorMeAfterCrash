@@ -21,10 +21,16 @@
 
 #import "Review.h"
 
+#import "EditInterestsViewController.h"
+#import "TLTagsControl.h"
+
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *largeImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *largeImage;
+
 
 @end
 
@@ -34,6 +40,8 @@
     [super viewDidLoad];
     
     [self getCurrentUser];
+    
+    //something.delegate = self;
     
     self.tabBarController.navigationItem.title = @"Profile";
     
@@ -64,7 +72,37 @@
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
     
+    UITapGestureRecognizer *singleFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(handleSingleTap:)];
+    [self.profileImageView addGestureRecognizer:singleFingerTap];
+    
+    UITapGestureRecognizer *dismissFingerTap =
+    [[UITapGestureRecognizer alloc] initWithTarget:self
+                                            action:@selector(dismissSingleTap:)];
+    [self.view addGestureRecognizer:dismissFingerTap];
+
 }
+- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+{
+    [self.view addSubview:self.largeImageView];
+    [self.largeImageView setFrame:CGRectMake(self.view.frame.origin.x+37.5, self.view.frame.origin.y+127, 300, 300)];
+    self.largeImage.file = self.user.profilePic;
+    [self.largeImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(error == nil){
+            NSLog(@"We did it!");
+        }
+    }];
+    
+    
+}
+- (void)dismissSingleTap:(UITapGestureRecognizer *)recognizer
+    {
+        [self.largeImageView removeFromSuperview];
+    }
+       
+    
+    //Do stuff here...
 
 
 -(void)onTapEditProfile{
@@ -280,6 +318,8 @@
 
 
 
+
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -288,6 +328,13 @@
         UIViewController *newController = segue.destinationViewController;
         EditProfileViewController *editorVC = (EditProfileViewController *) newController;
         editorVC.delegate = self;
+    }
+    if([segue.identifier isEqualToString:@"toEditInterests"]){
+      
+       // EditProfileViewController* instance = [segue destinationViewController];
+        self.dataPasserDelegate = [segue destinationViewController];
+            //alter original storyboard
+        [self.dataPasserDelegate update:self.adviceToGet and: self.adviceToGive];
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
