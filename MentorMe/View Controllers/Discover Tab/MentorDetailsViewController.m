@@ -18,6 +18,8 @@
 #import "GiveAdviceCollectionViewCell.h"
 #import "ComplimentsCell.h"
 
+
+
 @interface MentorDetailsViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
@@ -41,6 +43,7 @@
 
 @property (strong, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
 @property (strong, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
+@property (weak, nonatomic) IBOutlet PFImageView *largeImage;
 
 @end
 
@@ -50,7 +53,6 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     
     [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
     [self loadMentor];
@@ -78,6 +80,43 @@ int myCounter;
     self.complimentsCollectionView.alwaysBounceHorizontal = YES;
     self.complimentsCollectionView.showsHorizontalScrollIndicator = NO;
     
+//initializing a tap gesture recogniser
+    UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleImageTap:)];
+    [self.profileImage addGestureRecognizer:imageTap];
+    
+}
+
+//action for image tap
+-(void)handleImageTap: (UITapGestureRecognizer *) recognizer{
+
+    UIViewController *bbp=[[UIViewController alloc]init];
+    UINavigationController *passcodeNavigationController = [[UINavigationController alloc] initWithRootViewController:bbp];
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
+                               @"Back" style:UIBarButtonItemStylePlain target:
+                             self action:@selector(myButtonClicked:)];
+    [self.navigationController presentViewController:passcodeNavigationController animated:YES completion:nil];
+    bbp.view.backgroundColor = UIColor.blackColor;
+    bbp.navigationController.navigationBar.barTintColor = UIColor.blackColor;
+    bbp.navigationItem.leftBarButtonItem = myNavBtn;
+    PFImageView* large = [[PFImageView alloc]init];
+    large.translatesAutoresizingMaskIntoConstraints = false;
+    [bbp.view addSubview:large];
+    large.file = self.mentor.profilePic;
+    [large loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+        if(error == nil){
+            NSLog(@"We did it!");
+        }
+    }];
+    [large.widthAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
+    [large.heightAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
+    
+    [large.centerXAnchor constraintEqualToAnchor:bbp.view.centerXAnchor].active = YES;
+    [large.centerYAnchor constraintEqualToAnchor:bbp.view.centerYAnchor].active = YES;
+}
+
+- (void)myButtonClicked:(UIBarButtonItem*)sender
+{
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)getRating{
@@ -118,13 +157,9 @@ int myCounter;
             } else {
                 self.ratingVIew.hidden = true;
             }
-            
         }
     }];
-    
 }
-
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
