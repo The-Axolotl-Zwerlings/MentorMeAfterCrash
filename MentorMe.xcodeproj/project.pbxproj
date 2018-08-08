@@ -53,6 +53,8 @@
 		C002267220FE64FD007D359B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C002267120FE64FD007D359B /* Main.storyboard */; };
 		C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D899E20F7CA9900342B39 /* LoginViewController.m */; };
 		C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D89A420F7CE3D00342B39 /* SignUpViewController.m */; };
+		C05607FE211B57F700E6688E /* GetAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05607FD211B57F700E6688E /* GetAdviceCollectionViewCell.m */; };
+		C0560801211B580100E6688E /* GiveAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0560800211B580100E6688E /* GiveAdviceCollectionViewCell.m */; };
 		C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */; };
 		C0989BB6211A5286006358EE /* AdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0989BB5211A5286006358EE /* AdviceCollectionViewCell.m */; };
 		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
@@ -166,6 +168,10 @@
 		C03D899E20F7CA9900342B39 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		C03D89A320F7CE3D00342B39 /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		C03D89A420F7CE3D00342B39 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		C05607FC211B57F700E6688E /* GetAdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAdviceCollectionViewCell.h; sourceTree = "<group>"; };
+		C05607FD211B57F700E6688E /* GetAdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAdviceCollectionViewCell.m; sourceTree = "<group>"; };
+		C05607FF211B580100E6688E /* GiveAdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceCollectionViewCell.h; sourceTree = "<group>"; };
+		C0560800211B580100E6688E /* GiveAdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceCollectionViewCell.m; sourceTree = "<group>"; };
 		C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
 		C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
 		C0989BB4211A5286006358EE /* AdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdviceCollectionViewCell.h; sourceTree = "<group>"; };
@@ -337,24 +343,28 @@
 		C05743DB20FFBAF900A6F529 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				A8A28C0A211A0C66009EA5EB /* MentorMilestoneCell.h */,
-				A8A28C0B211A0C66009EA5EB /* MentorMilestoneCell.m */,
-				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
-				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
 				A87C16DB211413BD001AC0B5 /* AddCell.h */,
 				A87C16DC211413BD001AC0B5 /* AddCell.m */,
 				C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */,
 				C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */,
-				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
-				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
 				C0989BB4211A5286006358EE /* AdviceCollectionViewCell.h */,
 				C0989BB5211A5286006358EE /* AdviceCollectionViewCell.m */,
-				A82EB2DA2107E43A00079B53 /* RateView.h */,
-				A82EB2DB2107E43A00079B53 /* RateView.m */,
 				B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */,
 				B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */,
 				A87C16CD21136F87001AC0B5 /* ComplimentsCell.h */,
 				A87C16CE21136F87001AC0B5 /* ComplimentsCell.m */,
+				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
+				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
+				C05607FC211B57F700E6688E /* GetAdviceCollectionViewCell.h */,
+				C05607FD211B57F700E6688E /* GetAdviceCollectionViewCell.m */,
+				C05607FF211B580100E6688E /* GiveAdviceCollectionViewCell.h */,
+				C0560800211B580100E6688E /* GiveAdviceCollectionViewCell.m */,
+				A8A28C0A211A0C66009EA5EB /* MentorMilestoneCell.h */,
+				A8A28C0B211A0C66009EA5EB /* MentorMilestoneCell.m */,
+				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
+				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
+				A82EB2DA2107E43A00079B53 /* RateView.h */,
+				A82EB2DB2107E43A00079B53 /* RateView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -703,6 +713,7 @@
 				A82EB2D421067A5000079B53 /* LocationApiManager.m in Sources */,
 				A83DEAD9210FC21A002799DC /* Review.m in Sources */,
 				C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */,
+				C05607FE211B57F700E6688E /* GetAdviceCollectionViewCell.m in Sources */,
 				A8011C812101408C0028E604 /* FilterViewController.m in Sources */,
 				B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */,
 				A82A495A20FFAF8200DC129F /* DiscoverCell.m in Sources */,
@@ -725,6 +736,7 @@
 				C0F10188210162F1009ADA47 /* MentorDetailsViewController.m in Sources */,
 				A8A28C0C211A0C66009EA5EB /* MentorMilestoneCell.m in Sources */,
 				A82EB2DC2107E43A00079B53 /* RateView.m in Sources */,
+				C0560801211B580100E6688E /* GiveAdviceCollectionViewCell.m in Sources */,
 				A87C16DA21140998001AC0B5 /* MilestoneCell.m in Sources */,
 				B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */,
 				C0989BB6211A5286006358EE /* AdviceCollectionViewCell.m in Sources */,
