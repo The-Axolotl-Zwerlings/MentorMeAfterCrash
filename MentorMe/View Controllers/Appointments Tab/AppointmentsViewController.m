@@ -98,19 +98,43 @@
                 //if appointment is in the future, edit it accordingly
                 if([appointment.meetingDate compare:currentDate] != -1){
                     appointment.isUpcoming = [NSNumber numberWithBool:YES];
-                    [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
-                    }];
+                    [oldUpcoming addObject:appointment];
+                    self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
+                    [appointment saveInBackground];
                     //else make it not upcoming
                 } else{
                     appointment.isUpcoming = [NSNumber numberWithBool:NO];
-                    [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                        [oldPast addObject:appointment];
-                        self.pastAppointments = [NSArray arrayWithArray:oldPast];
-                    }];
+                    [oldPast addObject:appointment];
+                    self.pastAppointments = [NSArray arrayWithArray:oldPast];
+                    [appointment saveInBackground];
                 }
             }
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            
+            NSInteger *index = self.segmentedControl.selectedSegmentIndex;
+            if ( index == 0 ){
+                NSLog( @"Fetching Upcoming Appointments...");
+                self.appointmentsArray = self.upComingAppointments;
+                if( self.upComingAppointments.count == 0){
+                    self.noAppointmentsView.hidden = false;
+                } else {
+                    self.noAppointmentsView.hidden = true;;
+                    [self.appointmentsTableView reloadData];
+                    [self.refreshControl endRefreshing];
+                }
+            } else {
+                NSLog( @"Fetching Past Appointments...");
+                self.appointmentsArray = self.pastAppointments;
+                if( self.pastAppointments.count == 0){
+                    self.noAppointmentsView.hidden = false;
+                    
+                } else {
+                    self.noAppointmentsView.hidden = true;;
+                    ;
+                }
+                [self.appointmentsTableView reloadData];
+                [self.refreshControl endRefreshing];
+            }
             
         } else {
             NSLog(@"%@", error.localizedDescription);
@@ -121,28 +145,7 @@
 
 -(void) fetchFilteredAppointments{
     [self runQuery];
-    NSInteger *index = self.segmentedControl.selectedSegmentIndex;
-    if ( index == 0 ){
-        NSLog( @"Fetching Upcoming Appointments...");
-        self.appointmentsArray = self.upComingAppointments;
-        if( self.upComingAppointments.count == 0){
-            self.noAppointmentsView.hidden = false;
-        } else {
-            self.noAppointmentsView.hidden = true;;
-            [self.appointmentsTableView reloadData];
-            [self.refreshControl endRefreshing];
-        }
-    } else {
-        NSLog( @"Fetching Past Appointments...");
-        self.appointmentsArray = self.pastAppointments;
-        if( self.pastAppointments.count == 0){
-            self.noAppointmentsView.hidden = false;
-        } else {
-            self.noAppointmentsView.hidden = true;;
-            [self.appointmentsTableView reloadData];
-            [self.refreshControl endRefreshing];
-        }
-    }
+    
 }
 
 

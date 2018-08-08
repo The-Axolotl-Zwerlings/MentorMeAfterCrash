@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TLTagsControl.h"
+#import "ProfileViewController.h"
 
-@interface EditInterestsViewController : UIViewController
+@interface EditInterestsViewController : UIViewController <DataPasser>
 @end

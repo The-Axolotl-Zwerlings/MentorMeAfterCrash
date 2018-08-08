@@ -20,6 +20,14 @@
 @end
 
 @implementation LoginViewController
+- (IBAction)tapOutside:(id)sender {
+    if([self.passwordField isFirstResponder]){
+        [self.passwordField resignFirstResponder];
+    } else if([self.usernameField isFirstResponder]){
+        [self.usernameField resignFirstResponder];
+
+    }
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -10,9 +10,13 @@
 #import "ParseUI/ParseUI.h"
 #import "Parse/Parse.h"
 
+@protocol DataPasser <NSObject>
+-(void)update:(NSArray*)one and:(NSArray*)two;
+@end
 
 @interface ProfileViewController : UIViewController
 //outlets for everything in the viewcontroller
+@property (nonatomic, weak) id<DataPasser> dataPasserDelegate;
 
 @property (strong, nonatomic) PFUser* user;
 
@@ -36,6 +40,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
+
+@property (strong, nonatomic) IBOutlet UICollectionView *mentorsCollectionView;
 
 //methods
 -(void)loadProfile;

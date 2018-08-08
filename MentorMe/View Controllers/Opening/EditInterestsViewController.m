@@ -12,11 +12,13 @@
 #import "InterestModel.h"
 #import "AutocompleteTableViewCell.h"
 #import "PFUser+ExtendedUser.h"
+#import "ProfileViewController.h"
 
 @interface EditInterestsViewController () <UITableViewDelegate, UITableViewDataSource, TLDataHandler>
 //Outlets for UI views
 @property (weak, nonatomic) IBOutlet TLTagsControl *getAdviceField;
 @property (weak, nonatomic) IBOutlet TLTagsControl *giveAdviceField;
+
 @property (weak, nonatomic) IBOutlet UIButton *saveChangesButton;
 
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
@@ -29,6 +31,8 @@
 @property (strong, nonatomic) NSArray* forTableView;
 @property (strong, nonatomic) NSArray* interestsToCreate;
 @property (strong, nonatomic) NSArray* creationArray;
+@property (nonatomic, strong) NSArray* array1;
+@property (nonatomic, strong) NSArray* array2;
 
 @end
 
@@ -37,11 +41,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
    
+    for(InterestModel* mod in self.array1){
+        [self.getAdviceField addTag:mod.subject];
+    }
+    for(InterestModel* mod in self.array2){
+        [self.giveAdviceField addTag:mod.subject];
+    }
     //setting all delegates to self
     self.getAdviceField.dataHandler = self;
     self.giveAdviceField.dataHandler = self;
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
+
     
     // Do any additional setup after loading the view.
     _getAdviceField.mode = TLTagsControlModeEdit;
@@ -216,6 +227,11 @@
     }
 }
 
+-(void)update:(NSArray*)one and:(NSArray*)two{
+    self.array1 = [[NSArray alloc]initWithArray:one];
+    self.array2 = [[NSArray alloc]initWithArray:two];
+    //[self.getAdviceField addTag:this];
+}
 
 /*
 #pragma mark - Navigation
