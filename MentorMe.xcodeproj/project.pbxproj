@@ -272,13 +272,6 @@
 				A883130A20F28D5F00363E48 /* main.m */,
 				A82EB2D221067A5000079B53 /* LocationApiManager.h */,
 				A82EB2D321067A5000079B53 /* LocationApiManager.m */,
-				A8A28C0D211A130E009EA5EB /* ProfileDataDelegate.h */,
-				A8A28C0E211A130E009EA5EB /* ProfileDataDelegate.m */,
-				C002266C20FE5B70007D359B /* ProfileViewController.h */,
-				C002266D20FE5B70007D359B /* ProfileViewController.m */,
-				A8A28C0A211A0C66009EA5EB /* MentorMilestoneCell.h */,
-				A8A28C0B211A0C66009EA5EB /* MentorMilestoneCell.m */,
-				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
 			);
 			path = MentorMe;
 			sourceTree = "<group>";
@@ -308,6 +301,8 @@
 				A8A28C04211904E5009EA5EB /* ReviewDataDelegate.m */,
 				A87C16D521140365001AC0B5 /* MilestoneTableView.h */,
 				A87C16D621140365001AC0B5 /* MilestoneTableView.m */,
+				A8A28C0D211A130E009EA5EB /* ProfileDataDelegate.h */,
+				A8A28C0E211A130E009EA5EB /* ProfileDataDelegate.m */,
 			);
 			path = ViewControllerDataDelegateSources;
 			sourceTree = "<group>";
@@ -348,6 +343,8 @@
 		C05743DB20FFBAF900A6F529 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A8A28C0A211A0C66009EA5EB /* MentorMilestoneCell.h */,
+				A8A28C0B211A0C66009EA5EB /* MentorMilestoneCell.m */,
 				A87C16D821140998001AC0B5 /* MilestoneCell.h */,
 				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
 				A87C16DB211413BD001AC0B5 /* AddCell.h */,
@@ -415,6 +412,8 @@
 		C0F1018B21016327009ADA47 /* Profile Tab */ = {
 			isa = PBXGroup;
 			children = (
+				C002266C20FE5B70007D359B /* ProfileViewController.h */,
+				C002266D20FE5B70007D359B /* ProfileViewController.m */,
 				B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */,
 				B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */,
 			);
@@ -458,6 +457,7 @@
 		C0F1019121016496009ADA47 /* ProfileTab */ = {
 			isa = PBXGroup;
 			children = (
+				C002266A20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard */,
 				B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */,
 			);
 			path = ProfileTab;

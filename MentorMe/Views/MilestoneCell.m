@@ -67,13 +67,8 @@
     [self.doneButton addTarget:self action:@selector(touched) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.doneButton];
     
-//    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
-//    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
-//    [self addGestureRecognizer:gestureRecognizer];
-    
+ 
 }
-//-(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
-//    NSLog(@"Swipe received.");
-//}
+
 
 @end
