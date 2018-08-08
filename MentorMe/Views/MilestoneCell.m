@@ -21,8 +21,29 @@
     
     if(self.doneButton.isSelected){
         self.doneButton.selected = NO;
+        NSString* cutText = self.task.text;
+        
+        NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:cutText];
+        
+        // making text property to strike text- NSStrikethroughStyleAttributeName
+        [titleString removeAttribute:NSStrikethroughStyleAttributeName range:NSMakeRange(0, [titleString length])];
+        
+        // using text on label
+        [self.task  setAttributedText:titleString];
+        
+        
     } else{
         self.doneButton.selected = YES;
+        
+        NSString* cutText = self.task.text;
+        
+        NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:cutText];
+        
+        // making text property to strike text- NSStrikethroughStyleAttributeName
+        [titleString addAttribute: NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger: NSUnderlineStyleSingle] range: NSMakeRange(0, [titleString length])];
+        
+        // using text on label
+        [self.task  setAttributedText:titleString];
     }
     
     
@@ -46,5 +67,13 @@
     [self.doneButton addTarget:self action:@selector(touched) forControlEvents:UIControlEventTouchUpInside];
     [self.contentView addSubview:self.doneButton];
     
+//    UISwipeGestureRecognizer *gestureRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+//    [gestureRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+//    [self addGestureRecognizer:gestureRecognizer];
+    
 }
+//-(void)swipeHandler:(UISwipeGestureRecognizer *)recognizer {
+//    NSLog(@"Swipe received.");
+//}
+
 @end

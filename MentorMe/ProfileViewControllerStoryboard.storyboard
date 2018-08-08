@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,29 +16,28 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" title="Profile" wantsFullScreenLayout="YES" id="qAG-dk-BIq" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fSV-vj-m9l">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="836"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nIM-c2-BRQ">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="787"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.10588235294117647" green="0.59999999999999998" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.83097330729166663" green="0.611083984375" blue="0.97371419270833337" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </imageView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCG-VC-Jd3">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hCG-VC-Jd3">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="787"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Eddie Burr" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Jp-In-L5a">
                                         <rect key="frame" x="12" y="132" width="351" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="40"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="33"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Education Label " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iz9-DR-Xdy">
                                         <rect key="frame" x="79" y="175" width="271" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -45,7 +45,7 @@
                                         <rect key="frame" x="79" y="214" width="271" height="42"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -109,28 +109,28 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0V-cw-ant">
                                         <rect key="frame" x="79" y="257" width="271" height="32"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="This is where the profile description goes." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaz-qa-25i">
                                         <rect key="frame" x="12" y="291" width="351" height="98"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Want to learn about:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aKA-QI-Uiu">
-                                        <rect key="frame" x="12" y="402" width="155" height="21"/>
+                                        <rect key="frame" x="12" y="402" width="157" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Want to mentor others about:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w7g-mc-wUA">
-                                        <rect key="frame" x="12" y="477" width="225" height="21"/>
+                                        <rect key="frame" x="12" y="477" width="226" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -181,6 +181,7 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="interestNameLabel" destination="aIo-Ls-q9J" id="obm-R4-pa1"/>
+                                                    <segue destination="iai-Bt-7eH" kind="show" identifier="learnAbout" id="FU0-ax-5nG"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -193,21 +194,99 @@
                                         <rect key="frame" x="47" y="226" width="16" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pacman" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-vP-O3p">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="gZr-vP-O3p">
                                         <rect key="frame" x="47" y="264" width="16" height="16"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjV-et-xfL">
-                                        <rect key="frame" x="12" y="375" width="90" height="30"/>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kjV-et-xfL">
+                                        <rect key="frame" x="273" y="401" width="93" height="29"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Edit Interests"/>
+                                        <fontDescription key="fontDescription" name="Avenir-HeavyOblique" family="Avenir" pointSize="12"/>
+                                        <state key="normal" title="Edit interests"/>
                                         <connections>
                                             <segue destination="ybS-uc-Wzq" kind="show" identifier="toEditInterests" id="EwJ-G2-i40"/>
                                         </connections>
                                     </button>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JVw-hQ-uOy">
+                                        <rect key="frame" x="19" y="603" width="329" height="176"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iTf-9a-txU">
+                                            <size key="itemSize" width="118" height="138"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="MentorMilestoneCell" id="U08-yh-qqO" customClass="MentorMilestoneCell">
+                                                <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-gu-1IN">
+                                                            <rect key="frame" x="14" y="99" width="73" height="40"/>
+                                                            <gestureRecognizers/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3la-Yt-blR" customClass="PFImageView">
+                                                            <rect key="frame" x="13" y="12" width="75" height="75"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="75" id="Eug-cM-y9V"/>
+                                                                <constraint firstAttribute="width" constant="75" id="RBZ-Ak-AX5"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plj-0C-jOr">
+                                                            <rect key="frame" x="5" y="7" width="96" height="135"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <state key="normal" title="button!!AHHHHHH">
+                                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </state>
+                                                            <connections>
+                                                                <action selector="tappedSecretButton:" destination="U08-yh-qqO" eventType="touchUpInside" id="Yfv-YZ-OPx"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                </view>
+                                                <gestureRecognizers/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="3ys-gu-1IN" secondAttribute="trailing" constant="6" id="THf-47-UTY"/>
+                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="top" secondItem="3la-Yt-blR" secondAttribute="bottom" constant="12" id="Vdm-9P-oet"/>
+                                                    <constraint firstAttribute="bottom" secondItem="3ys-gu-1IN" secondAttribute="bottom" constant="6" id="gkB-qu-PvI"/>
+                                                    <constraint firstItem="3la-Yt-blR" firstAttribute="top" secondItem="U08-yh-qqO" secondAttribute="top" constant="12" id="mcA-rJ-Ss1"/>
+                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="leading" secondItem="U08-yh-qqO" secondAttribute="leadingMargin" constant="6" id="mxx-sf-HgG"/>
+                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="pC0-sc-Pww"/>
+                                                    <constraint firstItem="3la-Yt-blR" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="tPm-J8-SXs"/>
+                                                </constraints>
+                                                <size key="customSize" width="101" height="145"/>
+                                                <connections>
+                                                    <outlet property="buttonSecret" destination="plj-0C-jOr" id="8t6-tn-rix"/>
+                                                    <outlet property="mentorView" destination="3la-Yt-blR" id="2Be-dP-I1i"/>
+                                                    <outlet property="nameLabel" destination="3ys-gu-1IN" id="F6v-i6-Ccw"/>
+                                                    <segue destination="isb-0b-7Xv" kind="show" identifier="ProfiletoMilestone" id="Ufg-B9-DSv"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your mentors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-55-EaZ">
+                                        <rect key="frame" x="133" y="571" width="107" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </scrollView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="hCG-VC-Jd3" firstAttribute="leading" secondItem="z1U-1u-W06" secondAttribute="leading" id="39M-Bw-3Dd"/>
+                            <constraint firstItem="hCG-VC-Jd3" firstAttribute="trailing" secondItem="z1U-1u-W06" secondAttribute="trailing" id="cdC-6g-g95"/>
+                            <constraint firstItem="hCG-VC-Jd3" firstAttribute="bottom" secondItem="z1U-1u-W06" secondAttribute="bottom" id="jt0-d6-ATW"/>
+                            <constraint firstItem="hCG-VC-Jd3" firstAttribute="top" secondItem="z1U-1u-W06" secondAttribute="top" id="leC-ho-xq0"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="z1U-1u-W06"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="user" id="OpG-5a-Qq5">
@@ -215,14 +294,17 @@
                     </tabBarItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="bioLabel" destination="Jaz-qa-25i" id="8tc-2h-aQD"/>
+                        <outlet property="editInterestsButton" destination="kjV-et-xfL" id="Ryl-pX-xbO"/>
                         <outlet property="educationLabel" destination="Iz9-DR-Xdy" id="Toe-CI-dx5"/>
                         <outlet property="getAdviceCollectionView" destination="sHa-a9-XO0" id="S17-mZ-d8m"/>
                         <outlet property="giveAdviceCollectionView" destination="gcx-B1-cMP" id="VcJ-7I-B4V"/>
                         <outlet property="largeImage" destination="E7z-cy-ZjQ" id="ySh-cf-oX0"/>
                         <outlet property="largeImageView" destination="6jq-55-O3h" id="S9J-Kz-KST"/>
                         <outlet property="locationLabel" destination="h0V-cw-ant" id="Fhn-ri-zxl"/>
+                        <outlet property="mentorsCollectionView" destination="JVw-hQ-uOy" id="7Yj-sL-y8X"/>
                         <outlet property="nameLabel" destination="6Jp-In-L5a" id="O8c-W7-KqR"/>
                         <outlet property="occupationLabel" destination="N5s-dA-Lfk" id="DYg-oP-77b"/>
                         <outlet property="profileImageView" destination="Hdy-gb-5SR" id="4e3-6e-I6P"/>
@@ -247,7 +329,7 @@
                     <viewLayoutGuide key="safeArea" id="T8c-qJ-me2"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="4751.1999999999998" y="28.335832083958024"/>
+            <point key="canvasLocation" x="4751.1999999999998" y="27.886056971514247"/>
         </scene>
         <!--Main-->
         <scene sceneID="f5T-Hy-g7A">
@@ -273,11 +355,27 @@
             </objects>
             <point key="canvasLocation" x="5452" y="232"/>
         </scene>
+        <!--Milestone-->
+        <scene sceneID="D3Q-Ob-oql">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Milestone" id="isb-0b-7Xv" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eHN-vN-RCh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5400" y="377"/>
+        </scene>
+        <!--CreateAppointment-->
+        <scene sceneID="oN1-eb-j0n">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CreateAppointment" id="iai-Bt-7eH" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dqj-I5-4el" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4934" y="609"/>
+        </scene>
     </scenes>
     <resources>
         <image name="library" width="34" height="32"/>
+        <image name="location" width="32" height="32"/>
         <image name="office" width="32" height="32"/>
-        <image name="pacman" width="32" height="32"/>
         <image name="user" width="32" height="32"/>
     </resources>
 </document>

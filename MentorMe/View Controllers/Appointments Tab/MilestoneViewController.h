@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "MilestoneTableView.h"
 #import "Milestone.h"
+#import "Parse.h"
 @interface MilestoneViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) Milestone *milestone;
+@property (nonatomic, strong) PFUser *mentor;
 -(void)setUI;
 @end

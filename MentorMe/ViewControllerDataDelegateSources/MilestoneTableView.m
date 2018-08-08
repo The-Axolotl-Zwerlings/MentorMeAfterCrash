@@ -73,6 +73,42 @@
         return ((NSArray *)self.tasks[index]).count;
     }
 }
+- (UISwipeActionsConfiguration *)tableView:(UITableView *)tableView trailingSwipeActionsConfigurationForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    UITableViewRowAction *deleteAction = [UITableViewRowAction alloc]init
+    int index;
+    for(int i = 0; i < self.tasks.count; ++i){
+        if(self.tableViews[i] == tableView){
+            index = i;
+        }
+    }
+    unsigned long lastIndex = self.tableViews.count-1;
+    __block UITableView *lastTable = self.tableViews[lastIndex];
+    
+    NSMutableArray<UIContextualAction *> *actions = [NSMutableArray array];
+    UIContextualAction *action = [UIContextualAction contextualActionWithStyle:UIContextualActionStyleDestructive title:@"Delete" handler:^(UIContextualAction * _Nonnull action, __kindof UIView * _Nonnull sourceView, void (^ _Nonnull completionHandler)(BOOL)) {
+        NSMutableArray *mutableTasks = [NSMutableArray arrayWithArray:self.tasks[index]];
+        [mutableTasks removeObjectAtIndex:indexPath.row-1];
+        NSMutableArray *mutableTasksLargerArray = [NSMutableArray arrayWithArray:self.tasks];
+        [mutableTasksLargerArray replaceObjectAtIndex:index withObject:mutableTasks];
+        self.tasks = [NSArray arrayWithArray:mutableTasksLargerArray];
+        
+        
+        [UIView animateWithDuration:.3 animations:^{
+            lastTable.frame = CGRectMake(lastTable.frame.origin.x, lastTable.frame.origin.y, lastTable.frame.size.width, (mutableTasks.count+1)* 45);
+            self.myView.frame = CGRectMake(self.myView.frame.origin.x, self.myView.frame.origin.y, self.myView.frame.size.width, (mutableTasks.count+1)* 45);
+        }];
+        
+        [tableView reloadData];
+    }];
+    [actions addObject:action];
+    
+    UISwipeActionsConfiguration *config = [UISwipeActionsConfiguration configurationWithActions:actions];
+    config.performsFirstActionWithFullSwipe = NO;
+    return config;
+}
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     unsigned long indexOfTableView;
     for(int i = 0; i < self.tableViews.count; ++i){
@@ -103,6 +139,8 @@
             cell = [[MilestoneCell alloc]init];
         }
         [cell setUpMilestone];
+        
+        
         
         //if it's the last table view we need to index -1
         if(tableView == self.tableViews[self.tableViews.count -1]){

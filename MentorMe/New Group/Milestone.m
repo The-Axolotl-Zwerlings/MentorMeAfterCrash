@@ -7,7 +7,8 @@
 //
 
 #import "Milestone.h"
-
+#import "Parse.h"
+#import "PFUser+ExtendedUser.h"
 @implementation Milestone
 @dynamic arrayOfArrayOfTasks;
 @dynamic mentee;
@@ -40,4 +41,6 @@
         }
     }];
 }
+
+
 @end

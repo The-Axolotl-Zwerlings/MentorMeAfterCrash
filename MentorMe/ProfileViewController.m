@@ -5,17 +5,20 @@
 //  Created by Nico Salinas on 7/17/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "ProfileViewController.h"
 #import "SignUpViewController.h"
 #import "EditProfileViewController.h"
-
+#import "ProfileDataDelegate.h"
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 #import "ParseUI.h"
-
+#import "MentorMilestoneCell.h"
 #import "GiveAdviceCollectionViewCell.h"
 #import "GetAdviceCollectionViewCell.h"
+#import "MilestoneViewController.h"
+#import "Milestone.h"
+#import "CreateAppointmentViewController.h"
 //#import "ParseManager.h"
 #import "InterestModel.h"
 
@@ -24,14 +27,15 @@
 #import "EditInterestsViewController.h"
 #import "TLTagsControl.h"
 
-@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate>
+@interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate, GoToMilestone>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIView *largeImageView;
 @property (weak, nonatomic) IBOutlet PFImageView *largeImage;
+@property (strong, nonatomic) IBOutlet UIButton *editInterestsButton;
 
-
+@property (strong, nonatomic) id<UICollectionViewDataSource> dataSource;
 @end
 
 @implementation ProfileViewController
@@ -45,7 +49,7 @@
     
     self.tabBarController.navigationItem.title = @"Profile";
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,self.scrollView.frame.size.height+100);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,860);
     
     self.scrollView.alwaysBounceVertical = YES;
     self.scrollView.showsVerticalScrollIndicator = NO;
@@ -57,8 +61,30 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getCurrentUser) forControlEvents:UIControlEventValueChanged];
     [self.scrollView addSubview:self.refreshControl];
+    self.editInterestsButton.layer.borderWidth = 2.0f;
+    self.editInterestsButton.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.editInterestsButton.layer.cornerRadius = 7;
+    self.editInterestsButton.clipsToBounds = YES;
+    
+    self.getAdviceCollectionView.delegate = self;
+    self.getAdviceCollectionView.dataSource = self;
+    
+    self.giveAdviceCollectionView.delegate = self;
+    self.giveAdviceCollectionView.dataSource = self;
+    
+    //self.mentorsCollectionView.delegate = [[ProfileDataDelegate alloc]init:self.mentorsCollectionView];
+    self.dataSource = [[ProfileDataDelegate alloc]init:self.mentorsCollectionView andSource:self] ;
+    self.mentorsCollectionView.dataSource = self.dataSource;
+    
 
-
+    self.mentorsCollectionView.layer.cornerRadius = 12;
+    UICollectionViewFlowLayout *layout = self.mentorsCollectionView.collectionViewLayout;
+    layout.minimumInteritemSpacing = 12;
+    layout.minimumLineSpacing = 12;
+    CGFloat mentorsPerLine = 3;
+    CGFloat itemWidth = (self.mentorsCollectionView.frame.size.width - (mentorsPerLine-1)*layout.minimumInteritemSpacing)/mentorsPerLine ;
+    CGFloat itemHeight = 140;
+    layout.itemSize = CGSizeMake(itemWidth, itemHeight);
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -107,6 +133,7 @@
 
 -(void)onTapEditProfile{
     [self performSegueWithIdentifier:@"EditProfile" sender:self];
+    
 }
 
 
@@ -165,11 +192,7 @@
             
             //self.title = @"Profile";
             
-            self.getAdviceCollectionView.delegate = self;
-            self.getAdviceCollectionView.dataSource = self;
             
-            self.giveAdviceCollectionView.delegate = self;
-            self.giveAdviceCollectionView.dataSource = self;
 
             
             [self loadProfile];
@@ -180,6 +203,7 @@
     }];
 }
 
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -188,7 +212,9 @@
 
     self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
-    
+    [self.getAdviceCollectionView reloadData];
+    [self.giveAdviceCollectionView reloadData];
+    [self.mentorsCollectionView reloadData];
     self.nameLabel.text = self.user[@"name"];
     
     NSString *jobTitleAppend = self.user[@"jobTitle"];
@@ -271,6 +297,10 @@
     
 }
 
+- (void)gotoMilestone:(PFUser *)mentor{
+    [self performSegueWithIdentifier:@"ProfiletoMilestone" sender:mentor];
+}
+
 -(void)getRating{
     __block NSNumber *starRating = nil;
     
@@ -328,13 +358,26 @@
         UIViewController *newController = segue.destinationViewController;
         EditProfileViewController *editorVC = (EditProfileViewController *) newController;
         editorVC.delegate = self;
-    }
-    if([segue.identifier isEqualToString:@"toEditInterests"]){
+    } else if([segue.identifier isEqualToString:@"toEditInterests"]){
       
        // EditProfileViewController* instance = [segue destinationViewController];
         self.dataPasserDelegate = [segue destinationViewController];
             //alter original storyboard
         [self.dataPasserDelegate update:self.adviceToGet and: self.adviceToGive];
+    } else if([segue.identifier isEqualToString:@"ProfiletoMilestone"]){
+
+       
+        
+        MilestoneViewController *milestoneViewController = [segue destinationViewController];
+        milestoneViewController.mentor = sender;
+        
+        
+        
+        
+        
+    } else if([segue.identifier isEqualToString:@"learnAbout"]){
+        CreateAppointmentViewController *createViewController = [segue destinationViewController];
+        NSLog(@"hit create");
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
