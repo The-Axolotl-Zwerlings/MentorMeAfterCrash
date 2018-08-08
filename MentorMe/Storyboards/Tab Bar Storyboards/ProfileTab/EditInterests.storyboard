@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--EditInterests-->
+        <!--Edit Interests View Controller-->
         <scene sceneID="1V8-eW-Lii">
             <objects>
-                <viewController storyboardIdentifier="EditInterests" title="EditInterests" id="A9G-a4-gd4" customClass="EditInterestsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EditInterests" id="A9G-a4-gd4" customClass="EditInterestsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZUf-TM-1Mg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -31,38 +31,62 @@
                                 <color key="tintColor" red="0.93725490570000003" green="0.93725490570000003" blue="0.95686274770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2v-9a-vzf">
-                                <rect key="frame" x="130" y="365" width="98" height="30"/>
+                                <rect key="frame" x="12" y="365" width="351" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Save Changes"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="atSaveChanges:" destination="A9G-a4-gd4" eventType="touchUpInside" id="rPP-1R-Yca"/>
-                                    <segue destination="Xm6-Ee-8G9" kind="showDetail" id="BJp-BI-ZkW"/>
+                                    <action selector="onTapSave:" destination="A9G-a4-gd4" eventType="touchUpInside" id="9KD-66-eKZ"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want advice on ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6y-b6-pRF">
-                                <rect key="frame" x="21" y="74" width="234" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I want advice on ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A6y-b6-pRF">
+                                <rect key="frame" x="12" y="45" width="351" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I can give advice on ..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEn-SB-GdO">
-                                <rect key="frame" x="21" y="224" width="234" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I can give advice on ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lEn-SB-GdO">
+                                <rect key="frame" x="12" y="195" width="351" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RPc-On-LZA">
+                                <rect key="frame" x="12" y="423" width="351" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <state key="normal" title="Cancel Changes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="onTapCancel:" destination="A9G-a4-gd4" eventType="touchUpInside" id="5eW-C8-Foe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="FiC-pg-f0E"/>
                     </view>
                     <navigationItem key="navigationItem" id="vau-tH-j5I"/>
                     <connections>
+                        <outlet property="cancelButton" destination="RPc-On-LZA" id="Irc-RI-pMD"/>
                         <outlet property="getAdviceField" destination="VBa-Pa-JdX" id="IIs-ZH-sNg"/>
                         <outlet property="giveAdviceField" destination="fl8-ta-PIg" id="ED0-gq-ASk"/>
                         <outlet property="interestsTableView" destination="s8N-RW-Z2p" id="H3G-bg-RL9"/>
-                        <outlet property="saveChangesButton" destination="m2v-9a-vzf" id="zea-XN-Dry"/>
+                        <outlet property="saveButton" destination="m2v-9a-vzf" id="eKB-HP-jA9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lI5-gH-ihk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -100,14 +124,6 @@
                 </tableView>
             </objects>
             <point key="canvasLocation" x="73" y="-72"/>
-        </scene>
-        <!--TabBarNavigationController-->
-        <scene sceneID="5g1-xw-75P">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="TabBarNavigationController" storyboardName="TabBarViewControllerStoryboard" referencedIdentifier="TabBarNavigationController" id="Xm6-Ee-8G9" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jL-ZL-xCX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="690" y="-101"/>
         </scene>
     </scenes>
 </document>

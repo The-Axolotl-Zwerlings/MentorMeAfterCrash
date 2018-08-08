@@ -5,36 +5,36 @@
 //  Created by Nico Salinas on 7/17/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
-#import <QuartzCore/QuartzCore.h>
-#import "ProfileViewController.h"
-#import "SignUpViewController.h"
+
+#import "CreateAppointmentViewController.h"
 #import "EditProfileViewController.h"
+#import "EditInterestsViewController.h"
+#import "GiveAdviceCollectionViewCell.h"
+#import "GetAdviceCollectionViewCell.h"
+#import "InterestModel.h"
+#import "MilestoneViewController.h"
+#import "Milestone.h"
+#import "MentorMilestoneCell.h"
 #import "ProfileDataDelegate.h"
 #import "Parse/Parse.h"
 #import "PFUser+ExtendedUser.h"
 #import "ParseUI.h"
-#import "MentorMilestoneCell.h"
-#import "GiveAdviceCollectionViewCell.h"
-#import "GetAdviceCollectionViewCell.h"
-#import "MilestoneViewController.h"
-#import "Milestone.h"
-#import "CreateAppointmentViewController.h"
-//#import "ParseManager.h"
-#import "InterestModel.h"
-
+#import "ProfileViewController.h"
+#import <QuartzCore/QuartzCore.h>
 #import "Review.h"
-
-#import "EditInterestsViewController.h"
+#import "SignUpViewController.h"
 #import "TLTagsControl.h"
 
 @interface ProfileViewController () <UICollectionViewDataSource, UICollectionViewDelegate, EditProfileViewControllerDelegate, GoToMilestone>
 
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (strong, nonatomic) IBOutlet UIView *largeImageView;
-@property (weak, nonatomic) IBOutlet PFImageView *largeImage;
-@property (strong, nonatomic) IBOutlet UIButton *editInterestsButton;
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet PFImageView *largeImage;
+
+@property (strong, nonatomic) IBOutlet UIView *largeImageView;
+
+@property (strong, nonatomic) IBOutlet UIButton *editInterestsButton;
 @property (strong, nonatomic) id<UICollectionViewDataSource> dataSource;
 @end
 
@@ -42,41 +42,26 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     [self getCurrentUser];
     
-    //something.delegate = self;
-    
     self.tabBarController.navigationItem.title = @"Profile";
-    
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,860);
-    
-    self.scrollView.alwaysBounceVertical = YES;
-    self.scrollView.showsVerticalScrollIndicator = NO;
-    
     self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,860);
+    self.scrollView.alwaysBounceVertical = YES;
+    self.scrollView.showsVerticalScrollIndicator = NO;
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(getCurrentUser) forControlEvents:UIControlEventValueChanged];
     [self.scrollView addSubview:self.refreshControl];
-    self.editInterestsButton.layer.borderWidth = 2.0f;
-    self.editInterestsButton.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.editInterestsButton.layer.cornerRadius = 7;
-    self.editInterestsButton.clipsToBounds = YES;
     
     self.getAdviceCollectionView.delegate = self;
     self.getAdviceCollectionView.dataSource = self;
-    
     self.giveAdviceCollectionView.delegate = self;
     self.giveAdviceCollectionView.dataSource = self;
     
-    //self.mentorsCollectionView.delegate = [[ProfileDataDelegate alloc]init:self.mentorsCollectionView];
     self.dataSource = [[ProfileDataDelegate alloc]init:self.mentorsCollectionView andSource:self] ;
     self.mentorsCollectionView.dataSource = self.dataSource;
-    
-
     self.mentorsCollectionView.layer.cornerRadius = 12;
     UICollectionViewFlowLayout *layout = self.mentorsCollectionView.collectionViewLayout;
     layout.minimumInteritemSpacing = 12;
@@ -96,45 +81,37 @@
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
-    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Edit Profile" style:UIBarButtonItemStylePlain target:self action:@selector(onTapEditProfile)];
+    
     
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(handleSingleTap:)];
+                                            action:@selector(onTapProfilePicture:)];
     [self.profileImageView addGestureRecognizer:singleFingerTap];
     
     UITapGestureRecognizer *dismissFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(dismissSingleTap:)];
+                                            action:@selector(dismissProfilePicture:)];
     [self.view addGestureRecognizer:dismissFingerTap];
-
+    
 }
-- (void)handleSingleTap:(UITapGestureRecognizer *)recognizer
+- (void)onTapProfilePicture:(UITapGestureRecognizer *)recognizer
 {
     [self.view addSubview:self.largeImageView];
     [self.largeImageView setFrame:CGRectMake(self.view.frame.origin.x+37.5, self.view.frame.origin.y+127, 300, 300)];
     self.largeImage.file = self.user.profilePic;
     [self.largeImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
         if(error == nil){
-            NSLog(@"We did it!");
+            NSLog(@"Large Profile Picture loaded!");
         }
     }];
     
     
 }
-- (void)dismissSingleTap:(UITapGestureRecognizer *)recognizer
-    {
-        [self.largeImageView removeFromSuperview];
-    }
-       
-    
-    //Do stuff here...
-
-
--(void)onTapEditProfile{
-    [self performSegueWithIdentifier:@"EditProfile" sender:self];
-    
+- (void)dismissProfilePicture:(UITapGestureRecognizer *)recognizer
+{
+    [self.largeImageView removeFromSuperview];
 }
+
 
 
 -(void)onTapLogout{
@@ -187,14 +164,7 @@
     [queryforCurrentUser whereKey:@"username" equalTo:PFUser.currentUser[@"username"]];
     [queryforCurrentUser findObjectsInBackgroundWithBlock:^(NSArray * _Nullable objects, NSError * _Nullable error) {
         if(error == nil && objects[0] != nil){
-            
             self.user = objects[0];
-            
-            //self.title = @"Profile";
-            
-            
-
-            
             [self loadProfile];
             [self.refreshControl endRefreshing];
         } else{
@@ -209,14 +179,14 @@
 }
 
 -(void)loadProfile{
-
+    
     self.adviceToGet = [NSArray arrayWithArray:self.user[@"getAdviceInterests"]];
     self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
     [self.getAdviceCollectionView reloadData];
     [self.giveAdviceCollectionView reloadData];
     [self.mentorsCollectionView reloadData];
-    self.nameLabel.text = self.user[@"name"];
     
+    self.nameLabel.text = self.user[@"name"];
     NSString *jobTitleAppend = self.user[@"jobTitle"];
     NSString *companyLabelAppend = self.user[@"company"];
     self.occupationLabel.text = [[jobTitleAppend stringByAppendingString:@" at "] stringByAppendingString:companyLabelAppend];
@@ -229,22 +199,17 @@
     NSString *stateLabelAppend = self.user[@"stateLocation"];
     
     self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
-    
     self.bioLabel.text = self.user.bio;
-    
     self.profileImageView.file = self.user.profilePic;
     [self.profileImageView loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
         if(error == nil){
-            NSLog(@"We did it!");
+            NSLog(@"User profile picture loaded!");
         }
     }];
-    
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
     self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-
-    
     [self getRating];
 }
 
@@ -282,14 +247,14 @@
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.adviceToGet[indexPath.item];
-        [cellA reloadInputViews];
+        [cellA loadCollectionViewCell];
         return cellA;
         
     } else {
         
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
-        [cellB reloadInputViews];
+        [cellB loadCollectionViewCell];
         return cellB;
         
         
@@ -359,21 +324,15 @@
         EditProfileViewController *editorVC = (EditProfileViewController *) newController;
         editorVC.delegate = self;
     } else if([segue.identifier isEqualToString:@"toEditInterests"]){
-      
-       // EditProfileViewController* instance = [segue destinationViewController];
+        
+        // EditProfileViewController* instance = [segue destinationViewController];
         self.dataPasserDelegate = [segue destinationViewController];
-            //alter original storyboard
+        //alter original storyboard
         [self.dataPasserDelegate update:self.adviceToGet and: self.adviceToGive];
     } else if([segue.identifier isEqualToString:@"ProfiletoMilestone"]){
-
-       
         
         MilestoneViewController *milestoneViewController = [segue destinationViewController];
         milestoneViewController.mentor = sender;
-        
-        
-        
-        
         
     } else if([segue.identifier isEqualToString:@"learnAbout"]){
         CreateAppointmentViewController *createViewController = [segue destinationViewController];

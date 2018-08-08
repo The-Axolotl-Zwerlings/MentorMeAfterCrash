@@ -19,7 +19,11 @@
 @property (weak, nonatomic) IBOutlet TLTagsControl *getAdviceField;
 @property (weak, nonatomic) IBOutlet TLTagsControl *giveAdviceField;
 
-@property (weak, nonatomic) IBOutlet UIButton *saveChangesButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *saveButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
+
+
 
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
 
@@ -40,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
+    
     for(InterestModel* mod in self.array1){
         [self.getAdviceField addTag:mod.subject];
     }
@@ -52,7 +56,7 @@
     self.giveAdviceField.dataHandler = self;
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
-
+    
     
     // Do any additional setup after loading the view.
     _getAdviceField.mode = TLTagsControlModeEdit;
@@ -121,7 +125,7 @@
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
-
+            
             for (InterestModel *interest in subjects) {
                 if(substring == interest.subject){
                     [self.interestsTableView removeFromSuperview];
@@ -191,33 +195,42 @@
         self.giveStore = nil;
     }
 }
-- (IBAction)atSaveChanges:(id)sender {
+
+- (IBAction)onTapCancel:(id)sender{
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+- (IBAction)onTapSave:(id)sender {
     self.getAdviceInterests = [[NSMutableArray alloc]init];
     self.giveAdviceInterests = [[NSMutableArray alloc]init];
     for(NSString* tag in self.getAdviceField.tags){
         InterestModel* newInterest = [[InterestModel alloc]init];
         newInterest.subject = tag;
-    [self.getAdviceInterests addObject:newInterest];
+        [self.getAdviceInterests addObject:newInterest];
         NSLog(@"%@" , tag);
     }
     for(NSString* tag in self.giveAdviceField.tags){
         InterestModel* newInterest = [[InterestModel alloc]init];
         newInterest.subject = tag;
-    [self.giveAdviceInterests addObject:newInterest];
+        [self.giveAdviceInterests addObject:newInterest];
     }
     PFUser *currUser = [PFUser currentUser];
     currUser.getAdviceInterests = [NSArray arrayWithArray:self.getAdviceInterests];
     currUser.giveAdviceInterests = [NSArray arrayWithArray:self.giveAdviceInterests];
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (succeeded) {
-                NSLog(@"Interest added to user");
-            } else {
-                NSLog(@"Error: %@", error.description);
-            }
+        if (succeeded) {
+            NSLog(@"Interest added to user");
+        } else {
+            NSLog(@"Error: %@", error.description);
+        }
     }];
     //retrieve array
     [self.getAdviceField triggerPassing];
     [self.giveAdviceField triggerPassing];
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void) passingArray:(NSArray*) subjectsArray{
@@ -233,14 +246,16 @@
     //[self.getAdviceField addTag:this];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
+/*
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 @end
