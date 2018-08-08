@@ -257,7 +257,7 @@
 
 
 - (void) initTableViews {
-    getTableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
+    getTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     getTableView.delegate = self;
     getTableView.dataSource = self;
@@ -319,14 +319,11 @@
         filterViewController.selectedGetFilters = self.filtersToSearchGetWith;
         filterViewController.selectedGiveFilters = self.filtersToSearchGiveWith;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
-        UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath;
-        if( self.segmentedControl.selectedSegmentIndex == 0){
-            indexPath = [giveTableView indexPathForCell:tappedCell];
-        }else {
-            indexPath = [getTableView indexPathForCell:tappedCell];
-        }
+        NSIndexPath *indexPath = sender;
         PFUser *incomingMentor = self.allUsersFromQuery[indexPath.row];
+        
+        NSLog(@"Tapped %@", incomingMentor.name );
+        
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
         if(self.segmentedControl.selectedSegmentIndex == 0){
@@ -378,7 +375,6 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    NSLog(@"TAPPED CELL AT %@", indexPath);
-    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:self];
+    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:indexPath];
 }
 @end
