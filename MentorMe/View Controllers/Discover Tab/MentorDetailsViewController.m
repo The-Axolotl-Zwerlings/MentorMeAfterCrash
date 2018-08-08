@@ -53,8 +53,10 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.connectButton.layer.cornerRadius = 16;
+    self.connectButton.clipsToBounds = YES;
     [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
+    
     [self loadMentor];
     
     self.title = self.mentor.name;
