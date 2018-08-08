@@ -1,18 +1,18 @@
 //
-//  GiveAdviceCollectionViewCell.m
+//  GetAdviceCollectionViewCell.m
 //  MentorMe
 //
 //  Created by Nico Salinas on 7/24/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
 
-#import "GiveAdviceCollectionViewCell.h"
+#import "AdviceCollectionViewCell.h"
 #import "Parse/Parse.h"
 #import "InterestModel.h"
 #import "ParseUI.h"
 #import "PFUser+ExtendedUser.h"
 
-@implementation GiveAdviceCollectionViewCell
+@implementation AdviceCollectionViewCell
 
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -24,7 +24,7 @@
 
 - (void)loadCollectionViewCell{
     
-    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 30)];
+    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 80, 80)];
     
     //CELL BACKGROUND COLOR HERE
     self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.14 green:0.18 blue:0.25 alpha:1.0];
@@ -51,5 +51,6 @@
     
     
 }
+
 
 @end

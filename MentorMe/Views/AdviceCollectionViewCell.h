@@ -14,7 +14,7 @@
 #import "InterestModel.h"
 #import "MentorDetailsViewController.h"
 
-@interface GetAdviceCollectionViewCell : UICollectionViewCell
+@interface AdviceCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) UIImageView *backgroundImage;
 
 @property (strong, nonatomic) UILabel *interestNameLabel;

@@ -41,6 +41,8 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *giveAdviceCollectionView;
 @property (weak, nonatomic) IBOutlet UICollectionView *getAdviceCollectionView;
 
+@property (strong, nonatomic) IBOutlet UICollectionView *mentorsCollectionView;
+
 //methods
 -(void)loadProfile;
 

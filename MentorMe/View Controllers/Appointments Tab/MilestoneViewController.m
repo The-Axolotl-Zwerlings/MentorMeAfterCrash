@@ -7,13 +7,16 @@
 //
 
 #import "MilestoneViewController.h"
-
+#import "PFUser+ExtendedUser.h"
 @interface MilestoneViewController ()
 @property (strong, nonatomic) id<UITableViewDataSource> dataSource;
+@property (strong, nonatomic) id<UITabBarDelegate> delegate;
 @property (strong, nonatomic) UIView *lastBar;
 @property (strong, nonatomic) NSArray *arrayOfTableViews;
 @property (strong, nonatomic) NSArray *arrayOfArrays;
+
 @property (nonatomic) int meetingNumber;
+
 @end
 
 @implementation MilestoneViewController
@@ -60,10 +63,12 @@
     }
     self.arrayOfTableViews = [NSArray arrayWithArray:arrayOfTableViewsMutable];
     
-    
-    self.dataSource = [[MilestoneTableView alloc]initWithTableViews:self.arrayOfTableViews andTasks:self.arrayOfArrays andLastBar:self.lastBar];
+    MilestoneTableView *milestoneTableView = [[MilestoneTableView alloc]initWithTableViews:self.arrayOfTableViews andTasks:self.arrayOfArrays andLastBar:self.lastBar];
+    self.dataSource = milestoneTableView;
+    self.delegate = milestoneTableView;
     for(int i = 0; i < self.arrayOfTableViews.count; ++i){
         ((UITableView *)self.arrayOfTableViews[i]).dataSource = self.dataSource;
+        ((UITableView *)self.arrayOfTableViews[i]).delegate = self.delegate;
     }
 }
 - (void)viewDidLoad {
@@ -71,13 +76,27 @@
     
     //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 900)];
+    if(self.milestone == nil && self.mentor != nil){
+        [self getMilestone];
+        
+    } else{
+        [self setUI];
+    }
     
-    [self setUI];
     
     
     
 }
-
+-(void)getMilestone{
+    PFQuery *queryForMilestone = [PFQuery queryWithClassName:@"Milestone"];
+    [queryForMilestone whereKey:@"mentor" equalTo:self.mentor];
+    [queryForMilestone whereKey:@"mentee" equalTo:PFUser.currentUser];
+    [queryForMilestone findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError *error) {
+        self.milestone = milestone[0];
+        [self setUI];
+    }];
+    
+}
 - (void)viewWillDisappear:(BOOL)animated{
     self.milestone[@"arrayOfArrayOfTasks"] = ((MilestoneTableView *)((UITableView *)self.arrayOfTableViews[0]).dataSource).tasks;
     [self.milestone saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {

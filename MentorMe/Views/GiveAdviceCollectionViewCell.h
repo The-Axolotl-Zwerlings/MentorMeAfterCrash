@@ -1,5 +1,5 @@
 //
-//  GiveAdviceCollectionViewCell.h
+//  GetAdviceCollectionViewCell.h
 //  MentorMe
 //
 //  Created by Nico Salinas on 7/24/18.
@@ -9,16 +9,19 @@
 #import <UIKit/UIKit.h>
 
 #import "Parse/Parse.h"
-#import "PFUser+ExtendedUser.h"
 #import "ParseUI.h"
+#import "PFUser+ExtendedUser.h"
 #import "InterestModel.h"
 #import "MentorDetailsViewController.h"
 
 @interface GiveAdviceCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (strong, nonatomic) UIImageView *backgroundImage;
 
-@property (weak, nonatomic) IBOutlet UILabel *interestNameLabel;
-@property (weak, nonatomic) InterestModel *interest;
+@property (strong, nonatomic) UILabel *interestNameLabel;
+@property (strong, nonatomic) InterestModel *interest;
+
+
+- (void)loadCollectionViewCell;
 
 
 @end
