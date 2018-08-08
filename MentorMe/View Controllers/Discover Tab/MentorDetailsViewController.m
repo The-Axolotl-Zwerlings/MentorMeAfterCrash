@@ -152,7 +152,7 @@ int myCounter;
     
     self.nameLabel.textAlignment = NSTextAlignmentCenter;
     
-    [self.nameLabel sizeToFit];
+    //[self.nameLabel sizeToFit];
     
     UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
     UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];

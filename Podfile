@@ -16,6 +16,8 @@ target 'MentorMe' do
   pod 'MBProgressHUD'
   pod 'TLTagsControl', :git => 'https://github.com/mohlman3/TLTagsControl.git'
   
+  pod 'HMSegmentedControl'
+  
   
   target 'MentorMeTests' do
     inherit! :search_paths

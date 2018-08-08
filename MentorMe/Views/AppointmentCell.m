@@ -30,8 +30,8 @@
     self.otherAttendeeName.adjustsFontSizeToFitWidth = YES;
     
     self.backgroundImage.layer.shadowColor = UIColor.blackColor.CGColor;
-    self.backgroundImage.layer.shadowOpacity = 0.4;
-    self.backgroundImage.layer.shadowOffset = CGSizeMake(5, 5);
+    self.backgroundImage.layer.shadowOpacity = 1;
+    self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.backgroundImage.layer.shadowRadius = 5;
     self.backgroundImage.clipsToBounds = NO;
     
