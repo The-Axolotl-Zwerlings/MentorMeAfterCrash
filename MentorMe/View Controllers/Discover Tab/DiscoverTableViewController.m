@@ -5,22 +5,29 @@
 //  Created by Nico Salinas on 7/12/18.
 //  Copyright © 2018 Taylor Murray. All rights reserved.
 //
-
+#import "AppDelegate.h"
 #import "DiscoverTableViewController.h"
 #import "DiscoverCell.h"
 #import "FilterViewController.h"
-#import "Parse.h"
-#import "PFUser+ExtendedUser.h"
-#import "AppDelegate.h"
+#import "HMSegmentedControl.h"
+#import "InterestModel.h"
+#import "LocationApiManager.h"
 #import "LoginViewController.h"
 #import "MentorDetailsViewController.h"
-#import "LocationApiManager.h"
 #import "MBProgressHUD.h"
-#import "InterestModel.h"
-@interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>
-@property (strong, nonatomic) IBOutlet UISegmentedControl *mentorMenteeSegControl;
+#import "Parse.h"
+#import "PFUser+ExtendedUser.h"
+
+
+@interface DiscoverTableViewController () <UITableViewDelegate,UITableViewDataSource,FilterDelegate>{
+    UITableView *getTableView;
+    UITableView *giveTableView;
+}
 @property (strong, nonatomic) IBOutlet UIButton *filterButton;
 @property (strong, nonatomic) UIRefreshControl *refreshControl;
+
+@property (nonatomic, strong) HMSegmentedControl *segmentedControl;
+@property (nonatomic, strong) UIScrollView *scrollView;
 
 @property (nonatomic) BOOL getAdvice;
 @end
@@ -31,38 +38,30 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //self.title = @"Discover";
     self.tabBarController.navigationItem.title = @"Discover";
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
     
-    self.discoverTableView.delegate = self;
-    self.discoverTableView.dataSource = self;
-    [self loadBarButtons];
     [self fetchAllUsers];
-    
-    UIFont *font = [UIFont systemFontOfSize:15.0f];
-    NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
-                                                           forKey:NSFontAttributeName];
-    [self.mentorMenteeSegControl setTitleTextAttributes:attributes
-                                         forState:UIControlStateNormal];
+    [self initSegmentedControl];
+    [self initScrollView];
+    [self initTableViews];
+    [self loadBarButtons];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
-    [self.discoverTableView insertSubview:self.refreshControl atIndex:0];
-    [self.discoverTableView reloadData];
-    
+    [self.scrollView insertSubview:self.refreshControl atIndex:0];
     
 }
 
 
-- (void) viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
-    
     [self loadBarButtons];
     
-    [self.discoverTableView reloadData];
+    [giveTableView reloadData];
+    [getTableView reloadData];
 }
 
 - (void) loadBarButtons {
@@ -81,8 +80,9 @@
 }
 
 
+
 -(void)fetchAllUsers{
-  
+    
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     if( [PFUser currentUser] ){
@@ -96,7 +96,8 @@
         [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
             if(users){
                 self.allUsersFromQuery = users;
-                [self.discoverTableView reloadData];
+                [giveTableView reloadData];
+                [getTableView reloadData];
                 [self.refreshControl endRefreshing];
                 
                 NSLog(@"WE GOT THE USERS 😇");
@@ -107,19 +108,16 @@
             }
         }];
     }
-
+    [giveTableView reloadData];
+    [getTableView reloadData];
 }
-//- (IBAction)tappedCell:(UITapGestureRecognizer *)sender {
-//    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:sender];
-//}
 
 - (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
-    
     if( incomingSelectedInterestsArray.count != 0){
         NSSet *myUserInterestsSet = [NSSet setWithArray:incomingSelectedInterestsArray];
         self.filteredUsersFromQuery = nil;
         for(PFUser *user in self.allUsersFromQuery){
-            NSSet *otherUserInterests = (self.mentorMenteeSegControl.selectedSegmentIndex == 0) ? [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]] : [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]] ;
+            NSSet *otherUserInterests = (self.segmentedControl.selectedSegmentIndex == 0) ? [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]] : [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]] ;
             BOOL intersectionOfInterests = [myUserInterestsSet intersectsSet:otherUserInterests];
             
             if( intersectionOfInterests == YES){
@@ -135,7 +133,6 @@
     }else{
         [self fetchAllUsers];
     }
-    [self.discoverTableView reloadData];
 }
 
 
@@ -159,7 +156,8 @@
                     }
                     self.filteredUsersFromQuery = (NSMutableArray *)[NSArray arrayWithArray:oldArray];
                     NSLog(@"%lu", (unsigned long)self.filteredUsersFromQuery.count);
-                    [self.discoverTableView reloadData];
+                    [giveTableView reloadData];
+                    [getTableView reloadData];
                 });
                 //                NSNumber *distance = (NSNumber *)elementDic[@"value"];
                 //                if([distance floatValue] < 50){
@@ -172,84 +170,14 @@
         });
         
         
-    
+        
     }
-//    self.filteredUsers = [NSArray arrayWithArray:oldArray];
-//    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
-//    [self.discoverTableView reloadData]
+    //    self.filteredUsers = [NSArray arrayWithArray:oldArray];
+    //    NSLog(@"%lu", (unsigned long)self.filteredUsers.count);
+    //    [self.discoverTableView reloadData]
 }
 
 
-- (IBAction)onEdit:(UISegmentedControl *)sender {
-    [self fetchAllUsers];
-}
-
-
-/***** TABLE VIEW ******/
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-   //1. Check what index we are on
-    
-    if( self.filtersToSearchGetWith.count != 0 || self.filtersToSearchGiveWith.count != 0 ) { // this means there are filters selected
-        return self.filteredUsersFromQuery.count;
-    } else {
-        return self.allUsersFromQuery.count;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
-    
-    if( self.filtersToSearchGetWith.count != 0 ){
-        cell.userForCell = self.filteredUsersFromQuery[indexPath.item];
-    } else {
-        cell.userForCell = self.allUsersFromQuery[indexPath.item];
-    }
-    
-    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
-    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
-    
-    cell.isGivingAdvice = self.mentorMenteeSegControl.selectedSegmentIndex == 1 ? @(1) : @(0);
-    if( [cell.isGivingAdvice integerValue] == 1 ){
-        cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(colorA.CGColor);
-        cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
-        cell.profilePicView.layer.masksToBounds = true;
-        cell.getCollectionView.hidden = false;
-        cell.giveCollectionView.hidden = true;
-        cell.statusLineLabel.text = [[@"What " stringByAppendingString:cell.userForCell.name] stringByAppendingString:@" can get advice about:"];
-    } else {
-        cell.profilePicView.layer.borderWidth = 5;
-        cell.profilePicView.layer.borderColor = CGColorRetain(colorB.CGColor);
-        cell.profilePicView.layer.cornerRadius = cell.profilePicView.frame.size.width / 2;
-        cell.profilePicView.layer.masksToBounds = true;
-        cell.getCollectionView.hidden = true;
-        cell.giveCollectionView.hidden = false;
-        cell.statusLineLabel.text = [[@"What " stringByAppendingString:cell.userForCell.name] stringByAppendingString:@" can give advice about:"];
-    }
-    
-    
-    
-    cell.getInterests = cell.userForCell.getAdviceInterests;
-    cell.giveInterests = cell.userForCell.giveAdviceInterests;
-    
-    cell.getCollectionView.delegate = cell;
-    cell.getCollectionView.dataSource = cell;
-    cell.giveCollectionView.delegate = cell;
-    cell.giveCollectionView.dataSource = cell;
-    
-    [cell.getCollectionView setShowsHorizontalScrollIndicator:NO];
-    [cell.giveCollectionView setShowsHorizontalScrollIndicator:NO];
-    cell.getCollectionView.alwaysBounceHorizontal = YES;
-    cell.giveCollectionView.alwaysBounceHorizontal = YES;
-    //cell.backgroundColor = [UIColor colorWithRed:0.14 green:0.20 blue:0.28 alpha:1.0];
-    [cell layoutCell:cell.userForCell];
-    [cell reloadInputViews];
-    return cell;
-}
 
 
 - (void) segueToFilters {
@@ -258,29 +186,118 @@
 
 
 /*** DELEGATE METHODS  ***/
-
-
 - (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices{
-
+    
     self.getIndex = incomingGetIndices;
     self.giveIndex = incomingGiveIndices;
     
     
-    if( incomingGetInterests.count != nil){
+    if( incomingGetInterests.count != 0){
         self.filtersToSearchGetWith = nil;
         self.filtersToSearchGetWith = incomingGetInterests;
         [self fetchUsersWithSelectedInterests:self.filtersToSearchGetWith];
     }
-    if ( incomingGiveInterests.count != nil ){
+    if ( incomingGiveInterests.count != 0 ){
         
         self.filtersToSearchGiveWith = nil;
         self.filtersToSearchGiveWith = incomingGiveInterests;
         [self fetchUsersWithSelectedInterests:self.filtersToSearchGiveWith];
     }
-    [self.discoverTableView reloadData];
+    
     
 }
 
+
+
+
+/*** SEGMENTED CONTROL ***/
+
+- (void) initSegmentedControl{
+    // Tying up the segmented control to a scroll view
+    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(12, 12, viewWidth-24, 40)];
+    [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+
+    self.segmentedControl.sectionTitles = @[@"Get Advice", @"Give Advice"];
+    self.segmentedControl.selectedSegmentIndex = 0;
+    self.segmentedControl.backgroundColor = [UIColor clearColor];
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    self.segmentedControl.selectionIndicatorColor = [UIColor grayColor];
+    self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleArrow;
+    self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
+    self.segmentedControl.tag = 2;
+    
+    __weak typeof(self) weakSelf = self;
+    [self.segmentedControl setIndexChangeBlock:^(NSInteger index) {
+        [weakSelf.scrollView scrollRectToVisible:CGRectMake(viewWidth * index, 0, viewWidth, 200) animated:YES];
+    }];
+    
+    [self.view addSubview:self.segmentedControl];
+}
+
+- (void) initScrollView {
+    CGFloat viewWidth = CGRectGetWidth(self.view.frame);
+    self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, viewWidth, 500)];
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.scrollView.pagingEnabled = YES;
+    self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.contentSize = CGSizeMake(viewWidth * 2, 500);
+    self.scrollView.delegate = self;
+    [self.scrollView scrollRectToVisible:CGRectMake(0, 0, viewWidth, self.view.frame.size.height) animated:NO];
+    [self.view addSubview:self.scrollView];
+    
+    UILabel *labelA = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
+    labelA.backgroundColor = UIColor.yellowColor;
+    [self.scrollView addSubview:labelA];
+    
+    UILabel *labelB = [[UILabel alloc] initWithFrame:CGRectMake(375, 0, 375, 500)];
+    labelB.backgroundColor = UIColor.blueColor;
+    [self.scrollView addSubview:labelB];
+}
+
+
+- (void) initTableViews {
+    getTableView= [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
+    [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
+    getTableView.delegate = self;
+    getTableView.dataSource = self;
+    [getTableView setRowHeight:200];
+    getTableView.showsVerticalScrollIndicator = NO;
+    [self.scrollView addSubview:getTableView];
+    
+    giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500)];
+    [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
+    giveTableView.delegate = self;
+    giveTableView.dataSource = self;
+    [giveTableView setRowHeight:200];
+    giveTableView.showsVerticalScrollIndicator = NO;
+    [self.scrollView addSubview:giveTableView];
+    
+}
+
+- (void)segmentedControlChangedValue:(HMSegmentedControl *)segmentedControl {
+    NSLog(@"Selected index %ld (via UIControlEventValueChanged)", (long)segmentedControl.selectedSegmentIndex);
+    
+    if( segmentedControl.selectedSegmentIndex == 0 ){
+        [getTableView reloadData];
+    } else{
+        [giveTableView reloadData];
+    }
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    CGFloat pageWidth = scrollView.frame.size.width;
+    NSInteger page = scrollView.contentOffset.x / pageWidth;
+    
+    [self.segmentedControl setSelectedSegmentIndex:page animated:YES];
+    NSLog(@"Slided to index %ld", page);
+    if( page == 0 ){
+        [getTableView reloadData];
+    } else{
+        [giveTableView reloadData];
+    }
+
+}
 
 /*** SEGUE METHODS ***/
 
@@ -301,26 +318,79 @@
         
         filterViewController.selectedGetFilters = self.filtersToSearchGetWith;
         filterViewController.selectedGiveFilters = self.filtersToSearchGiveWith;
-        
-        
-        
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
-        
         UITableViewCell *tappedCell = sender;
-        NSIndexPath *indexPath = [self.discoverTableView indexPathForCell:tappedCell];
-        PFUser *incomingMentor = self.allUsersFromQuery[indexPath.row];
         
+        NSIndexPath *indexPath;
+        
+        if( self.segmentedControl.selectedSegmentIndex == 0){
+            
+            indexPath = [giveTableView indexPathForCell:tappedCell];
+            
+        }else {
+            indexPath = [getTableView indexPathForCell:tappedCell];
+        }
+        
+        
+        PFUser *incomingMentor = self.allUsersFromQuery[indexPath.row];
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
-
-        if(self.mentorMenteeSegControl.selectedSegmentIndex == 0){
+        if(self.segmentedControl.selectedSegmentIndex == 0){
             mentorDetailsViewController.isMentorOfMeeting = NO;
         } else{
             mentorDetailsViewController.isMentorOfMeeting = YES;
         }
-        
     }
 }
+
+/***** TABLE VIEW ******/
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if( self.filtersToSearchGetWith.count != 0 || self.filtersToSearchGiveWith.count != 0 ) {
+        NSLog( @"Filtered Count %lu", self.filtersToSearchGetWith.count);
+        NSLog( @"Filtered Count %lu", self.filtersToSearchGiveWith.count);
+        return self.filteredUsersFromQuery.count;
+    } else if (self.allUsersFromQuery.count != 0) {
+        NSLog( @"All Count %lu", self.allUsersFromQuery.count);
+        return self.allUsersFromQuery.count;
+    } else {
+        return 1;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DiscoverCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
+    
+    cell.selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    if( self.filtersToSearchGetWith.count != 0 ){
+        cell.userForCell = self.filteredUsersFromQuery[indexPath.item];
+    } else {
+        cell.userForCell = self.allUsersFromQuery[indexPath.item];
+    }
+    cell.incomingGetInterests = cell.userForCell.getAdviceInterests;
+    cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
+    
+    
+    
+    if( self.segmentedControl.selectedSegmentIndex == 0 && cell.userForCell != nil ){
+
+        [cell loadCell];
+        [cell loadCollectionViews];
+        
+    } else if( self.segmentedControl.selectedSegmentIndex == 1 && cell.userForCell != nil )  {
+        [cell loadCell];
+        [cell loadCollectionViews];
+        
+    }
+    
+    
+    
+    return cell;
+}
+
 
 
 @end

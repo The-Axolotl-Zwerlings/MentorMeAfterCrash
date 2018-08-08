@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *LogInButton;
 @property (weak, nonatomic) IBOutlet UIButton *RegisterButton;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImageView;
+@property (weak, nonatomic) IBOutlet UILabel *metaTitleLable;
 
 
 @end
@@ -22,6 +23,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.metaTitleLable.layer.shadowOpacity = 0.4;
+    self.metaTitleLable.layer.shadowColor = UIColor.blackColor.CGColor;
+    self.metaTitleLable.layer.shadowOffset = CGSizeMake(10,10);
+    self.metaTitleLable.layer.shadowRadius = 5;
     
     /*self.LogInButton.layer.borderColor = [UIColor whiteColor].CGColor;
     self.LogInButton.layer.borderWidth = 1;
@@ -50,7 +56,15 @@
     [self.view addSubview:newImageB];
     
     
+    UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self action:@selector(handleSingleTap:)];
+    tapper.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapper];
     
+}
+
+- (void)handleSingleTap:(UITapGestureRecognizer *) sender{
+    [self.view endEditing:YES];
 }
 
 - (void)didReceiveMemoryWarning {

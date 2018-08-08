@@ -37,7 +37,7 @@
     [self loadAppointment];
     
     self.aboutUserBackgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.aboutUserBackgroundImage.layer.shadowOffset = CGSizeMake(5, 5);
+    self.aboutUserBackgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.aboutUserBackgroundImage.layer.shadowOpacity = 0.4;
     self.aboutUserBackgroundImage.layer.shadowRadius = 3.0;
     self.aboutUserBackgroundImage.clipsToBounds = NO;

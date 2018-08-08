@@ -14,12 +14,14 @@
 #import "InterestModel.h"
 #import "MentorDetailsViewController.h"
 
-@interface GetAdviceCollectionViewCell : UICollectionViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@interface AdviceCollectionViewCell : UICollectionViewCell
+@property (strong, nonatomic) UIImageView *backgroundImage;
 
-@property (weak, nonatomic) IBOutlet UILabel *interestNameLabel;
-@property (weak, nonatomic) InterestModel *interest;
+@property (strong, nonatomic) UILabel *interestNameLabel;
+@property (strong, nonatomic) InterestModel *interest;
 
+
+- (void)loadCollectionViewCell;
 
 
 @end

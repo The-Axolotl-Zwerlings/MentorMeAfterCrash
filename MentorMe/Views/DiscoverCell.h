@@ -12,28 +12,20 @@
 #import "PFUser+ExtendedUser.h"
 #import "QuartzCore/CALayer.h"
 
-
-
-@interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>
-
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *occupationLabel;
-@property (strong, nonatomic) IBOutlet UILabel *educationLabel;
-@property (strong, nonatomic) IBOutlet PFImageView *profilePicView;
-@property (strong, nonatomic) NSNumber *isGivingAdvice;
-
-@property (strong, nonatomic) IBOutlet UICollectionView *getCollectionView;
-@property (strong, nonatomic) IBOutlet UICollectionView *giveCollectionView;
-
-@property (nonatomic, strong) NSArray *getInterests;
-@property (nonatomic, strong) NSArray *giveInterests;
-
-@property (weak, nonatomic) IBOutlet UILabel *statusLineLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@interface DiscoverCell : UITableViewCell <UICollectionViewDelegate, UICollectionViewDataSource>{
+    UICollectionView *collectionViewA;
+    UICollectionView *collectionViewB;
+}
 
 @property (strong, nonatomic) PFUser *userForCell;
 
-- (void)layoutCell:(PFUser *)user;
+@property (nonatomic, strong) NSArray *incomingGetInterests;
+@property (nonatomic, strong) NSArray *incomingGiveInterests;
 
+@property (nonatomic, strong) UIImageView *backgroundImage;
+@property (nonatomic) NSInteger selectedIndex;
+
+- (void) loadCell;
+- (void) loadCollectionViews;
 
 @end
