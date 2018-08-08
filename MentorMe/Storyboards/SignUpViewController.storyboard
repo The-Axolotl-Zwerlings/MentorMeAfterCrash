@@ -149,10 +149,10 @@
             </objects>
             <point key="canvasLocation" x="1988" y="107.49625187406298"/>
         </scene>
-        <!--AddInterests-->
+        <!--EditInterests-->
         <scene sceneID="csW-BD-X3n">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="AddInterests" storyboardName="AddInterests" id="Ld8-OK-YNc" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardIdentifier="AddInterests" storyboardName="EditInterests" id="Ld8-OK-YNc" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcR-ny-M8B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2690" y="26"/>

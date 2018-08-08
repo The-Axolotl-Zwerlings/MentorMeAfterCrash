@@ -35,7 +35,7 @@
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.backgroundImage.layer.shadowRadius = 3;
     self.backgroundImage.layer.shadowColor = UIColor.grayColor.CGColor;
-    self.backgroundImage.layer.shadowOpacity = 0.4;
+    self.backgroundImage.layer.shadowOpacity = 0;
     
     [self.contentView addSubview:self.backgroundImage];
     

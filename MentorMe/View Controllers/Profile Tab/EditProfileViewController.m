@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UIButton *photoLibraryButton;
+@property (weak, nonatomic) IBOutlet UIButton *cancelButton;
 
 @end
 
@@ -86,6 +87,11 @@
         
     }];
 
+    
+}
+- (IBAction)onTapCancel:(id)sender {
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
     
 }
 

@@ -79,7 +79,6 @@
     //2. Name Label
     UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 124, 12, textWidth, 40)];
     nameLabel.text = self.userForCell.name;
-    nameLabel.font = [UIFont fontWithName:@"Avenir" size:24];
     nameLabel.textColor = [UIColor whiteColor];
     [self.backgroundImage addSubview:nameLabel];
     
@@ -87,7 +86,6 @@
     NSString *jobLine = [[self.userForCell.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.userForCell.company];
     UILabel *jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, nameLabel.frame.size.height + nameLabel.frame.origin.y, textWidth, 40)];
     jobLabel.text = jobLine;
-    jobLabel.font = [UIFont fontWithName:@"Avenir" size:15];
     jobLabel.textColor = [UIColor whiteColor];
     jobLabel.numberOfLines = 0;
     jobLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -97,13 +95,60 @@
     NSString *educationLine = [[[@"Studied " stringByAppendingString:self.userForCell.major] stringByAppendingString:@" at "] stringByAppendingString:self.userForCell.school];
     UILabel *educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, jobLabel.frame.size.height + jobLabel.frame.origin.y, textWidth, 40)];
     educationLabel.text = educationLine;
-    educationLabel.font = [UIFont fontWithName:@"Avenir" size:15];
     educationLabel.textColor = [UIColor whiteColor];
     educationLabel.numberOfLines = 0;
     educationLabel.lineBreakMode = NSLineBreakByWordWrapping;
     [self.backgroundImage addSubview:educationLabel];
     
+    //5. Auto Layout
+    [nameLabel setFont:[UIFont fontWithName:@"Avenir" size:30]];
+    [jobLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
+    [educationLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
+    //A. Find Frame
+    CGRect frameA = nameLabel.frame;
+    CGRect frameB = jobLabel.frame;
+    CGRect frameC = educationLabel.frame;
+    //B. Change Width
+    CGFloat frameWidth = 227;
+    frameA.size.width = frameWidth;
+    frameB.size.width = frameWidth;
+    frameC.size.width = frameWidth;
+    //D. Change Height
     
+    frameA.size.height = [self getLabelHeight:nameLabel];
+    frameB.size.height = [self getLabelHeight:jobLabel];
+    frameC.size.height = [self getLabelHeight:educationLabel];
+    
+    [nameLabel adjustsFontSizeToFitWidth];
+    [jobLabel adjustsFontSizeToFitWidth];
+    [educationLabel adjustsFontSizeToFitWidth];
+    
+    /*[nameLabel setBackgroundColor:UIColor.redColor];
+    [jobLabel setBackgroundColor:UIColor.greenColor];
+    [educationLabel setBackgroundColor:UIColor.blueColor];*/
+    
+    //B. Change Y-Coordinate
+    frameA.origin.y = 12;
+    frameB.origin.y = frameA.origin.y+frameA.size.height;
+    frameC.origin.y = frameB.origin.y+frameB.size.height;
+    
+    [nameLabel setFrame:frameA];
+    [jobLabel setFrame:frameB];
+    [educationLabel setFrame:frameC];
+    
+    
+    
+}
+
+- (CGFloat) getLabelHeight:(UILabel*) incomingLabel{
+    NSInteger lineCount = 0;
+    CGSize textSize = CGSizeMake(incomingLabel.frame.size.width, MAXFLOAT);
+    long rHeight = lroundf([incomingLabel sizeThatFits:textSize].height);
+    long charSize = lroundf(incomingLabel.font.lineHeight);
+    lineCount = rHeight/charSize;
+    CGFloat heightOfLabel = lineCount * charSize;
+    NSLog(@"Height for %@ is: %f", incomingLabel.text, heightOfLabel);
+    return heightOfLabel;
 }
 
 - (void) loadCollectionViews {
@@ -115,8 +160,8 @@
     flowLayout.estimatedItemSize = CGSizeMake(120, 40);
     
     
-    if( self.selectedIndex == 0 ) {
-        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 130, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
+    if( self.selectedIndex == 1 ) {
+        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 115, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
         [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewA.delegate = self;
         collectionViewA.dataSource = self;
@@ -127,8 +172,8 @@
         [collectionViewA reloadData];
     }
     
-    if( self.selectedIndex == 1 ){
-        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 130, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
+    if( self.selectedIndex == 0 ){
+        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 115, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
         [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
         collectionViewB.dataSource = self;
@@ -174,25 +219,25 @@
 }
 
 /*- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if( collectionView == collectionViewA ){
-        InterestModel *newInterest = self.incomingGetInterests[indexPath.row];
-        NSString *stringToFit = newInterest.subject;
-        CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
-        CGSize returnSize = CGSizeMake(calculateSize.width, 40);
-        return returnSize;
-    } else {
-        InterestModel *newInterest = self.incomingGiveInterests[indexPath.row];
-        NSString *stringToFit = newInterest.subject;
-        CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
-        CGSize returnSize = CGSizeMake(calculateSize.width, 40);
-        return returnSize;
-    }
-    
-}*/
+ 
+ if( collectionView == collectionViewA ){
+ InterestModel *newInterest = self.incomingGetInterests[indexPath.row];
+ NSString *stringToFit = newInterest.subject;
+ CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
+ CGSize returnSize = CGSizeMake(calculateSize.width, 40);
+ return returnSize;
+ } else {
+ InterestModel *newInterest = self.incomingGiveInterests[indexPath.row];
+ NSString *stringToFit = newInterest.subject;
+ CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
+ CGSize returnSize = CGSizeMake(calculateSize.width, 40);
+ return returnSize;
+ }
+ 
+ }*/
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    if( self.selectedIndex == 0 ){
+    if( self.selectedIndex == 1 ){
         return self.userForCell.getAdviceInterests.count;
     } else {
         return self.userForCell.giveAdviceInterests.count;
