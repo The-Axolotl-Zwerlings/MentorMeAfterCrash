@@ -54,8 +54,9 @@
 		C03D899F20F7CA9900342B39 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D899E20F7CA9900342B39 /* LoginViewController.m */; };
 		C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C03D89A420F7CE3D00342B39 /* SignUpViewController.m */; };
 		C05743DE20FFBB1E00A6F529 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */; };
-		C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */; };
-		C072AB962107994100912A25 /* GetAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C072AB952107994100912A25 /* GetAdviceCollectionViewCell.m */; };
+		C0989BB6211A5286006358EE /* AdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0989BB5211A5286006358EE /* AdviceCollectionViewCell.m */; };
+		C0989BBB211A5329006358EE /* GiveAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0989BB7211A5327006358EE /* GiveAdviceCollectionViewCell.m */; };
+		C0989BBC211A5329006358EE /* GetAdviceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = C0989BB9211A5328006358EE /* GetAdviceCollectionViewCell.m */; };
 		C0F101722100FF46009ADA47 /* AppointmentDetailsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */; };
 		C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */; };
 		C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0F101772101059B009ADA47 /* AppointmentsViewController.m */; };
@@ -169,10 +170,12 @@
 		C03D89A420F7CE3D00342B39 /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		C05743DC20FFBB1E00A6F529 /* AppointmentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
 		C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
-		C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GiveAdviceCollectionViewCell.h; sourceTree = "<group>"; };
-		C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GiveAdviceCollectionViewCell.m; sourceTree = "<group>"; };
-		C072AB942107994100912A25 /* GetAdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GetAdviceCollectionViewCell.h; path = MentorMe/Views/GetAdviceCollectionViewCell.h; sourceTree = SOURCE_ROOT; };
-		C072AB952107994100912A25 /* GetAdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = GetAdviceCollectionViewCell.m; path = MentorMe/Views/GetAdviceCollectionViewCell.m; sourceTree = SOURCE_ROOT; };
+		C0989BB4211A5286006358EE /* AdviceCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AdviceCollectionViewCell.h; sourceTree = "<group>"; };
+		C0989BB5211A5286006358EE /* AdviceCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AdviceCollectionViewCell.m; sourceTree = "<group>"; };
+		C0989BB7211A5327006358EE /* GiveAdviceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GiveAdviceCollectionViewCell.m; path = ../../../../.Trash/GiveAdviceCollectionViewCell.m; sourceTree = "<group>"; };
+		C0989BB8211A5328006358EE /* GetAdviceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetAdviceCollectionViewCell.h; path = ../../../../.Trash/GetAdviceCollectionViewCell.h; sourceTree = "<group>"; };
+		C0989BB9211A5328006358EE /* GetAdviceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GetAdviceCollectionViewCell.m; path = ../../../../.Trash/GetAdviceCollectionViewCell.m; sourceTree = "<group>"; };
+		C0989BBA211A5329006358EE /* GiveAdviceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GiveAdviceCollectionViewCell.h; path = ../../../../.Trash/GiveAdviceCollectionViewCell.h; sourceTree = "<group>"; };
 		C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AppointmentDetailsViewController.storyboard; sourceTree = "<group>"; };
 		C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailsViewController.h; sourceTree = "<group>"; };
 		C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailsViewController.m; sourceTree = "<group>"; };
@@ -353,10 +356,12 @@
 				C05743DD20FFBB1E00A6F529 /* AppointmentCell.m */,
 				A82A495820FFAF8200DC129F /* DiscoverCell.h */,
 				A82A495920FFAF8200DC129F /* DiscoverCell.m */,
-				C072AB942107994100912A25 /* GetAdviceCollectionViewCell.h */,
-				C072AB952107994100912A25 /* GetAdviceCollectionViewCell.m */,
-				C072AB912107916400912A25 /* GiveAdviceCollectionViewCell.h */,
-				C072AB922107916400912A25 /* GiveAdviceCollectionViewCell.m */,
+				C0989BB8211A5328006358EE /* GetAdviceCollectionViewCell.h */,
+				C0989BB9211A5328006358EE /* GetAdviceCollectionViewCell.m */,
+				C0989BBA211A5329006358EE /* GiveAdviceCollectionViewCell.h */,
+				C0989BB7211A5327006358EE /* GiveAdviceCollectionViewCell.m */,
+				C0989BB4211A5286006358EE /* AdviceCollectionViewCell.h */,
+				C0989BB5211A5286006358EE /* AdviceCollectionViewCell.m */,
 				A82EB2DA2107E43A00079B53 /* RateView.h */,
 				A82EB2DB2107E43A00079B53 /* RateView.m */,
 				B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */,
@@ -715,6 +720,7 @@
 				A87C16D721140365001AC0B5 /* MilestoneTableView.m in Sources */,
 				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
 				B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */,
+				C0989BBC211A5329006358EE /* GetAdviceCollectionViewCell.m in Sources */,
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
 				A87C16D42113F7E5001AC0B5 /* MilestoneViewController.m in Sources */,
 				A8A28C0F211A130E009EA5EB /* ProfileDataDelegate.m in Sources */,
@@ -723,6 +729,7 @@
 				A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */,
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
+				C0989BBB211A5329006358EE /* GiveAdviceCollectionViewCell.m in Sources */,
 				C072AB932107916400912A25 /* GiveAdviceCollectionViewCell.m in Sources */,
 				A8A28C05211904E5009EA5EB /* ReviewDataDelegate.m in Sources */,
 				A87C16DD211413BD001AC0B5 /* AddCell.m in Sources */,
@@ -734,6 +741,7 @@
 				A82EB2DC2107E43A00079B53 /* RateView.m in Sources */,
 				A87C16DA21140998001AC0B5 /* MilestoneCell.m in Sources */,
 				B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */,
+				C0989BB6211A5286006358EE /* AdviceCollectionViewCell.m in Sources */,
 				A82EB2D92107E0B000079B53 /* ReviewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
