@@ -50,13 +50,14 @@
     
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
-    [self.scrollView insertSubview:self.refreshControl atIndex:0];
+    
+    [getTableView insertSubview:self.refreshControl atIndex:0];
     
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
     [self loadBarButtons];
     
