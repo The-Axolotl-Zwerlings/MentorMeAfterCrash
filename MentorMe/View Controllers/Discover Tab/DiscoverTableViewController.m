@@ -304,7 +304,7 @@
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)senderx {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"filterSegue"]){
@@ -320,18 +320,12 @@
         filterViewController.selectedGiveFilters = self.filtersToSearchGiveWith;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         UITableViewCell *tappedCell = sender;
-        
         NSIndexPath *indexPath;
-        
         if( self.segmentedControl.selectedSegmentIndex == 0){
-            
             indexPath = [giveTableView indexPathForCell:tappedCell];
-            
         }else {
             indexPath = [getTableView indexPathForCell:tappedCell];
         }
-        
-        
         PFUser *incomingMentor = self.allUsersFromQuery[indexPath.row];
         MentorDetailsViewController *mentorDetailsViewController = [segue destinationViewController];
         mentorDetailsViewController.mentor = incomingMentor;
@@ -343,10 +337,8 @@
     }
 }
 
+
 /***** TABLE VIEW ******/
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if( self.filtersToSearchGetWith.count != 0 || self.filtersToSearchGiveWith.count != 0 ) {
         NSLog( @"Filtered Count %lu", self.filtersToSearchGetWith.count);
@@ -364,6 +356,8 @@
     
     DiscoverCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
     
+    [cell targetForAction:@selector(tableView:didSelectRowAtIndexPath:) withSender:nil];
+    
     cell.selectedIndex = self.segmentedControl.selectedSegmentIndex;
     if( self.filtersToSearchGetWith.count != 0 ){
         cell.userForCell = self.filteredUsersFromQuery[indexPath.item];
@@ -372,25 +366,19 @@
     }
     cell.incomingGetInterests = cell.userForCell.getAdviceInterests;
     cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
-    
-    
-    
     if( self.segmentedControl.selectedSegmentIndex == 0 && cell.userForCell != nil ){
-
         [cell loadCell];
         [cell loadCollectionViews];
-        
     } else if( self.segmentedControl.selectedSegmentIndex == 1 && cell.userForCell != nil )  {
         [cell loadCell];
         [cell loadCollectionViews];
-        
     }
-    
-    
-    
     return cell;
 }
 
-
-
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSLog(@"TAPPED CELL AT %@", indexPath);
+    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:self];
+}
 @end

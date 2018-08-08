@@ -26,6 +26,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="d4Z-Dm-b3k"/>
+                        <segue destination="RbV-D6-zF5" kind="show" identifier="segueToMentorDetailsViewController" id="D1x-I0-Wiv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anQ-We-Gm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
