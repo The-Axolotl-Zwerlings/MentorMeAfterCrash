@@ -176,77 +176,84 @@
                                         <rect key="frame" x="47" y="252" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JVw-hQ-uOy">
-                                        <rect key="frame" x="19" y="603" width="329" height="176"/>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QtL-td-NX3">
+                                        <rect key="frame" x="0.0" y="557" width="375" height="230"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iTf-9a-txU">
-                                            <size key="itemSize" width="118" height="138"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="MentorMilestoneCell" id="U08-yh-qqO" customClass="MentorMilestoneCell">
-                                                <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your mentors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-55-EaZ">
+                                                <rect key="frame" x="128" y="0.0" width="119" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-gu-1IN">
-                                                            <rect key="frame" x="14" y="99" width="73" height="40"/>
-                                                            <gestureRecognizers/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3la-Yt-blR" customClass="PFImageView">
-                                                            <rect key="frame" x="13" y="12" width="75" height="75"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="75" id="Eug-cM-y9V"/>
-                                                                <constraint firstAttribute="width" constant="75" id="RBZ-Ak-AX5"/>
-                                                            </constraints>
-                                                        </imageView>
-                                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plj-0C-jOr">
-                                                            <rect key="frame" x="5" y="7" width="96" height="135"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                            <state key="normal" title="button!!AHHHHHH">
-                                                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </state>
-                                                            <connections>
-                                                                <action selector="tappedSecretButton:" destination="U08-yh-qqO" eventType="touchUpInside" id="Yfv-YZ-OPx"/>
-                                                            </connections>
-                                                        </button>
-                                                    </subviews>
-                                                </view>
-                                                <gestureRecognizers/>
-                                                <constraints>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="3ys-gu-1IN" secondAttribute="trailing" constant="6" id="THf-47-UTY"/>
-                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="top" secondItem="3la-Yt-blR" secondAttribute="bottom" constant="12" id="Vdm-9P-oet"/>
-                                                    <constraint firstAttribute="bottom" secondItem="3ys-gu-1IN" secondAttribute="bottom" constant="6" id="gkB-qu-PvI"/>
-                                                    <constraint firstItem="3la-Yt-blR" firstAttribute="top" secondItem="U08-yh-qqO" secondAttribute="top" constant="12" id="mcA-rJ-Ss1"/>
-                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="leading" secondItem="U08-yh-qqO" secondAttribute="leadingMargin" constant="6" id="mxx-sf-HgG"/>
-                                                    <constraint firstItem="3ys-gu-1IN" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="pC0-sc-Pww"/>
-                                                    <constraint firstItem="3la-Yt-blR" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="tPm-J8-SXs"/>
-                                                </constraints>
-                                                <size key="customSize" width="101" height="145"/>
-                                                <connections>
-                                                    <outlet property="buttonSecret" destination="plj-0C-jOr" id="8t6-tn-rix"/>
-                                                    <outlet property="mentorView" destination="3la-Yt-blR" id="2Be-dP-I1i"/>
-                                                    <outlet property="nameLabel" destination="3ys-gu-1IN" id="F6v-i6-Ccw"/>
-                                                    <segue destination="isb-0b-7Xv" kind="show" identifier="ProfiletoMilestone" id="Ufg-B9-DSv"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                    </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your mentors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hDb-55-EaZ">
-                                        <rect key="frame" x="122" y="569" width="119" height="26"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JVw-hQ-uOy">
+                                                <rect key="frame" x="23" y="27" width="329" height="176"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="iTf-9a-txU">
+                                                    <size key="itemSize" width="118" height="138"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" contentMode="center" reuseIdentifier="MentorMilestoneCell" id="U08-yh-qqO" customClass="MentorMilestoneCell">
+                                                        <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="101" height="145"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ys-gu-1IN">
+                                                                    <rect key="frame" x="14" y="99" width="73" height="40"/>
+                                                                    <gestureRecognizers/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3la-Yt-blR" customClass="PFImageView">
+                                                                    <rect key="frame" x="13" y="12" width="75" height="75"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="75" id="Eug-cM-y9V"/>
+                                                                        <constraint firstAttribute="width" constant="75" id="RBZ-Ak-AX5"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plj-0C-jOr">
+                                                                    <rect key="frame" x="5" y="7" width="96" height="135"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <state key="normal" title="button!!AHHHHHH">
+                                                                        <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="tappedSecretButton:" destination="U08-yh-qqO" eventType="touchUpInside" id="Yfv-YZ-OPx"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </view>
+                                                        <gestureRecognizers/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailingMargin" secondItem="3ys-gu-1IN" secondAttribute="trailing" constant="6" id="THf-47-UTY"/>
+                                                            <constraint firstItem="3ys-gu-1IN" firstAttribute="top" secondItem="3la-Yt-blR" secondAttribute="bottom" constant="12" id="Vdm-9P-oet"/>
+                                                            <constraint firstAttribute="bottom" secondItem="3ys-gu-1IN" secondAttribute="bottom" constant="6" id="gkB-qu-PvI"/>
+                                                            <constraint firstItem="3la-Yt-blR" firstAttribute="top" secondItem="U08-yh-qqO" secondAttribute="top" constant="12" id="mcA-rJ-Ss1"/>
+                                                            <constraint firstItem="3ys-gu-1IN" firstAttribute="leading" secondItem="U08-yh-qqO" secondAttribute="leadingMargin" constant="6" id="mxx-sf-HgG"/>
+                                                            <constraint firstItem="3ys-gu-1IN" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="pC0-sc-Pww"/>
+                                                            <constraint firstItem="3la-Yt-blR" firstAttribute="centerX" secondItem="U08-yh-qqO" secondAttribute="centerX" id="tPm-J8-SXs"/>
+                                                        </constraints>
+                                                        <size key="customSize" width="101" height="145"/>
+                                                        <connections>
+                                                            <outlet property="buttonSecret" destination="plj-0C-jOr" id="8t6-tn-rix"/>
+                                                            <outlet property="mentorView" destination="3la-Yt-blR" id="2Be-dP-I1i"/>
+                                                            <outlet property="nameLabel" destination="3ys-gu-1IN" id="F6v-i6-Ccw"/>
+                                                            <segue destination="isb-0b-7Xv" kind="show" identifier="ProfiletoMilestone" id="Ufg-B9-DSv"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.1058823529" green="0.59999999999999998" blue="0.5450980392" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VNL-cx-xeu">
                                         <rect key="frame" x="280" y="24" width="73" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -290,6 +297,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
+                        <outlet property="MentorsView" destination="QtL-td-NX3" id="qI3-fz-O64"/>
                         <outlet property="bioLabel" destination="Jaz-qa-25i" id="8tc-2h-aQD"/>
                         <outlet property="editInterestsButton" destination="kjV-et-xfL" id="Ryl-pX-xbO"/>
                         <outlet property="educationLabel" destination="Iz9-DR-Xdy" id="Toe-CI-dx5"/>

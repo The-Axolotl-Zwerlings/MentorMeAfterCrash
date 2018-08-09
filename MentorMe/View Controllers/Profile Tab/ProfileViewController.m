@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet PFImageView *largeImage;
 
 @property (strong, nonatomic) IBOutlet UIView *largeImageView;
+@property (weak, nonatomic) IBOutlet UIView *MentorsView;
 
 @property (strong, nonatomic) IBOutlet UIButton *editInterestsButton;
 @property (strong, nonatomic) id<UICollectionViewDataSource> dataSource;
@@ -185,7 +186,18 @@
     [self.getAdviceCollectionView reloadData];
     [self.giveAdviceCollectionView reloadData];
     [self.mentorsCollectionView reloadData];
-    
+     
+    if( [self.mentorsCollectionView numberOfItemsInSection:0] == 0 ){
+        self.MentorsView.hidden = YES;
+        CGFloat newHeight = self.giveAdviceCollectionView.frame.size.height + self.giveAdviceCollectionView.frame.origin.y + 12;
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,newHeight);
+    } else {
+        self.MentorsView.hidden = NO;
+        CGFloat newHeight = self.MentorsView.frame.size.height + self.MentorsView.frame.origin.y;
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,newHeight);
+    }
+     
+     
     self.nameLabel.text = self.user[@"name"];
     NSString *jobTitleAppend = self.user[@"jobTitle"];
     NSString *companyLabelAppend = self.user[@"company"];
