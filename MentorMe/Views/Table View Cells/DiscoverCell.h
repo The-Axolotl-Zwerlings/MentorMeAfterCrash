@@ -25,6 +25,9 @@
 @property (nonatomic, strong) UIImageView *backgroundImage;
 @property (nonatomic) NSInteger selectedIndex;
 
+@property (strong, nonatomic) NSSet *giveSet;
+@property (strong, nonatomic) NSSet *getSet;
+
 - (void) loadCell;
 - (void) loadCollectionViews;
 

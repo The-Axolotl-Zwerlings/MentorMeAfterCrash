@@ -221,6 +221,8 @@
 }
 
 - (IBAction)onTapConfirm:(UIBarButtonItem *)sender {
+    
+    
     [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
