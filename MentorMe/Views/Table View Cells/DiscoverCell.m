@@ -199,21 +199,34 @@
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.incomingGetInterests[indexPath.row];
         
+        NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
+        
+        
         
         cellA.interestNameLabel.text = cellA.interest.subject;
-        [cellA.interestNameLabel sizeToFit];
+        //[cellA.interestNameLabel sizeToFit];
         [cellA loadCollectionViewCell];
         
+        if([mySet intersectsSet:self.giveSet]){
+            cellA.backgroundImage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
         return cellA;
         
     } else {
         
+        
+        
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.incomingGiveInterests[indexPath.row];
+        NSSet *mySet = [NSSet setWithObject:cellB.interest.subject];
+        //[cellB.interestNameLabel sizeToFit];
         [cellB loadCollectionViewCell];
+        
+        if([mySet intersectsSet:self.getSet]){
+            cellB.backgroundImage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
+        
         return cellB;
-        
-        
     }
     
 }

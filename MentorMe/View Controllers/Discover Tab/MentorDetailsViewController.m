@@ -53,8 +53,10 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.connectButton.layer.cornerRadius = 16;
+    self.connectButton.clipsToBounds = YES;
     [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
+    
     [self loadMentor];
     
     self.title = self.mentor.name;
@@ -235,7 +237,7 @@ int myCounter;
     if ( [collectionView isEqual:self.getAdviceCollectionView] ){
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.adviceToGet[indexPath.item];
-        [cellA reloadInputViews];
+        [cellA loadCollectionViewCell];
         return cellA;
     } else if([collectionView isEqual:self.complimentsCollectionView]){
         ComplimentsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentsCell" forIndexPath:indexPath];
@@ -253,7 +255,7 @@ int myCounter;
     } else {
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
-        [cellB reloadInputViews];
+        [cellB loadCollectionViewCell];
         return cellB;
     }
 }
