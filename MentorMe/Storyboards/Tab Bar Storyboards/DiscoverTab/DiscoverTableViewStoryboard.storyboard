@@ -27,6 +27,7 @@
                     <connections>
                         <segue destination="pjO-pe-pt6" kind="presentation" identifier="filterSegue" id="d4Z-Dm-b3k"/>
                         <segue destination="RbV-D6-zF5" kind="show" identifier="segueToMentorDetailsViewController" id="D1x-I0-Wiv"/>
+                        <segue destination="8sg-L4-Yi7" kind="presentation" identifier="segueToNotifications" id="tj0-04-Mbk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="anQ-We-Gm0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -48,6 +49,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCh-A6-txC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3345" y="238"/>
+        </scene>
+        <!--notifications-->
+        <scene sceneID="Wns-fk-2V1">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Notifications" referencedIdentifier="notifications" id="8sg-L4-Yi7" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pMS-I9-47E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3270" y="326"/>
         </scene>
     </scenes>
     <resources>

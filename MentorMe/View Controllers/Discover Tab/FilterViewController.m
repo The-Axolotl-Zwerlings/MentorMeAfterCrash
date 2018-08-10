@@ -41,24 +41,33 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view
     
+    if(self.selectedGetFilters.count == 0){
+        self.selectedGetFilters = [[NSMutableArray alloc] init];
+    }
+    if(self.selectedGiveFilters.count == 0){
+        self.selectedGiveFilters = [[NSMutableArray alloc]init];
+    }
     
-    self.selectedGetFilters = [[NSMutableArray alloc] init];
-    self.selectedGiveFilters = [[NSMutableArray alloc] init];
+    
     
     [self loadTitles];
     self.giveAdviceTTGView.delegate = self;
     self.getAdviceTTGView.delegate = self;
+    
+    
+    //[self checkSelectedTags:self.giveAdviceTTGView withArrayOfIndices:self.selectedIndexGive];
+    //[self checkSelectedTags:self.getAdviceTTGView withArrayOfIndices:self.selectedIndexGet];
+   
+    [self.schoolSwitch setOn:self.otherFiltersArray[0] == [NSNumber numberWithBool:YES]];
+    [self.companySwitch setOn:self.otherFiltersArray[1] == [NSNumber numberWithBool:YES]];
+    [self.locationSwitch setOn:self.otherFiltersArray[2] == [NSNumber numberWithBool:YES]];
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
     [self loadTagCollectionViews];
     
-    [self checkSelectedTags:self.giveAdviceTTGView withArrayOfIndices:self.selectedIndexGive];
-    [self checkSelectedTags:self.getAdviceTTGView withArrayOfIndices:self.selectedIndexGet];
-   
-    [self.schoolSwitch setOn:false];
-    [self.companySwitch setOn:false];
-    [self.locationSwitch setOn:false];
     
-    [self.getAdviceTTGView setTagAtIndex:0 selected:YES];
-    [self.giveAdviceTTGView setTagAtIndex:0 selected:YES];
     
 }
 
@@ -93,22 +102,18 @@
     
    
     //2. Set Tag Properties
-    config.tagTextFont = [UIFont boldSystemFontOfSize:18.0f];
-    config.tagTextColor                 = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
-    config.tagSelectedTextColor         = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
-    config.tagBackgroundColor           = [UIColor colorWithRed:0.98 green:0.91 blue:0.43 alpha:1.00];
-    config.tagSelectedBackgroundColor   = [UIColor colorWithRed:0.00 green:0.64 blue:0.27 alpha:1.00];
+    config.tagTextFont = [UIFont fontWithName:@"Avenir" size:17];
+    config.tagTextColor = [UIColor whiteColor];
+    config.tagSelectedTextColor = [UIColor whiteColor];
+    config.tagBackgroundColor = [UIColor colorWithRed:0.67 green:0.71 blue:1.00 alpha:1.00];
+    config.tagSelectedBackgroundColor = [UIColor colorWithRed:0.38 green:0.12 blue:1.00 alpha:1.00];
     self.giveAdviceTTGView.horizontalSpacing = 8.0;
     self.giveAdviceTTGView.verticalSpacing = 8.0;
     config.tagBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagSelectedBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
     config.tagBorderWidth = 1;
-    config.tagSelectedBorderWidth = 1;
-    config.tagShadowColor = [UIColor blackColor];
-    config.tagShadowOffset = CGSizeMake(0, 0.3);
-    config.tagShadowOpacity = 0.3f;
-    config.tagShadowRadius = 0.5f;
-    config.tagCornerRadius = 50;
+    config.tagCornerRadius = 6;
+    
     
     //3. Fetch Query to Fill Tags
     PFQuery *queryforCurrentUser = [PFUser query];
@@ -119,15 +124,18 @@
         if(error == nil){
             PFUser *myUser = [objects firstObject];
             for(InterestModel *interest in myUser.giveAdviceInterests){
-                TTGTextTagConfig *config = [TTGTextTagConfig new];
+                
                 config.extraData = interest;
                 [self.giveAdviceTTGView addTag:interest.subject withConfig:config];
             }
             for(InterestModel *interest in myUser.getAdviceInterests){
-                TTGTextTagConfig *config = [TTGTextTagConfig new];
+                
                 config.extraData = interest;
                 [self.getAdviceTTGView addTag:interest.subject withConfig:config];
             }
+            
+            [self checkSelectedTags:self.giveAdviceTTGView withArrayOfIndices:self.selectedIndexGive];
+            [self checkSelectedTags:self.getAdviceTTGView withArrayOfIndices:self.selectedIndexGet];
         }
     }];
     self.getAdviceTTGView.defaultConfig = config;
@@ -141,12 +149,12 @@
 }
 
 
-- (void) checkSelectedTags:(TTGTextTagCollectionView *)textTagCollectionView withArrayOfIndices:(NSMutableArray *)arrayOfIndices {
+- (void)checkSelectedTags:(TTGTextTagCollectionView *)textTagCollectionView withArrayOfIndices:(NSMutableArray *)arrayOfIndices {
     
     if( arrayOfIndices != nil ){
         NSLog(@"Checking selected tags");
-        for( NSNumber* index in arrayOfIndices ){
-            NSLog(@"%@", index);
+        for(NSNumber *index in arrayOfIndices ){
+            [textTagCollectionView setTagAtIndex:[index integerValue] selected:YES];
         }
     }
 }
@@ -156,25 +164,51 @@
 - (void)textTagCollectionView:(TTGTextTagCollectionView *)textTagCollectionView didTapTag:(NSString *)tagText atIndex:(NSUInteger)index selected:(BOOL)selected tagConfig:(TTGTextTagConfig *)config{
     
     if( textTagCollectionView == self.getAdviceTTGView ){
-        [self.selectedGetFilters addObject:tagText];
-        NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
-        
-        if( self.selectedIndexGet == nil ){
-            self.selectedIndexGet = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
-        } else {
-            [self.selectedIndexGet addObject:indexAsNumber];
+        if(selected){
+            [self.selectedGetFilters addObject:tagText];
+            NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+            
+            if( self.selectedIndexGet == nil ){
+                self.selectedIndexGet = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+            } else {
+                [self.selectedIndexGet addObject:indexAsNumber];
+            }
+            NSLog(@"%@", [self.selectedIndexGet firstObject]);
+        } else{
+            [self.selectedGetFilters removeObject:tagText];
+            NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+            
+            if( self.selectedIndexGet == nil ){
+                self.selectedIndexGet = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+            } else {
+                [self.selectedIndexGet removeObject:indexAsNumber];
+            }
+            NSLog(@"%@", [self.selectedIndexGet firstObject]);
         }
-        NSLog(@"%@", [self.selectedIndexGet firstObject]);
+        
     } else {
-        [self.selectedGiveFilters addObject:tagText];
-        NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
-        
-        if( self.selectedIndexGive == nil ){
-            self.selectedIndexGive = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
-        } else {
-            [self.selectedIndexGive addObject:indexAsNumber];
+        if(selected){
+            [self.selectedGiveFilters addObject:tagText];
+            NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+            
+            if( self.selectedIndexGive == nil ){
+                self.selectedIndexGive = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+            } else {
+                [self.selectedIndexGive addObject:indexAsNumber];
+            }
+            NSLog(@"%@", [self.selectedIndexGive firstObject]);
+        } else{
+            [self.selectedGiveFilters removeObject:tagText];
+            NSNumber *indexAsNumber = [NSNumber numberWithUnsignedInteger:index];
+            
+            if( self.selectedIndexGive == nil ){
+                self.selectedIndexGive = [[NSMutableArray alloc] initWithObjects:indexAsNumber, nil];
+            } else {
+                [self.selectedIndexGive removeObject:indexAsNumber];
+            }
+            NSLog(@"%@", [self.selectedIndexGive firstObject]);
         }
-        NSLog(@"%@", [self.selectedIndexGive firstObject]);
+        
     }
 }
 
@@ -186,7 +220,10 @@
 }
 
 - (IBAction)onTapConfirm:(UIBarButtonItem *)sender {
-    [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive];
+    
+    NSArray *otherFiltersArray = [NSArray arrayWithObjects:[NSNumber numberWithBool:[self.schoolSwitch isOn]],[NSNumber numberWithBool:[self.companySwitch isOn]],[NSNumber numberWithBool:[self.locationSwitch isOn]], nil];
+    
+    [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive andOtherFilterArray:otherFiltersArray];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

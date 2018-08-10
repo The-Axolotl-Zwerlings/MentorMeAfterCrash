@@ -28,8 +28,10 @@
 
 @property (nonatomic, strong) HMSegmentedControl *segmentedControl;
 @property (nonatomic, strong) UIScrollView *scrollView;
-
+@property (nonatomic) BOOL filtering;
 @property (nonatomic) BOOL getAdvice;
+
+
 @end
 
 @implementation DiscoverTableViewController
@@ -42,22 +44,25 @@
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
     
-    [self fetchAllUsers];
+    [self fetchAllUsersWithSchool:NO andCompany:NO];
     [self initSegmentedControl];
     [self initScrollView];
     [self initTableViews];
     [self loadBarButtons];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
-    [self.scrollView insertSubview:self.refreshControl atIndex:0];
+    [self.refreshControl addTarget:self action:@selector(fetchAllUsersWithSchool:andCompany:) forControlEvents:UIControlEventValueChanged];
+    
+    [getTableView insertSubview:self.refreshControl atIndex:0];
     
 }
 
 
-- (void) viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
+    /**/
+
     [self loadBarButtons];
     
     [giveTableView reloadData];
@@ -69,11 +74,19 @@
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
     self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
-    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
-    
-    
+    /**/
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
+                                 @"Notifications" style:UIBarButtonItemStylePlain target:
+                                 self action:@selector(myButtonClicked:)];
+    self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn; self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
+    /**/
 }
 
+/**/
+-(void) myButtonClicked: (UIBarButtonItem*)sender{
+    [self performSegueWithIdentifier:@"segueToNotifications" sender:nil];
+}
+/**/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -81,16 +94,24 @@
 
 
 
--(void)fetchAllUsers{
+-(void)fetchAllUsersWithSchool:(NSNumber *)school andCompany:(NSNumber *)company{
     
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     if( [PFUser currentUser] ){
         
+        
+        
         PFQuery *usersQuery = [PFUser query];
         NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
         [usersQuery includeKeys:stringsToQueryAllUsers];
         [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+        if(school == [NSNumber numberWithBool:YES]){
+            [usersQuery whereKey:@"school" equalTo:PFUser.currentUser.school];
+        }
+        if(company == [NSNumber numberWithBool:YES]){
+            [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
+        }
         usersQuery.limit = 20;
         [usersQuery orderByDescending:@"createdAt"];
         [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -108,31 +129,43 @@
             }
         }];
     }
-    [giveTableView reloadData];
-    [getTableView reloadData];
+    
 }
 
-- (void) fetchUsersWithSelectedInterests: (NSMutableArray*)incomingSelectedInterestsArray {
-    if( incomingSelectedInterestsArray.count != 0){
-        NSSet *myUserInterestsSet = [NSSet setWithArray:incomingSelectedInterestsArray];
-        self.filteredUsersFromQuery = nil;
+- (void) fetchUsersWithSelectedInterests: (BOOL)isFilteringGetInterests {
+    if(isFilteringGetInterests){
+        NSSet *myUserInterestsSet = [NSMutableSet setWithArray:self.filtersToSearchGetWith];
+        self.filterGet = nil;
         for(PFUser *user in self.allUsersFromQuery){
-            NSSet *otherUserInterests = (self.segmentedControl.selectedSegmentIndex == 0) ? [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]] : [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]] ;
+            NSSet *otherUserInterests = [NSSet setWithArray:[InterestModel giveMeSubjects:user.giveAdviceInterests]];
             BOOL intersectionOfInterests = [myUserInterestsSet intersectsSet:otherUserInterests];
-            
             if( intersectionOfInterests == YES){
-                if( self.filteredUsersFromQuery == nil ){
-                    self.filteredUsersFromQuery = [[NSMutableArray alloc] initWithObjects:user, nil];
+                if( self.filterGet == nil ){
+                    self.filterGet = [[NSMutableArray alloc] initWithObjects:user, nil];
                     NSLog( @"Created a new array" );
                 } else {
-                    [self.filteredUsersFromQuery addObject:user];
+                    [self.filterGet addObject:user];
                 }
             }
         }
-        NSLog( @"Returning the number of users: %lu", self.filteredUsersFromQuery.count );
-    }else{
-        [self fetchAllUsers];
+    } else{
+        NSSet *myUserInterestsSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
+        self.filterGive = nil;
+        for(PFUser *user in self.allUsersFromQuery){
+            NSSet *otherUserInterests = [NSSet setWithArray:[InterestModel giveMeSubjects:user.getAdviceInterests]];
+            BOOL intersectionOfInterests = [myUserInterestsSet intersectsSet:otherUserInterests];
+            if( intersectionOfInterests == YES){
+                if( self.filterGive == nil ){
+                    self.filterGive = [[NSMutableArray alloc] initWithObjects:user, nil];
+                    NSLog( @"Created a new array" );
+                } else {
+                    [self.filterGive addObject:user];
+                }
+            }
+        }
     }
+    
+    
 }
 
 
@@ -154,8 +187,8 @@
                         NSLog(@"Added a new user %@", user.name);
                         NSLog(@"%lu",oldArray.count);
                     }
-                    self.filteredUsersFromQuery = (NSMutableArray *)[NSArray arrayWithArray:oldArray];
-                    NSLog(@"%lu", (unsigned long)self.filteredUsersFromQuery.count);
+                    self.allUsersFromQuery = (NSMutableArray *)[NSArray arrayWithArray:oldArray];
+                    NSLog(@"%lu", (unsigned long)self.allUsersFromQuery.count);
                     [giveTableView reloadData];
                     [getTableView reloadData];
                 });
@@ -186,23 +219,38 @@
 
 
 /*** DELEGATE METHODS  ***/
-- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices{
+- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices andOtherFilterArray:(NSArray *)otherFilterArray{
+    
+    self.otherFiltersArray = otherFilterArray;
+    //school, company, location
+    if(otherFilterArray[0] == [NSNumber numberWithBool:YES] || otherFilterArray[1] == [NSNumber numberWithBool:YES]){
+        [self fetchAllUsersWithSchool:otherFilterArray[0] andCompany:otherFilterArray[1]];
+    } else{
+        [self fetchAllUsersWithSchool:[NSNumber numberWithBool:NO] andCompany:[NSNumber numberWithBool:NO]];
+    }
+    if(otherFilterArray[2]){
+        [self fetchUsersNearbyCurrentUser:self.allUsersFromQuery];
+    }
     
     self.getIndex = incomingGetIndices;
     self.giveIndex = incomingGiveIndices;
     
-    
+    self.filtering = NO;
+    if(incomingGetInterests.count != 0 || incomingGiveInterests.count != 0){
+        self.filtering = YES;
+    }
     if( incomingGetInterests.count != 0){
         self.filtersToSearchGetWith = nil;
         self.filtersToSearchGetWith = incomingGetInterests;
-        [self fetchUsersWithSelectedInterests:self.filtersToSearchGetWith];
+        [self fetchUsersWithSelectedInterests:YES];
     }
     if ( incomingGiveInterests.count != 0 ){
-        
         self.filtersToSearchGiveWith = nil;
         self.filtersToSearchGiveWith = incomingGiveInterests;
-        [self fetchUsersWithSelectedInterests:self.filtersToSearchGiveWith];
+        [self fetchUsersWithSelectedInterests:NO];
     }
+    
+    
     
     
 }
@@ -310,9 +358,19 @@
         
         filterViewController.selectedGetFilters = self.filtersToSearchGetWith;
         filterViewController.selectedGiveFilters = self.filtersToSearchGiveWith;
+        
+        filterViewController.otherFiltersArray = self.otherFiltersArray;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         NSIndexPath *indexPath = sender;
-        PFUser *incomingMentor = self.allUsersFromQuery[indexPath.row];
+        PFUser *incomingMentor;
+        if(self.segmentedControl.selectedSegmentIndex == 0 && self.filtersToSearchGetWith.count != 0){
+            incomingMentor = self.filterGet[indexPath.row];
+        } else if(self.segmentedControl.selectedSegmentIndex == 1 && self.filtersToSearchGiveWith.count != 0){
+            incomingMentor = self.filterGive[indexPath.row];
+        } else{
+            incomingMentor = self.allUsersFromQuery[indexPath.row];
+        }
+        
         
         NSLog(@"Tapped %@", incomingMentor.name );
         
@@ -329,15 +387,14 @@
 
 /***** TABLE VIEW ******/
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if( self.filtersToSearchGetWith.count != 0 || self.filtersToSearchGiveWith.count != 0 ) {
-        NSLog( @"Filtered Count %lu", self.filtersToSearchGetWith.count);
-        NSLog( @"Filtered Count %lu", self.filtersToSearchGiveWith.count);
-        return self.filteredUsersFromQuery.count;
-    } else if (self.allUsersFromQuery.count != 0) {
-        NSLog( @"All Count %lu", self.allUsersFromQuery.count);
-        return self.allUsersFromQuery.count;
+    if(tableView == getTableView && self.filtersToSearchGetWith.count != 0) {
+        
+        return self.filterGet.count;
+    } else if (tableView == giveTableView && self.filtersToSearchGiveWith.count != 0) {
+        
+        return self.filterGive.count;
     } else {
-        return 1;
+        return self.allUsersFromQuery.count;
     }
 }
 
@@ -348,20 +405,23 @@
     [cell targetForAction:@selector(tableView:didSelectRowAtIndexPath:) withSender:nil];
     
     cell.selectedIndex = self.segmentedControl.selectedSegmentIndex;
-    if( self.filtersToSearchGetWith.count != 0 ){
-        cell.userForCell = self.filteredUsersFromQuery[indexPath.item];
-    } else {
-        cell.userForCell = self.allUsersFromQuery[indexPath.item];
+    if(cell.selectedIndex == 0 && self.filtersToSearchGetWith.count != 0 && tableView == getTableView){
+        cell.userForCell = self.filterGet[indexPath.row];
+    } else if(cell.selectedIndex == 1 && self.filtersToSearchGiveWith.count != 0 && tableView == giveTableView){
+        cell.userForCell = self.filterGive[indexPath.row];
+        
+    } else{
+        cell.userForCell = self.allUsersFromQuery[indexPath.row];
     }
     cell.incomingGetInterests = cell.userForCell.getAdviceInterests;
     cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
-    if( self.segmentedControl.selectedSegmentIndex == 0 && cell.userForCell != nil ){
-        [cell loadCell];
-        [cell loadCollectionViews];
-    } else if( self.segmentedControl.selectedSegmentIndex == 1 && cell.userForCell != nil )  {
+    cell.giveSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
+    cell.getSet = [NSSet setWithArray:self.filtersToSearchGetWith];
+    if(cell.userForCell != nil ){
         [cell loadCell];
         [cell loadCollectionViews];
     }
+
     return cell;
 }
 

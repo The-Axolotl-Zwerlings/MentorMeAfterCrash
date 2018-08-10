@@ -196,15 +196,46 @@
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.incomingGetInterests[indexPath.row];
+<<<<<<< HEAD
         [cellA loadCollectionViewCell];
         [cellA layoutInterests];
         return cellA;
         
     } else {
+=======
+        
+        NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
+        
+        
+        
+        cellA.interestNameLabel.text = cellA.interest.subject;
+        //[cellA.interestNameLabel sizeToFit];
+        [cellA loadCollectionViewCell];
+        
+        if([mySet intersectsSet:self.giveSet]){
+            cellA.backgroundImage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
+        return cellA;
+        
+    } else {
+        
+        
+        
+>>>>>>> 1093340ca7234d250df377f991429c76a670ac81
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.incomingGiveInterests[indexPath.row];
+        NSSet *mySet = [NSSet setWithObject:cellB.interest.subject];
+        //[cellB.interestNameLabel sizeToFit];
         [cellB loadCollectionViewCell];
+<<<<<<< HEAD
         [cellB layoutInterests];
+=======
+        
+        if([mySet intersectsSet:self.getSet]){
+            cellB.backgroundImage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
+        
+>>>>>>> 1093340ca7234d250df377f991429c76a670ac81
         return cellB;
     }
 }
