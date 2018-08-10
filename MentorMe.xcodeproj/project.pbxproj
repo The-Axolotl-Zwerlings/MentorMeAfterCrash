@@ -43,6 +43,11 @@
 		A8A28C0F211A130E009EA5EB /* ProfileDataDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8A28C0E211A130E009EA5EB /* ProfileDataDelegate.m */; };
 		B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22101E821123D0C00D2E59F /* EditInterestsViewController.m */; };
 		B276C25F210931D70052CB3F /* AutocompleteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */; };
+		B289557D211B6CAA00F0EC11 /* Notifications.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B289557C211B6CAA00F0EC11 /* Notifications.storyboard */; };
+		B2895580211B789E00F0EC11 /* NotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B289557F211B789E00F0EC11 /* NotificationsViewController.m */; };
+		B2895583211BA78500F0EC11 /* NotificationsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2895582211BA78500F0EC11 /* NotificationsTableViewCell.m */; };
+		B2895586211BC82200F0EC11 /* InviteDetailsView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2895585211BC82200F0EC11 /* InviteDetailsView.m */; };
+		B28955D6211CB7F500F0EC11 /* Notifications.m in Sources */ = {isa = PBXBuildFile; fileRef = B28955D5211CB7F500F0EC11 /* Notifications.m */; };
 		B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */; };
 		B2AB7A6C21027EB100625FEE /* EditProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */; };
 		B2F0FBD9211239F00054CA73 /* AddInterests.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B2F0FBD8211239F00054CA73 /* AddInterests.storyboard */; };
@@ -153,6 +158,15 @@
 		B22101E821123D0C00D2E59F /* EditInterestsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditInterestsViewController.m; sourceTree = "<group>"; };
 		B276C25D210931D70052CB3F /* AutocompleteTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutocompleteTableViewCell.h; sourceTree = "<group>"; };
 		B276C25E210931D70052CB3F /* AutocompleteTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutocompleteTableViewCell.m; sourceTree = "<group>"; };
+		B289557C211B6CAA00F0EC11 /* Notifications.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notifications.storyboard; sourceTree = "<group>"; };
+		B289557E211B789E00F0EC11 /* NotificationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsViewController.h; sourceTree = "<group>"; };
+		B289557F211B789E00F0EC11 /* NotificationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsViewController.m; sourceTree = "<group>"; };
+		B2895581211BA78500F0EC11 /* NotificationsTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationsTableViewCell.h; sourceTree = "<group>"; };
+		B2895582211BA78500F0EC11 /* NotificationsTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationsTableViewCell.m; sourceTree = "<group>"; };
+		B2895584211BC82200F0EC11 /* InviteDetailsView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InviteDetailsView.h; sourceTree = "<group>"; };
+		B2895585211BC82200F0EC11 /* InviteDetailsView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InviteDetailsView.m; sourceTree = "<group>"; };
+		B28955D4211CB7F500F0EC11 /* Notifications.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Notifications.h; sourceTree = "<group>"; };
+		B28955D5211CB7F500F0EC11 /* Notifications.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Notifications.m; sourceTree = "<group>"; };
 		B2AB7A68210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfileViewControllerStoryboard.storyboard; sourceTree = "<group>"; };
 		B2AB7A6A21027EB100625FEE /* EditProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EditProfileViewController.h; sourceTree = "<group>"; };
 		B2AB7A6B21027EB100625FEE /* EditProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EditProfileViewController.m; sourceTree = "<group>"; };
@@ -229,6 +243,8 @@
 				A82A494720FFA3FE00DC129F /* PFUser+ExtendedUser.h */,
 				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
 				A82A494820FFA3FE00DC129F /* PFUser+ExtendedUser.m */,
+				B28955D4211CB7F500F0EC11 /* Notifications.h */,
+				B28955D5211CB7F500F0EC11 /* Notifications.m */,
 			);
 			name = Models;
 			path = "New Group";
@@ -365,6 +381,10 @@
 				A87C16D921140998001AC0B5 /* MilestoneCell.m */,
 				A82EB2DA2107E43A00079B53 /* RateView.h */,
 				A82EB2DB2107E43A00079B53 /* RateView.m */,
+				B2895581211BA78500F0EC11 /* NotificationsTableViewCell.h */,
+				B2895582211BA78500F0EC11 /* NotificationsTableViewCell.m */,
+				B2895584211BC82200F0EC11 /* InviteDetailsView.h */,
+				B2895585211BC82200F0EC11 /* InviteDetailsView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -390,6 +410,8 @@
 				C0F10187210162F1009ADA47 /* MentorDetailsViewController.m */,
 				A8011C882101691B0028E604 /* CreateAppointmentViewController.h */,
 				A8011C892101691B0028E604 /* CreateAppointmentViewController.m */,
+				B289557E211B789E00F0EC11 /* NotificationsViewController.h */,
+				B289557F211B789E00F0EC11 /* NotificationsViewController.m */,
 			);
 			path = "Discover Tab";
 			sourceTree = "<group>";
@@ -439,6 +461,7 @@
 				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
 				A8011C822101415C0028E604 /* Filters.storyboard */,
 				C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */,
+				B289557C211B6CAA00F0EC11 /* Notifications.storyboard */,
 			);
 			path = DiscoverTab;
 			sourceTree = "<group>";
@@ -593,6 +616,7 @@
 				A82EB2D62107DDA600079B53 /* Review.storyboard in Resources */,
 				B2AB7A69210272D100625FEE /* EditProfileViewControllerStoryboard.storyboard in Resources */,
 				C002266B20FE5A2C007D359B /* ProfileViewControllerStoryboard.storyboard in Resources */,
+				B289557D211B6CAA00F0EC11 /* Notifications.storyboard in Resources */,
 				A883130320F28D5C00363E48 /* TabBarViewControllerStoryboard.storyboard in Resources */,
 				A87C16D12113F7BE001AC0B5 /* Milestone.storyboard in Resources */,
 				A8011C832101415C0028E604 /* Filters.storyboard in Resources */,
@@ -707,6 +731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F101782101059B009ADA47 /* AppointmentsViewController.m in Sources */,
+				B28955D6211CB7F500F0EC11 /* Notifications.m in Sources */,
 				A883130B20F28D5F00363E48 /* main.m in Sources */,
 				A8A28C022117B50E009EA5EB /* Milestone.m in Sources */,
 				A8011C7E21013F610028E604 /* DiscoverTableViewController.m in Sources */,
@@ -720,15 +745,18 @@
 				A87C16D721140365001AC0B5 /* MilestoneTableView.m in Sources */,
 				A82A494F20FFA5C800DC129F /* InterestModel.m in Sources */,
 				B22101E921123D0C00D2E59F /* EditInterestsViewController.m in Sources */,
+				B2895586211BC82200F0EC11 /* InviteDetailsView.m in Sources */,
 				A82A494C20FFA5B800DC129F /* AppointmentModel.m in Sources */,
 				A87C16D42113F7E5001AC0B5 /* MilestoneViewController.m in Sources */,
 				A8A28C0F211A130E009EA5EB /* ProfileDataDelegate.m in Sources */,
+				B2895580211B789E00F0EC11 /* NotificationsViewController.m in Sources */,
 				C0F101752100FF9F009ADA47 /* AppointmentDetailsViewController.m in Sources */,
 				A88312FD20F28D5C00363E48 /* AppDelegate.m in Sources */,
 				A87C16CF21136F87001AC0B5 /* ComplimentsCell.m in Sources */,
 				A8011C8A2101691B0028E604 /* CreateAppointmentViewController.m in Sources */,
 				A82A494920FFA3FE00DC129F /* PFUser+ExtendedUser.m in Sources */,
 				A8A28C05211904E5009EA5EB /* ReviewDataDelegate.m in Sources */,
+				B2895583211BA78500F0EC11 /* NotificationsTableViewCell.m in Sources */,
 				A87C16DD211413BD001AC0B5 /* AddCell.m in Sources */,
 				C002266E20FE5B70007D359B /* ProfileViewController.m in Sources */,
 				C03D89A520F7CE3D00342B39 /* SignUpViewController.m in Sources */,
@@ -911,13 +939,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				DEVELOPMENT_TEAM = M963N7PF23;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yn.MentorMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yno.MentorMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -929,13 +957,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+				DEVELOPMENT_TEAM = M963N7PF23;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yn.MentorMe;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yno.MentorMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

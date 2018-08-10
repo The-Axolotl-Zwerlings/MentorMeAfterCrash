@@ -7,6 +7,8 @@
 //
 
 #import "PFObject.h"
+#import "Parse/Parse.h"
+#import "ParseUI.h"
 
 @interface Milestone : PFObject <PFSubclassing>
 @property (strong, nonatomic) PFUser *mentor;
