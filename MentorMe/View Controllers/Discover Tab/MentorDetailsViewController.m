@@ -276,7 +276,6 @@ int myCounter;
         CreateAppointmentViewController *createAppointViewController = [segue destinationViewController];
         createAppointViewController.isMentorOfMeeting = self.isMentorOfMeeting;
         createAppointViewController.otherAttendee = self.mentor;
-        
     }
 }
 
