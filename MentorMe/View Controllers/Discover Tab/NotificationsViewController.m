@@ -104,9 +104,10 @@
         //self.notificationTypes[indexPath.row];
         if([self.notificationsArray.type isEqualToString:@"accepted"]){
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"accepted" forIndexPath:indexPath];
+            cell.contentView.layer.cornerRadius = 5;
+            cell.contentView.layer.masksToBounds = true;
             UILabel* label = [[UILabel alloc]init];
-            [label setFrame:CGRectMake(0, 0, 400, 50)];
-            label.backgroundColor = UIColor.greenColor;
+            [label setFrame:CGRectMake(8, 0, 400, 50)];
             NSString* suffix = @" has accepted your appointment invite.";
             Notifications* this = self.notificationTypes[indexPath.row];
             PFUser* person = this.sender;
@@ -119,8 +120,7 @@
         else if([self.notificationsArray.type isEqualToString:@"declined"]){
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"declined" forIndexPath:indexPath];
             UILabel* label = [[UILabel alloc]init];
-            [label setFrame:CGRectMake(0, 0, 400, 50)];
-            label.backgroundColor = UIColor.redColor;
+            [label setFrame:CGRectMake(8, 0, 400, 50)];
             NSString* suffix = @" has declined your appointment invite.";
             Notifications* this = self.notificationTypes[indexPath.row];
             PFUser* person = this.sender;
@@ -136,17 +136,16 @@
             //here i', finding appointments where i am the reciever
             NotificationsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"invite" forIndexPath:indexPath];
             //here i make a cell of invite type
-            cell.contentView.backgroundColor = UIColor.lightGrayColor;
             // make backround grey
             AppointmentModel * try = self.invites[(indexPath.row)-self.subtractor];
             //i'm pointing to first in array;
             PFUser* user = try.mentee;
-            cell.inviter.text = user.name;
+            cell.inviter.text = [user.name stringByAppendingString:@"wants to meet you"];
             NSDateFormatter* df = [[NSDateFormatter alloc]init];
             [df setDateFormat:@"MM/dd/yyyy"];
             NSString *result = [df stringFromDate:try.meetingDate];
-            cell.when.text = result;
-            cell.where.text = try.meetingLocation;
+            cell.when.text = [@"On: " stringByAppendingString:result];
+            cell.where.text = [@"At: " stringByAppendingString:try.meetingLocation];
             return cell;
         }
         else{
@@ -156,9 +155,11 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 100;
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CGFloat cellHeight;
+    if ([[tableView cellForRowAtIndexPath:indexPath] tag] == 1) cellHeight = 170;
+    else cellHeight = 50;
+    return  cellHeight;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
