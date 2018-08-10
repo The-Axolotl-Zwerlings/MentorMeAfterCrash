@@ -228,7 +228,7 @@
     } else{
         [self fetchAllUsersWithSchool:[NSNumber numberWithBool:NO] andCompany:[NSNumber numberWithBool:NO]];
     }
-    if(otherFilterArray[2]){
+    if(otherFilterArray[2] == [NSNumber numberWithBool:YES]){
         [self fetchUsersNearbyCurrentUser:self.allUsersFromQuery];
     }
     

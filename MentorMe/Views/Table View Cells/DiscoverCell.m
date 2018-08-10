@@ -159,7 +159,7 @@
 //
     
     if( self.selectedIndex == 1 ) {
-        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 24)   collectionViewLayout:flowLayout];
+        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
         [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewA.delegate = self;
         collectionViewA.dataSource = self;
@@ -171,7 +171,7 @@
     }
     
     if( self.selectedIndex == 0 ){
-        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 24)   collectionViewLayout:flowLayout];
+        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
         [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
         collectionViewB.dataSource = self;
@@ -228,7 +228,7 @@
     
     NSString *testString = modelA.subject;
     
-    CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:15.0f]}];
+    CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17.0f]}];
     textSize.height += 8;
     textSize.width += 24;
     return textSize;

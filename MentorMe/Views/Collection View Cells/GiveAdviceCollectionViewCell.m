@@ -24,19 +24,20 @@
 
 - (void)loadCollectionViewCell{
 
-    self.backgroundIMage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width - 8, self.contentView.frame.size.height-4)];
-    [self.contentView addSubview:self.backgroundIMage];
+    if(self.backgroundIMage == nil){
+        self.backgroundIMage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width - 8, self.contentView.frame.size.height-4)];
+        [self.contentView addSubview:self.backgroundIMage];
+    }
+    if(self.interestNameLabel == nil){
+        self.interestNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
+        [self.contentView addSubview:self.interestNameLabel];
+    }
     
-    
-    self.interestNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     self.interestNameLabel.textColor = [UIColor whiteColor];
     self.interestNameLabel.text = [@"#" stringByAppendingString: self.interest.subject];
-    self.interestNameLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
+    self.interestNameLabel.font = [UIFont fontWithName:@"Avenir" size:17.0f];
     self.interestNameLabel.textAlignment = NSTextAlignmentLeft;
     self.interestNameLabel.numberOfLines = 0;
-    
-    
-    [self.contentView addSubview:self.interestNameLabel];
     
 }
 
@@ -45,7 +46,7 @@
     //2. Adjust Cell Origin and Height
     CGRect frameA = self.frame;
     frameA.origin.y = 0;
-    frameA.size.height = 20;
+    frameA.size.height = 36;
     self.frame = frameA;
     
     //3. Adjust Background Image
@@ -65,7 +66,7 @@
     self.interestNameLabel.frame = frameC;
     self.interestNameLabel.textAlignment = NSTextAlignmentCenter;
     
-    self.backgroundIMage.backgroundColor = [UIColor purpleColor];
+    self.backgroundIMage.backgroundColor = [UIColor clearColor];
     NSLog(@"here");
 
 }
