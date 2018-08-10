@@ -245,14 +245,6 @@
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, viewWidth, self.view.frame.size.height) animated:NO];
     [self.view addSubview:self.scrollView];
-    
-    UILabel *labelA = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
-    labelA.backgroundColor = UIColor.yellowColor;
-    [self.scrollView addSubview:labelA];
-    
-    UILabel *labelB = [[UILabel alloc] initWithFrame:CGRectMake(375, 0, 375, 500)];
-    labelB.backgroundColor = UIColor.blueColor;
-    [self.scrollView addSubview:labelB];
 }
 
 
@@ -261,7 +253,7 @@
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     getTableView.delegate = self;
     getTableView.dataSource = self;
-    [getTableView setRowHeight:200];
+    [getTableView setRowHeight:184];
     getTableView.showsVerticalScrollIndicator = NO;
     [self.scrollView addSubview:getTableView];
     
@@ -269,7 +261,7 @@
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     giveTableView.delegate = self;
     giveTableView.dataSource = self;
-    [giveTableView setRowHeight:200];
+    [giveTableView setRowHeight:184];
     giveTableView.showsVerticalScrollIndicator = NO;
     [self.scrollView addSubview:giveTableView];
     

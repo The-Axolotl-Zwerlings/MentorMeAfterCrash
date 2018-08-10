@@ -15,13 +15,13 @@
 #import "MentorDetailsViewController.h"
 
 @interface GiveAdviceCollectionViewCell : UICollectionViewCell
-@property (strong, nonatomic) UIImageView *backgroundImage;
-
+@property (strong, nonatomic) UIImageView *backgroundIMage;
 @property (strong, nonatomic) UILabel *interestNameLabel;
 @property (strong, nonatomic) InterestModel *interest;
 
 
 - (void)loadCollectionViewCell;
+- (void)layoutInterests;
 
 
 @end

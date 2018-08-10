@@ -1,5 +1,5 @@
 //
-//  GiveAdviceCollectionViewCell.m
+//  GetAdviceCollectionViewCell.m
 //  MentorMe
 //
 //  Created by Nico Salinas on 7/24/18.
@@ -24,32 +24,50 @@
 
 - (void)loadCollectionViewCell{
     
-    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 90, 30)];
-    
-    //CELL BACKGROUND COLOR HERE
-    self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.14 green:0.18 blue:0.25 alpha:1.0];
-    self.backgroundImage.layer.borderColor = UIColor.whiteColor.CGColor;
-    self.backgroundImage.layer.borderWidth = 3;
-    self.backgroundImage.layer.masksToBounds = NO;
-    self.backgroundImage.layer.cornerRadius = self.backgroundImage.frame.size.height/2;
-    self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
-    self.backgroundImage.layer.shadowRadius = 3;
-    self.backgroundImage.layer.shadowColor = UIColor.grayColor.CGColor;
-    self.backgroundImage.layer.shadowOpacity = 0;
-    
-    [self.contentView addSubview:self.backgroundImage];
+    self.backgroundIMage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width - 8, self.contentView.frame.size.height-4)];
+    [self.contentView addSubview:self.backgroundIMage];
     
     
-    self.interestNameLabel = [[UILabel alloc] initWithFrame:self.backgroundImage.frame];
+    self.interestNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
     self.interestNameLabel.textColor = [UIColor whiteColor];
     self.interestNameLabel.text = [@"#" stringByAppendingString: self.interest.subject];
-    self.interestNameLabel.textAlignment = NSTextAlignmentCenter;
+    self.interestNameLabel.font = [UIFont fontWithName:@"Avenir" size:15.0f];
+    self.interestNameLabel.textAlignment = NSTextAlignmentLeft;
     self.interestNameLabel.numberOfLines = 0;
+    
     
     [self.contentView addSubview:self.interestNameLabel];
     
-    
-    
 }
+
+- (void) layoutInterests{
+    
+    //2. Adjust Cell Origin and Height
+    CGRect frameA = self.frame;
+    frameA.origin.y = 0;
+    frameA.size.height = 20;
+    self.frame = frameA;
+    
+    //3. Adjust Background Image
+    CGRect frameB = self.backgroundIMage.frame;
+    frameB.size.width = self.frame.size.width;
+    frameB.origin.y = 0;
+    self.backgroundIMage.frame = frameB;
+    self.backgroundIMage.layer.borderColor = UIColor.whiteColor.CGColor;
+    self.backgroundIMage.layer.borderWidth = 2;
+    self.backgroundIMage.layer.cornerRadius = self.backgroundIMage.frame.size.height/2;
+    self.backgroundIMage.layer.masksToBounds = YES;
+
+    //4. Adjust Text Label
+    CGRect frameC = self.interestNameLabel.frame;
+    frameC.origin.y = -2;
+    frameC.size.width = self.frame.size.width;
+    self.interestNameLabel.frame = frameC;
+    self.interestNameLabel.textAlignment = NSTextAlignmentCenter;
+    
+    self.backgroundIMage.backgroundColor = [UIColor purpleColor];
+    NSLog(@"here");
+}
+
 
 @end
