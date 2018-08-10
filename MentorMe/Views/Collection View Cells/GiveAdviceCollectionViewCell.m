@@ -23,8 +23,7 @@
 }
 
 - (void)loadCollectionViewCell{
-    
-<<<<<<< HEAD
+
     self.backgroundIMage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width - 8, self.contentView.frame.size.height-4)];
     [self.contentView addSubview:self.backgroundIMage];
     
@@ -68,30 +67,7 @@
     
     self.backgroundIMage.backgroundColor = [UIColor purpleColor];
     NSLog(@"here");
-=======
-    if(self.backgroundImage == nil){
-        self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 110, 30)];
-        //CELL BACKGROUND COLOR HERE
-        self.backgroundImage.backgroundColor = [UIColor clearColor];
-        self.backgroundImage.layer.borderColor = UIColor.whiteColor.CGColor;
-        self.backgroundImage.layer.borderWidth = 1;
-        self.backgroundImage.layer.masksToBounds = NO;
-        self.backgroundImage.layer.cornerRadius = self.backgroundImage.frame.size.height/2;
-        
-        
-        [self.contentView addSubview:self.backgroundImage];
-        
-    }
-    if(self.interestNameLabel == nil){
-        self.interestNameLabel = [[UILabel alloc] initWithFrame:self.backgroundImage.frame];
-        self.interestNameLabel.textColor = [UIColor whiteColor];
-        self.interestNameLabel.font = [UIFont fontWithName:@"Avenir" size:15];
-        self.interestNameLabel.text = [@"#" stringByAppendingString: self.interest.subject];
-        self.interestNameLabel.textAlignment = NSTextAlignmentCenter;
-        self.interestNameLabel.numberOfLines = 0;
-        [self.contentView addSubview:self.interestNameLabel];
-    }
->>>>>>> 1093340ca7234d250df377f991429c76a670ac81
+
 }
 
 
