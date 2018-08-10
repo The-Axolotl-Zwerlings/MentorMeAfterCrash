@@ -222,8 +222,9 @@
 
 - (IBAction)onTapConfirm:(UIBarButtonItem *)sender {
     
+    NSArray *otherFiltersArray = [NSArray arrayWithObjects:[NSNumber numberWithBool:[self.schoolSwitch isOn]],[NSNumber numberWithBool:[self.companySwitch isOn]],[NSNumber numberWithBool:[self.locationSwitch isOn]], nil];
     
-    [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive];
+    [self.delegate didChangeFilters:self.selectedGetFilters withGiveInterests:self.selectedGiveFilters withGetIndex:self.selectedIndexGet withGiveIndex:self.selectedIndexGive andOtherFilterArray:otherFiltersArray];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

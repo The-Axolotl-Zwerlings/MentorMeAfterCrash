@@ -201,7 +201,9 @@
 
 
 /*** DELEGATE METHODS  ***/
-- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices{
+- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices andOtherFilterArray:(NSArray *)otherFilterArray{
+    
+    
     
     self.getIndex = incomingGetIndices;
     self.giveIndex = incomingGiveIndices;
@@ -220,6 +222,9 @@
         self.filtersToSearchGiveWith = incomingGiveInterests;
         [self fetchUsersWithSelectedInterests:NO];
     }
+    
+    
+    
     
 }
 

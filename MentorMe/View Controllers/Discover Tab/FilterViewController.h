@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @protocol FilterDelegate
-- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *) incomingGetIndices withGiveIndex:(NSMutableArray *) incomingGiveIndices;
+- (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *) incomingGetIndices withGiveIndex:(NSMutableArray *) incomingGiveIndices andOtherFilterArray:(NSArray *)otherFilterArray;
 @end
 
 @interface FilterViewController : UIViewController
