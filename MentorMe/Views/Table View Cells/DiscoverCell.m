@@ -54,7 +54,7 @@
 - (void) loadCell {
     
     //0. Background Color
-    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 176)];
+    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 160)];
     self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0];
     self.backgroundImage.layer.cornerRadius = 0;
     self.backgroundImage.layer.masksToBounds = NO;
@@ -123,10 +123,6 @@
     [jobLabel adjustsFontSizeToFitWidth];
     [educationLabel adjustsFontSizeToFitWidth];
     
-    /*[nameLabel setBackgroundColor:UIColor.redColor];
-    [jobLabel setBackgroundColor:UIColor.greenColor];
-    [educationLabel setBackgroundColor:UIColor.blueColor];*/
-    
     //B. Change Y-Coordinate
     frameA.origin.y = 12;
     frameB.origin.y = frameA.origin.y+frameA.size.height;
@@ -135,8 +131,6 @@
     [nameLabel setFrame:frameA];
     [jobLabel setFrame:frameB];
     [educationLabel setFrame:frameC];
-    
-    
     
 }
 
@@ -153,15 +147,19 @@
 
 - (void) loadCollectionViews {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    //flowLayout.itemSize = CGSizeMake(120, 40);
+    flowLayout.itemSize = CGSizeMake(120, 10);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     flowLayout.minimumInteritemSpacing = 10;
     flowLayout.minimumLineSpacing = 0;
-    flowLayout.estimatedItemSize = CGSizeMake(120, 40);
+    flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
     
+//    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 124, 375, 1)];
+//    line.backgroundColor = [UIColor blueColor];
+//    [self.backgroundImage addSubview:line];
+//
     
     if( self.selectedIndex == 1 ) {
-        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 115, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
+        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 24)   collectionViewLayout:flowLayout];
         [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewA.delegate = self;
         collectionViewA.dataSource = self;
@@ -173,7 +171,7 @@
     }
     
     if( self.selectedIndex == 0 ){
-        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(12, 115, self.backgroundImage.frame.size.width - 24, 50)   collectionViewLayout:flowLayout];
+        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 24)   collectionViewLayout:flowLayout];
         [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
         collectionViewB.dataSource = self;
@@ -188,7 +186,7 @@
 }
 
 
-
+/**** COLLECTION VIEW DELEGATE METHODS *****/
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
@@ -198,12 +196,12 @@
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.incomingGetInterests[indexPath.row];
-        
-        
-        cellA.interestNameLabel.text = cellA.interest.subject;
-        [cellA.interestNameLabel sizeToFit];
         [cellA loadCollectionViewCell];
-        
+        [cellA layoutInterests];
+        NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
+        if([mySet intersectsSet:self.giveSet]){
+            cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
         return cellA;
         
     } else {
@@ -211,30 +209,30 @@
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.incomingGiveInterests[indexPath.row];
         [cellB loadCollectionViewCell];
+        [cellB layoutInterests];
+        NSSet *mySet = [NSSet setWithObject:cellB.interest.subject];
+        if([mySet intersectsSet:self.getSet]){
+            cellB.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+        }
         return cellB;
-        
-        
     }
-    
 }
 
-/*- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
- 
- if( collectionView == collectionViewA ){
- InterestModel *newInterest = self.incomingGetInterests[indexPath.row];
- NSString *stringToFit = newInterest.subject;
- CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
- CGSize returnSize = CGSizeMake(calculateSize.width, 40);
- return returnSize;
- } else {
- InterestModel *newInterest = self.incomingGiveInterests[indexPath.row];
- NSString *stringToFit = newInterest.subject;
- CGSize calculateSize =[stringToFit sizeWithAttributes:NULL];
- CGSize returnSize = CGSizeMake(calculateSize.width, 40);
- return returnSize;
- }
- 
- }*/
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    InterestModel *modelA;
+    if( [collectionView isEqual: collectionViewA] ){
+        modelA = self.incomingGetInterests[indexPath.row];
+    } else {
+        modelA = self.incomingGiveInterests[indexPath.row];
+    }
+    
+    NSString *testString = modelA.subject;
+    
+    CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:15.0f]}];
+    textSize.height += 8;
+    textSize.width += 24;
+    return textSize;
+}
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     if( self.selectedIndex == 1 ){

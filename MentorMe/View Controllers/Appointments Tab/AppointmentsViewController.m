@@ -83,11 +83,11 @@
     PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
     PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
     [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
-    [queryMentor whereKey:@"confirmed" equalTo:@"YES"];
     [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
     PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
     [combinedQuery includeKey:@"mentor.name"];
     [combinedQuery includeKey:@"mentee.name"];
+    [combinedQuery whereKey:@"confirmation" equalTo:@"YES"];
     //Used for adding elements to the pastAppointments Array and Upcoming Appointments array
     NSMutableArray *oldPast = [[NSMutableArray alloc]init];
     NSMutableArray *oldUpcoming = [[NSMutableArray alloc]init];

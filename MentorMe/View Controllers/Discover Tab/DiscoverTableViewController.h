@@ -20,9 +20,12 @@
 @property (strong, nonatomic) NSMutableArray *filtersToSearchGetWith;
 @property (strong, nonatomic) NSMutableArray *filtersToSearchGiveWith;
 
-@property (strong, nonatomic) NSArray *filterGive;
-@property (strong, nonatomic) NSArray *filterGet;
+@property (strong, nonatomic) NSMutableArray *filterGive;
+@property (strong, nonatomic) NSMutableArray *filterGet;
 
 @property (strong, nonatomic) NSMutableArray *getIndex;
 @property (strong, nonatomic) NSMutableArray *giveIndex;
+
+@property (strong, nonatomic) NSArray *otherFiltersArray;
+
 @end
