@@ -58,6 +58,8 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
+    /**/
+
     [self loadBarButtons];
     
     [giveTableView reloadData];
@@ -69,11 +71,19 @@
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
     self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
-    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
-    
-    
+    /**/
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
+                                 @"Notifications" style:UIBarButtonItemStylePlain target:
+                                 self action:@selector(myButtonClicked:)];
+    self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn; self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
+    /**/
 }
 
+/**/
+-(void) myButtonClicked: (UIBarButtonItem*)sender{
+    [self performSegueWithIdentifier:@"segueToNotifications" sender:nil];
+}
+/**/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

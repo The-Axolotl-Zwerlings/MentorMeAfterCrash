@@ -18,13 +18,15 @@
 @dynamic meetingDate;
 @dynamic meetingType;
 @dynamic isUpcoming;
+//@dynamic confirmed;
+@dynamic confirmation;
 
 
 +(nonnull NSString *)parseClassName{
     return @"AppointmentModel";
 }
 
-+ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL) isUpcoming withMessage:(NSString *)message withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
++ (void) postAppointment:(BOOL)isMentor withPerson:( PFUser * _Nullable )otherAttendee withMeetingLocation: (NSString * _Nullable )meetingLocation withMeetingType: (NSString *_Nullable ) meetingType withMeetingDate: (NSDate * _Nullable )meetingDate withIsComing: (BOOL) isUpcoming withMessage:(NSString *)message withconfirmation:(NSString *) confirmation withCompletion: (void(^_Nullable)(BOOL succeeded, NSError * _Nullable error, AppointmentModel * _Nullable newAppointment))completion {
     
     PFObject *appointment = [PFObject objectWithClassName:@"AppointmentModel"];
     
@@ -35,6 +37,7 @@
     appointment[@"meetingDate"] = meetingDate;
     appointment[@"message"] = message;
     appointment[@"isUpcoming"] = @(isUpcoming);
+    appointment[@"confirmation"] = confirmation;
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
