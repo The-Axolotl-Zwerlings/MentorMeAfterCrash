@@ -44,14 +44,14 @@
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
     
-    [self fetchAllUsers];
+    [self fetchAllUsersWithSchool:NO andCompany:NO];
     [self initSegmentedControl];
     [self initScrollView];
     [self initTableViews];
     [self loadBarButtons];
     
     self.refreshControl = [[UIRefreshControl alloc] init];
-    [self.refreshControl addTarget:self action:@selector(fetchAllUsers) forControlEvents:UIControlEventValueChanged];
+    [self.refreshControl addTarget:self action:@selector(fetchAllUsersWithSchool:andCompany:) forControlEvents:UIControlEventValueChanged];
     
     [getTableView insertSubview:self.refreshControl atIndex:0];
     
@@ -84,16 +84,24 @@
 
 
 
--(void)fetchAllUsers{
+-(void)fetchAllUsersWithSchool:(NSNumber *)school andCompany:(NSNumber *)company{
     
     //[MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     if( [PFUser currentUser] ){
         
+        
+        
         PFQuery *usersQuery = [PFUser query];
         NSArray *stringsToQueryAllUsers = [[NSArray alloc] initWithObjects:@"profilePic", @"giveAdviceInterests", @"getAdviceInterests", nil];
         [usersQuery includeKeys:stringsToQueryAllUsers];
         [usersQuery whereKey:@"username" notEqualTo:PFUser.currentUser.username];
+        if(school == [NSNumber numberWithBool:YES]){
+            [usersQuery whereKey:@"school" equalTo:PFUser.currentUser.school];
+        }
+        if(company == [NSNumber numberWithBool:YES]){
+            [usersQuery whereKey:@"company" equalTo:PFUser.currentUser.company];
+        }
         usersQuery.limit = 20;
         [usersQuery orderByDescending:@"createdAt"];
         [usersQuery findObjectsInBackgroundWithBlock:^(NSArray *users, NSError * error) {
@@ -169,8 +177,8 @@
                         NSLog(@"Added a new user %@", user.name);
                         NSLog(@"%lu",oldArray.count);
                     }
-                    self.filteredUsersFromQuery = (NSMutableArray *)[NSArray arrayWithArray:oldArray];
-                    NSLog(@"%lu", (unsigned long)self.filteredUsersFromQuery.count);
+                    self.allUsersFromQuery = (NSMutableArray *)[NSArray arrayWithArray:oldArray];
+                    NSLog(@"%lu", (unsigned long)self.allUsersFromQuery.count);
                     [giveTableView reloadData];
                     [getTableView reloadData];
                 });
@@ -203,7 +211,16 @@
 /*** DELEGATE METHODS  ***/
 - (void) didChangeFilters:(NSMutableArray *) incomingGetInterests withGiveInterests:(NSMutableArray *) incomingGiveInterests withGetIndex:(NSMutableArray *)incomingGetIndices withGiveIndex:(NSMutableArray *)incomingGiveIndices andOtherFilterArray:(NSArray *)otherFilterArray{
     
-    
+    self.otherFiltersArray = otherFilterArray;
+    //school, company, location
+    if(otherFilterArray[0] == [NSNumber numberWithBool:YES] || otherFilterArray[1] == [NSNumber numberWithBool:YES]){
+        [self fetchAllUsersWithSchool:otherFilterArray[0] andCompany:otherFilterArray[1]];
+    } else{
+        [self fetchAllUsersWithSchool:[NSNumber numberWithBool:NO] andCompany:[NSNumber numberWithBool:NO]];
+    }
+    if(otherFilterArray[2]){
+        [self fetchUsersNearbyCurrentUser:self.allUsersFromQuery];
+    }
     
     self.getIndex = incomingGetIndices;
     self.giveIndex = incomingGiveIndices;
@@ -339,6 +356,8 @@
         
         filterViewController.selectedGetFilters = self.filtersToSearchGetWith;
         filterViewController.selectedGiveFilters = self.filtersToSearchGiveWith;
+        
+        filterViewController.otherFiltersArray = self.otherFiltersArray;
     } else if ( [segue.identifier isEqualToString:@"segueToMentorDetailsViewController"]    )  {
         NSIndexPath *indexPath = sender;
         PFUser *incomingMentor;

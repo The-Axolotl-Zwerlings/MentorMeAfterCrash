@@ -25,6 +25,6 @@
 @property (strong, nonatomic) NSMutableArray *selectedIndexGet;
 @property (strong, nonatomic) NSMutableArray *selectedIndexGive;
 
-
+@property (strong, nonatomic) NSArray *otherFiltersArray;
 @end
 

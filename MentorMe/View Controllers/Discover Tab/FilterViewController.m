@@ -58,10 +58,9 @@
     //[self checkSelectedTags:self.giveAdviceTTGView withArrayOfIndices:self.selectedIndexGive];
     //[self checkSelectedTags:self.getAdviceTTGView withArrayOfIndices:self.selectedIndexGet];
    
-    [self.schoolSwitch setOn:false];
-    [self.companySwitch setOn:false];
-    [self.locationSwitch setOn:false];
-    
+    [self.schoolSwitch setOn:self.otherFiltersArray[0] == [NSNumber numberWithBool:YES]];
+    [self.companySwitch setOn:self.otherFiltersArray[1] == [NSNumber numberWithBool:YES]];
+    [self.locationSwitch setOn:self.otherFiltersArray[2] == [NSNumber numberWithBool:YES]];
     
 }
 
