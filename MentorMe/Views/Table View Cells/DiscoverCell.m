@@ -141,7 +141,6 @@
     long charSize = lroundf(incomingLabel.font.lineHeight);
     lineCount = rHeight/charSize;
     CGFloat heightOfLabel = lineCount * charSize;
-    NSLog(@"Height for %@ is: %f", incomingLabel.text, heightOfLabel);
     return heightOfLabel;
 }
 

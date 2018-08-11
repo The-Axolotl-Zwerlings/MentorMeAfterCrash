@@ -22,6 +22,20 @@
     return self;
 }
 
+
+- (void)setHighlighted:(BOOL)highlighted{
+    UIColor *backgroundColor = self.backgroundIMage.backgroundColor;
+    [super setHighlighted:highlighted];
+    self.backgroundIMage.backgroundColor = backgroundColor;
+}
+
+- (void) setSelected:(BOOL)selected {
+    UIColor *backgroundColor = self.backgroundIMage.backgroundColor;
+    [super setSelected:selected];
+    self.backgroundIMage.backgroundColor = backgroundColor;
+}
+
+
 - (void)loadCollectionViewCell{
 
     if(self.backgroundIMage == nil){
@@ -67,7 +81,6 @@
     self.interestNameLabel.textAlignment = NSTextAlignmentCenter;
     
     self.backgroundIMage.backgroundColor = [UIColor clearColor];
-    NSLog(@"here");
 
 }
 
