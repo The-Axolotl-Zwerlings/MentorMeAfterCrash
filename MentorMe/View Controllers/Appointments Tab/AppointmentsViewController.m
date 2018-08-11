@@ -23,6 +23,7 @@
 @property (strong, nonatomic) NSArray *pastAppointments;
 @property (strong, nonatomic) NSArray *upComingAppointments;
 @property UILabel *NoAppointments;
+@property (nonatomic, assign) NSInteger give;
 @end
 
 
@@ -31,6 +32,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.give = 0;
     
     self.appointmentsTableView.delegate = self;
     self.appointmentsTableView.dataSource = self;
@@ -82,12 +85,15 @@
     //Query for appointments that the current user is engaged in
     PFQuery *queryMentor = [PFQuery queryWithClassName:@"AppointmentModel"];
     PFQuery *queryMentee = [PFQuery queryWithClassName:@"AppointmentModel"];
+    PFQuery *queryMe = [PFQuery queryWithClassName:@"AppointmentModel"];
     [queryMentor whereKey:@"mentor" equalTo:PFUser.currentUser];
     [queryMentee whereKey:@"mentee" equalTo:PFUser.currentUser];
-    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee, nil]];
+    [queryMe whereKey:@"recipient" equalTo:PFUser.currentUser];
+    [queryMe whereKey:@"confirmation" equalTo:@"NO"];
+    PFQuery *combinedQuery = [PFQuery orQueryWithSubqueries:[NSArray arrayWithObjects:queryMentor,queryMentee,nil]];
     [combinedQuery includeKey:@"mentor.name"];
     [combinedQuery includeKey:@"mentee.name"];
-    [combinedQuery whereKey:@"confirmation" equalTo:@"YES"];
+    [combinedQuery whereKey:@"recipient" doesNotMatchKey:@"recipient" inQuery:queryMe];
     //Used for adding elements to the pastAppointments Array and Upcoming Appointments array
     NSMutableArray *oldPast = [[NSMutableArray alloc]init];
     NSMutableArray *oldUpcoming = [[NSMutableArray alloc]init];
