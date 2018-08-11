@@ -260,6 +260,7 @@
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.adviceToGet[indexPath.item];
         [cellA loadCollectionViewCell];
+        [cellA layoutInterests];
         return cellA;
         
     } else {
@@ -267,6 +268,7 @@
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
         [cellB loadCollectionViewCell];
+        [cellB layoutInterests];
         return cellB;
         
         
@@ -276,6 +278,22 @@
 
 - (void)gotoMilestone:(PFUser *)mentor{
     [self performSegueWithIdentifier:@"ProfiletoMilestone" sender:mentor];
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    InterestModel *modelA;
+    if( [collectionView isEqual: self.getAdviceCollectionView] ){
+        modelA = self.adviceToGet[indexPath.row];
+    } else {
+        modelA = self.adviceToGive[indexPath.row];
+    }
+    
+    NSString *testString = modelA.subject;
+    
+    CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17.0f]}];
+    textSize.height += 8;
+    textSize.width += 24;
+    return textSize;
 }
 
 -(void)getRating{

@@ -955,13 +955,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = DFS6245D8K;
+=======
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+>>>>>>> 17f7ac83b0010351a5701750859308910dea5137
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.y224n.MentorMee;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.y248n.MentorMee;
+>>>>>>> 17f7ac83b0010351a5701750859308910dea5137
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -973,13 +981,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = DFS6245D8K;
+=======
+				DEVELOPMENT_TEAM = 7BPY3ZP4FA;
+>>>>>>> 17f7ac83b0010351a5701750859308910dea5137
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = com.y224n.MentorMee;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = com.y248n.MentorMee;
+>>>>>>> 17f7ac83b0010351a5701750859308910dea5137
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
