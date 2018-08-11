@@ -53,11 +53,14 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.connectButton.layer.cornerRadius = 16;
-    self.connectButton.clipsToBounds = YES;
-    [self.scrollViewMentor setContentSize:CGSizeMake(self.view.frame.size.width, self.connectButton.frame.origin.y + self.connectButton.frame.size.height + 12.0)];
+    [self.scrollViewMentor setContentSize:CGSizeMake(375, self.complimentsCollectionView.frame.size.height + self.complimentsCollectionView.frame.origin.y+238)];
     
     [self loadMentor];
+    
+    self.connectButton.layer.shadowColor = UIColor.grayColor.CGColor;
+    self.connectButton.layer.shadowOffset = CGSizeMake(0, 5);
+    self.connectButton.layer.shadowRadius = 3;
+    self.connectButton.layer.shadowOpacity = 0.5f;
     
     self.title = self.mentor.name;
     

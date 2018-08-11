@@ -441,6 +441,7 @@
 				A8011C84210141910028E604 /* DiscoverTableViewStoryboard.storyboard */,
 				A8011C822101415C0028E604 /* Filters.storyboard */,
 				C0F1018D2101647F009ADA47 /* MentorDetailsStoryboard.storyboard */,
+				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
 				B289557C211B6CAA00F0EC11 /* Notifications.storyboard */,
 			);
 			path = DiscoverTab;
@@ -451,7 +452,6 @@
 			children = (
 				C002266820FE5A11007D359B /* AppointmentsViewController.storyboard */,
 				C0F101712100FF46009ADA47 /* AppointmentDetailsViewController.storyboard */,
-				A8011C86210167040028E604 /* CreateAppointment.storyboard */,
 				A87C16D02113F7BE001AC0B5 /* Milestone.storyboard */,
 				A82EB2D52107DDA600079B53 /* Review.storyboard */,
 			);
@@ -955,13 +955,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M963N7PF23;
+				DEVELOPMENT_TEAM = DFS6245D8K;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.y24n.MentorMee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.y224n.MentorMee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -973,13 +973,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = M963N7PF23;
+				DEVELOPMENT_TEAM = DFS6245D8K;
 				INFOPLIST_FILE = MentorMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.y24n.MentorMee;
+				PRODUCT_BUNDLE_IDENTIFIER = com.y224n.MentorMee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
