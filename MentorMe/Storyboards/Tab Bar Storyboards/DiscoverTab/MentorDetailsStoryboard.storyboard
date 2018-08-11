@@ -186,25 +186,25 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="EDZ-Nk-dbW">
-                                        <rect key="frame" x="4" y="577.5" width="368" height="84"/>
+                                        <rect key="frame" x="4" y="577.5" width="368" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oFE-NW-eFj">
-                                            <size key="itemSize" width="78" height="78"/>
+                                            <size key="itemSize" width="90" height="90"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ComplimentsCell" id="AUy-7r-QKQ" customClass="ComplimentsCell">
-                                                <rect key="frame" x="12" y="3" width="78" height="78"/>
+                                                <rect key="frame" x="12" y="5" width="90" height="90"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HA6-Jh-DYC">
-                                                            <rect key="frame" x="16" y="8" width="47" height="47"/>
+                                                            <rect key="frame" x="21.5" y="4" width="47" height="47"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="47" id="B9h-9j-877"/>
                                                                 <constraint firstAttribute="height" constant="47" id="ogL-mJ-44R"/>
@@ -227,23 +227,23 @@
                                                                 <constraint firstAttribute="height" constant="15" id="wJC-bJ-HwY"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6e-tv-9LM">
-                                                            <rect key="frame" x="12" y="59" width="54" height="23.5"/>
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Label Label Label Label Label " textAlignment="center" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e6e-tv-9LM">
+                                                            <rect key="frame" x="0.0" y="59" width="90" height="31"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="11"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                 </view>
                                                 <constraints>
-                                                    <constraint firstItem="e6e-tv-9LM" firstAttribute="top" secondItem="HA6-Jh-DYC" secondAttribute="bottom" constant="4" id="5g8-f7-bD0"/>
-                                                    <constraint firstItem="HA6-Jh-DYC" firstAttribute="top" secondItem="AUy-7r-QKQ" secondAttribute="top" constant="8" id="OVh-Da-kZO"/>
+                                                    <constraint firstItem="e6e-tv-9LM" firstAttribute="top" secondItem="HA6-Jh-DYC" secondAttribute="bottom" constant="8" id="5g8-f7-bD0"/>
+                                                    <constraint firstItem="HA6-Jh-DYC" firstAttribute="top" secondItem="AUy-7r-QKQ" secondAttribute="top" constant="4" id="OVh-Da-kZO"/>
                                                     <constraint firstItem="HA6-Jh-DYC" firstAttribute="centerX" secondItem="AUy-7r-QKQ" secondAttribute="centerX" id="PUc-bg-AO1"/>
                                                     <constraint firstItem="phx-qj-dFf" firstAttribute="top" secondItem="AUy-7r-QKQ" secondAttribute="top" constant="4" id="aWX-bq-H1t"/>
                                                     <constraint firstItem="e6e-tv-9LM" firstAttribute="centerX" secondItem="AUy-7r-QKQ" secondAttribute="centerX" id="mOR-sK-40n"/>
                                                     <constraint firstItem="phx-qj-dFf" firstAttribute="leading" secondItem="AUy-7r-QKQ" secondAttribute="leading" constant="57" id="pMh-e8-RDe"/>
-                                                    <constraint firstAttribute="trailingMargin" secondItem="e6e-tv-9LM" secondAttribute="trailing" constant="4" id="plI-Fg-ZGr"/>
-                                                    <constraint firstItem="e6e-tv-9LM" firstAttribute="leading" secondItem="AUy-7r-QKQ" secondAttribute="leadingMargin" constant="4" id="zD9-Nl-cVL"/>
+                                                    <constraint firstAttribute="trailingMargin" secondItem="e6e-tv-9LM" secondAttribute="trailing" constant="-8" id="plI-Fg-ZGr"/>
+                                                    <constraint firstItem="e6e-tv-9LM" firstAttribute="leading" secondItem="AUy-7r-QKQ" secondAttribute="leadingMargin" constant="-8" id="zD9-Nl-cVL"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="complimentIcon" destination="HA6-Jh-DYC" id="Tb9-ej-BMy"/>

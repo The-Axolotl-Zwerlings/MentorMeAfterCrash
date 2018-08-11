@@ -85,20 +85,24 @@ int myCounter;
     self.complimentsCollectionView.alwaysBounceHorizontal = YES;
     self.complimentsCollectionView.showsHorizontalScrollIndicator = NO;
     
-//initializing a tap gesture recogniser
+    //initializing a tap gesture recogniser
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleImageTap:)];
     [self.profileImage addGestureRecognizer:imageTap];
     
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [self loadMentor];
+}
+
 //action for image tap
 -(void)handleImageTap: (UITapGestureRecognizer *) recognizer{
-
+    
     UIViewController *bbp=[[UIViewController alloc]init];
     UINavigationController *passcodeNavigationController = [[UINavigationController alloc] initWithRootViewController:bbp];
     UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
-                               @"Back" style:UIBarButtonItemStylePlain target:
-                             self action:@selector(myButtonClicked:)];
+                                 @"Back" style:UIBarButtonItemStylePlain target:
+                                 self action:@selector(myButtonClicked:)];
     [self.navigationController presentViewController:passcodeNavigationController animated:YES completion:nil];
     bbp.view.backgroundColor = UIColor.blackColor;
     bbp.navigationController.navigationBar.barTintColor = UIColor.blackColor;
@@ -121,7 +125,7 @@ int myCounter;
 
 - (void)myButtonClicked:(UIBarButtonItem*)sender
 {
-     [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)getRating{
@@ -151,7 +155,7 @@ int myCounter;
             
             if( isnan([starRating doubleValue]) == 0 ){
                 self.ratingVIew.hidden = false;
-                 NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
+                NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
                 self.rating.text = [NSString stringWithFormat:@"%@", formattedNumber];
                 self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
                 [self.complimentsCollectionView reloadData];
@@ -254,6 +258,8 @@ int myCounter;
         [cell formatCellWithIndex:[NSNumber numberWithInteger:myCounter] andCount:(self.complimentsArray[myCounter])];
         
         ++myCounter;
+        collectionView.backgroundColor = [UIColor greenColor];
+        cell.backgroundColor = [UIColor redColor];
         return cell;
         
     } else {
@@ -265,35 +271,29 @@ int myCounter;
     }
 }
 
-
--(void)viewWillAppear:(BOOL)animated{
-    [self loadMentor];
-}
-
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    InterestModel *modelA;
-    if( [collectionView isEqual: self.getAdviceCollectionView] ){
-        modelA = self.adviceToGet[indexPath.row];
+    
+    if ( ![collectionView isEqual:self.complimentsCollectionView] ){
+        
+        InterestModel *modelA;
+        if( [collectionView isEqual: self.getAdviceCollectionView] ){
+            modelA = self.adviceToGet[indexPath.row];
+        } else {
+            modelA = self.adviceToGive[indexPath.row];
+        }
+        NSString *testString = modelA.subject;
+        CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17.0f]}];
+        textSize.height += 8;
+        textSize.width += 24;
+        return textSize;
     } else {
-        modelA = self.adviceToGive[indexPath.row];
+        return CGSizeMake(78, 78);
     }
-    
-    NSString *testString = modelA.subject;
-    
-    CGSize textSize = [testString sizeWithAttributes:@{NSFontAttributeName:[UIFont fontWithName:@"Avenir" size:17.0f]}];
-    textSize.height += 8;
-    textSize.width += 24;
-    return textSize;
 }
 
 #pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
     if([segue.identifier isEqualToString:@"createAppointmentSegue"]){
-        
         CreateAppointmentViewController *createAppointViewController = [segue destinationViewController];
         createAppointViewController.isMentorOfMeeting = self.isMentorOfMeeting;
         createAppointViewController.otherAttendee = self.mentor;
