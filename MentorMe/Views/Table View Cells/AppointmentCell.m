@@ -68,8 +68,8 @@
         [self.otherAttendeeProfilePic loadInBackground];
         self.backgroundColor = UIColor.lightGrayColor;
         
-        self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
-        self.rockStatus.text = @"You're the pebble!";
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
+        self.rockStatus.text = @"You're the metamorphosis!";
     
     }
     

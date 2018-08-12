@@ -40,13 +40,14 @@
     self.notificationsTable.delegate = self;
     self.notificationsTable.dataSource = self;
     [self notificationsQuery];
-    self.tracker = 0;
-    self.subtractors = [[NSMutableArray alloc]init];
+    
+    
 }
 
 - (void) querryInvites{
     PFQuery* query1 = [PFQuery queryWithClassName:@"AppointmentModel"];
     [query1 whereKey:@"recipient" equalTo:PFUser.currentUser];
+    [query1 whereKey:@"confirmation" equalTo:@"NO"];
     [query1 includeKey:@"mentee.name"];
     [query1 includeKey:@"mentee.major"];
     [query1 includeKey:@"mentee.company"];
@@ -60,6 +61,7 @@
         if (!error) {
             self.invites = [NSArray arrayWithArray:appointments];
             [self.notificationsTable reloadData];
+            [self.inviteDetails removeFromSuperview];
             }
         else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -68,13 +70,16 @@
 }
 
 -(void)notificationsQuery{
+    self.subtractors = [[NSMutableArray alloc]init];
+    self.tracker = 0;
+    self.subtractor = 0;
     PFQuery* query = [PFQuery queryWithClassName:@"Notifications"];
     [query whereKey:@"reciever" equalTo:[PFUser currentUser]];
     [query includeKey:@"sender.name"];
     [query orderByDescending:@"_created_at"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
         if (!error) {
-            if (objects.count != 0){
+            //if (objects.count != 0){
                 [self querryInvites];
             NSLog(@"Successfully retrieved %lu scores.", objects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
@@ -82,7 +87,7 @@
                 [temporary addObject:ping];
             }
             self.notificationTypes = [[NSArray alloc]initWithArray:temporary];
-            }
+            //}
         }
         else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -164,8 +169,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     CGFloat cellHeight;
-    if ([[tableView cellForRowAtIndexPath:indexPath] tag] == 1) cellHeight = 170;
-    else cellHeight = 50;
+    if ([[tableView cellForRowAtIndexPath:indexPath] tag] == 1) {cellHeight = 170;}
+    else {cellHeight = 50;}
     return  cellHeight;
 }
 
@@ -222,11 +227,15 @@
     PFQuery *query2 = [PFQuery queryWithClassName:@"Notifications"];
     [query2 getObjectInBackgroundWithId:toDelete.objectId
                                  block:^(PFObject *not, NSError *error) {
-                                     NSLog(@"deleted notification");
+                                     if (!error){
                                      [not deleteInBackground];
+                                     NSLog(@"deleted notification");
                                      [self notificationsQuery];
+                                     //[self.inviteDetails removeFromSuperview];
+                                     }
+                                    else{NSLog(@"Error is deleting notification");}
                                  }];
-    [self.inviteDetails removeFromSuperview];
+    
     
 }
 -(void)deleteNotification{
@@ -237,21 +246,24 @@
                                       NSLog(@"deleted notification");
                                       [not deleteInBackground];
                                       [self notificationsQuery];
+                                      //[self.inviteDetails removeFromSuperview];
                                   }];
 }
 - (IBAction)atTapDecline:(id)sender {
     PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
     [query getObjectInBackgroundWithId:self.identity
                                  block:^(PFObject *appointment, NSError *error) {
+                                     if (!error){
                                      [appointment deleteInBackground];
                                      NSLog(@"deleted appointment");
-                                     [self deleteNotification];
+                                    [self deleteNotification];}
+                                     else{NSLog(@"Error is deleting appointment");}
                                  }];
     AppointmentModel * try = self.invites[self.specialNumber];
      self.other =  ([try.mentor.name isEqualToString:PFUser.currentUser.name]) ? try.mentee : try.mentor;
      [Notifications addNotification:@"declined" withSender:[PFUser currentUser] withReciever:self.other];
 
-    [self.inviteDetails removeFromSuperview];    
+    
 }
 
 
