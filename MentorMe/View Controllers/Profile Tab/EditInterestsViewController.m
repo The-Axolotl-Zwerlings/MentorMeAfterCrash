@@ -33,6 +33,7 @@
 @property (nonatomic, strong) NSArray* array2;
 @property (nonatomic, strong) NSString* myInterest;
 @property (nonatomic, strong) TLTagsControl *currentTagControll;
+@property (nonatomic, assign) NSInteger additionalCell;
 
 @end
 
@@ -124,8 +125,13 @@
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
-            
             for (InterestModel *interest in subjects) {
+                if([substring isEqualToString:interest.subject]){
+                    self.additionalCell =0;
+                }
+                else{
+                    self.additionalCell =1;
+                }
                     [temporary addObject:interest.subject];
                 if  (temporary.count == 0)
                     self.myInterest = substring;
@@ -145,7 +151,7 @@
     }
     else{
         NSLog(@"%lu", self.forTableView.count);
-        return (self.forTableView.count);
+        return (self.forTableView.count) + self.additionalCell;
     }
 }
 
@@ -158,14 +164,27 @@
         cell.interestLabel.hidden = YES;
         cell.createNewInterest.hidden = NO;
         return cell;
-
     }
     else{
-        NSLog(@"IN ELSE1");
-        cell.interestLabel.text = self.forTableView [indexPath.row];
-        cell.interestLabel.textColor = UIColor.blackColor;
-        cell.interestLabel.hidden = NO;
-        cell.createNewInterest.hidden = YES;
+        if(self.additionalCell == 0){
+            cell.interestLabel.text = self.forTableView [indexPath.row];
+            cell.interestLabel.textColor = UIColor.blackColor;
+            cell.interestLabel.hidden = NO;
+            cell.createNewInterest.hidden = YES;
+        }
+     
+       else if (self.additionalCell == 1){
+            if(indexPath.row <= self.forTableView.count - 1){
+            cell.interestLabel.text = self.forTableView [indexPath.row];
+            cell.interestLabel.textColor = UIColor.blackColor;
+            cell.interestLabel.hidden = NO;
+            cell.createNewInterest.hidden = YES;
+            }
+            if (indexPath.row == self.forTableView.count){
+            cell.interestLabel.hidden = YES;
+            cell.createNewInterest.hidden = NO;
+            }
+        }
         return cell;
     }
 }

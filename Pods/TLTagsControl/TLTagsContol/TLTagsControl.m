@@ -326,17 +326,17 @@
 
 #pragma mark - textfield stuff
 
-- (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    if (textField.text.length > 0) {
-        //[self.toCreate addObject:textField.text];
-        // save object
-        NSString *tag = textField.text;
-        textField.text = @"";
-        [self addTag:tag];
-    }
-    
-    return YES;
-}
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+//    if (textField.text.length > 0) {
+//        //[self.toCreate addObject:textField.text];
+//        // save object
+//        NSString *tag = textField.text;
+//        textField.text = @"";
+//        [self addTag:tag];
+//    }
+//    
+//    return YES;
+//}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSString *resultingString;
