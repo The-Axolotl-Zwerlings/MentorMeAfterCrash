@@ -18,15 +18,9 @@
 //Outlets for UI views
 @property (weak, nonatomic) IBOutlet TLTagsControl *getAdviceField;
 @property (weak, nonatomic) IBOutlet TLTagsControl *giveAdviceField;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-
-
-
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
-
 @property (strong, nonatomic) NSString* store;
 @property (strong, nonatomic) NSString* getStore;
 @property (strong, nonatomic) NSString* giveStore;
@@ -37,6 +31,8 @@
 @property (strong, nonatomic) NSArray* creationArray;
 @property (nonatomic, strong) NSArray* array1;
 @property (nonatomic, strong) NSArray* array2;
+@property (nonatomic, strong) NSString* myInterest;
+@property (nonatomic, strong) TLTagsControl *currentTagControll;
 
 @end
 
@@ -70,11 +66,13 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)addString:(TLTagsControl *)tagControl withString:(NSString *)typed{
+    self.myInterest = typed;
     if(tagControl == self.getAdviceField){
+        self.currentTagControll = self.getAdviceField;
+        self.myInterest = typed;
         if (typed.length >= 1){
             self.store = typed;
             self.getStore = typed;
@@ -96,6 +94,7 @@
         }
     }
     if(tagControl == self.giveAdviceField){
+        self.currentTagControll = self.giveAdviceField;
         if (typed.length >= 1){
             self.store = typed;
             self.giveStore = typed;
@@ -127,20 +126,9 @@
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
             
             for (InterestModel *interest in subjects) {
-                if(substring == interest.subject){
-                    [self.interestsTableView removeFromSuperview];
-                    if(self.getStore != nil){
-                        [self.getAdviceField addTag:self.getStore];
-                        [self.getAdviceField emptyField];
-                    }
-                    if(self.giveStore != nil){
-                        [self.giveAdviceField addTag:self.giveStore];
-                        [self.giveAdviceField emptyField];
-                    }
-                }
-                else{
                     [temporary addObject:interest.subject];
-                }
+                if  (temporary.count == 0)
+                    self.myInterest = substring;
             }
             self.forTableView = [[NSArray alloc]initWithArray:temporary];
             [self.interestsTableView reloadData];
@@ -167,14 +155,17 @@
     
     if(self.forTableView == nil || self.forTableView.count == 0){
         NSLog(@"IN IF1");
-        cell.interestLabel.text = @"nobody has listed this as their interest";
-        cell.interestLabel.textColor = UIColor.grayColor;
+        cell.interestLabel.hidden = YES;
+        cell.createNewInterest.hidden = NO;
         return cell;
+
     }
     else{
         NSLog(@"IN ELSE1");
         cell.interestLabel.text = self.forTableView [indexPath.row];
         cell.interestLabel.textColor = UIColor.blackColor;
+        cell.interestLabel.hidden = NO;
+        cell.createNewInterest.hidden = YES;
         return cell;
     }
 }
@@ -182,13 +173,13 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     AutocompleteTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (self.getStore != nil){
+    if (self.currentTagControll == self.getAdviceField){
         [self.getAdviceField addTag:cell.interestLabel.text];
         [self.interestsTableView removeFromSuperview];
         [self.getAdviceField emptyField];
         self.getStore = nil;
     }
-    if (self.giveStore != nil){
+    if (self.currentTagControll == self.giveAdviceField){
         [self.giveAdviceField addTag:cell.interestLabel.text];
         [self.interestsTableView removeFromSuperview];
         [self.giveAdviceField emptyField];
@@ -197,9 +188,7 @@
 }
 
 - (IBAction)onTapCancel:(id)sender{
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (IBAction)onTapSave:(id)sender {
@@ -227,23 +216,35 @@
         }
     }];
     //retrieve array
-    [self.getAdviceField triggerPassing];
-    [self.giveAdviceField triggerPassing];
+//    [self.getAdviceField triggerPassing];
+//    [self.giveAdviceField triggerPassing];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void) passingArray:(NSArray*) subjectsArray{
-    self.creationArray = [NSArray arrayWithArray:subjectsArray];
-    for(NSString* newSubject in self.creationArray){
-        [InterestModel addInterest:newSubject inCategory:@"new Interest"];
+- (IBAction)atTapCreateNew:(id)sender {
+    [InterestModel addInterest:self.myInterest inCategory:@"new Interest"];
+    [self.interestsTableView removeFromSuperview];
+    if (self.currentTagControll == self.getAdviceField){
+        [self.getAdviceField addTag:self.myInterest];
+        [self.getAdviceField emptyField];
+    }
+    
+    else if (self.currentTagControll == self.giveAdviceField){
+        [self.giveAdviceField addTag:self.myInterest];
+        [self.giveAdviceField emptyField];
     }
 }
+
+//- (void) passingArray:(NSArray*) subjectsArray{
+//    self.creationArray = [NSArray arrayWithArray:subjectsArray];
+//    for(NSString* newSubject in self.creationArray){
+//        [InterestModel addInterest:newSubject inCategory:@"new Interest"];
+//    }
+//}
 
 -(void)update:(NSArray*)one and:(NSArray*)two{
     self.array1 = [[NSArray alloc]initWithArray:one];
     self.array2 = [[NSArray alloc]initWithArray:two];
-    //[self.getAdviceField addTag:this];
 }
 
 

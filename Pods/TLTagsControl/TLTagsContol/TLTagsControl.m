@@ -297,9 +297,9 @@
 -(void)emptyField{
     tagInputField_.text = @"";
 }
--(void)triggerPassing{
-    [self.dataHandler passingArray:self.toCreate];
-}
+//-(void)triggerPassing{
+//    [self.dataHandler passingArray:self.toCreate];
+//}
 
 #pragma mark - buttons handlers
 
@@ -307,11 +307,11 @@
     UIView *view = sender.superview;
     [view removeFromSuperview];
     NSInteger index = [tagSubviews_ indexOfObject:view];
-    [self.toCreate enumerateObjectsUsingBlock:^(NSString *s, NSUInteger x, BOOL *stop) {
-        if ([s isEqualToString:[_tags objectAtIndex:index]]) {
-            [self.toCreate removeObjectAtIndex:x];
-        }
-    }];
+//    [self.toCreate enumerateObjectsUsingBlock:^(NSString *s, NSUInteger x, BOOL *stop) {
+//        if ([s isEqualToString:[_tags objectAtIndex:index]]) {
+//            [self.toCreate removeObjectAtIndex:x];
+//        }
+//    }];
     [_tags removeObjectAtIndex:index];
     [self reloadTagSubviews];
 }
@@ -328,7 +328,7 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     if (textField.text.length > 0) {
-        [self.toCreate addObject:textField.text];
+        //[self.toCreate addObject:textField.text];
         // save object
         NSString *tag = textField.text;
         textField.text = @"";

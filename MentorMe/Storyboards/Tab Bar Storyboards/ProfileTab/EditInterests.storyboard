@@ -109,12 +109,21 @@
                                         <nil key="highlightedColor"/>
                                         <color key="shadowColor" red="0.46035832040000002" green="0.47374866910000002" blue="0.47747328369999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sza-SN-0Gn">
+                                        <rect key="frame" x="52" y="2" width="137" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Create New Interest"/>
+                                        <connections>
+                                            <action selector="atTapCreateNew:" destination="A9G-a4-gd4" eventType="touchUpInside" id="1rv-qq-YFE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.55877521640000005" green="0.67893863340000005" blue="0.46277769429999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.73490225730000003" green="1" blue="0.1212144431" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </tableViewCellContentView>
                             <color key="backgroundColor" red="0.73490225727400094" green="1" blue="0.12121444305415008" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <connections>
+                                <outlet property="createNewInterest" destination="sza-SN-0Gn" id="BoV-CH-JEP"/>
                                 <outlet property="interestLabel" destination="frf-Q0-wK0" id="9fb-jG-nCT"/>
                             </connections>
                         </tableViewCell>
