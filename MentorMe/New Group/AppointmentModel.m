@@ -20,6 +20,7 @@
 @dynamic isUpcoming;
 //@dynamic confirmed;
 @dynamic confirmation;
+@dynamic recipient;
 
 
 +(nonnull NSString *)parseClassName{
@@ -38,6 +39,7 @@
     appointment[@"message"] = message;
     appointment[@"isUpcoming"] = @(isUpcoming);
     appointment[@"confirmation"] = confirmation;
+    appointment[@"recipient"] = otherAttendee;
     
     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {

@@ -41,8 +41,8 @@
         [self.otherAttendeeProfilePic loadInBackground];
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
-        self.rockStatus.text = @"You're the metamorphasis!";
-        self.backgroundColor = UIColor.purpleColor;
+        self.rockStatus.text = @"You're the metamorphosis!";
+        self.backgroundColor = UIColor.greenColor;
  
     } else if([appointment.mentee.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"NO"]){
         self.otherAttendeeName.text = appointment.mentor.name;
@@ -60,8 +60,18 @@
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
         self.rockStatus.text = @"You're the pebble!";
+        self.backgroundColor = UIColor.greenColor;
     }
-
+    else if([appointment.mentor.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"NO"]){
+        self.otherAttendeeName.text = appointment.mentee.name;
+        self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
+        [self.otherAttendeeProfilePic loadInBackground];
+        self.backgroundColor = UIColor.lightGrayColor;
+        
+        self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
+        self.rockStatus.text = @"You're the metamorphosis!";
+    
+    }
     
     self.otherAttendeeProfilePic.layer.masksToBounds = true;
     self.otherAttendeeProfilePic.layer.borderWidth = 3;
