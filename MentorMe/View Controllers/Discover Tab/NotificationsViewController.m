@@ -161,15 +161,6 @@
     
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    CGFloat cellHeight;
-
-    if ([[tableView cellForRowAtIndexPath:indexPath] tag] == 1) {cellHeight = 170;}
-    else {cellHeight = 50;}
-
-    return  cellHeight;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld", indexPath.row);
     [UIView transitionWithView:self.view duration:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^ {
