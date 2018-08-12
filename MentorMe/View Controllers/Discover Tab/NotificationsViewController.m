@@ -107,14 +107,6 @@
     self.notificationsArray = [self.notificationTypes objectAtIndex:indexPath.row];
         if([self.notificationsArray.type isEqualToString:@"accepted"]){
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"accepted" forIndexPath:indexPath];
-            UILayoutGuide *margins = cell.contentView.layoutMarginsGuide;
-            UIView* blue = [[UIView alloc]init];
-            blue.backgroundColor = UIColor.blueColor;
-            [cell.contentView addSubview:blue];
-            [blue.bottomAnchor constraintEqualToAnchor: margins.bottomAnchor].active = YES;
-           [blue.topAnchor constraintEqualToAnchor: margins.topAnchor].active = YES;
-            [blue.trailingAnchor constraintEqualToAnchor: margins.trailingAnchor].active = YES;
-            [blue.leadingAnchor constraintEqualToAnchor: margins.leadingAnchor].active = YES;
            // cell.contentView.layer.cornerRadius = 7;
            // cell.contentView.layer.masksToBounds = true;
             UILabel* label = [[UILabel alloc]init];
