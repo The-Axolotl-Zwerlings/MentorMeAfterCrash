@@ -258,8 +258,7 @@ int myCounter;
         [cell formatCellWithIndex:[NSNumber numberWithInteger:myCounter] andCount:(self.complimentsArray[myCounter])];
         
         ++myCounter;
-        collectionView.backgroundColor = [UIColor greenColor];
-        cell.backgroundColor = [UIColor redColor];
+    
         return cell;
         
     } else {

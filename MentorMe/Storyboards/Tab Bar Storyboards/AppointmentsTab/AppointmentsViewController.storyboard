@@ -20,7 +20,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-5F-RJl" userLabel="No Appointments View">
-                                <rect key="frame" x="0.0" y="56" width="375" height="490"/>
+                                <rect key="frame" x="0.0" y="48" width="375" height="498"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Upcoming Appointments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OkW-gb-Gni">
@@ -46,7 +46,7 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PwR-Cc-R05">
                                                     <rect key="frame" x="12" y="12" width="351" height="144"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.10588235294117647" green="0.59999999999999998" blue="0.54509803921568623" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="backgroundColor" red="0.26666666666666666" green="0.59999999999999998" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -127,7 +127,7 @@
                                     <segment title="Upcoming"/>
                                     <segment title="Past"/>
                                 </segments>
-                                <color key="tintColor" red="0.1058823529" green="0.59999999999999998" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.10588235294117647" green="0.59999999999999998" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <action selector="didChangeIndex:" destination="CKj-0e-lgA" eventType="valueChanged" id="ohX-rl-SBx"/>
                                 </connections>
@@ -136,11 +136,12 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="FTq-cI-aa6"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="heart" id="jxp-uj-vfP"/>
+                    <tabBarItem key="tabBarItem" title="" image="clock" id="jxp-uj-vfP"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="appointmentsTableView" destination="fJd-2o-njc" id="Zlb-OY-eqB"/>
+                        <outlet property="noAppointmentsLabel" destination="OkW-gb-Gni" id="ZMd-aY-iYg"/>
                         <outlet property="noAppointmentsView" destination="Ee8-5F-RJl" id="tBH-7N-yDI"/>
                         <outlet property="segmentedControl" destination="Klz-Yl-0jd" id="JOs-9T-iiW"/>
                     </connections>
@@ -159,6 +160,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="heart" width="32" height="32"/>
+        <image name="clock" width="32" height="32"/>
     </resources>
 </document>

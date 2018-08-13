@@ -41,7 +41,7 @@
         [self.otherAttendeeProfilePic loadInBackground];
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
-        self.rockStatus.text = @"You're the metamorphosis!";
+        self.rockStatus.text = @"You're the metamorphic rock!";
         self.backgroundColor = UIColor.greenColor;
  
     } else if([appointment.mentee.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"NO"]){
@@ -69,7 +69,7 @@
         self.backgroundColor = UIColor.lightGrayColor;
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
-        self.rockStatus.text = @"You're the metamorphosis!";
+        self.rockStatus.text = @"You're the metamorphic rock!";
     
     }
     

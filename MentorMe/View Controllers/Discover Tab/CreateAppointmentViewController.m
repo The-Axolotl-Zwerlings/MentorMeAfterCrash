@@ -66,7 +66,7 @@
     NSArray<UIImage *> *selectedImages = @[[UIImage imageNamed:@"checkmark"],
                                            [UIImage imageNamed:@"checkmark"],
                                            [UIImage imageNamed:@"checkmark"]];
-    NSArray<NSString *> *titles = @[@"  Meeting  ", @"  Coffee  ", @"  Video Chat  "];
+    NSArray<NSString *> *titles = @[@"  Lunch  ", @"  Coffee  ", @"  Video Chat  "];
     
     self.segmentedControl = [[HMSegmentedControl alloc] initWithSectionImages:images sectionSelectedImages:selectedImages titlesForSections:titles];
     self.segmentedControl.imagePosition = HMSegmentedControlImagePositionLeftOfText;
