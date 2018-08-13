@@ -18,8 +18,8 @@
 
 @protocol TLDataHandler <NSObject>
 
-- (void)addString: (TLTagsControl *)tagControl withString:(NSString*)typed;
-- (void) passingArray:(NSArray*) subjectsArray;
+- (void) addString: (TLTagsControl *)tagControl withString:(NSString*)typed;
+//- (void) passingArray:(NSArray*) subjectsArray;
 
 @end
 
@@ -46,5 +46,6 @@ typedef NS_ENUM(NSUInteger, TLTagsControlMode) {
 - (void)addTag:(NSString *)tag;
 - (void)emptyField;
 - (void)reloadTagSubviews;
-- (void)triggerPassing;
+//- (void)triggerPassing;
+
 @end

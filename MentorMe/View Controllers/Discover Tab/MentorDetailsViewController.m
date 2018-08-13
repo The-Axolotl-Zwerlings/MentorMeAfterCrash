@@ -111,11 +111,6 @@ int myCounter;
     large.translatesAutoresizingMaskIntoConstraints = false;
     [bbp.view addSubview:large];
     large.file = self.mentor.profilePic;
-    [large loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-        if(error == nil){
-            NSLog(@"We did it!");
-        }
-    }];
     [large.widthAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
     [large.heightAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
     
