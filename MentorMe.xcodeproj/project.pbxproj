@@ -399,12 +399,12 @@
 		C0F1018A21016311009ADA47 /* Appointments Tab */ = {
 			isa = PBXGroup;
 			children = (
-				A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */,
-				A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */,
-				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
-				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
 				C0F101762101059B009ADA47 /* AppointmentsViewController.h */,
 				C0F101772101059B009ADA47 /* AppointmentsViewController.m */,
+				C0F101732100FF9F009ADA47 /* AppointmentDetailsViewController.h */,
+				C0F101742100FF9F009ADA47 /* AppointmentDetailsViewController.m */,
+				A87C16D22113F7E5001AC0B5 /* MilestoneViewController.h */,
+				A87C16D32113F7E5001AC0B5 /* MilestoneViewController.m */,
 				A82EB2D72107E0B000079B53 /* ReviewViewController.h */,
 				A82EB2D82107E0B000079B53 /* ReviewViewController.m */,
 			);

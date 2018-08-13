@@ -139,7 +139,8 @@
         ReviewViewController *reviewViewController = [segue destinationViewController];
         reviewViewController.reviewee = self.appointmentWith;
     } else if([segue.identifier isEqualToString:@"MilestoneSegue"]){
-        MilestoneViewController *milestoneViewController = [segue destinationViewController];
+        NSLog(@"Segue to MILESTONE");
+        MilestoneViewController *milestoneViewController;
         
         
         PFQuery *query = [PFQuery queryWithClassName:@"Milestone"];
@@ -147,11 +148,12 @@
         [query whereKey:@"mentee" equalTo:self.appointment.mentee];
         [query findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError * _Nullable error) {
             if(error == nil){
-                milestoneViewController.milestone = milestone[0];
-                [milestoneViewController setUI];
+                milestoneViewController.milestone = [milestone firstObject];
             }
             
         }];
+        
+        milestoneViewController = [segue destinationViewController];
     
         
     }

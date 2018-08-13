@@ -28,7 +28,13 @@
 @property (strong, nonatomic) NSSet *giveSet;
 @property (strong, nonatomic) NSSet *getSet;
 
-- (void) loadCell;
+
+@property (strong, nonatomic) UILabel *nameLabel;
+@property (strong, nonatomic) UILabel *educationLabel;
+@property (strong, nonatomic) UILabel *jobLabel;
+@property (strong, nonatomic) PFImageView *profilePicture;
+
+- (void) loadCell:(BOOL) incomingBool;
 - (void) loadCollectionViews;
 
 @end

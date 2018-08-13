@@ -26,11 +26,11 @@
 
 
 -(void)setUI{
-    
-    self.milestoneWith.text = [@"Milestones With " stringByAppendingString:self.mentor.name];
-    self.meetingNumber = [self.milestone.meetingNumber intValue];
-    self.arrayOfArrays = self.milestone.arrayOfArrayOfTasks;
-    
+    if( self.mentor != nil ){
+        self.milestoneWith.text = [@"Milestones With " stringByAppendingString:self.mentor.name];
+        self.meetingNumber = [self.milestone.meetingNumber intValue];
+        self.arrayOfArrays = self.milestone.arrayOfArrayOfTasks;
+    }
     //if there isn't an array for each meeting yet, make them
     NSMutableArray *arrayOfArrayMutable = [NSMutableArray arrayWithArray:self.arrayOfArrays];
     while(arrayOfArrayMutable.count < self.meetingNumber){

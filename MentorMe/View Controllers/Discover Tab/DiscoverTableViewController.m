@@ -62,7 +62,7 @@
     [super viewWillAppear:animated];
     self.tabBarController.navigationItem.title = @"Discover";
     /**/
-
+    
     [self loadBarButtons];
     
     [giveTableView reloadData];
@@ -265,12 +265,12 @@
     CGFloat viewWidth = CGRectGetWidth(self.view.frame);
     self.segmentedControl = [[HMSegmentedControl alloc] initWithFrame:CGRectMake(12, 12, viewWidth-24, 40)];
     [self.segmentedControl addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-
+    
     self.segmentedControl.sectionTitles = @[@"Get Advice", @"Give Advice"];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor clearColor];
     self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
-    self.segmentedControl.selectionIndicatorColor = [UIColor grayColor];
+    self.segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleArrow;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
     self.segmentedControl.tag = 2;
@@ -299,18 +299,20 @@
 - (void) initTableViews {
     getTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
-    getTableView.delegate = self;
-    getTableView.dataSource = self;
+    [getTableView setDelegate:self];
+    [getTableView setDataSource:self];
     [getTableView setRowHeight:184];
-    getTableView.showsVerticalScrollIndicator = NO;
+    [getTableView setShowsHorizontalScrollIndicator:NO];
+    [getTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:getTableView];
     
     giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500)];
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
-    giveTableView.delegate = self;
-    giveTableView.dataSource = self;
+    [giveTableView setDelegate:self];
+    [giveTableView setDataSource:self];
     [giveTableView setRowHeight:184];
-    giveTableView.showsVerticalScrollIndicator = NO;
+    [giveTableView setShowsHorizontalScrollIndicator:NO];
+    [giveTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:giveTableView];
     
 }
@@ -336,7 +338,54 @@
     } else{
         [giveTableView reloadData];
     }
+    
+}
 
+/*** TABLE VIEW METHODS ***/
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if(tableView == getTableView && self.filtersToSearchGetWith.count != 0) {
+        
+        return self.filterGet.count;
+    } else if (tableView == giveTableView && self.filtersToSearchGiveWith.count != 0) {
+        
+        return self.filterGive.count;
+    } else {
+        return self.allUsersFromQuery.count;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    DiscoverCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
+    
+    [cell targetForAction:@selector(tableView:didSelectRowAtIndexPath:) withSender:nil];
+    
+    cell.selectedIndex = self.segmentedControl.selectedSegmentIndex;
+    if(cell.selectedIndex == 0 && self.filtersToSearchGetWith.count != 0 && tableView == getTableView){
+        cell.userForCell = self.filterGet[indexPath.row];
+    } else if(cell.selectedIndex == 1 && self.filtersToSearchGiveWith.count != 0 && tableView == giveTableView){
+        cell.userForCell = self.filterGive[indexPath.row];
+        
+    } else{
+        cell.userForCell = self.allUsersFromQuery[indexPath.row];
+    }
+    cell.incomingGetInterests = cell.userForCell.getAdviceInterests;
+    cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
+    cell.giveSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
+    cell.getSet = [NSSet setWithArray:self.filtersToSearchGetWith];
+    if(cell.userForCell != nil ){
+        [cell loadCell:YES];
+        [cell loadCollectionViews];
+    }
+    
+    
+    return cell;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:indexPath];
 }
 
 /*** SEGUE METHODS ***/
@@ -382,51 +431,5 @@
             mentorDetailsViewController.isMentorOfMeeting = YES;
         }
     }
-}
-
-
-/***** TABLE VIEW ******/
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if(tableView == getTableView && self.filtersToSearchGetWith.count != 0) {
-        
-        return self.filterGet.count;
-    } else if (tableView == giveTableView && self.filtersToSearchGiveWith.count != 0) {
-        
-        return self.filterGive.count;
-    } else {
-        return self.allUsersFromQuery.count;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    DiscoverCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
-    
-    [cell targetForAction:@selector(tableView:didSelectRowAtIndexPath:) withSender:nil];
-    
-    cell.selectedIndex = self.segmentedControl.selectedSegmentIndex;
-    if(cell.selectedIndex == 0 && self.filtersToSearchGetWith.count != 0 && tableView == getTableView){
-        cell.userForCell = self.filterGet[indexPath.row];
-    } else if(cell.selectedIndex == 1 && self.filtersToSearchGiveWith.count != 0 && tableView == giveTableView){
-        cell.userForCell = self.filterGive[indexPath.row];
-        
-    } else{
-        cell.userForCell = self.allUsersFromQuery[indexPath.row];
-    }
-    cell.incomingGetInterests = cell.userForCell.getAdviceInterests;
-    cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
-    cell.giveSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
-    cell.getSet = [NSSet setWithArray:self.filtersToSearchGetWith];
-    if(cell.userForCell != nil ){
-        [cell loadCell];
-        [cell loadCollectionViews];
-    }
-
-    return cell;
-}
-
--(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:indexPath];
 }
 @end

@@ -18,12 +18,9 @@
 
 @property (nonatomic, strong ) UIRefreshControl *refreshControl;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
-
-
 @property (strong, nonatomic) NSArray *pastAppointments;
 @property (strong, nonatomic) IBOutlet UILabel *noAppointmentsLabel;
 @property (strong, nonatomic) NSArray *upComingAppointments;
-
 @property (nonatomic, assign) NSInteger give;
 @end
 

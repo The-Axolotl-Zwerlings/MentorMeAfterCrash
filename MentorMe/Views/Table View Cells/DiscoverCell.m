@@ -51,114 +51,97 @@
     self.backgroundImage.backgroundColor = backgroundColor;
 }
 
-- (void) loadCell {
+- (void) loadCell:(BOOL)incomingBool  {
     
     //0. Background Color
     self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 160)];
-    self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0];
-    self.backgroundImage.layer.cornerRadius = 0;
-    self.backgroundImage.layer.masksToBounds = NO;
-    self.backgroundImage.layer.shadowColor = UIColor.grayColor.CGColor;
-    self.backgroundImage.layer.shadowRadius = 3;
-    self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
-    self.backgroundImage.layer.shadowOpacity = 0.4;
+    [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0]];
+    [self.backgroundImage.layer setCornerRadius:0];
+    [self.backgroundImage.layer setMasksToBounds:NO];
+    [self.backgroundImage.layer setShadowColor: UIColor.grayColor.CGColor];
+    [self.backgroundImage.layer setShadowRadius:3];
+    [self.backgroundImage.layer setShadowOpacity:0.4];
+    [self.backgroundImage.layer setShadowOffset:CGSizeMake(0, 5)];
     [self addSubview:self.backgroundImage];
     
     //1. Profile Image
-    PFImageView *newImage = [[PFImageView alloc] initWithFrame:CGRectMake(12, 12, 100, 100)];
-    newImage.file = self.userForCell.profilePic;
-    [newImage loadInBackground];
-    newImage.layer.borderColor = UIColor.whiteColor.CGColor;
-    newImage.layer.borderWidth = 5;
-    newImage.layer.cornerRadius = newImage.frame.size.width /2;
-    newImage.layer.masksToBounds = YES;
-    [self.backgroundImage addSubview:newImage];
+    self.profilePicture = [[PFImageView alloc] initWithFrame:CGRectMake(12, 12, 100, 100)];
+    [self.profilePicture setFile:self.userForCell.profilePic];
+    if( incomingBool ){
+        [self.profilePicture loadInBackground];
+    }
+    [self.profilePicture.layer setBorderColor:UIColor.whiteColor.CGColor];
+    [self.profilePicture.layer setBorderWidth:5];
+    [self.profilePicture.layer setCornerRadius: self.profilePicture.frame.size.width/2];
+    [self.profilePicture.layer setMasksToBounds:YES];
+    [self.backgroundImage addSubview:self.profilePicture];
     
-    double textWidth = self.backgroundImage.frame.size.width - ( newImage.frame.origin.x + newImage.frame.size.width + newImage.frame.origin.x ) - newImage.frame.origin.x;
+    double textWidth = self.backgroundImage.frame.size.width - ( self.profilePicture.frame.origin.x + self.profilePicture.frame.size.width + self.profilePicture.frame.origin.x ) - self.profilePicture.frame.origin.x;
+    
+    
     
     //2. Name Label
-    UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 124, 12, textWidth, 40)];
-    nameLabel.text = self.userForCell.name;
-    nameLabel.textColor = [UIColor whiteColor];
-    [self.backgroundImage addSubview:nameLabel];
+    self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 124, 12, textWidth, 90)];
+    
+    [self.nameLabel setFont:[UIFont fontWithName:@"Avenir" size:25]];
+    [self.nameLabel setText:self.userForCell.name];
+    [self.nameLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.nameLabel setNumberOfLines:0];
+    [self.nameLabel adjustsFontSizeToFitWidth];
+    [self.nameLabel setLineBreakMode:NSLineBreakByClipping];
+    [self.nameLabel sizeToFit];
+    [self.backgroundImage addSubview:self.nameLabel];
+    
+    
     
     //3. Job Label
     NSString *jobLine = [[self.userForCell.jobTitle stringByAppendingString:@" at "] stringByAppendingString:self.userForCell.company];
-    UILabel *jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, nameLabel.frame.size.height + nameLabel.frame.origin.y, textWidth, 40)];
-    jobLabel.text = jobLine;
-    jobLabel.textColor = [UIColor whiteColor];
-    jobLabel.numberOfLines = 0;
-    jobLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.backgroundImage addSubview:jobLabel];
+    self.jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.nameLabel.frame.size.height + self.nameLabel.frame.origin.y, textWidth, 40)];
+    
+    [self.jobLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
+    [self.jobLabel setText:jobLine];
+    [self.jobLabel setTextColor:[UIColor whiteColor]];
+    
+    [self.jobLabel setNumberOfLines:0];
+    [self.jobLabel adjustsFontSizeToFitWidth];
+    [self.jobLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.jobLabel sizeToFit];
+    [self.backgroundImage addSubview:self.jobLabel];
+    
+    
     
     //4. Education Label
     NSString *educationLine = [[[@"Studied " stringByAppendingString:self.userForCell.major] stringByAppendingString:@" at "] stringByAppendingString:self.userForCell.school];
-    UILabel *educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, jobLabel.frame.size.height + jobLabel.frame.origin.y, textWidth, 40)];
-    educationLabel.text = educationLine;
-    educationLabel.textColor = [UIColor whiteColor];
-    educationLabel.numberOfLines = 0;
-    educationLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    [self.backgroundImage addSubview:educationLabel];
+    self.educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.jobLabel.frame.size.height + self.jobLabel.frame.origin.y, textWidth, 40)];
     
-    //5. Auto Layout
-    [nameLabel setFont:[UIFont fontWithName:@"Avenir" size:30]];
-    [jobLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-    [educationLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-    //A. Find Frame
-    CGRect frameA = nameLabel.frame;
-    CGRect frameB = jobLabel.frame;
-    CGRect frameC = educationLabel.frame;
-    //B. Change Width
-    CGFloat frameWidth = 227;
-    frameA.size.width = frameWidth;
-    frameB.size.width = frameWidth;
-    frameC.size.width = frameWidth;
-    //D. Change Height
+    [self.educationLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
+    [self.educationLabel setText:educationLine];
+    [self.educationLabel setTextColor:[UIColor whiteColor]];
     
-    frameA.size.height = [self getLabelHeight:nameLabel];
-    frameB.size.height = [self getLabelHeight:jobLabel];
-    frameC.size.height = [self getLabelHeight:educationLabel];
+    [self.educationLabel setNumberOfLines:0];
+    [self.educationLabel adjustsFontSizeToFitWidth];
+    [self.educationLabel setLineBreakMode:NSLineBreakByWordWrapping];
+    [self.educationLabel sizeToFit];
+    [self.backgroundImage addSubview:self.educationLabel];
     
-    [nameLabel adjustsFontSizeToFitWidth];
-    [jobLabel adjustsFontSizeToFitWidth];
-    [educationLabel adjustsFontSizeToFitWidth];
-    
-    //B. Change Y-Coordinate
-    frameA.origin.y = 12;
-    frameB.origin.y = frameA.origin.y+frameA.size.height;
-    frameC.origin.y = frameB.origin.y+frameB.size.height;
-    
-    [nameLabel setFrame:frameA];
-    [jobLabel setFrame:frameB];
-    [educationLabel setFrame:frameC];
-    
-}
-
-- (CGFloat) getLabelHeight:(UILabel*) incomingLabel{
-    NSInteger lineCount = 0;
-    CGSize textSize = CGSizeMake(incomingLabel.frame.size.width, MAXFLOAT);
-    long rHeight = lroundf([incomingLabel sizeThatFits:textSize].height);
-    long charSize = lroundf(incomingLabel.font.lineHeight);
-    lineCount = rHeight/charSize;
-    CGFloat heightOfLabel = lineCount * charSize;
-    return heightOfLabel;
 }
 
 - (void) loadCollectionViews {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    flowLayout.itemSize = CGSizeMake(120, 10);
+    flowLayout.itemSize = CGSizeMake(120, 50);
     [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
     flowLayout.minimumInteritemSpacing = 10;
     flowLayout.minimumLineSpacing = 0;
     flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
     
-//    UIImageView *line = [[UIImageView alloc] initWithFrame:CGRectMake(0, 124, 375, 1)];
-//    line.backgroundColor = [UIColor blueColor];
-//    [self.backgroundImage addSubview:line];
-//
+    
+    
+    CGFloat yPositionOfCollectionViews = MAX(self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 12, self.jobLabel.frame.origin.y + self.jobLabel.frame.size.height + 12);
+    
     
     if( self.selectedIndex == 1 ) {
-        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
+        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
         [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewA.delegate = self;
         collectionViewA.dataSource = self;
@@ -170,7 +153,7 @@
     }
     
     if( self.selectedIndex == 0 ){
-        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, 124, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
+        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
         [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
         collectionViewB.dataSource = self;

@@ -12,10 +12,8 @@ target 'MentorMe' do
   pod 'ParseUI'
   pod 'AFNetworking'
   pod 'TTGTagCollectionView'
-  pod 'ChameleonFramework'
   pod 'MBProgressHUD'
   pod 'TLTagsControl', :git => 'https://github.com/mohlman3/TLTagsControl.git'
-  
   pod 'HMSegmentedControl'
   
   
