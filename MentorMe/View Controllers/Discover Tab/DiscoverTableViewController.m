@@ -297,11 +297,12 @@
 
 
 - (void) initTableViews {
+    NSLog(@"Loading a new Table View");
     getTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [getTableView setDelegate:self];
     [getTableView setDataSource:self];
-    [getTableView setRowHeight:184];
+    [getTableView setRowHeight:224];
     [getTableView setShowsHorizontalScrollIndicator:NO];
     [getTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:getTableView];
@@ -310,7 +311,7 @@
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [giveTableView setDelegate:self];
     [giveTableView setDataSource:self];
-    [giveTableView setRowHeight:184];
+    [giveTableView setRowHeight:224];
     [giveTableView setShowsHorizontalScrollIndicator:NO];
     [giveTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:giveTableView];

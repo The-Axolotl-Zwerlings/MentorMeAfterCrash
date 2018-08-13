@@ -54,7 +54,7 @@
 - (void) loadCell:(BOOL)incomingBool  {
     
     //0. Background Color
-    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 160)];
+    self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 200)];
     [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0]];
     [self.backgroundImage.layer setCornerRadius:0];
     [self.backgroundImage.layer setMasksToBounds:NO];
@@ -125,7 +125,9 @@
     [self.educationLabel sizeToFit];
     [self.backgroundImage addSubview:self.educationLabel];
     
+    
 }
+
 
 - (void) loadCollectionViews {
     UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
@@ -137,7 +139,8 @@
     
     
     
-    CGFloat yPositionOfCollectionViews = MAX(self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 12, self.jobLabel.frame.origin.y + self.jobLabel.frame.size.height + 12);
+    CGFloat yPositionOfCollectionViews = MAX(self.profilePicture.frame.origin.y + self.profilePicture.frame.size.height + 12, self.educationLabel.frame.origin.y + self.educationLabel.frame.size.height + 12);
+
     
     
     if( self.selectedIndex == 1 ) {
@@ -217,11 +220,14 @@
 }
 
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSInteger *numberToReturn = 0;
     if( self.selectedIndex == 1 ){
-        return self.userForCell.getAdviceInterests.count;
+        numberToReturn =  self.userForCell.getAdviceInterests.count;
     } else {
-        return self.userForCell.giveAdviceInterests.count;
+        numberToReturn =  self.userForCell.giveAdviceInterests.count;
     }
+    
+    return MIN(numberToReturn, 3);
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
