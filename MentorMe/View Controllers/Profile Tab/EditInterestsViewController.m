@@ -18,15 +18,9 @@
 //Outlets for UI views
 @property (weak, nonatomic) IBOutlet TLTagsControl *getAdviceField;
 @property (weak, nonatomic) IBOutlet TLTagsControl *giveAdviceField;
-
-
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
 @property (weak, nonatomic) IBOutlet UIButton *cancelButton;
-
-
-
 @property (strong, nonatomic) IBOutlet UITableView *interestsTableView;
-
 @property (strong, nonatomic) NSString* store;
 @property (strong, nonatomic) NSString* getStore;
 @property (strong, nonatomic) NSString* giveStore;
@@ -37,6 +31,9 @@
 @property (strong, nonatomic) NSArray* creationArray;
 @property (nonatomic, strong) NSArray* array1;
 @property (nonatomic, strong) NSArray* array2;
+@property (nonatomic, strong) NSString* myInterest;
+@property (nonatomic, strong) TLTagsControl *currentTagControll;
+@property (nonatomic, assign) NSInteger additionalCell;
 
 @end
 
@@ -57,7 +54,6 @@
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
     
-    
     // Do any additional setup after loading the view.
     _getAdviceField.mode = TLTagsControlModeEdit;
     _getAdviceField.tagPlaceholder = @"Type a topic";
@@ -66,15 +62,23 @@
     _giveAdviceField.mode = TLTagsControlModeEdit;
     _giveAdviceField.tagPlaceholder = @"Type a topic";
     [_giveAdviceField reloadTagSubviews];
+    
+    //UI things
+    self.giveAdviceField.layer.cornerRadius = 5;
+    self.giveAdviceField.layer.masksToBounds = true;
+    self.getAdviceField.layer.cornerRadius = 5;
+    self.getAdviceField.layer.masksToBounds = true;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)addString:(TLTagsControl *)tagControl withString:(NSString *)typed{
+    self.myInterest = typed;
     if(tagControl == self.getAdviceField){
+        self.currentTagControll = self.getAdviceField;
+        self.myInterest = typed;
         if (typed.length >= 1){
             self.store = typed;
             self.getStore = typed;
@@ -82,7 +86,7 @@
             CGRect intermediate = [self.getAdviceField frame];
             CGRect tablePosition;
             tablePosition.size.width = intermediate.size.width;
-            tablePosition.size.height = 60;
+            tablePosition.size.height = 80;
             tablePosition.origin.x = intermediate.origin.x;
             tablePosition.origin.y = intermediate.origin.y + 48;
             self.interestsTableView.frame = tablePosition;
@@ -96,6 +100,7 @@
         }
     }
     if(tagControl == self.giveAdviceField){
+        self.currentTagControll = self.giveAdviceField;
         if (typed.length >= 1){
             self.store = typed;
             self.giveStore = typed;
@@ -103,7 +108,7 @@
             CGRect intermediate = [self.giveAdviceField frame];
             CGRect tablePosition;
             tablePosition.size.width = intermediate.size.width;
-            tablePosition.size.height = 60;
+            tablePosition.size.height = 80;
             tablePosition.origin.x = intermediate.origin.x;
             tablePosition.origin.y = intermediate.origin.y + 48;
             self.interestsTableView.frame = tablePosition;
@@ -125,22 +130,16 @@
         if (!error) {
             NSLog(@"Successfully retrieved %lu scores.", subjects.count);
             NSMutableArray* temporary = [[NSMutableArray alloc]init];
-            
             for (InterestModel *interest in subjects) {
-                if(substring == interest.subject){
-                    [self.interestsTableView removeFromSuperview];
-                    if(self.getStore != nil){
-                        [self.getAdviceField addTag:self.getStore];
-                        [self.getAdviceField emptyField];
-                    }
-                    if(self.giveStore != nil){
-                        [self.giveAdviceField addTag:self.giveStore];
-                        [self.giveAdviceField emptyField];
-                    }
+                if([substring isEqualToString:interest.subject]){
+                    self.additionalCell =0;
                 }
                 else{
-                    [temporary addObject:interest.subject];
+                    self.additionalCell =1;
                 }
+                    [temporary addObject:interest.subject];
+                if  (temporary.count == 0)
+                    self.myInterest = substring;
             }
             self.forTableView = [[NSArray alloc]initWithArray:temporary];
             [self.interestsTableView reloadData];
@@ -157,24 +156,46 @@
     }
     else{
         NSLog(@"%lu", self.forTableView.count);
-        return (self.forTableView.count);
+        return (self.forTableView.count) + self.additionalCell;
     }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
-    
+    [cell.contentView.layer setBorderColor:[UIColor colorWithWhite:0.8 alpha:1].CGColor];
+    [cell.contentView.layer setBorderWidth:1];
+//    UIColor *tagBackgrounColor = [UIColor colorWithRed:0.13
+//                                                                                                      green:0.70
+//                                                                                                       blue:0.67
+//                                                                                                      alpha:1];
+//    cell.contentView.backgroundColor = tagBackgrounColor;
     if(self.forTableView == nil || self.forTableView.count == 0){
         NSLog(@"IN IF1");
-        cell.interestLabel.text = @"nobody has listed this as their interest";
-        cell.interestLabel.textColor = UIColor.grayColor;
+        cell.interestLabel.hidden = YES;
+        cell.createNewInterest.hidden = NO;
         return cell;
     }
     else{
-        NSLog(@"IN ELSE1");
-        cell.interestLabel.text = self.forTableView [indexPath.row];
-        cell.interestLabel.textColor = UIColor.blackColor;
+        if(self.additionalCell == 0){
+            cell.interestLabel.text = self.forTableView [indexPath.row];
+            cell.interestLabel.textColor = UIColor.blackColor;
+            cell.interestLabel.hidden = NO;
+            cell.createNewInterest.hidden = YES;
+        }
+     
+       else if (self.additionalCell == 1){
+            if(indexPath.row <= self.forTableView.count - 1){
+            cell.interestLabel.text = self.forTableView [indexPath.row];
+            cell.interestLabel.textColor = UIColor.blackColor;
+            cell.interestLabel.hidden = NO;
+            cell.createNewInterest.hidden = YES;
+            }
+            if (indexPath.row == self.forTableView.count){
+            cell.interestLabel.hidden = YES;
+            cell.createNewInterest.hidden = NO;
+            }
+        }
         return cell;
     }
 }
@@ -182,13 +203,13 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath
 {
     AutocompleteTableViewCell* cell = [tableView cellForRowAtIndexPath:indexPath];
-    if (self.getStore != nil){
+    if (self.currentTagControll == self.getAdviceField){
         [self.getAdviceField addTag:cell.interestLabel.text];
         [self.interestsTableView removeFromSuperview];
         [self.getAdviceField emptyField];
         self.getStore = nil;
     }
-    if (self.giveStore != nil){
+    if (self.currentTagControll == self.giveAdviceField){
         [self.giveAdviceField addTag:cell.interestLabel.text];
         [self.interestsTableView removeFromSuperview];
         [self.giveAdviceField emptyField];
@@ -197,9 +218,7 @@
 }
 
 - (IBAction)onTapCancel:(id)sender{
-    
     [self dismissViewControllerAnimated:YES completion:nil];
-    
 }
 
 - (IBAction)onTapSave:(id)sender {
@@ -222,28 +241,29 @@
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Interest added to user");
+            [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSLog(@"Error: %@", error.description);
         }
     }];
-    //retrieve array
-    [self.getAdviceField triggerPassing];
-    [self.giveAdviceField triggerPassing];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
-
-- (void) passingArray:(NSArray*) subjectsArray{
-    self.creationArray = [NSArray arrayWithArray:subjectsArray];
-    for(NSString* newSubject in self.creationArray){
-        [InterestModel addInterest:newSubject inCategory:@"new Interest"];
+- (IBAction)atTapCreateNew:(id)sender {
+    [InterestModel addInterest:self.myInterest inCategory:@"new Interest"];
+    [self.interestsTableView removeFromSuperview];
+    if (self.currentTagControll == self.getAdviceField){
+        [self.getAdviceField addTag:self.myInterest];
+        [self.getAdviceField emptyField];
+    }
+    
+    else if (self.currentTagControll == self.giveAdviceField){
+        [self.giveAdviceField addTag:self.myInterest];
+        [self.giveAdviceField emptyField];
     }
 }
 
 -(void)update:(NSArray*)one and:(NSArray*)two{
     self.array1 = [[NSArray alloc]initWithArray:one];
     self.array2 = [[NSArray alloc]initWithArray:two];
-    //[self.getAdviceField addTag:this];
 }
 
 

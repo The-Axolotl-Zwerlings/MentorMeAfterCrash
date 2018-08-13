@@ -86,33 +86,57 @@
     
     UITapGestureRecognizer *singleFingerTap =
     [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(onTapProfilePicture:)];
+                                            action:@selector(handleImageTap:)];
     [self.profileImageView addGestureRecognizer:singleFingerTap];
     
-    UITapGestureRecognizer *dismissFingerTap =
-    [[UITapGestureRecognizer alloc] initWithTarget:self
-                                            action:@selector(dismissProfilePicture:)];
-    [self.view addGestureRecognizer:dismissFingerTap];
-    
+//    UITapGestureRecognizer *dismissFingerTap =
+//    [[UITapGestureRecognizer alloc] initWithTarget:self
+//                                            action:@selector(dismissProfilePicture:)];
+//    [self.view addGestureRecognizer:dismissFingerTap];
 }
-- (void)onTapProfilePicture:(UITapGestureRecognizer *)recognizer
-{
-    [self.view addSubview:self.largeImageView];
-    [self.largeImageView setFrame:CGRectMake(self.view.frame.origin.x+37.5, self.view.frame.origin.y+127, 300, 300)];
-    self.largeImage.file = self.user.profilePic;
-    [self.largeImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
-        if(error == nil){
-            NSLog(@"Large Profile Picture loaded!");
-        }
-    }];
+//- (void)onTapProfilePicture:(UITapGestureRecognizer *)recognizer
+//{
+//    [self.view addSubview:self.largeImageView];
+//    [self.largeImageView setFrame:CGRectMake(self.view.frame.origin.x+37.5, self.view.frame.origin.y+127, 300, 300)];
+//    self.largeImage.file = self.user.profilePic;
+//    [self.largeImage loadInBackground:^(UIImage * _Nullable image, NSError * _Nullable error) {
+//        if(error == nil){
+//            NSLog(@"Large Profile Picture loaded!");
+//        }
+//    }];
+//
+//
+//}
+//- (void)dismissProfilePicture:(UITapGestureRecognizer *)recognizer
+//{
+//    [self.largeImageView removeFromSuperview];
+//}
+-(void)handleImageTap: (UITapGestureRecognizer *) recognizer{
     
+    UIViewController *bbp=[[UIViewController alloc]init];
+    UINavigationController *passcodeNavigationController = [[UINavigationController alloc] initWithRootViewController:bbp];
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
+                                 @"Back" style:UIBarButtonItemStylePlain target:
+                                 self action:@selector(myButtonClicked:)];
+    [self.navigationController presentViewController:passcodeNavigationController animated:YES completion:nil];
+    bbp.view.backgroundColor = UIColor.blackColor;
+    bbp.navigationController.navigationBar.barTintColor = UIColor.blackColor;
+    bbp.navigationItem.leftBarButtonItem = myNavBtn;
+    PFImageView* large = [[PFImageView alloc]init];
+    large.translatesAutoresizingMaskIntoConstraints = false;
+    [bbp.view addSubview:large];
+    large.file = self.user.profilePic;
+    [large.widthAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
+    [large.heightAnchor constraintEqualToConstant:bbp.view.frame.size.width].active = YES;
     
-}
-- (void)dismissProfilePicture:(UITapGestureRecognizer *)recognizer
-{
-    [self.largeImageView removeFromSuperview];
+    [large.centerXAnchor constraintEqualToAnchor:bbp.view.centerXAnchor].active = YES;
+    [large.centerYAnchor constraintEqualToAnchor:bbp.view.centerYAnchor].active = YES;
 }
 
+- (void)myButtonClicked:(UIBarButtonItem*)sender
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 -(void)onTapLogout{
@@ -230,9 +254,6 @@
     [self getCurrentUser];
     
 }
-
-
-
 
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
