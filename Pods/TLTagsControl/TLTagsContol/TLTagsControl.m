@@ -47,6 +47,7 @@
         [self commonInit];
         [self setTags:[[NSMutableArray alloc]initWithArray:tags]];
         [self setMode:mode];
+
     }
     
     return self;
@@ -74,6 +75,8 @@
     _tags = [NSMutableArray array];
     
     self.layer.cornerRadius = 5;
+    [self.layer setBorderColor:[UIColor colorWithWhite:0.8 alpha:1].CGColor];
+    [self.layer setBorderWidth:1];
     
     tagSubviews_ = [NSMutableArray array];
     
@@ -112,6 +115,8 @@
         }
         tempViewFrame.origin.y = frame.origin.y;
         view.frame = tempViewFrame;
+        [view.layer setBorderColor:[UIColor colorWithWhite:1 alpha:1].CGColor];
+        [view.layer setBorderWidth:4];
         
         if (_mode == TLTagsControlModeList) {
             view.tag = tagIndex;
@@ -196,9 +201,9 @@
     
     [tagSubviews_ removeAllObjects];
     
-    UIColor *tagBackgrounColor = _tagsBackgroundColor != nil ? _tagsBackgroundColor : [UIColor colorWithRed:0.9
-                                                                                                      green:0.91
-                                                                                                       blue:0.925
+    UIColor *tagBackgrounColor = /*_tagsBackgroundColor != nil ? _tagsBackgroundColor : */[UIColor colorWithRed:0.13
+                                                                                                      green:0.76
+                                                                                                       blue:0.72
                                                                                                       alpha:1];
 
     UIColor *tagTextColor = _tagsTextColor != nil ? _tagsTextColor : [UIColor darkGrayColor];
@@ -214,9 +219,7 @@
         
         self.tagView = [[UIView alloc] initWithFrame:tagInputField_ .frame];
         CGRect tagFrame = self.tagView.frame;
-        self.tagView.layer.cornerRadius = 5;
-        tagFrame.origin.y = tagInputField_ .frame.origin.y;
-
+        self.tagView.layer.cornerRadius = (self.tagView.frame.size.height/2)+1;
         self.tagView.backgroundColor = tagBackgrounColor;
         
         
@@ -226,7 +229,7 @@
         labelFrame.size.width = width + 16;
         labelFrame.size.height = tagInputField_ .frame.size.height;
         tagLabel.text = tag;
-        tagLabel.textColor = tagTextColor;
+        tagLabel.textColor = UIColor.whiteColor;
         tagLabel.textAlignment = NSTextAlignmentCenter;
         tagLabel.clipsToBounds = YES;
         tagLabel.layer.cornerRadius = 5;

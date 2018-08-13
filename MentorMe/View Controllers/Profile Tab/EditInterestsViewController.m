@@ -54,7 +54,6 @@
     self.interestsTableView.delegate = self;
     self.interestsTableView.dataSource = self;
     
-    
     // Do any additional setup after loading the view.
     _getAdviceField.mode = TLTagsControlModeEdit;
     _getAdviceField.tagPlaceholder = @"Type a topic";
@@ -63,6 +62,12 @@
     _giveAdviceField.mode = TLTagsControlModeEdit;
     _giveAdviceField.tagPlaceholder = @"Type a topic";
     [_giveAdviceField reloadTagSubviews];
+    
+    //UI things
+    self.giveAdviceField.layer.cornerRadius = 5;
+    self.giveAdviceField.layer.masksToBounds = true;
+    self.getAdviceField.layer.cornerRadius = 5;
+    self.getAdviceField.layer.masksToBounds = true;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -81,7 +86,7 @@
             CGRect intermediate = [self.getAdviceField frame];
             CGRect tablePosition;
             tablePosition.size.width = intermediate.size.width;
-            tablePosition.size.height = 60;
+            tablePosition.size.height = 80;
             tablePosition.origin.x = intermediate.origin.x;
             tablePosition.origin.y = intermediate.origin.y + 48;
             self.interestsTableView.frame = tablePosition;
@@ -103,7 +108,7 @@
             CGRect intermediate = [self.giveAdviceField frame];
             CGRect tablePosition;
             tablePosition.size.width = intermediate.size.width;
-            tablePosition.size.height = 60;
+            tablePosition.size.height = 80;
             tablePosition.origin.x = intermediate.origin.x;
             tablePosition.origin.y = intermediate.origin.y + 48;
             self.interestsTableView.frame = tablePosition;
@@ -158,7 +163,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     AutocompleteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"interestCell" forIndexPath:indexPath];
-    
+    [cell.contentView.layer setBorderColor:[UIColor colorWithWhite:0.8 alpha:1].CGColor];
+    [cell.contentView.layer setBorderWidth:1];
+//    UIColor *tagBackgrounColor = [UIColor colorWithRed:0.13
+//                                                                                                      green:0.70
+//                                                                                                       blue:0.67
+//                                                                                                      alpha:1];
+//    cell.contentView.backgroundColor = tagBackgrounColor;
     if(self.forTableView == nil || self.forTableView.count == 0){
         NSLog(@"IN IF1");
         cell.interestLabel.hidden = YES;
@@ -230,15 +241,11 @@
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Interest added to user");
+            [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSLog(@"Error: %@", error.description);
         }
     }];
-    //retrieve array
-//    [self.getAdviceField triggerPassing];
-//    [self.giveAdviceField triggerPassing];
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)atTapCreateNew:(id)sender {
     [InterestModel addInterest:self.myInterest inCategory:@"new Interest"];
@@ -253,13 +260,6 @@
         [self.giveAdviceField emptyField];
     }
 }
-
-//- (void) passingArray:(NSArray*) subjectsArray{
-//    self.creationArray = [NSArray arrayWithArray:subjectsArray];
-//    for(NSString* newSubject in self.creationArray){
-//        [InterestModel addInterest:newSubject inCategory:@"new Interest"];
-//    }
-//}
 
 -(void)update:(NSArray*)one and:(NSArray*)two{
     self.array1 = [[NSArray alloc]initWithArray:one];
