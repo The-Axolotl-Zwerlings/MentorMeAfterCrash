@@ -81,7 +81,7 @@
     
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
-    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
     
     
     UITapGestureRecognizer *singleFingerTap =

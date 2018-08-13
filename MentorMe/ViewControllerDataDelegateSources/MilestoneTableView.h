@@ -16,6 +16,7 @@
 @property (strong, nonatomic) UIView *myView;
 @property (strong, nonatomic) NSArray *tableViews;
 @property (strong, nonatomic) NSArray *tasks;
+@property (strong, nonatomic) UIButton *button;
 - (void)addedTask:(NSString *)taskText;
-- (id)initWithTableViews:(NSArray *)tableViewArray andTasks:(NSArray *)tasks andLastBar:(UIView*)lastBar;
+- (id)initWithTableViews:(NSArray *)tableViewArray andTasks:(NSArray *)tasks andLastBar:(UIView*)lastBar andButton:(UIButton*)button;
 @end

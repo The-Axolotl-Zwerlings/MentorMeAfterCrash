@@ -30,8 +30,17 @@
     [queryForMentors findObjectsInBackgroundWithBlock:^(NSArray * appointments, NSError * _Nullable error) {
         if(appointments){
             NSMutableArray *mentorsMutable = [[NSMutableArray alloc]init];
+            NSArray *mentorNames = [NSArray arrayWithArray:mentorsMutable];
+            NSMutableArray *mentorNamesMutable = [NSMutableArray arrayWithArray:mentorsMutable];
             for(AppointmentModel *appointment in appointments){
-                [mentorsMutable addObject:appointment.mentor];
+                if([mentorNames containsObject:appointment.mentor.name]){
+                    NSLog(@"SKIP");
+                } else{
+                    [mentorsMutable addObject:appointment.mentor];
+                    [mentorNamesMutable addObject:appointment.mentor.name];
+                    mentorNames = [NSArray arrayWithArray:mentorNamesMutable];
+                }
+                
             }
             self.mentors = [NSArray arrayWithArray:mentorsMutable];
             [self.mentorsCollectionView reloadData];

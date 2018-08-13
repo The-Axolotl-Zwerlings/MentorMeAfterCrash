@@ -21,8 +21,9 @@
 
 
 @property (strong, nonatomic) NSArray *pastAppointments;
+@property (strong, nonatomic) IBOutlet UILabel *noAppointmentsLabel;
 @property (strong, nonatomic) NSArray *upComingAppointments;
-@property UILabel *NoAppointments;
+
 @property (nonatomic, assign) NSInteger give;
 @end
 
@@ -123,9 +124,12 @@
                 NSLog( @"Fetching Upcoming Appointments...");
                 self.appointmentsArray = self.upComingAppointments;
                 if( self.upComingAppointments.count == 0){
+                    self.noAppointmentsLabel.text = @"No Upcoming appointments";
                     self.noAppointmentsView.hidden = false;
+                    [self.view bringSubviewToFront:self.noAppointmentsView];
                 } else {
-                    self.noAppointmentsView.hidden = true;;
+                    self.noAppointmentsView.hidden = true;
+                    [self.view sendSubviewToBack:self.noAppointmentsView];
                     [self.appointmentsTableView reloadData];
                     [self.refreshControl endRefreshing];
                 }
@@ -134,9 +138,12 @@
                 self.appointmentsArray = self.pastAppointments;
                 if( self.pastAppointments.count == 0){
                     self.noAppointmentsView.hidden = false;
+                    self.noAppointmentsLabel.text = @"No Past appointments";
+                    [self.view bringSubviewToFront:self.noAppointmentsView];
                     
                 } else {
-                    self.noAppointmentsView.hidden = true;;
+                    self.noAppointmentsView.hidden = true;
+                    [self.view sendSubviewToBack:self.noAppointmentsView];
                     ;
                 }
                 [self.appointmentsTableView reloadData];

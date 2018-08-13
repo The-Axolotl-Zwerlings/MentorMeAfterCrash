@@ -32,12 +32,13 @@
 //    
 //    [tableView reloadData];
 }
-- (id)initWithTableViews:(NSArray *)tableViewArray andTasks:(NSArray *)tasks andLastBar:(UIView *)lastBar{
+- (id)initWithTableViews:(NSArray *)tableViewArray andTasks:(NSArray *)tasks andLastBar:(UIView *)lastBar andButton:(UIButton *)button{
     self = [super init];
     if(self){
         self.tasks = tasks;
         self.tableViews = tableViewArray;
         self.myView = lastBar;
+        self.button = button;
     }
    
     return self;
@@ -53,8 +54,13 @@
     self.tasks = [NSArray arrayWithArray:lastTableTasksNew];
     
     [UIView animateWithDuration:.3 animations:^{
+        BOOL change = (lastTable.frame.size.height != (lastTableTasksOld.count+1)*45);
         lastTable.frame = CGRectMake(lastTable.frame.origin.x, lastTable.frame.origin.y, lastTable.frame.size.width, (lastTableTasksOld.count+1)* 45);
         self.myView.frame = CGRectMake(self.myView.frame.origin.x, self.myView.frame.origin.y, self.myView.frame.size.width, (lastTableTasksOld.count+1)* 45);
+        if(change){
+            self.button.frame = CGRectMake(self.button.frame.origin.x, self.button.frame.origin.y+45, self.button.frame.size.width, self.button.frame.size.height);
+        }
+        
     }];
     [lastTable reloadData];
 }
@@ -94,8 +100,13 @@
         
         
         [UIView animateWithDuration:.3 animations:^{
+            BOOL change = (lastTable.frame.size.height != (mutableTasks.count+1)*45);
             lastTable.frame = CGRectMake(lastTable.frame.origin.x, lastTable.frame.origin.y, lastTable.frame.size.width, (mutableTasks.count+1)* 45);
             self.myView.frame = CGRectMake(self.myView.frame.origin.x, self.myView.frame.origin.y, self.myView.frame.size.width, (mutableTasks.count+1)* 45);
+            if(change){
+                self.button.frame = CGRectMake(self.button.frame.origin.x, self.button.frame.origin.y-45, self.button.frame.size.width, self.button.frame.size.height);
+            }
+            
         }];
         
         [tableView reloadData];

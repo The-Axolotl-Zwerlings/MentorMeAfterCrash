@@ -154,6 +154,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="metaRockTransparent" translatesAutoresizingMaskIntoConstraints="NO" id="FfP-lF-puV">
+                                <rect key="frame" x="16" y="153" width="61" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="pebbleTransparent" translatesAutoresizingMaskIntoConstraints="NO" id="UTJ-HY-g7m">
+                                <rect key="frame" x="310" y="148" width="49" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="or5-5E-C6Q"/>
@@ -178,4 +186,8 @@
             <point key="canvasLocation" x="896.79999999999995" y="20.239880059970016"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="metaRockTransparent" width="240" height="147"/>
+        <image name="pebbleTransparent" width="135" height="208"/>
+    </resources>
 </document>
