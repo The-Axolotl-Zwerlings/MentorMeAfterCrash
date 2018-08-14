@@ -114,6 +114,8 @@
                     [appointment saveInBackground];
                 }
             }
+            self.pastAppointments = [NSArray arrayWithArray:oldPast];
+            self.upComingAppointments = [NSArray arrayWithArray:oldUpcoming];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             NSInteger *index = self.segmentedControl.selectedSegmentIndex;
@@ -124,12 +126,14 @@
                     self.noAppointmentsLabel.text = @"No Upcoming appointments";
                     self.noAppointmentsView.hidden = false;
                     [self.view bringSubviewToFront:self.noAppointmentsView];
+                   
                 } else {
                     self.noAppointmentsView.hidden = true;
                     [self.view sendSubviewToBack:self.noAppointmentsView];
-                    [self.appointmentsTableView reloadData];
-                    [self.refreshControl endRefreshing];
+                    
                 }
+                [self.appointmentsTableView reloadData];
+                [self.refreshControl endRefreshing];
             } else {
                 NSLog( @"Fetching Past Appointments...");
                 self.appointmentsArray = self.pastAppointments;
@@ -137,11 +141,13 @@
                     self.noAppointmentsView.hidden = false;
                     self.noAppointmentsLabel.text = @"No Past appointments";
                     [self.view bringSubviewToFront:self.noAppointmentsView];
+                    [self.appointmentsTableView reloadData];
+                    [self.refreshControl endRefreshing];
                     
                 } else {
                     self.noAppointmentsView.hidden = true;
                     [self.view sendSubviewToBack:self.noAppointmentsView];
-                    ;
+                    
                 }
                 [self.appointmentsTableView reloadData];
                 [self.refreshControl endRefreshing];
