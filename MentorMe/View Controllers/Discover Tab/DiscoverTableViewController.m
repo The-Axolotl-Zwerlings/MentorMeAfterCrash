@@ -346,7 +346,7 @@
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [getTableView setDelegate:self];
     [getTableView setDataSource:self];
-    [getTableView setRowHeight:250];
+    [getTableView setRowHeight:224];
     [getTableView setShowsHorizontalScrollIndicator:NO];
     [getTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:getTableView];
@@ -355,7 +355,7 @@
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [giveTableView setDelegate:self];
     [giveTableView setDataSource:self];
-    [giveTableView setRowHeight:250];
+    [giveTableView setRowHeight:224];
     [giveTableView setShowsHorizontalScrollIndicator:NO];
     [giveTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:giveTableView];
