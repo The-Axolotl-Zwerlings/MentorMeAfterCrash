@@ -17,20 +17,22 @@
 
 @interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *notificationsTable;
-@property (strong, nonatomic) NSArray* invites;
+@property (strong, nonatomic) NSArray* appointmentArray;
 @property (strong, nonatomic) IBOutlet InviteDetailsView *inviteDetails;
-@property (nonatomic, strong) NSString* identity;
+@property (nonatomic, strong) NSString* appointmentID;
 @property (nonatomic, strong) NSIndexPath* index;
-@property (nonatomic, strong) AppointmentModel* current;
-@property (nonatomic, strong) NSArray* notificationTypes;
+@property (nonatomic, strong) AppointmentModel* clickedAppointment;
+@property (nonatomic, strong) NSArray* notificationArray;//notificationTypes;
 @property (nonatomic, assign) NSInteger subtractor;
 @property (nonatomic, strong) NSMutableArray* subtractors;
 @property (nonatomic, assign) NSInteger tracker;
-@property (nonatomic, assign) NSInteger itsIndex;
-@property (nonatomic, strong) Notifications* notificationsArray;
+@property (nonatomic, assign) NSInteger notificationIndex;
+@property (nonatomic, strong) Notifications* notification;
 @property (nonatomic, assign) NSInteger specialNumber;
 @property (nonatomic, strong) PFUser* other;
 @property (nonatomic, strong)  UIVisualEffectView* blurEffectView;
+@property (nonatomic, strong) NSMutableDictionary* getRealIndex;
+@property (nonatomic, assign) NSNumber* currentAppointmentIndex;
 
 @end
 
@@ -41,58 +43,51 @@
     self.notificationsTable.delegate = self;
     self.notificationsTable.dataSource = self;
     [self notificationsQuery];
-    
-    
-}
-
-- (void) querryInvites{
-    PFQuery* query1 = [PFQuery queryWithClassName:@"AppointmentModel"];
-    [query1 whereKey:@"recipient" equalTo:PFUser.currentUser];
-    [query1 whereKey:@"confirmation" equalTo:@"NO"];
-    [query1 includeKey:@"mentee.name"];
-    [query1 includeKey:@"mentee.major"];
-    [query1 includeKey:@"mentee.company"];
-    [query1 includeKey:@"mentee.school"];
-    [query1 includeKey:@"mentor.name"];
-    [query1 includeKey:@"mentor.major"];
-    [query1 includeKey:@"mentor.company"];
-    [query1 includeKey:@"mentor.school"];
-    [query1 includeKey:@"mentee.profilePic"];
-    [query1 includeKey:@"mentor.profilePic"];
-    [query1 orderByDescending:@"_created_at"];
-    [query1 findObjectsInBackgroundWithBlock:^(NSArray *appointments, NSError * _Nullable error) {
-        if (!error) {
-            self.invites = [NSArray arrayWithArray:appointments];
-            [self.notificationsTable reloadData];
-            [self.inviteDetails removeFromSuperview];
-            [self.blurEffectView removeFromSuperview];
-            }
-        else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
 }
 
 -(void)notificationsQuery{
+    self.subtractor = 0;
     self.subtractors = [[NSMutableArray alloc]init];
     self.tracker = 0;
-    self.subtractor = 0;
+    self.getRealIndex = [[NSMutableDictionary alloc]init];
     PFQuery* query = [PFQuery queryWithClassName:@"Notifications"];
     [query whereKey:@"reciever" equalTo:[PFUser currentUser]];
     [query includeKey:@"sender.name"];
     [query orderByDescending:@"_created_at"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
         if (!error) {
-            //if (objects.count != 0){
-                [self querryInvites];
-            NSLog(@"Successfully retrieved %lu scores.", objects.count);
-            NSMutableArray* temporary = [[NSMutableArray alloc]init];
-            for (Notifications *ping in objects) {
-                [temporary addObject:ping];
-            }
-            self.notificationTypes = [[NSArray alloc]initWithArray:temporary];
-            //}
+            NSLog(@"Successfully retrieved %lu notifications", objects.count);
+            self.notificationArray = [NSArray arrayWithArray:objects];
+            [self appointmentsQuery];
         }
+        else {
+            NSLog(@"Error");
+        }
+    }];
+}
+
+- (void) appointmentsQuery{
+    PFQuery* query = [PFQuery queryWithClassName:@"AppointmentModel"];
+    [query whereKey:@"recipient" equalTo:PFUser.currentUser];
+    [query whereKey:@"confirmation" equalTo:@"NO"];
+    [query includeKey:@"mentee.name"];
+    [query includeKey:@"mentee.major"];
+    [query includeKey:@"mentee.company"];
+    [query includeKey:@"mentee.school"];
+    [query includeKey:@"mentor.name"];
+    [query includeKey:@"mentor.major"];
+    [query includeKey:@"mentor.company"];
+    [query includeKey:@"mentor.school"];
+    [query includeKey:@"mentee.profilePic"];
+    [query includeKey:@"mentor.profilePic"];
+    [query orderByDescending:@"_created_at"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *appointments, NSError * _Nullable error) {
+        if (!error) {
+            self.appointmentArray = [NSArray arrayWithArray:appointments];
+            [self.inviteDetails removeFromSuperview];
+            [self.blurEffectView removeFromSuperview];
+            [self.notificationsTable reloadData];
+            }
         else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
         }
@@ -103,61 +98,64 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+//TABLE VIEW//
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.notificationTypes.count;
+    return self.notificationArray.count;
 }
 
 -(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    self.notificationsArray = [self.notificationTypes objectAtIndex:indexPath.row];
-        if([self.notificationsArray.type isEqualToString:@"accepted"]){
+    self.notification = [self.notificationArray objectAtIndex:indexPath.row];
+        if([self.notification.type isEqualToString:@"accepted"]){
+            ++(self.subtractor);
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"accepted" forIndexPath:indexPath];
-
-           // cell.contentView.layer.cornerRadius = 7;
-           // cell.contentView.layer.masksToBounds = true;
-
+            //setting up cell
             UILabel* label = [[UILabel alloc]init];
             [label setFrame:CGRectMake(8, 0, 400, 50)];
-            NSString* suffix = @" has accepted your appointment invite.";
-            Notifications* this = self.notificationTypes[indexPath.row];
-            PFUser* person = this.sender;
-            NSString* message = [person.name stringByAppendingString:suffix];
+            //Notifications* this = self.notificationTypes[indexPath.row];
+            PFUser* sender = self.notification.sender;
+            NSString* message = [sender.name stringByAppendingString:@" has accepted your appointment invite."];
             label.text = message;
             [cell.contentView addSubview:label];
-            ++self.subtractor;
+           
             return  cell;
         }
-        else if([self.notificationsArray.type isEqualToString:@"declined"]){
+    
+        else if([self.notification.type isEqualToString:@"declined"]){
+            ++self.subtractor;
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"declined" forIndexPath:indexPath];
             UILabel* label = [[UILabel alloc]init];
+            //setting up cell
             [label setFrame:CGRectMake(8, 0, 400, 50)];
-            NSString* suffix = @" has declined your appointment invite.";
-            Notifications* this = self.notificationTypes[indexPath.row];
-            PFUser* person = this.sender;
-            NSString* message = [person.name stringByAppendingString:suffix];
+            //Notifications* this = self.notificationTypes[indexPath.row];
+            PFUser* sender = self.notification.sender;
+            NSString* message = [sender.name stringByAppendingString:@" has declined your appointment invite."];
             label.text = message;
             [cell.contentView addSubview:label];
-            ++self.subtractor;
             return  cell;
         }
-        else if([self.notificationsArray.type isEqualToString:@"invite"]){
-            NSNumber* x = [NSNumber numberWithInt:self.subtractor];
+        else if([self.notification.type isEqualToString:@"invite"]){
+            NSNumber * x = @(self.subtractor);
             [self.subtractors addObject:x];
             NotificationsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"invite" forIndexPath:indexPath];
-            NSInteger a = indexPath.row;
-            NSInteger y = self.tracker;
+            NSInteger t = self.tracker;
+            NSInteger z = [[self.subtractors objectAtIndex:t]intValue];
+            NSInteger n = indexPath.row - z;
+            //self.specialNumber = n;
+            [self.getRealIndex setObject: @(n)  forKey: @(indexPath.row)];
+            AppointmentModel * appointment = self.appointmentArray[n];
             self.tracker = self.tracker+1;
-            NSInteger z = [[self.subtractors objectAtIndex:y]intValue];
-            NSInteger n = a - z;
-            AppointmentModel * try = self.invites[n];
-            self.other =  ([try.mentor.name isEqualToString:PFUser.currentUser.name]) ? try.mentee : try.mentor;
+            
+            //setting cell
+            self.other =  ([appointment.mentor.name isEqualToString:PFUser.currentUser.name]) ? appointment.mentee : appointment.mentor;
             cell.inviter.text = [self.other.name stringByAppendingString:@" wants to meet you"];
             NSDateFormatter* df = [[NSDateFormatter alloc]init];
             [df setDateFormat:@"MM/dd/yyyy"];
-            NSString *result = [df stringFromDate:try.meetingDate];
+            NSString *result = [df stringFromDate:appointment.meetingDate];
             cell.when.text = [@"On: " stringByAppendingString:result];
-            cell.where.text = [@"At: " stringByAppendingString:try.meetingLocation];
+            cell.where.text = [@"At: " stringByAppendingString:appointment.meetingLocation];
             return cell;
-        }
+            }
         else{
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"declined" forIndexPath:indexPath];
             return  cell;
@@ -168,111 +166,98 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld", indexPath.row);
     
+    //blurr effect
     if (!UIAccessibilityIsReduceTransparencyEnabled()) {
         self.view.backgroundColor = [UIColor clearColor];
-        
         UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
         self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
-        //always fill the view
         self.blurEffectView.frame = self.view.bounds;
         self.blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        
-        [self.view addSubview:self.blurEffectView]; //if you have more UIViews, use an insertSubview API to place it where needed
+        [self.view addSubview:self.blurEffectView];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
     }
     
+    //animated view appearance
     [UIView transitionWithView:self.view duration:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^ {
                          [self.view addSubview:self.inviteDetails];
                          float width = 0.8*self.view.frame.size.width;
-                        float height = width;
+                         float height = width;
                          [self.inviteDetails setFrame:CGRectMake((self.view.frame.size.width / 2.)- (width/2.), (self.view.frame.size.height / 2.)- (height/2.), width, height)];
-                     }
-                     completion:nil];
-    self.view.backgroundColor = UIColor.lightGrayColor;
+    }completion:nil];
     self.inviteDetails.layer.cornerRadius = 5;
     self.inviteDetails.layer.masksToBounds = true;
-    NSInteger x = indexPath.row;
-    NSInteger y = self.tracker - 1;
-    NSInteger z = [[self.subtractors objectAtIndex:y]intValue];
-    NSInteger n = x - z;
-    self.specialNumber = n;
-    self.itsIndex = x;
-    AppointmentModel * try = self.invites[n];
-    NSLog(@"%ld", n);
-    self.other =  ([try.mentor.name isEqualToString:PFUser.currentUser.name]) ? try.mentee : try.mentor;
-    self.identity = try.objectId;
-    self.index = indexPath;
     
-    self.current = self.invites[n];
-    
+    //setting up fields
+    self.currentAppointmentIndex = [self.getRealIndex objectForKey: @(indexPath.row)];
+    NSInteger integerValue = [self.currentAppointmentIndex integerValue];
+    AppointmentModel * appointment = self.appointmentArray[integerValue];
+    NSDateFormatter* df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"MM/dd/yyyy"];
+    NSString *result = [df stringFromDate:appointment.meetingDate];
+    self.inviteDetails.dateLabel.text = result;
+    self.inviteDetails.messageLabel.text = appointment.message;
+    self.other =  ([appointment.mentor.name isEqualToString:PFUser.currentUser.name]) ? appointment.mentee : appointment.mentor;
     self.inviteDetails.nameLabel.text = self.other.name;
     self.inviteDetails.companyLabel.text = self.other.company;
     self.inviteDetails.majorLabel.text = self.other.major;
     self.inviteDetails.institutionLabel.text = self.other.school;
     self.inviteDetails.positionLabel.text = self.other.jobTitle;
     self.inviteDetails.picture.file = self.other.profilePic;
-    
-    NSDateFormatter* df = [[NSDateFormatter alloc]init];
-    [df setDateFormat:@"MM/dd/yyyy"];
-    NSString *result = [df stringFromDate:try.meetingDate];
-    self.inviteDetails.dateLabel.text = result;
-    self.inviteDetails.messageLabel.text = try.message;
+
+    self.notificationIndex = indexPath.row;
+
 }
 
 - (IBAction)atTapAccept:(id)sender {
+    //update status
+    NSInteger integerValue = [self.currentAppointmentIndex integerValue];
+    AppointmentModel * appointment = self.appointmentArray[integerValue];
     PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
-    [query getObjectInBackgroundWithId:self.identity
+    [query getObjectInBackgroundWithId:appointment.objectId
                                  block:^(PFObject *appointment, NSError *error) {
-                                     appointment[@"confirmation"] = @"YES";
-                                     [appointment saveInBackground];
-                                 }];
-    AppointmentModel * try = self.invites[self.specialNumber];
-    self.other =  ([try.mentor.name isEqualToString:PFUser.currentUser.name]) ? try.mentee : try.mentor;
+                                     [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                         appointment[@"confirmation"] = @"YES";
+                                         [self deleteNotification];
+                                     }];
+      }];
+    Notifications* response = self.notificationArray[self.notificationIndex];
+    self.other = response.sender;
    [Notifications addNotification:@"accepted" withSender:[PFUser currentUser] withReciever:self.other];
-    Notifications* toDelete = self.notificationTypes[self.itsIndex];
-    PFQuery *query2 = [PFQuery queryWithClassName:@"Notifications"];
-    [query2 getObjectInBackgroundWithId:toDelete.objectId
-                                 block:^(PFObject *not, NSError *error) {
+}
+- (IBAction)atTapDecline:(id)sender {
+    NSInteger integerValue = [self.currentAppointmentIndex integerValue];
+    AppointmentModel * appointment = self.appointmentArray[integerValue];
+    PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
+    [query getObjectInBackgroundWithId:appointment.objectId
+                                 block:^(PFObject *appointment, NSError *error) {
                                      if (!error){
-                                     [not deleteInBackground];
-                                     NSLog(@"deleted notification");
-                                     [self notificationsQuery];
-                                     //[self.inviteDetails removeFromSuperview];
+                                         [appointment deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                             NSLog(@"deleted appointment");
+                                             [self deleteNotification];
+                                         }];
                                      }
-                                    else{NSLog(@"Error is deleting notification");}
+                                     else{NSLog(@"Error is deleting appointment");}
                                  }];
     
-    
+    Notifications* response = self.notificationArray[self.notificationIndex];
+    self.other = response.sender;
+    [Notifications addNotification:@"declined" withSender:[PFUser currentUser] withReciever:self.other];
 }
 -(void)deleteNotification{
-    Notifications* toDelete = self.notificationTypes[self.specialNumber];
+    Notifications* toDelete = self.notificationArray[self.notificationIndex];
     PFQuery *query2 = [PFQuery queryWithClassName:@"Notifications"];
     [query2 getObjectInBackgroundWithId:toDelete.objectId
                                   block:^(PFObject *not, NSError *error) {
-                                      NSLog(@"deleted notification");
-                                      [not deleteInBackground];
-                                      [self notificationsQuery];
-                                      //[self.inviteDetails removeFromSuperview];
+                                      if (!error){
+                                          [not deleteInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                                              NSLog(@"deleted notification");
+                                              [self notificationsQuery];
+                                          }];
+                                      }
+                                      else{NSLog(@"Error is deleting notification");}
                                   }];
 }
-- (IBAction)atTapDecline:(id)sender {
-    PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
-    [query getObjectInBackgroundWithId:self.identity
-                                 block:^(PFObject *appointment, NSError *error) {
-                                     if (!error){
-                                     [appointment deleteInBackground];
-                                     NSLog(@"deleted appointment");
-                                    [self deleteNotification];}
-                                     else{NSLog(@"Error is deleting appointment");}
-                                 }];
-    AppointmentModel * try = self.invites[self.specialNumber];
-     self.other =  ([try.mentor.name isEqualToString:PFUser.currentUser.name]) ? try.mentee : try.mentor;
-     [Notifications addNotification:@"declined" withSender:[PFUser currentUser] withReciever:self.other];
-
-    
-}
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
