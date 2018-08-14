@@ -69,7 +69,7 @@
         
         self.statusLine.text = @"Request sent.";
         self.statusLine.textColor = [UIColor grayColor];
-        self.backgroundImage.layer.opacity = 0.7;
+
     }
     else if([appointment.mentee.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"YES"]){
         
@@ -94,7 +94,7 @@
         
         self.statusLine.text = @"Request sent.";
         self.statusLine.textColor = [UIColor grayColor];
-        self.backgroundImage.layer.opacity = 0.7;
+
     
     }
     
