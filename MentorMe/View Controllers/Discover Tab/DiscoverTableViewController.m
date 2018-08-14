@@ -345,7 +345,6 @@
     [getTableView setRowHeight:224];
     [getTableView setShowsHorizontalScrollIndicator:NO];
     [getTableView setSeparatorColor:[UIColor clearColor]];
-    [getTableView setBackgroundColor:UIColor.yellowColor];
     [self.scrollView addSubview:getTableView];
 
     giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500) style:UITableViewStylePlain];
