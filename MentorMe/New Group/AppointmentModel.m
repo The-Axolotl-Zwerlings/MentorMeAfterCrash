@@ -68,7 +68,7 @@
 }
 
 +(PFUser *)otherAttendee:(AppointmentModel *)appointment{
-    if(PFUser.currentUser.username == appointment.mentor.username){
+    if([PFUser.currentUser[@"username"] isEqualToString:appointment.mentor.username]){
         return appointment.mentee;
     } else{
         return appointment.mentor;

@@ -209,7 +209,7 @@
     self.adviceToGive = [NSArray arrayWithArray:self.user[@"giveAdviceInterests"]];
     [self.getAdviceCollectionView reloadData];
     [self.giveAdviceCollectionView reloadData];
-    [self.mentorsCollectionView reloadData];
+    [(ProfileDataDelegate *)self.dataSource queryforMentors];
      
     if( [self.mentorsCollectionView numberOfItemsInSection:0] == 0 ){
         self.MentorsView.hidden = YES;
