@@ -114,7 +114,7 @@
         flowLayoutB.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
    
         collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayoutB];
-        [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
+        [collectionViewB registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
         collectionViewB.dataSource = self;
         collectionViewB.backgroundColor = [UIColor clearColor];
@@ -200,33 +200,20 @@
 
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    
+    GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+    NSLog(@"Cell A, indexpath is %ld", (long)indexPath.row);
     
     if( [collectionView isEqual:collectionViewA] ){
-        
-        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        NSLog(@"Cell A, indexpath is %ld", (long)indexPath.row);
         cellA.interest = self.incomingGetInterests[indexPath.row];
-
-        [cellA layoutInterests];
-        NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
-        if([mySet intersectsSet:self.giveSet]){
-            cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
-        }
-        return cellA;
-        
     } else {
-        
-        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        NSLog(@"Cell B, indexpath is %ld", (long)indexPath.row);
-        cellB.interest = self.incomingGiveInterests[indexPath.row];
-        [cellB layoutInterests];
-        NSSet *mySet = [NSSet setWithObject:cellB.interest.subject];
-        if([mySet intersectsSet:self.getSet]){
-            cellB.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
-        }
-        return cellB;
+        cellA.interest = self.incomingGiveInterests[indexPath.row];
     }
+    [cellA layoutInterests];
+    NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
+    if([mySet intersectsSet:self.giveSet]){
+        cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+    }
+    return cellA;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
