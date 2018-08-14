@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSArray *incomingGetInterests;
 @property (nonatomic, strong) NSArray *incomingGiveInterests;
 
-@property (nonatomic, strong) UIImageView *backgroundImage;
+
 @property (nonatomic) NSInteger selectedIndex;
 
 @property (strong, nonatomic) NSSet *giveSet;
@@ -32,9 +32,10 @@
 @property (strong, nonatomic) UILabel *nameLabel;
 @property (strong, nonatomic) UILabel *educationLabel;
 @property (strong, nonatomic) UILabel *jobLabel;
+@property (nonatomic, strong) UIImageView *backgroundImage;
 @property (strong, nonatomic) PFImageView *profilePicture;
 
-- (void) loadCell:(BOOL) incomingBool;
+- (void) loadCell;
 - (void) loadCollectionViews;
 
 @end

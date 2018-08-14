@@ -298,16 +298,17 @@
 
 - (void) initTableViews {
     NSLog(@"Loading a new Table View");
-    getTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500)];
+    getTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 375, 500) style:UITableViewStylePlain];
     [getTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [getTableView setDelegate:self];
     [getTableView setDataSource:self];
     [getTableView setRowHeight:224];
     [getTableView setShowsHorizontalScrollIndicator:NO];
     [getTableView setSeparatorColor:[UIColor clearColor]];
+    [getTableView setBackgroundColor:UIColor.yellowColor];
     [self.scrollView addSubview:getTableView];
-    
-    giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500)];
+
+    giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500) style:UITableViewStylePlain];
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [giveTableView setDelegate:self];
     [giveTableView setDataSource:self];
@@ -358,7 +359,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    DiscoverCell *cell =  [tableView dequeueReusableCellWithIdentifier:@"DiscoverCell" forIndexPath:indexPath];
+    static NSString *cellIdentifier = @"DiscoverCell";
+    
+    DiscoverCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier forIndexPath:indexPath];
+    
+    if( cell == nil ){
+        cell = [[DiscoverCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
     
     [cell targetForAction:@selector(tableView:didSelectRowAtIndexPath:) withSender:nil];
     
@@ -375,12 +382,14 @@
     cell.incomingGiveInterests = cell.userForCell.giveAdviceInterests;
     cell.giveSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
     cell.getSet = [NSSet setWithArray:self.filtersToSearchGetWith];
-    if(cell.userForCell != nil ){
-        [cell loadCell:YES];
-        [cell loadCollectionViews];
-    }
+    
+
+    [cell loadCell];
+    
+    cell.nameLabel.text = cell.userForCell.name;
     
     
+    [cell setHidden:NO];
     return cell;
 }
 
