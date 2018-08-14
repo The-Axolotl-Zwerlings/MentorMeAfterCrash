@@ -84,11 +84,11 @@
 
 - (void) loadAppointmentDetails {
     if(self.segmentedControl.selectedSegmentIndex == 0){ //coffww
-        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Jimmy Johns"];
+        self.locationLabel.text = @"Jimmy Johns";
     } else if(self.segmentedControl.selectedSegmentIndex == 1){ //lunch
-        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Red Rock Café"];
+        self.locationLabel.text = @"Red Rock Café";
     } else{
-        self.locationLabel.text = [@"Location: " stringByAppendingString:@"Skype"];
+        self.locationLabel.text = @"Skype";
     }
 }
 

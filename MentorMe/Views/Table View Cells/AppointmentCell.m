@@ -19,18 +19,31 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
+    [super setHighlighted:highlighted animated:animated];
+    self.backgroundImage.backgroundColor = backgroundColor;
+    
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
+    UIColor *backgroundColor = self.backgroundImage.backgroundColor;
     [super setSelected:selected animated:animated];
+    self.backgroundImage.backgroundColor = backgroundColor;
 }
 
 - (void) setAppointment:(AppointmentModel *)appointment {
    
+    self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0];
+    
     _appointment = appointment;
     
     self.otherAttendeeName.adjustsFontSizeToFitWidth = YES;
     
     self.backgroundImage.layer.shadowColor = UIColor.blackColor.CGColor;
-    self.backgroundImage.layer.shadowOpacity = 1;
+    self.backgroundImage.layer.shadowOpacity = 0;
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.backgroundImage.layer.shadowRadius = 5;
     self.backgroundImage.clipsToBounds = NO;
@@ -42,7 +55,9 @@
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
         self.rockStatus.text = @"You're the metamorphic rock!";
-        self.backgroundColor = UIColor.greenColor;
+        
+        self.statusLine.text = @"Meeting confirmed!";
+        self.statusLine.textColor = [UIColor blackColor];
  
     } else if([appointment.mentee.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"NO"]){
         self.otherAttendeeName.text = appointment.mentor.name;
@@ -51,25 +66,35 @@
 
         self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
         self.rockStatus.text = @"You're the pebble!";
-        self.backgroundColor = UIColor.lightGrayColor;
+        
+        self.statusLine.text = @"Request sent.";
+        self.statusLine.textColor = [UIColor grayColor];
+        self.backgroundImage.layer.opacity = 0.7;
     }
     else if([appointment.mentee.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"YES"]){
+        
+        
         self.otherAttendeeName.text = appointment.mentor.name;
         self.otherAttendeeProfilePic.file = appointment.mentor.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"pebbleTransparent.png"];
         self.rockStatus.text = @"You're the pebble!";
-        self.backgroundColor = UIColor.greenColor;
+        
+        self.statusLine.text = @"Meeting confirmed!";
+        self.statusLine.textColor = [UIColor blackColor];
     }
     else if([appointment.mentor.username isEqualToString:PFUser.currentUser.username]&&[appointment.confirmation isEqualToString: @"NO"]){
         self.otherAttendeeName.text = appointment.mentee.name;
         self.otherAttendeeProfilePic.file = appointment.mentee.profilePic;
         [self.otherAttendeeProfilePic loadInBackground];
-        self.backgroundColor = UIColor.lightGrayColor;
         
         self.menteeMentorIcon.image = [UIImage imageNamed:@"metaRockTransparent.png"];
         self.rockStatus.text = @"You're the metamorphic rock!";
+        
+        self.statusLine.text = @"Request sent.";
+        self.statusLine.textColor = [UIColor grayColor];
+        self.backgroundImage.layer.opacity = 0.7;
     
     }
     

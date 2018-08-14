@@ -172,6 +172,8 @@
         
         UILabel *meetingLabel = [[UILabel alloc]initWithFrame:CGRectMake(81, previousTable.frame.origin.y+previousTable.frame.size.height+12, 273, 24)];
         meetingLabel.text = [NSString stringWithFormat:@"Meeting #%d",i+1];
+        meetingLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:17];
+        meetingLabel.textColor = [UIColor whiteColor];
         [self.scrollView addSubview:meetingLabel];
         
         

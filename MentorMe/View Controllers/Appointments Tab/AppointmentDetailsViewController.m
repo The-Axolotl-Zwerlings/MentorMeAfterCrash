@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *aboutUserLabel;
 @property (nonatomic) BOOL isMentor;
 @property (weak, nonatomic) IBOutlet UILabel *meetingTitleLabel;
+@property (weak, nonatomic) IBOutlet UIButton *milestoneButton;
 
 //details
 @property (weak, nonatomic) IBOutlet UILabel *meetingDetailsLabel;
@@ -43,7 +44,7 @@
     self.aboutUserBackgroundImage.layer.shadowRadius = 3.0;
     self.aboutUserBackgroundImage.clipsToBounds = NO;
     
-
+    
     
     
 }
@@ -59,7 +60,7 @@
     NSString *titleString;
     
     self.menteeProfileView.layer.borderColor = UIColor.whiteColor.CGColor;
-
+    
     
     PFUser *otherAttendee;
     self.isMentor = NO;
@@ -67,10 +68,10 @@
     if(self.appointment.mentor.username == PFUser.currentUser.username){
         otherAttendee = self.appointment.mentee;
         self.isMentor = YES;
-         self.menteeProfileView.layer.borderColor = UIColor.cyanColor.CGColor;
+        self.menteeProfileView.layer.borderColor = UIColor.whiteColor.CGColor;
     } else{
         otherAttendee = self.appointment.mentor;
-         self.menteeProfileView.layer.borderColor = UIColor.blueColor.CGColor;
+        self.menteeProfileView.layer.borderColor = UIColor.whiteColor.CGColor;
     }
     self.menteeProfileView.layer.borderWidth = 5;
     self.menteeProfileView.layer.masksToBounds = true;
@@ -119,7 +120,15 @@
     self.meetingDetailsLabel.text = fullDetails;
     
     
-   
+    
+    self.milestoneButton.backgroundColor = [UIColor whiteColor];
+    self.milestoneButton.layer.borderColor = UIColor.blueColor.CGColor;
+    self.milestoneButton.layer.borderWidth = 2;
+    
+    self.milestoneButton.layer.shadowColor = UIColor.grayColor.CGColor;
+    self.milestoneButton.layer.shadowOffset = CGSizeMake(5, 5);
+    self.milestoneButton.layer.shadowRadius = 5;
+    self.milestoneButton.layer.shadowOpacity = 1;
     
     
 }
@@ -143,19 +152,19 @@
         MilestoneViewController *milestoneViewController = [segue destinationViewController];
         
         
-//        PFQuery *query = [PFQuery queryWithClassName:@"Milestone"];
-//        [query whereKey:@"mentor" equalTo:self.appointment.mentor];
-//        [query whereKey:@"mentee" equalTo:self.appointment.mentee];
-//        [query findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError * _Nullable error) {
-//            if(error == nil){
-//                milestoneViewController.milestone = [milestone firstObject];
-//            }
-//            
-//        }];
-//
+        //        PFQuery *query = [PFQuery queryWithClassName:@"Milestone"];
+        //        [query whereKey:@"mentor" equalTo:self.appointment.mentor];
+        //        [query whereKey:@"mentee" equalTo:self.appointment.mentee];
+        //        [query findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError * _Nullable error) {
+        //            if(error == nil){
+        //                milestoneViewController.milestone = [milestone firstObject];
+        //            }
+        //
+        //        }];
+        //
         milestoneViewController.mentor = self.isMentor ? PFUser.currentUser : self.appointmentWith;
         //milestoneViewController = [segue destinationViewController];
-    
+        
         
     }
 }

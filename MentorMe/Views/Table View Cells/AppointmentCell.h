@@ -21,6 +21,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *rockStatus;
 
 @property (weak, nonatomic) IBOutlet UILabel *meetingSummaryLabel;
+@property (weak, nonatomic) IBOutlet UILabel *statusLine;
 
 
 @property (nonatomic) BOOL isMentor;
