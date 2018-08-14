@@ -122,4 +122,5 @@
  @property (strong, nonatomic) NSNumber *getAdviceCount;
  */
 
+
 @end
