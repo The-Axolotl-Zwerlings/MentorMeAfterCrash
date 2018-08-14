@@ -159,6 +159,7 @@
     [AppointmentModel postAppointment:self.isMentorOfMeeting withPerson:self.otherAttendee withMeetingLocation:self.locationLabel.text withMeetingType:self.meetingTypeDic[@(self.segmentedControl.selectedSegmentIndex)] withMeetingDate:datePicker.date withIsComing:YES withMessage:self.messageTextView.text withconfirmation:@"NO" withCompletion:nil];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+
     [Notifications addNotification:@"invite" withSender:[PFUser currentUser] withReciever:self.otherAttendee];
 }
 

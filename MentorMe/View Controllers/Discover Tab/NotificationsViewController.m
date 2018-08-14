@@ -30,6 +30,7 @@
 @property (nonatomic, strong) Notifications* notificationsArray;
 @property (nonatomic, assign) NSInteger specialNumber;
 @property (nonatomic, strong) PFUser* other;
+@property (nonatomic, strong)  UIVisualEffectView* blurEffectView;
 
 @end
 
@@ -56,12 +57,15 @@
     [query1 includeKey:@"mentor.major"];
     [query1 includeKey:@"mentor.company"];
     [query1 includeKey:@"mentor.school"];
+    [query1 includeKey:@"mentee.profilePic"];
+    [query1 includeKey:@"mentor.profilePic"];
     [query1 orderByDescending:@"_created_at"];
     [query1 findObjectsInBackgroundWithBlock:^(NSArray *appointments, NSError * _Nullable error) {
         if (!error) {
             self.invites = [NSArray arrayWithArray:appointments];
             [self.notificationsTable reloadData];
             [self.inviteDetails removeFromSuperview];
+            [self.blurEffectView removeFromSuperview];
             }
         else {
             NSLog(@"Error: %@ %@", error, [error userInfo]);
@@ -163,6 +167,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"%ld", indexPath.row);
+    
+    if (!UIAccessibilityIsReduceTransparencyEnabled()) {
+        self.view.backgroundColor = [UIColor clearColor];
+        
+        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+        self.blurEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+        //always fill the view
+        self.blurEffectView.frame = self.view.bounds;
+        self.blurEffectView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        
+        [self.view addSubview:self.blurEffectView]; //if you have more UIViews, use an insertSubview API to place it where needed
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    
     [UIView transitionWithView:self.view duration:0.5 options:UIViewAnimationOptionCurveEaseOut animations:^ {
                          [self.view addSubview:self.inviteDetails];
                          float width = 0.8*self.view.frame.size.width;
@@ -192,6 +211,7 @@
     self.inviteDetails.majorLabel.text = self.other.major;
     self.inviteDetails.institutionLabel.text = self.other.school;
     self.inviteDetails.positionLabel.text = self.other.jobTitle;
+    self.inviteDetails.picture.file = self.other.profilePic;
     
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"MM/dd/yyyy"];
