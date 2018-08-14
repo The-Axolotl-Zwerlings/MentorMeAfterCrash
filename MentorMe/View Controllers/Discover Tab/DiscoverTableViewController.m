@@ -70,24 +70,28 @@
 }
 
 -(void)notificationsCount{
-    PFQuery* query = [PFQuery queryWithClassName:@"Notifications"];
-    [query whereKey:@"reciever" equalTo:[PFUser currentUser]];
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
-        if (!error) {
-            if(objects.count != 0){
-            [self.navigationController.navigationBar addSubview:self.counterView];
-            [self.navigationController.navigationBar addSubview:self.couterLabel];
-            self.couterLabel.text = [NSString stringWithFormat: @"%ld", objects.count];
+    
+    if( [PFUser currentUser] != nil ){
+        
+        PFQuery* query = [PFQuery queryWithClassName:@"Notifications"];
+        [query whereKey:@"reciever" equalTo:[PFUser currentUser]];
+        [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
+            if (!error) {
+                if(objects.count != 0){
+                    [self.navigationController.navigationBar addSubview:self.counterView];
+                    [self.navigationController.navigationBar addSubview:self.couterLabel];
+                    self.couterLabel.text = [NSString stringWithFormat: @"%ld", objects.count];
+                }
+                else{
+                    [self.couterLabel removeFromSuperview];
+                    [self.counterView removeFromSuperview];
+                }
             }
-            else{
-                [self.couterLabel removeFromSuperview];
-                [self.counterView removeFromSuperview];
+            else {
+                NSLog(@"Error: %@ %@", error, [error userInfo]);
             }
-            }
-        else {
-            NSLog(@"Error: %@ %@", error, [error userInfo]);
-        }
-    }];
+        }];
+    }
 }
 
 
