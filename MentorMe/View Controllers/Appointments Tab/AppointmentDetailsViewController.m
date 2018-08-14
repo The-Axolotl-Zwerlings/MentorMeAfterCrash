@@ -63,16 +63,11 @@
     
     
     PFUser *otherAttendee = self.appointmentWith;
-//    self.isMentor = NO;
-//    //1. Check if current user is mentor or mentee of meeting
-//    if(self.appointment.mentor.username == PFUser.currentUser.username){
-//        otherAttendee = self.appointment.mentee;
-//        self.isMentor = YES;
-//        self.menteeProfileView.layer.borderColor = UIColor.whiteColor.CGColor;
-//    } else{
-//        otherAttendee = self.appointment.mentor;
-//        self.menteeProfileView.layer.borderColor = UIColor.whiteColor.CGColor;
-//    }
+    self.isMentor = NO;
+    //1. Check if current user is mentor or mentee of meeting
+    if(self.appointment.mentor.username == PFUser.currentUser.username){
+        self.isMentor = YES;
+    }
     
     
     self.menteeProfileView.layer.borderWidth = 5;
@@ -165,6 +160,7 @@
         //        }];
         //
         milestoneViewController.mentor = self.isMentor ? PFUser.currentUser : self.appointmentWith;
+        milestoneViewController.mentee = self.isMentor ? self.appointmentWith : PFUser.currentUser;
         //milestoneViewController = [segue destinationViewController];
         
         

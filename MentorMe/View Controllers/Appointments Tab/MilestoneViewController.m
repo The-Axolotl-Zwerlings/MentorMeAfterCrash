@@ -86,7 +86,7 @@
     
     //self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:nil];
     [self.scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 1500)];
-    if(self.milestone == nil && self.mentor != nil){
+    if(self.milestone == nil && self.mentor != nil && self.mentee != nil){
         [self getMilestone];
         
     } else{
@@ -104,7 +104,7 @@
 -(void)getMilestone{
     PFQuery *queryForMilestone = [PFQuery queryWithClassName:@"Milestone"];
     [queryForMilestone whereKey:@"mentor" equalTo:self.mentor];
-    [queryForMilestone whereKey:@"mentee" equalTo:PFUser.currentUser];
+    [queryForMilestone whereKey:@"mentee" equalTo:self.mentee];
     [queryForMilestone findObjectsInBackgroundWithBlock:^(NSArray * milestone, NSError *error) {
         self.milestone = milestone[0];
         [self setUI];

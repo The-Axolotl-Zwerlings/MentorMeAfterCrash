@@ -375,6 +375,7 @@
         
         MilestoneViewController *milestoneViewController = [segue destinationViewController];
         milestoneViewController.mentor = sender;
+        milestoneViewController.mentee = PFUser.currentUser;
         
     } else if([segue.identifier isEqualToString:@"learnAbout"]){
         CreateAppointmentViewController *createViewController = [segue destinationViewController];
