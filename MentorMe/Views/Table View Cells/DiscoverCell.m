@@ -25,7 +25,7 @@
     if( self ){
         NSLog(@"Loading cell");
         //0. Background Color
-        self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 226)];
+        self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 200)];
         [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0]];
         [self.backgroundImage.layer setCornerRadius:0];
         [self.backgroundImage.layer setMasksToBounds:NO];
@@ -190,12 +190,6 @@
     [collectionViewA setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     [collectionViewB setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     
-    CGFloat heightOfBackground = collectionViewB.frame.size.height + collectionViewB.frame.origin.y;
-    
-    CGFloat newY = (250 - heightOfBackground)/2;
-    
-    [self.backgroundImage setFrame:CGRectMake(12, newY, 351, heightOfBackground)];
-    
 
     [collectionViewA reloadData];
     [collectionViewB reloadData];
@@ -222,8 +216,6 @@
         [cellA layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
         if([mySet intersectsSet:self.giveSet]){
-            
-            [collectionViewA moveItemAtIndexPath:indexPath toIndexPath:front];
             
             cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
             NSLog(@"MATCH!");

@@ -142,6 +142,9 @@
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(updateDate)];
     UIBarButtonItem *space = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
     [toolbar setItems:[NSArray arrayWithObjects:space,doneButton,nil]];
+    
+    self.locationLabel.alpha = 0;
+    
     [self.dateTextField setInputAccessoryView:toolbar];
 }
 
