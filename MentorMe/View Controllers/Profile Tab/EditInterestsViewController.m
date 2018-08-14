@@ -42,6 +42,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.saveButton.layer.borderColor = UIColor.blueColor.CGColor;
+    self.saveButton.layer.borderWidth = 2;
+    
     for(InterestModel* mod in self.array1){
         [self.getAdviceField addTag:mod.subject];
     }
@@ -218,6 +221,7 @@
 }
 
 - (IBAction)onTapCancel:(id)sender{
+    [self resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -241,11 +245,13 @@
     [currUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Interest added to user");
+            [self resignFirstResponder];
             [self dismissViewControllerAnimated:YES completion:nil];
         } else {
             NSLog(@"Error: %@", error.description);
         }
     }];
+    
 }
 - (IBAction)atTapCreateNew:(id)sender {
     [InterestModel addInterest:self.myInterest inCategory:@"new Interest"];

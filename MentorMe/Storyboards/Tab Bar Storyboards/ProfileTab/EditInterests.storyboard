@@ -35,6 +35,7 @@
                                         <integer key="value" value="20"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onTapSave:" destination="A9G-a4-gd4" eventType="touchUpInside" id="9KD-66-eKZ"/>

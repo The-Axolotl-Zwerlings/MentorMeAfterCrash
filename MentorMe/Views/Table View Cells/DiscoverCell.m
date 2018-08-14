@@ -53,6 +53,8 @@
         [self.nameLabel setNumberOfLines:0];
         [self.nameLabel adjustsFontSizeToFitWidth];
         [self.nameLabel setLineBreakMode:NSLineBreakByClipping];
+        
+        
         [self.backgroundImage addSubview:self.nameLabel];
         
         
@@ -66,6 +68,8 @@
         [self.jobLabel setNumberOfLines:0];
         [self.jobLabel adjustsFontSizeToFitWidth];
         [self.jobLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        
         [self.backgroundImage addSubview:self.jobLabel];
         
         
@@ -77,6 +81,9 @@
         [self.educationLabel setNumberOfLines:0];
         [self.educationLabel adjustsFontSizeToFitWidth];
         [self.educationLabel setLineBreakMode:NSLineBreakByWordWrapping];
+        
+        
+        
         [self.backgroundImage addSubview:self.educationLabel];
         
         
@@ -182,6 +189,13 @@
     
     [collectionViewA setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     [collectionViewB setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
+    
+    CGFloat heightOfBackground = collectionViewB.frame.size.height + collectionViewB.frame.origin.y + 12;
+    
+    CGFloat newY = (250 - heightOfBackground)/2;
+    
+    [self.backgroundImage setFrame:CGRectMake(12, newY, 351, heightOfBackground)];
+    
 
     [collectionViewA reloadData];
     [collectionViewB reloadData];
@@ -201,13 +215,16 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-    NSLog(@"Cell A, indexpath is %ld", (long)indexPath.row);
-    
+
+    NSIndexPath *front = 0;
     if( [collectionView isEqual:collectionViewA] ){
         cellA.interest = self.incomingGetInterests[indexPath.row];
         [cellA layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
         if([mySet intersectsSet:self.giveSet]){
+            
+            [collectionViewA moveItemAtIndexPath:indexPath toIndexPath:front];
+            
             cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
             NSLog(@"MATCH!");
         }
@@ -216,6 +233,7 @@
         [cellA layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
         if([mySet intersectsSet:self.getSet]){
+            
             cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
             NSLog(@"MATCH!");
         }
