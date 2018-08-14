@@ -88,6 +88,8 @@ int myCounter;
     self.complimentsCollectionView.alwaysBounceHorizontal = YES;
     self.complimentsCollectionView.showsHorizontalScrollIndicator = NO;
     
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    
     //initializing a tap gesture recogniser
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleImageTap:)];
     [self.profileImage addGestureRecognizer:imageTap];
