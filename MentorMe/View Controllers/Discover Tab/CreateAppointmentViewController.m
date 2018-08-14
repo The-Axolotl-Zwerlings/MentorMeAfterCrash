@@ -107,8 +107,8 @@
         self.mentorNameLabel.text = myUser.name;
         self.menteeNameLabel.text = otherUser.name;
         
-        self.mentorProfilePicView.layer.borderColor = colorA.CGColor;
-        self.menteeProfilePicView.layer.borderColor = colorB.CGColor;
+        self.mentorProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
+        self.menteeProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
 
     } else {
         self.menteeProfilePicView.file = myUser.profilePic;
@@ -116,8 +116,8 @@
         self.menteeNameLabel.text = myUser.name;
         self.mentorNameLabel.text = otherUser.name;
         
-        self.mentorProfilePicView.layer.borderColor = colorB.CGColor;
-        self.menteeProfilePicView.layer.borderColor = colorA.CGColor;
+        self.mentorProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
+        self.menteeProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
     }
     self.mentorProfilePicView.layer.borderWidth = 5;
     self.menteeProfilePicView.layer.borderWidth = 5;

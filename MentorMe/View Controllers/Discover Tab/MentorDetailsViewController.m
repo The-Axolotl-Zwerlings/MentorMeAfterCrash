@@ -31,6 +31,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *ratingVIew;
 
+@property (weak, nonatomic) IBOutlet UILabel *theirInterestsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *occupationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *educationLabel;
@@ -53,7 +54,7 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.scrollViewMentor setContentSize:CGSizeMake(375, self.complimentsCollectionView.frame.size.height + self.complimentsCollectionView.frame.origin.y+238)];
+    [self.scrollViewMentor setContentSize:CGSizeMake(375,1160)];
     
     [self loadMentor];
     
@@ -179,6 +180,8 @@ int myCounter;
     self.descriptionLabel.text = self.mentor.bio;
     NSString *cityLabelAppend = self.mentor[@"cityLocation"];
     NSString *stateLabelAppend = self.mentor[@"stateLocation"];
+    
+    self.theirInterestsLabel.text = [self.mentor.name stringByAppendingString:@"'s Interests"];
     
     self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
     
