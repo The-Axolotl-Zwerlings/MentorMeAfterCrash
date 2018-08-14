@@ -276,24 +276,15 @@
     collectionView.alwaysBounceHorizontal = YES;
     collectionView.showsHorizontalScrollIndicator = NO;
     
-    if( [collectionView isEqual:self.getAdviceCollectionView] ){
-        
-        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+    GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+    
+    if([collectionView isEqual:self.getAdviceCollectionView]){
         cellA.interest = self.adviceToGet[indexPath.item];
-        
-        [cellA layoutInterests];
-        return cellA;
-        
-    } else {
-        
-        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellB.interest = self.adviceToGive[indexPath.item];
-        
-        [cellB layoutInterests];
-        return cellB;
-        
-        
+    } else{
+        cellA.interest = self.adviceToGive[indexPath.item];
     }
+    [cellA layoutInterestsStory];
+    return cellA;
     
 }
 

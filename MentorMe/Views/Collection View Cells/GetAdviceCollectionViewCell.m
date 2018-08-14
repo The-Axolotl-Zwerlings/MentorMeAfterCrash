@@ -47,7 +47,36 @@
 }
 
 
-
+-(void)layoutInterestsStory{
+    
+    
+    self.interestNameLabelStory.text = [@"#" stringByAppendingString: self.interest.subject];
+    //2. Adjust Cell Origin and Height
+    CGRect frameA = self.frame;
+    frameA.origin.y = 0;
+    frameA.size.height = 40;
+    self.frame = frameA;
+    
+    //3. Adjust Background Image
+    CGRect frameB = self.backgroundImageStory.frame;
+    frameB.size.width = self.frame.size.width;
+    frameB.origin.y = 0;
+    self.backgroundImageStory.frame = frameB;
+    self.backgroundImageStory.layer.borderColor = UIColor.whiteColor.CGColor;
+    self.backgroundImageStory.layer.borderWidth = 2;
+    self.backgroundImageStory.layer.cornerRadius = self.backgroundImageStory.frame.size.height/2;
+    self.backgroundImageStory.layer.masksToBounds = YES;
+    
+    //4. Adjust Text Label
+    CGRect frameC = self.interestNameLabelStory.frame;
+    frameC.origin.y = 8;
+    frameC.origin.x = 0;
+    frameC.size.width = self.frame.size.width;
+    self.interestNameLabelStory.frame = frameC;
+    self.interestNameLabelStory.textAlignment = NSTextAlignmentCenter;
+    
+    self.backgroundImageStory.backgroundColor = [UIColor clearColor];
+}
 - (void) layoutInterests{
     self.interestNameLabel.text = [@"#" stringByAppendingString: self.interest.subject];
     //2. Adjust Cell Origin and Height
