@@ -201,8 +201,7 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-    NSLog(@"Cell A, indexpath is %ld", (long)indexPath.row);
-    
+     
     if( [collectionView isEqual:collectionViewA] ){
         cellA.interest = self.incomingGetInterests[indexPath.row];
         [cellA layoutInterests];

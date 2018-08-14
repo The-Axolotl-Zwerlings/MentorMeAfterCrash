@@ -21,9 +21,9 @@
 
 +(void)addNotification: (NSString*) type withSender:(PFUser*) sender withReciever:(PFUser*) reciever{
     PFObject* newNotification = [PFObject objectWithClassName:@"Notifications"];
-   newNotification[@"type"] = type;
-   newNotification[@"sender"] = sender;
-   newNotification[@"reciever"] = reciever;
+    newNotification[@"type"] = type;
+    newNotification[@"sender"] = sender;
+    newNotification[@"reciever"] = reciever;
     [newNotification saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (succeeded) {
             NSLog(@"Notification made");
@@ -32,20 +32,5 @@
         }
     }];
 }
-//+(void)fetchMyNotificationsby:(PFUser*) me{
-//
-//    PFQuery *query = [PFQuery queryWithClassName:@"Notifications"];
-//    [query whereKey:@"reciever" equalTo:me.name];
-//    [query whereKey:@"sender" equalTo:me.name];
-//    [query findObjectsInBackgroundWithBlock:^(NSArray *retrieved, NSError *error) {
-//        if (!error) {
-//            notifications = retrieved;
-//            }
-//        else {
-//            NSLog(@"Error: %@ %@", error, [error userInfo]);
-//        }
-//    }];
-//}
 
-//tried to to make querry simpler but it didn't work
 @end
