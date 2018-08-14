@@ -65,6 +65,8 @@ int myCounter;
     
     self.title = self.mentor.name;
     
+    
+    
     self.scrollViewMentor.showsVerticalScrollIndicator = NO;
     self.scrollViewMentor.alwaysBounceVertical = YES;
     
@@ -239,13 +241,7 @@ int myCounter;
 }
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
-    if ( [collectionView isEqual:self.getAdviceCollectionView] ){
-        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellA.interest = self.adviceToGet[indexPath.item];
-        
-        [cellA layoutInterests];
-        return cellA;
-    } else if([collectionView isEqual:self.complimentsCollectionView]){
+    if([collectionView isEqual:self.complimentsCollectionView]){
         ComplimentsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentsCell" forIndexPath:indexPath];
         if(indexPath.item == 0){
             myCounter = 0;
@@ -256,16 +252,20 @@ int myCounter;
         [cell formatCellWithIndex:[NSNumber numberWithInteger:myCounter] andCount:(self.complimentsArray[myCounter])];
         
         ++myCounter;
-    
+        
         return cell;
+    } else{
+        GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         
-    } else {
-        GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
-        cellB.interest = self.adviceToGive[indexPath.item];
-        
-        [cellB layoutInterests];
-        return cellB;
+        if([collectionView isEqual:self.getAdviceCollectionView]){
+            cellA.interest = self.adviceToGet[indexPath.item];
+        } else{
+            cellA.interest = self.adviceToGive[indexPath.item];
+        }
+        [cellA layoutInterestsStory];
+        return cellA;
     }
+    
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{

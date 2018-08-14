@@ -16,6 +16,8 @@
 
 @interface GetAdviceCollectionViewCell : UICollectionViewCell
 @property (strong, nonatomic) UIImageView *backgroundIMage;
+@property (strong, nonatomic) IBOutlet UILabel *interestNameLabelStory;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImageStory;
 
 @property (strong, nonatomic) UILabel *interestNameLabel;
 @property (strong, nonatomic) InterestModel *interest;
@@ -23,5 +25,5 @@
 
 
 - (void)layoutInterests;
-
+-(void)layoutInterestsStory;
 @end
