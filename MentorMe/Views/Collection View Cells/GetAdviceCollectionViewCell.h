@@ -21,7 +21,7 @@
 @property (strong, nonatomic) InterestModel *interest;
 
 
-- (void)loadCollectionViewCell;
+
 - (void)layoutInterests;
 
 @end

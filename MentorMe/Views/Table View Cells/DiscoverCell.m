@@ -80,20 +80,14 @@
         [self.backgroundImage addSubview:self.educationLabel];
         
         
-        if( self.selectedIndex == 0 ){
-            collectionViewA.hidden = NO;
-            collectionViewB.hidden = YES;
-        } else {
-            collectionViewA.hidden = YES;
-            collectionViewB.hidden = NO;
-        }
+
         
-        UICollectionViewFlowLayout* flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.itemSize = CGSizeMake(120, 50);
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionHorizontal];
-        flowLayout.minimumInteritemSpacing = 10;
-        flowLayout.minimumLineSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
+        UICollectionViewFlowLayout* flowLayoutA = [[UICollectionViewFlowLayout alloc] init];
+        flowLayoutA.itemSize = CGSizeMake(120, 50);
+        [flowLayoutA setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        flowLayoutA.minimumInteritemSpacing = 10;
+        flowLayoutA.minimumLineSpacing = 0;
+        flowLayoutA.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
         
         
         
@@ -101,28 +95,41 @@
         
         
         
-        if( self.selectedIndex == 1 ) {
-            collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
-            collectionViewA.delegate = self;
-            collectionViewA.dataSource = self;
-            collectionViewA.backgroundColor = [UIColor clearColor];
-            collectionViewA.showsHorizontalScrollIndicator = NO;
-            collectionViewA.alwaysBounceHorizontal = YES;
-            [self.backgroundImage addSubview:collectionViewA];
-            [collectionViewA reloadData];
-        }
+    
+        collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayoutA];
+        [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
+        collectionViewA.delegate = self;
+        collectionViewA.dataSource = self;
+        collectionViewA.backgroundColor = [UIColor clearColor];
+        collectionViewA.showsHorizontalScrollIndicator = NO;
+        collectionViewA.alwaysBounceHorizontal = YES;
+        [self.backgroundImage addSubview:collectionViewA];
+ 
+    
+        UICollectionViewFlowLayout* flowLayoutB = [[UICollectionViewFlowLayout alloc] init];
+        flowLayoutB.itemSize = CGSizeMake(120, 50);
+        [flowLayoutB setScrollDirection:UICollectionViewScrollDirectionHorizontal];
+        flowLayoutB.minimumInteritemSpacing = 10;
+        flowLayoutB.minimumLineSpacing = 0;
+        flowLayoutB.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
+   
+        collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayoutB];
+        [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
+        collectionViewB.delegate = self;
+        collectionViewB.dataSource = self;
+        collectionViewB.backgroundColor = [UIColor clearColor];
+        collectionViewB.showsHorizontalScrollIndicator = NO;
+        collectionViewB.alwaysBounceHorizontal = YES;
+        [self.backgroundImage addSubview:collectionViewB];
         
         if( self.selectedIndex == 0 ){
-            collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayout];
-            [collectionViewB registerClass:[GiveAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell"];
-            collectionViewB.delegate = self;
-            collectionViewB.dataSource = self;
-            collectionViewB.backgroundColor = [UIColor clearColor];
-            collectionViewB.showsHorizontalScrollIndicator = NO;
-            collectionViewB.alwaysBounceHorizontal = YES;
-            [self.backgroundImage addSubview:collectionViewB];
-            [collectionViewB reloadData];
+            collectionViewA.hidden = NO;
+            collectionViewB.hidden = YES;
+        } else {
+            collectionViewA.hidden = YES;
+            collectionViewB.hidden = NO;
         }
+            
         
     }
     
@@ -176,7 +183,16 @@
     [collectionViewA setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     [collectionViewB setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
 
+    [collectionViewA reloadData];
+    [collectionViewB reloadData];
     
+    if( self.selectedIndex == 0 ){
+        collectionViewA.hidden = YES;
+        collectionViewB.hidden = NO;
+    } else {
+        collectionViewA.hidden = NO;
+        collectionViewB.hidden = YES;
+    }
 }
 
 
@@ -189,6 +205,7 @@
     if( [collectionView isEqual:collectionViewA] ){
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+        NSLog(@"Cell A, indexpath is %ld", (long)indexPath.row);
         cellA.interest = self.incomingGetInterests[indexPath.row];
 
         [cellA layoutInterests];
@@ -201,6 +218,7 @@
     } else {
         
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
+        NSLog(@"Cell B, indexpath is %ld", (long)indexPath.row);
         cellB.interest = self.incomingGiveInterests[indexPath.row];
         [cellB layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellB.interest.subject];
@@ -213,10 +231,10 @@
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     InterestModel *modelA;
-    if( [collectionView isEqual: collectionViewA] ){
-        modelA = self.incomingGetInterests[indexPath.row];
-    } else {
+    if( [collectionView isEqual: collectionViewB] ){
         modelA = self.incomingGiveInterests[indexPath.row];
+    } else {
+        modelA = self.incomingGetInterests[indexPath.row];
     }
     
     NSString *testString = modelA.subject;
@@ -227,15 +245,16 @@
     return textSize;
 }
 
-- (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    NSInteger *numberToReturn = 0;
-    if( self.selectedIndex == 1 ){
-        numberToReturn =  self.userForCell.getAdviceInterests.count;
-    } else {
+- (NSInteger *)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    NSInteger *numberToReturn;
+    if( collectionView == collectionViewB ){
         numberToReturn =  self.userForCell.giveAdviceInterests.count;
+        NSLog(@"cells to make of B: %ld", numberToReturn);
+    } else {
+        numberToReturn =  self.userForCell.getAdviceInterests.count;
+        NSLog(@"cells to make of A: %ld", numberToReturn);
     }
-    
-    return MIN(numberToReturn, 3);
+    return numberToReturn;
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
