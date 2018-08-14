@@ -112,11 +112,12 @@
             //setting up cell
             UILabel* label = [[UILabel alloc]init];
             [label setFrame:CGRectMake(8, 0, 400, 50)];
+            label.numberOfLines = 0;
             //Notifications* this = self.notificationTypes[indexPath.row];
             PFUser* sender = self.notification.sender;
             NSString* message = [sender.name stringByAppendingString:@" has accepted your appointment invite."];
             label.text = message;
-            [cell.contentView addSubview:label];
+            [cell addSubview:label];
            
             return  cell;
         }
@@ -125,6 +126,7 @@
             ++self.subtractor;
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"declined" forIndexPath:indexPath];
             UILabel* label = [[UILabel alloc]init];
+            label.numberOfLines = 0;
             //setting up cell
             [label setFrame:CGRectMake(8, 0, 400, 50)];
             //Notifications* this = self.notificationTypes[indexPath.row];
@@ -154,6 +156,7 @@
             NSString *result = [df stringFromDate:appointment.meetingDate];
             cell.when.text = [@"On: " stringByAppendingString:result];
             cell.where.text = [@"At: " stringByAppendingString:appointment.meetingLocation];
+            
             return cell;
             }
         else{

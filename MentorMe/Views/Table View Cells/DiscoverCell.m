@@ -190,7 +190,7 @@
     [collectionViewA setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     [collectionViewB setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     
-    CGFloat heightOfBackground = collectionViewB.frame.size.height + collectionViewB.frame.origin.y + 12;
+    CGFloat heightOfBackground = collectionViewB.frame.size.height + collectionViewB.frame.origin.y;
     
     CGFloat newY = (250 - heightOfBackground)/2;
     
