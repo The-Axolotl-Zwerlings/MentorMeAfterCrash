@@ -30,7 +30,10 @@
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic) BOOL filtering;
 @property (nonatomic) BOOL getAdvice;
-
+@property (nonatomic, assign) NSInteger* noOfNotifications;
+@property (nonatomic, strong) UIView* counterView;
+@property (nonatomic, strong) UILabel* couterLabel;
+@property (nonatomic, strong) NSTimer* timer;
 
 @end
 
@@ -39,6 +42,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //notification count
+    self.counterView = [[UIView alloc]initWithFrame:CGRectMake(35, 0, 26, 26)];
+    [self.counterView setBackgroundColor:UIColor.redColor];
+    [self.counterView.layer setCornerRadius:self.counterView.frame.size.width/2];
+    [self.counterView.layer setMasksToBounds:YES];
+    self.couterLabel = [[UILabel alloc]initWithFrame:CGRectMake(43, 0, 25, 25)];
+    self.couterLabel.textColor = UIColor.whiteColor;
     
     self.tabBarController.navigationItem.title = @"Discover";
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
@@ -57,6 +68,27 @@
     
 }
 
+-(void)notificationsCount{
+    PFQuery* query = [PFQuery queryWithClassName:@"Notifications"];
+    [query whereKey:@"reciever" equalTo:[PFUser currentUser]];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError * _Nullable error) {
+        if (!error) {
+            if(objects.count != 0){
+            [self.navigationController.navigationBar addSubview:self.counterView];
+            [self.navigationController.navigationBar addSubview:self.couterLabel];
+            self.couterLabel.text = [NSString stringWithFormat: @"%ld", objects.count];
+            }
+            else{
+                [self.couterLabel removeFromSuperview];
+                [self.counterView removeFromSuperview];
+            }
+            }
+        else {
+            NSLog(@"Error: %@ %@", error, [error userInfo]);
+        }
+    }];
+}
+
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -67,6 +99,13 @@
     
     [giveTableView reloadData];
     [getTableView reloadData];
+    
+    [self notificationsCount];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:5.0
+                                                  target:self
+                                                selector:@selector(notificationsCount)
+                                                userInfo:nil
+                                                 repeats:YES];
 }
 
 - (void) loadBarButtons {
@@ -75,8 +114,8 @@
     UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
     self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
     /**/
-    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithTitle:
-                                 @"Notifications" style:UIBarButtonItemStylePlain target:
+    UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithImage:
+                                 [UIImage imageNamed:@"bell"] style:UIBarButtonItemStylePlain target:
                                  self action:@selector(myButtonClicked:)];
     self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn; self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
     /**/
@@ -428,5 +467,13 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self performSegueWithIdentifier:@"segueToMentorDetailsViewController" sender:indexPath];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    NSLog(@"stoped");
+    [super viewDidDisappear:(BOOL)animated];
+    [self.timer invalidate];
+    [self.couterLabel removeFromSuperview];
+    [self.counterView removeFromSuperview];
 }
 @end

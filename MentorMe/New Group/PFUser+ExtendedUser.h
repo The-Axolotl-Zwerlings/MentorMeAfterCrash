@@ -24,4 +24,5 @@
 
 @property (strong, nonatomic) PFRelation* usersNearby;
 @property (strong, nonatomic) NSNumber *meetupNumber;
+
 @end
