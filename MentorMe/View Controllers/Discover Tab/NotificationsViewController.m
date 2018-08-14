@@ -214,10 +214,9 @@
     NSInteger integerValue = [self.currentAppointmentIndex integerValue];
     AppointmentModel * appointment = self.appointmentArray[integerValue];
     PFQuery *query = [PFQuery queryWithClassName:@"AppointmentModel"];
-    [query getObjectInBackgroundWithId:appointment.objectId
-                                 block:^(PFObject *appointment, NSError *error) {
+    [query getObjectInBackgroundWithId:appointment.objectId block:^(PFObject *appointment, NSError *error) {
+                                     appointment[@"confirmation"] = @"YES";
                                      [appointment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                         appointment[@"confirmation"] = @"YES";
                                          [self deleteNotification];
                                      }];
       }];
