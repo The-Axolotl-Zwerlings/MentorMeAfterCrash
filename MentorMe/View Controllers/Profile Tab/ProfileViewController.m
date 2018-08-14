@@ -280,7 +280,7 @@
         
         GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
         cellA.interest = self.adviceToGet[indexPath.item];
-        [cellA loadCollectionViewCell];
+        
         [cellA layoutInterests];
         return cellA;
         
@@ -288,7 +288,7 @@
         
         GiveAdviceCollectionViewCell *cellB = [collectionView dequeueReusableCellWithReuseIdentifier:@"GiveAdviceCollectionViewCell" forIndexPath:indexPath];
         cellB.interest = self.adviceToGive[indexPath.item];
-        [cellB loadCollectionViewCell];
+        
         [cellB layoutInterests];
         return cellB;
         

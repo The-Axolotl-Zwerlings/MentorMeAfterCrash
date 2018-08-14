@@ -1,3 +1,4 @@
+
 //
 //  DiscoverTableViewController.m
 //  MentorMe
@@ -386,10 +387,7 @@
 
     [cell loadCell];
     
-    cell.nameLabel.text = cell.userForCell.name;
     
-    
-    [cell setHidden:NO];
     return cell;
 }
 
