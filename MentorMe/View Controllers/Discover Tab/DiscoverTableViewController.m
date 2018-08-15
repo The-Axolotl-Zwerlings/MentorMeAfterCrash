@@ -114,6 +114,7 @@
 
 - (void) loadBarButtons {
     self.tabBarController.navigationItem.title = @"Discover";
+
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
     self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
@@ -122,12 +123,15 @@
                                  [UIImage imageNamed:@"bell-green"] style:UIBarButtonItemStylePlain target:
                                  self action:@selector(myButtonClicked:)];
     self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn;
-    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
-    self.tabBarController.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{
-                                                                      NSFontAttributeName:[UIFont fontWithName:@"Avenir-Heavy" size:20.0f]
-                                                                      }];
+    /*self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor blackColor];
+    //[UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0];
+    self.tabBarController.navigationItem.leftBarButtonItem.tintColor = [UIColor blackColor];
+    //[UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0];*/
+    
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{
+//                                                                      NSFontAttributeName:[UIFont fontWithName:@"Avenir-Heavy" size:20.0f], NSBackgroundColorAttributeName:[UIColor whiteColor]
+//                                                                      }];
     
     /**/
 }
@@ -319,7 +323,7 @@
     self.segmentedControl.sectionTitles = @[@"Get Advice", @"Give Advice"];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor clearColor];
-    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
     self.segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleArrow;
