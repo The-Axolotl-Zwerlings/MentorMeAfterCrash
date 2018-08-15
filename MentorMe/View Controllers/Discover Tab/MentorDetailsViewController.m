@@ -27,9 +27,11 @@
 @property (strong, nonatomic) NSArray *complimentsArray;
 @property (weak, nonatomic) IBOutlet PFImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *rating;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (weak, nonatomic) IBOutlet UIView *ratingVIew;
+@property (weak, nonatomic) IBOutlet UIView *complimentsView;
 
 @property (weak, nonatomic) IBOutlet UILabel *theirInterestsLabel;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
@@ -54,18 +56,22 @@ int myCounter;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.scrollViewMentor setContentSize:CGSizeMake(375,1160)];
+    [self.scrollViewMentor setContentSize:CGSizeMake(375,1450)];
     
     [self loadMentor];
+    [self getRating];
     
     self.connectButton.layer.shadowColor = UIColor.grayColor.CGColor;
-    self.connectButton.layer.shadowOffset = CGSizeMake(0, 5);
+    self.connectButton.layer.shadowOffset = CGSizeMake(0, -2);
     self.connectButton.layer.shadowRadius = 3;
     self.connectButton.layer.shadowOpacity = 0.5f;
     
     self.title = self.mentor.name;
     
-    
+    self.headerImageView.layer.shadowOffset = CGSizeMake(0, 5);
+    self.headerImageView.layer.shadowOpacity = 1;
+    self.headerImageView.layer.shadowRadius = 3;
+    self.headerImageView.layer.shadowColor = UIColor.grayColor.CGColor;
     
     self.scrollViewMentor.showsVerticalScrollIndicator = NO;
     self.scrollViewMentor.alwaysBounceVertical = YES;
@@ -94,10 +100,17 @@ int myCounter;
     UITapGestureRecognizer *imageTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleImageTap:)];
     [self.profileImage addGestureRecognizer:imageTap];
     
+    
+    self.complimentsView.hidden = YES;
+    self.scrollViewMentor.contentSize = CGSizeMake(self.scrollViewMentor.frame.size.width,1300);
+    
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [self loadMentor];
+    [self getRating];
 }
 
 //action for image tap
@@ -155,6 +168,7 @@ int myCounter;
             
             if( isnan([starRating doubleValue]) == 0 ){
                 self.ratingVIew.hidden = false;
+                self.complimentsView.hidden = YES;
                 NSString* formattedNumber = [NSString stringWithFormat:@"%.01f", [starRating doubleValue]];
                 self.rating.text = [NSString stringWithFormat:@"%@", formattedNumber];
                 self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
@@ -185,6 +199,7 @@ int myCounter;
     NSString *cityLabelAppend = self.mentor[@"cityLocation"];
     NSString *stateLabelAppend = self.mentor[@"stateLocation"];
     
+    
     self.theirInterestsLabel.text = [self.mentor.name stringByAppendingString:@"'s Interests"];
     
     self.locationLabel.text = [[[@"Lives in " stringByAppendingString:cityLabelAppend] stringByAppendingString:@", "] stringByAppendingString:stateLabelAppend];
@@ -200,19 +215,13 @@ int myCounter;
     
     //[self.nameLabel sizeToFit];
     
-    UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
-    UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
-    
-    if( self.isMentorOfMeeting == false ) {
-        self.profileImage.layer.borderColor = CGColorRetain(colorA.CGColor);
-    } else {
-        self.profileImage.layer.borderColor = CGColorRetain(colorB.CGColor);
-    }
+    self.profileImage.layer.borderColor = [UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0].CGColor;
     
     [self getRating];
     
     
 }
+
 
 
 /**************   COLLECTION VIEW ***********/
@@ -222,6 +231,8 @@ int myCounter;
         return self.adviceToGet.count;
     } else if([collectionView isEqual:self.complimentsCollectionView]){
         if(self.complimentsArray != nil){
+            [self.complimentsView setHidden:NO];
+            self.scrollViewMentor.contentSize = CGSizeMake(self.scrollViewMentor.frame.size.width,1450);
             int count = 0;
             for(int i = 0; i < 5; ++i){
                 if(self.complimentsArray[i] != [NSNumber numberWithBool:NO]){
