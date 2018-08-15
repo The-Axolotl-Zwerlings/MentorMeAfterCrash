@@ -26,19 +26,22 @@
         NSLog(@"Loading cell");
         //0. Background Color
         self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 200)];
-        [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0]];
-        [self.backgroundImage.layer setCornerRadius:0];
+        [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0]];
+        [self.backgroundImage.layer setCornerRadius:10];
         [self.backgroundImage.layer setMasksToBounds:NO];
         [self.backgroundImage.layer setShadowColor: UIColor.grayColor.CGColor];
         [self.backgroundImage.layer setShadowRadius:3];
         [self.backgroundImage.layer setShadowOpacity:0.4];
         [self.backgroundImage.layer setShadowOffset:CGSizeMake(0, 5)];
+        
+        
+        
         [self addSubview:self.backgroundImage];
         
         //1. Profile Image
         self.profilePicture = [[PFImageView alloc] initWithFrame:CGRectMake(12, 12, 100, 100)];
-        [self.profilePicture.layer setBorderColor:UIColor.whiteColor.CGColor];
-        [self.profilePicture.layer setBorderWidth:5];
+        [self.profilePicture.layer setBorderColor:UIColor.blackColor.CGColor];
+        [self.profilePicture.layer setBorderWidth:3];
         [self.profilePicture.layer setCornerRadius: self.profilePicture.frame.size.width/2];
         [self.profilePicture.layer setMasksToBounds:YES];
         [self.backgroundImage addSubview:self.profilePicture];
@@ -48,8 +51,8 @@
     
         //2. Name Label
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 124, 12, textWidth, 90)];
-        [self.nameLabel setFont:[UIFont fontWithName:@"Avenir" size:25]];
-        [self.nameLabel setTextColor:[UIColor whiteColor]];
+        [self.nameLabel setFont:[UIFont fontWithName:@"Avenir-Heavy" size:25]];
+        [self.nameLabel setTextColor:[UIColor blackColor]];
         [self.nameLabel setNumberOfLines:0];
         [self.nameLabel adjustsFontSizeToFitWidth];
         [self.nameLabel setLineBreakMode:NSLineBreakByClipping];
@@ -64,8 +67,8 @@
         self.jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.nameLabel.frame.size.height + self.nameLabel.frame.origin.y, textWidth, 40)];
         
         [self.jobLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-        [self.jobLabel setTextColor:[UIColor whiteColor]];
-        [self.jobLabel setNumberOfLines:0];
+        [self.jobLabel setTextColor:[UIColor blackColor]];
+        [self.jobLabel setNumberOfLines:2];
         [self.jobLabel adjustsFontSizeToFitWidth];
         [self.jobLabel setLineBreakMode:NSLineBreakByWordWrapping];
         
@@ -77,8 +80,8 @@
         //4. Education Label
         self.educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.jobLabel.frame.size.height + self.jobLabel.frame.origin.y, textWidth, 40)];
         [self.educationLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-        [self.educationLabel setTextColor:[UIColor whiteColor]];
-        [self.educationLabel setNumberOfLines:0];
+        [self.educationLabel setTextColor:[UIColor blackColor]];
+        [self.educationLabel setNumberOfLines:2];
         [self.educationLabel adjustsFontSizeToFitWidth];
         [self.educationLabel setLineBreakMode:NSLineBreakByWordWrapping];
         

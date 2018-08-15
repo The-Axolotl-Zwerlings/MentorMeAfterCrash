@@ -42,11 +42,12 @@
     [self.refreshControl addTarget:self action:@selector(fetchFilteredAppointments) forControlEvents:UIControlEventValueChanged];
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
 
-    UIFont *font = [UIFont systemFontOfSize:15.0f];
+    UIFont *font = [UIFont fontWithName:@"Avenir" size:15.0f];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
     [self.segmentedControl setTitleTextAttributes:attributes
                                 forState:UIControlStateNormal];
+    [self.segmentedControl setTintColor:[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0]];
     
     
     self.tabBarController.navigationItem.title = @"Appointments";

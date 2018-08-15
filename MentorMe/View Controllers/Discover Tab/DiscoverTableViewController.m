@@ -52,7 +52,7 @@
     self.couterLabel = [[UILabel alloc]initWithFrame:CGRectMake(43, 0, 25, 25)];
     self.couterLabel.textColor = UIColor.whiteColor;
     
-    self.tabBarController.navigationItem.title = @"Discover";
+    
     self.filtersToSearchGetWith = [[NSMutableArray alloc] init];
     self.filtersToSearchGiveWith = [[NSMutableArray alloc] init];
     
@@ -97,8 +97,7 @@
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    self.tabBarController.navigationItem.title = @"Discover";
-    /**/
+    
     
     [self loadBarButtons];
     
@@ -114,15 +113,22 @@
 }
 
 - (void) loadBarButtons {
-    
+    self.tabBarController.navigationItem.title = @"Discover";
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     UIImage *tabImage = [UIImage imageNamed:@"equalizer-1"];
     self.tabBarController.navigationItem.rightBarButtonItem =  [[UIBarButtonItem alloc] initWithImage:tabImage style:UIBarButtonItemStylePlain target:self action:@selector(segueToFilters)];
     /**/
     UIBarButtonItem *myNavBtn = [[UIBarButtonItem alloc] initWithImage:
-                                 [UIImage imageNamed:@"bell"] style:UIBarButtonItemStylePlain target:
+                                 [UIImage imageNamed:@"bell-green"] style:UIBarButtonItemStylePlain target:
                                  self action:@selector(myButtonClicked:)];
-    self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn; self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.54 blue:0.41 alpha:1.0];
+    self.tabBarController.navigationItem.leftBarButtonItem = myNavBtn;
+    self.tabBarController.navigationItem.rightBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
+    self.tabBarController.navigationItem.leftBarButtonItem.tintColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
+    
+    [self.navigationController.navigationBar setTitleTextAttributes:@{
+                                                                      NSFontAttributeName:[UIFont fontWithName:@"Avenir-Heavy" size:20.0f]
+                                                                      }];
+    
     /**/
 }
 
@@ -313,7 +319,8 @@
     self.segmentedControl.sectionTitles = @[@"Get Advice", @"Give Advice"];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor clearColor];
-    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
+    self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
     self.segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleArrow;
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationUp;
@@ -333,6 +340,7 @@
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.scrollView.pagingEnabled = YES;
     self.scrollView.showsHorizontalScrollIndicator = NO;
+    self.scrollView.showsVerticalScrollIndicator = NO;
     self.scrollView.contentSize = CGSizeMake(viewWidth * 2, 500);
     self.scrollView.delegate = self;
     [self.scrollView scrollRectToVisible:CGRectMake(0, 0, viewWidth, self.view.frame.size.height) animated:NO];
@@ -348,15 +356,17 @@
     [getTableView setDataSource:self];
     [getTableView setRowHeight:224];
     [getTableView setShowsHorizontalScrollIndicator:NO];
+    [getTableView setShowsVerticalScrollIndicator:NO];
     [getTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:getTableView];
-
+    
     giveTableView = [[UITableView alloc] initWithFrame:CGRectMake(375, 0, 375, 500) style:UITableViewStylePlain];
     [giveTableView registerClass:[DiscoverCell class] forCellReuseIdentifier:@"DiscoverCell"];
     [giveTableView setDelegate:self];
     [giveTableView setDataSource:self];
     [giveTableView setRowHeight:224];
     [giveTableView setShowsHorizontalScrollIndicator:NO];
+    [giveTableView setShowsVerticalScrollIndicator:NO];
     [giveTableView setSeparatorColor:[UIColor clearColor]];
     [self.scrollView addSubview:giveTableView];
     
@@ -426,7 +436,7 @@
     cell.giveSet = [NSSet setWithArray:self.filtersToSearchGiveWith];
     cell.getSet = [NSSet setWithArray:self.filtersToSearchGetWith];
     
-
+    
     [cell loadCell];
     
     
