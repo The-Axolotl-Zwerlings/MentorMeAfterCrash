@@ -110,6 +110,14 @@
             ++(self.subtractor);
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"accepted" forIndexPath:indexPath];
             //setting up cell
+            UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(335, 15, 20, 20)];
+            typeIndicator.image = [UIImage imageNamed:@"checkmark"];
+            [typeIndicator setTintColor:[UIColor redColor]];
+            [cell.contentView addSubview:typeIndicator];
+            cell.contentView.layer.cornerRadius = 8;
+            cell.contentView.layer.masksToBounds = true;
+            cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            cell.contentView.layer.borderWidth = 1;
             UILabel* label = [[UILabel alloc]init];
             [label setFrame:CGRectMake(8, 0, 400, 50)];
             label.numberOfLines = 0;
@@ -125,6 +133,13 @@
         else if([self.notification.type isEqualToString:@"declined"]){
             ++self.subtractor;
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"declined" forIndexPath:indexPath];
+            UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(335, 15, 20, 20)];
+            typeIndicator.image = [UIImage imageNamed:@"trueCross"];
+            [cell.contentView addSubview:typeIndicator];
+            cell.contentView.layer.cornerRadius = 8;
+            cell.contentView.layer.masksToBounds = true;
+            cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            cell.contentView.layer.borderWidth = 1;
             UILabel* label = [[UILabel alloc]init];
             label.numberOfLines = 0;
             //setting up cell
@@ -140,6 +155,9 @@
             NSNumber * x = @(self.subtractor);
             [self.subtractors addObject:x];
             NotificationsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"invite" forIndexPath:indexPath];
+            UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(320, 30, 20, 20)];
+            typeIndicator.image = [UIImage imageNamed:@"envelop"];
+            [cell.contentView addSubview:typeIndicator];
             NSInteger t = self.tracker;
             NSInteger z = [[self.subtractors objectAtIndex:t]intValue];
             NSInteger n = indexPath.row - z;
@@ -149,6 +167,11 @@
             self.tracker = self.tracker+1;
             
             //setting cell
+            
+            cell.contentView.layer.cornerRadius = 8;
+            cell.contentView.layer.masksToBounds = true;
+            cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+            cell.contentView.layer.borderWidth = 1;
             self.other =  ([appointment.mentor.name isEqualToString:PFUser.currentUser.name]) ? appointment.mentee : appointment.mentor;
             cell.inviter.text = [self.other.name stringByAppendingString:@" wants to meet you"];
             NSDateFormatter* df = [[NSDateFormatter alloc]init];
@@ -164,6 +187,17 @@
             return  cell;
         }
     
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    //CGFloat height = 44.0;
+    self.notification = [self.notificationArray objectAtIndex:indexPath.row];
+    if ([self.notification.type isEqualToString:@"invite"]){
+        return 65;
+    }
+    else{
+        return 50;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
