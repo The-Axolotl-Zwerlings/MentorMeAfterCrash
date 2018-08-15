@@ -13,22 +13,21 @@
         <!--Create Appointment View Controller-->
         <scene sceneID="tOx-GL-mEE">
             <objects>
-                <viewController id="MY9-ZN-1zH" customClass="CreateAppointmentViewController" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="MY9-ZN-1zH" customClass="CreateAppointmentViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8Nx-PZ-TfX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AC5-el-gTN">
+                                <rect key="frame" x="0.0" y="64" width="375" height="178"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.2156862745" green="0.96862745100000003" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </imageView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ygE-EQ-VUY">
                                 <rect key="frame" x="67" y="269" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="htx-y1-f7p">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.30588235294117649" green="0.87058823529411766" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="displayP3"/>
-                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1IS-GS-emn" customClass="PFImageView">
                                 <rect key="frame" x="43" y="82" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -43,17 +42,17 @@
                                 <rect key="frame" x="78" y="192" width="0.0" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.2156862745" green="0.96862745100000003" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wec-gQ-D2e">
-                                <rect key="frame" x="0.0" y="587" width="375" height="80"/>
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="30"/>
                                 <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="CONFIRM">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleColor" red="0.2156862745" green="0.96862745100000003" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
                                 <connections>
                                     <action selector="createAction:" destination="MY9-ZN-1zH" eventType="touchUpInside" id="Ws4-Vy-NgP"/>
@@ -62,6 +61,11 @@
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LjB-ZY-rlD">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </textAttributes>
                                 <items>
                                     <navigationItem title="Confirm Appointment" id="nLI-dq-PzT">
                                         <barButtonItem key="leftBarButtonItem" style="plain" id="gdB-qf-Rbw">
@@ -80,7 +84,7 @@
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" keyboardDismissMode="interactive" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ynk-2N-wz9">
                                 <rect key="frame" x="24" y="447" width="327" height="117"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
+                                <color key="backgroundColor" red="0.21568627450980393" green="0.96862745098039216" blue="0.6588235294117647" alpha="0.25302333047945208" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -113,7 +117,7 @@
                                 <rect key="frame" x="24" y="417" width="327" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" red="0.2156862745" green="0.96862745100000003" blue="0.6588235294" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EYt-p6-qBL">
@@ -183,6 +187,7 @@
                         <outlet property="confirmButton" destination="wec-gQ-D2e" id="pKm-Qy-9GW"/>
                         <outlet property="dateTextField" destination="8yR-rd-Mp5" id="H78-Es-bXO"/>
                         <outlet property="detailView" destination="EYt-p6-qBL" id="lGG-Uk-gBK"/>
+                        <outlet property="headerImageView" destination="AC5-el-gTN" id="ext-qe-4g5"/>
                         <outlet property="locationLabel" destination="aP7-Fy-dKR" id="7XT-fz-OEM"/>
                         <outlet property="meetingWithLabel" destination="D2W-xW-4SI" id="A1G-Jx-7MD"/>
                         <outlet property="menteeNameLabel" destination="ESA-Pg-j11" id="XAT-Rx-7aF"/>

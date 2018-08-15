@@ -14,6 +14,7 @@
 
 @interface CreateAppointmentViewController ()
 
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (strong, nonatomic) IBOutlet PFImageView *mentorProfilePicView;
 @property (strong, nonatomic) IBOutlet PFImageView *menteeProfilePicView;
 @property (strong, nonatomic) IBOutlet UITextView *messageTextView;
@@ -36,6 +37,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.headerImageView.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+    self.headerImageView.layer.shadowRadius = 3;
+    self.headerImageView.layer.shadowOpacity = 1;
+    self.headerImageView.layer.shadowOffset = CGSizeMake(0, 5);
+    
+
+    
     // Do any additional setup after loading the view.
     self.meetingWithLabel.text = [@"Meeting With " stringByAppendingString:self.otherAttendee.name];
     self.meetingTypeDic = @{ @(0) : @"Coffee", @(1) : @"Lunch", @(2) : @"Video Chat"};
@@ -43,6 +52,11 @@
     [self loadAppointmentDetails];
     [self loadProfiles];
     [self loadSegmentedControl];
+    
+    self.confirmButton.layer.shadowColor = UIColor.lightGrayColor.CGColor;
+    self.confirmButton.layer.shadowRadius = 3;
+    self.confirmButton.layer.shadowOpacity = 1;
+    self.confirmButton.layer.shadowOffset = CGSizeMake(0, -5);
     
     UIGestureRecognizer *tapper = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self action:@selector(handleSingleTap:)];
@@ -59,7 +73,7 @@
 
 - (void) loadSegmentedControl{
     
-    NSArray<UIImage *> *images = @[[UIImage imageNamed:@"image-1"],
+    NSArray<UIImage *> *images = @[[UIImage imageNamed:@"spoon-knife"],
                                    [UIImage imageNamed:@"image-2"],
                                    [UIImage imageNamed:@"image-3"]];
     
@@ -72,7 +86,7 @@
     self.segmentedControl.imagePosition = HMSegmentedControlImagePositionLeftOfText;
     self.segmentedControl.frame = CGRectMake(0, 235, 375, 50);
     self.segmentedControl.selectionIndicatorHeight = 4.0f;
-    self.segmentedControl.backgroundColor = [UIColor whiteColor];
+    self.segmentedControl.backgroundColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
     self.segmentedControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown;
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
     self.segmentedControl.segmentWidthStyle = HMSegmentedControlSegmentWidthStyleFixed;
@@ -100,15 +114,15 @@
     
     UIColor *colorA = [UIColor colorWithRed:0.87 green:0.77 blue:0.87 alpha:1.0];
     UIColor *colorB = [UIColor colorWithRed:0.86 green:0.81 blue:0.93 alpha:1.0];
+    self.mentorProfilePicView.layer.borderColor = [UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0].CGColor;
+    self.menteeProfilePicView.layer.borderColor = [UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0].CGColor;
     
     if( self.isMentorOfMeeting == false){
         self.mentorProfilePicView.file = myUser.profilePic;
         self.menteeProfilePicView.file = otherUser.profilePic;
         self.mentorNameLabel.text = myUser.name;
         self.menteeNameLabel.text = otherUser.name;
-        
-        self.mentorProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
-        self.menteeProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
+    
 
     } else {
         self.menteeProfilePicView.file = myUser.profilePic;
@@ -116,8 +130,6 @@
         self.menteeNameLabel.text = myUser.name;
         self.mentorNameLabel.text = otherUser.name;
         
-        self.mentorProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
-        self.menteeProfilePicView.layer.borderColor = UIColor.clearColor.CGColor;
     }
     self.mentorProfilePicView.layer.borderWidth = 5;
     self.menteeProfilePicView.layer.borderWidth = 5;
