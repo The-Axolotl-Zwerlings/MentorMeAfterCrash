@@ -79,9 +79,12 @@
 
 - (void) loadTitles {
     PFUser *myUser = [PFUser currentUser];
-    self.schoolLabel.text =  [NSString stringWithFormat:@"Turn on to find alumni of %@", myUser.school];
-    self.companyLabel.text = [NSString stringWithFormat:@"Turn on to find people who also work at %@", myUser.company];
-    self.locationLabel.text = [NSString stringWithFormat:@"Turn on to find people in the %@ area", myUser.cityLocation];
+    NSString *schoolString = [NSString stringWithFormat:@"Turn on to find alumni of %@", myUser.school];
+    NSString *companyString = [NSString stringWithFormat:@"Turn on to find people who also work at %@", myUser.company];
+    NSString *locationString = [NSString stringWithFormat:@"Turn on to find people in the %@ area", myUser.cityLocation];
+    self.schoolLabel.text =  schoolString;
+    self.companyLabel.text = companyString;
+    self.locationLabel.text = locationString;
 
     
 //    self.schoolLabel.adjustsFontSizeToFitWidth = YES;
