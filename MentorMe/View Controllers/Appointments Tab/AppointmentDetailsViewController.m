@@ -124,10 +124,10 @@
 //    self.milestoneButton.layer.borderColor = UIColor.blueColor.CGColor;
 //    self.milestoneButton.layer.borderWidth = 2;
     
-    self.milestoneButton.layer.shadowColor = UIColor.grayColor.CGColor;
+    self.milestoneButton.layer.shadowColor = UIColor.blackColor.CGColor;
     self.milestoneButton.layer.shadowOffset = CGSizeMake(0, -5);
     self.milestoneButton.layer.shadowRadius = 1;
-    self.milestoneButton.layer.shadowOpacity = 1;
+    self.milestoneButton.layer.shadowOpacity = 0.4;
     
     
 }
