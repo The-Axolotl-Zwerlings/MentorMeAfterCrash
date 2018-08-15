@@ -17,6 +17,7 @@
     self.mentorView.layer.cornerRadius = self.mentorView.frame.size.width/2;
     self.mentorUser = mentor;
     self.nameLabel.text = mentor.name;
+    self.nameLabel.font = [UIFont fontWithName:@"Avenir" size:12];
     self.buttonSecret = [[UIButton alloc]init];
     
 }
