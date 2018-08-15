@@ -42,18 +42,21 @@
     [self.refreshControl addTarget:self action:@selector(fetchFilteredAppointments) forControlEvents:UIControlEventValueChanged];
     [self.appointmentsTableView insertSubview:self.refreshControl atIndex:0];
 
-    UIFont *font = [UIFont fontWithName:@"Avenir" size:15.0f];
+    UIFont *font = [UIFont fontWithName:@"Avenir-Heavy" size:16.0f];
     NSDictionary *attributes = [NSDictionary dictionaryWithObject:font
                                                            forKey:NSFontAttributeName];
     [self.segmentedControl setTitleTextAttributes:attributes
                                 forState:UIControlStateNormal];
-    [self.segmentedControl setTintColor:[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0]];
+    [self.segmentedControl setTintColor:[UIColor colorWithRed:0.40 green:0.97 blue:0.66 alpha:1.0]];
     
     
     self.tabBarController.navigationItem.title = @"Appointments";
     self.tabBarController.navigationItem.rightBarButtonItem = nil;
     self.tabBarController.navigationItem.leftBarButtonItem = nil;
     [self.appointmentsTableView reloadData];
+    
+    self.noAppointmentsLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:20.0f];
+    
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -124,7 +127,7 @@
                 NSLog( @"Fetching Upcoming Appointments...");
                 self.appointmentsArray = self.upComingAppointments;
                 if( self.upComingAppointments.count == 0){
-                    self.noAppointmentsLabel.text = @"No Upcoming appointments";
+                    self.noAppointmentsLabel.text = @"No Upcoming Appointments";
                     self.noAppointmentsView.hidden = false;
                     [self.view bringSubviewToFront:self.noAppointmentsView];
                    
@@ -140,7 +143,7 @@
                 self.appointmentsArray = self.pastAppointments;
                 if( self.pastAppointments.count == 0){
                     self.noAppointmentsView.hidden = false;
-                    self.noAppointmentsLabel.text = @"No Past appointments";
+                    self.noAppointmentsLabel.text = @"No Past Appointments";
                     [self.view bringSubviewToFront:self.noAppointmentsView];
                     [self.appointmentsTableView reloadData];
                     [self.refreshControl endRefreshing];
