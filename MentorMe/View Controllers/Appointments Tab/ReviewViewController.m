@@ -9,8 +9,9 @@
 #import "ReviewViewController.h"
 #import "Review.h"
 #import "ReviewDataDelegate.h"
+#import "RateView.h"
 #import "ComplimentsCell.h"
-@interface ReviewViewController () <UITextViewDelegate, AddCompliment>
+@interface ReviewViewController () <UITextViewDelegate, AddCompliment,RateViewDelegate>
 @property (strong, nonatomic) IBOutlet UINavigationBar *navigationBar;
 @property (strong, nonatomic) IBOutlet UICollectionView *complimentsCollectionView;
 @property (strong, nonatomic) id<UICollectionViewDataSource> dataSource;
@@ -107,11 +108,7 @@
 
 
 // Add to bottom
-- (void)rateView:(RateView *)rateView ratingDidChange:(float)rating {
-    NSString* formattedNumber = [NSString stringWithFormat:@"%.f", rating];
-    self.starLabel.text = [NSString stringWithFormat:@"Rating: %@ stars", formattedNumber];
-    
-}
+
 
 
 - (void)didReceiveMemoryWarning {
@@ -146,6 +143,13 @@
     [complimentMutable replaceObjectAtIndex:[index integerValue] withObject:selected];
     self.complimentsArray = complimentMutable;
 }
+
+
+- (void)rateView:(RateView *)rateView ratingDidChange:(float)rating {
+    NSString* formattedNumber = [NSString stringWithFormat:@"%.f", rating];
+    self.starLabel.text = [NSString stringWithFormat:@"Rating: %@ stars", formattedNumber];
+}
+
 
 
 @end
