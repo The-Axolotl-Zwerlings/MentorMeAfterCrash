@@ -27,12 +27,15 @@
         //0. Background Color
         self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 200)];
         [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0]];
-        [self.backgroundImage.layer setCornerRadius:0];
+        [self.backgroundImage.layer setCornerRadius:10];
         [self.backgroundImage.layer setMasksToBounds:NO];
         [self.backgroundImage.layer setShadowColor: UIColor.grayColor.CGColor];
         [self.backgroundImage.layer setShadowRadius:3];
         [self.backgroundImage.layer setShadowOpacity:0.4];
         [self.backgroundImage.layer setShadowOffset:CGSizeMake(0, 5)];
+        
+        
+        
         [self addSubview:self.backgroundImage];
         
         //1. Profile Image

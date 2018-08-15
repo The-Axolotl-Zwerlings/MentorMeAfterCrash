@@ -36,14 +36,17 @@
 
 - (void) setAppointment:(AppointmentModel *)appointment {
    
-    self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0];
+    self.backgroundImage.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
     
     _appointment = appointment;
     
     self.otherAttendeeName.adjustsFontSizeToFitWidth = YES;
     
+    self.backgroundImage.layer.borderWidth = 2;
+    self.backgroundImage.layer.borderColor = [UIColor blackColor].CGColor;
+    
     self.backgroundImage.layer.shadowColor = UIColor.blackColor.CGColor;
-    self.backgroundImage.layer.shadowOpacity = 0;
+    self.backgroundImage.layer.shadowOpacity = 1;
     self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
     self.backgroundImage.layer.shadowRadius = 5;
     self.backgroundImage.clipsToBounds = NO;
@@ -100,9 +103,13 @@
     
     self.otherAttendeeProfilePic.layer.masksToBounds = true;
     self.otherAttendeeProfilePic.layer.borderWidth = 3;
-    self.otherAttendeeProfilePic.layer.borderColor = CGColorRetain(UIColor.whiteColor.CGColor);
+    self.otherAttendeeProfilePic.layer.borderColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0].CGColor;
     self.otherAttendeeProfilePic.layer.cornerRadius = self.otherAttendeeProfilePic.frame.size.width /2;
     
+    self.backgroundImage.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.backgroundImage.layer.shadowOffset = CGSizeMake(0, 5);
+    self.backgroundImage.layer.shadowRadius = 5;
+    self.backgroundImage.layer.shadowOpacity = 1;
     
     
     //3. Update labels and images
