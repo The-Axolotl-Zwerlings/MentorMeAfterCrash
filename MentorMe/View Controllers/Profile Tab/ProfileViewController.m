@@ -31,6 +31,7 @@
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet PFImageView *largeImage;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @property (strong, nonatomic) IBOutlet UIView *largeImageView;
 @property (weak, nonatomic) IBOutlet UIView *MentorsView;
@@ -220,7 +221,11 @@
         CGFloat newHeight = self.MentorsView.frame.size.height + self.MentorsView.frame.origin.y;
         self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,newHeight);
     }
-     
+    
+    self.headerImageView.layer.shadowOffset = CGSizeMake(0, 5);
+    self.headerImageView.layer.shadowOpacity = 1;
+    self.headerImageView.layer.shadowRadius = 4;
+    self.headerImageView.layer.shadowColor = UIColor.grayColor.CGColor;
      
     self.nameLabel.text = self.user[@"name"];
     NSString *jobTitleAppend = self.user[@"jobTitle"];
