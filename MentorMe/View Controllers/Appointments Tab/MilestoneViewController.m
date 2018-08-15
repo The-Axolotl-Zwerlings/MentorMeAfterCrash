@@ -157,9 +157,9 @@
     int heightBar = 90;
 
     //circle
-    int radiusCircle = 41;
-    int yPosCircle = 130;
-    int xPosCircle = 23;
+    int radiusCircle = 50;
+    int yPosCircle = 128;
+    int xPosCircle = 19;
     //label
     
     if(!first){
@@ -173,7 +173,7 @@
         UILabel *meetingLabel = [[UILabel alloc]initWithFrame:CGRectMake(81, previousTable.frame.origin.y+previousTable.frame.size.height+12, 273, 24)];
         meetingLabel.text = [NSString stringWithFormat:@"Meeting #%d",i+1];
         meetingLabel.font = [UIFont fontWithName:@"Avenir-Heavy" size:17];
-        meetingLabel.textColor = [UIColor whiteColor];
+        meetingLabel.textColor = [UIColor blackColor];
         [self.scrollView addSubview:meetingLabel];
         
         
@@ -194,21 +194,22 @@
     [self.scrollView addSubview:newTableView];
     
     if(i == self.meetingNumber-1){
-        UIButton *meetingButton = [[UIButton alloc]initWithFrame:CGRectMake(81, newTableView.frame.origin.y+newTableView.frame.size.height+12, 273, 40)];
+        UIButton *meetingButton = [[UIButton alloc]initWithFrame:CGRectMake(16, newTableView.frame.origin.y+newTableView.frame.size.height+16, self.view.frame.size.width-32, 40)];
         [meetingButton setTitle:@"Schedule next meeting" forState:UIControlStateNormal];
         //[meetingButton setTitleColor:[UIColor colorWithRed:0.59 green:0.87 blue:0.75 alpha:1.0] forState:UIControlStateNormal];
-        [meetingButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [meetingButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         meetingButton.titleLabel.font = [UIFont fontWithName:@"Avenir" size:17.0];
-        meetingButton.backgroundColor = [UIColor whiteColor];
+        meetingButton.backgroundColor = [UIColor blackColor];
         meetingButton.layer.cornerRadius = 16;
         meetingButton.clipsToBounds = YES;
+        
         [meetingButton addTarget:self action:@selector(scheduleMeet) forControlEvents:UIControlEventTouchUpInside];
         [self.scrollView addSubview:meetingButton];
         self.scheduleButton = meetingButton;
     }
     
     UIView *barView = [[UIView alloc]initWithFrame:CGRectMake(xPosBar, yPosBar, widthBar, heightBar)];
-    barView.backgroundColor = [UIColor whiteColor];
+    barView.backgroundColor = [UIColor blackColor];
     [self.scrollView addSubview:barView];
     
     if(i == (self.meetingNumber-1)){
@@ -216,7 +217,7 @@
     }
 
     UIImageView *image = [[UIImageView alloc]initWithFrame:CGRectMake(xPosCircle, yPosCircle, radiusCircle, radiusCircle)];
-    image.image = [UIImage imageNamed:@"milestoneNoBorder.png"];
+    image.image = [UIImage imageNamed:@"newMilestone.png"];
     [self.scrollView addSubview:image];
     
 }

@@ -29,7 +29,11 @@
         [titleString removeAttribute:NSStrikethroughStyleAttributeName range:NSMakeRange(0, [titleString length])];
         
         // using text on label
-        [self.task  setAttributedText:titleString];
+        
+        [UIView animateWithDuration:.3 animations:^{
+            [self.task  setAttributedText:titleString];
+        }];
+        
         
         
     } else{
@@ -43,7 +47,10 @@
         [titleString addAttribute: NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger: NSUnderlineStyleSingle] range: NSMakeRange(0, [titleString length])];
         
         // using text on label
-        [self.task  setAttributedText:titleString];
+        [UIView animateWithDuration:.3 animations:^{
+            [self.task  setAttributedText:titleString];
+        }];
+        
     }
     
     
@@ -56,7 +63,10 @@
 -(void)setUpMilestone{
     
     self.task = [[UILabel alloc]initWithFrame:CGRectMake(8, 8, self.contentView.frame.size.width-100, self.contentView.frame.size.height-12)];
+    self.task.font = [UIFont fontWithName:@"Avenir" size:13];
     [self.contentView addSubview:self.task];
+    
+    
     
     self.doneButton = [[UIButton alloc]initWithFrame:CGRectMake( self.contentView.frame.size.width-80, 12, 16, 16)];
     UIImage *unchecked = [UIImage imageNamed:@"checkbox-unchecked.png"];

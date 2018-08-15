@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0];
+    //self.view.backgroundColor = [UIColor whit];
     [self loadAppointment];
     
     self.aboutUserBackgroundImage.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -73,6 +73,8 @@
     self.menteeProfileView.layer.borderWidth = 5;
     self.menteeProfileView.layer.masksToBounds = true;
     self.menteeProfileView.layer.cornerRadius = self.menteeProfileView.frame.size.width / 2;
+    
+    self.menteeProfileView.layer.borderColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0].CGColor;
     
     titleString = [@"Meeting with " stringByAppendingString:otherAttendee.name];
     self.menteeProfileView.file = otherAttendee.profilePic;
@@ -118,13 +120,13 @@
     
     
     
-    self.milestoneButton.backgroundColor = [UIColor whiteColor];
-    self.milestoneButton.layer.borderColor = UIColor.blueColor.CGColor;
-    self.milestoneButton.layer.borderWidth = 2;
+//    self.milestoneButton.backgroundColor = [UIColor whiteColor];
+//    self.milestoneButton.layer.borderColor = UIColor.blueColor.CGColor;
+//    self.milestoneButton.layer.borderWidth = 2;
     
     self.milestoneButton.layer.shadowColor = UIColor.grayColor.CGColor;
     self.milestoneButton.layer.shadowOffset = CGSizeMake(5, 5);
-    self.milestoneButton.layer.shadowRadius = 5;
+    self.milestoneButton.layer.shadowRadius = 1;
     self.milestoneButton.layer.shadowOpacity = 1;
     
     
