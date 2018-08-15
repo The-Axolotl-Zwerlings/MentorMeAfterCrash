@@ -192,7 +192,7 @@
 }
 
 - (UIImage * _Nullable)resizeThisImage:(UIImage * _Nullable)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 1000 , 1000)];
+    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100 , 100)];
     
     resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
     resizeImageView.image = image;
