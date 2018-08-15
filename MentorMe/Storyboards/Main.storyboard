@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient 50" translatesAutoresizingMaskIntoConstraints="NO" id="OsD-J3-5eq">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="gradient 500" translatesAutoresizingMaskIntoConstraints="NO" id="OsD-J3-5eq">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.48627450979999998" green="0.82745098039999998" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -133,6 +133,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="gradient 50" width="375" height="667"/>
+        <image name="gradient 500" width="1125" height="2001"/>
     </resources>
 </document>

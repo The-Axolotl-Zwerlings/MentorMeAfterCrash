@@ -46,7 +46,7 @@
     [self getCurrentUser];
     
     self.tabBarController.navigationItem.title = @"Profile";
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,860);
     self.scrollView.alwaysBounceVertical = YES;
@@ -79,8 +79,8 @@
     [self getCurrentUser];
     self.tabBarController.navigationItem.title = @"Profile";
     
-    self.tabBarController.navigationItem.leftBarButtonItem = nil;
-    self.tabBarController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
+    self.tabBarController.navigationItem.rightBarButtonItem = nil;
+    self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Log Out" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     
     
     
@@ -245,7 +245,7 @@
     self.profileImageView.layer.cornerRadius = self.profileImageView.frame.size.width / 2;
     self.profileImageView.clipsToBounds = YES;
     self.profileImageView.layer.borderWidth = 4.0f;
-    self.profileImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImageView.layer.borderColor = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0].CGColor;
     [self getRating];
 }
 
