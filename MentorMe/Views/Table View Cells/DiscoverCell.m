@@ -44,8 +44,8 @@
         
         //1. Profile Image
         self.profilePicture = [[PFImageView alloc] initWithFrame:CGRectMake(12, 12, 100, 100)];
-        [self.profilePicture.layer setBorderColor:COLOR_B.CGColor];
-        [self.profilePicture.layer setBorderWidth:3];
+        [self.profilePicture.layer setBorderColor:[UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0].CGColor];
+        [self.profilePicture.layer setBorderWidth:5];
         [self.profilePicture.layer setCornerRadius: self.profilePicture.frame.size.width/2];
         [self.profilePicture.layer setMasksToBounds:YES];
         [self.backgroundImage addSubview:self.profilePicture];
