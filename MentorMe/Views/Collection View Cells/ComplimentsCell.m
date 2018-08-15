@@ -35,8 +35,7 @@
     self.contentView.layer.cornerRadius = 12;
     self.contentView.clipsToBounds = YES;
     if(self.selectButton != nil){
-        self.selectButton.layer.borderColor = [UIColor blackColor].CGColor
-        ;
+        self.selectButton.layer.borderColor = [UIColor blackColor].CGColor;
         self.selectButton.layer.borderWidth = 1;
     }
     
@@ -47,6 +46,8 @@
     NSArray *icons = [NSArray arrayWithObjects:@"bubbles3.png",@"earthB.png",@"eye.png",@"grin.png",@"cool.png", nil];
     self.complimentLabel.text = [compliments objectAtIndex:[index integerValue]];
     self.numOfTimesReceivedLabel.text = [NSString stringWithFormat: @"%@", count];
+    self.cornerView.layer.cornerRadius = self.cornerView.frame.size.width/2;
+    self.cornerView.clipsToBounds = YES;
     self.complimentIcon.image = [UIImage imageNamed:[icons objectAtIndex:[index integerValue]]];
     
 }

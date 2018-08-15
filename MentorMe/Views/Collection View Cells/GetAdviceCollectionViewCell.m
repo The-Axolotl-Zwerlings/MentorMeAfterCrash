@@ -62,10 +62,11 @@
     frameB.size.width = self.frame.size.width;
     frameB.origin.y = 0;
     self.backgroundImageStory.frame = frameB;
-    self.backgroundImageStory.layer.borderColor = UIColor.blackColor.CGColor;
+    self.backgroundImageStory.layer.borderColor = [UIColor blackColor].CGColor;
     self.backgroundImageStory.layer.borderWidth = 2;
     self.backgroundImageStory.layer.cornerRadius = self.backgroundImageStory.frame.size.height/2;
     self.backgroundImageStory.layer.masksToBounds = YES;
+    self.backgroundImageStory.clipsToBounds = YES;
     
     //4. Adjust Text Label
     CGRect frameC = self.interestNameLabelStory.frame;

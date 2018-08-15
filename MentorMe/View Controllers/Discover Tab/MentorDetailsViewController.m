@@ -104,7 +104,7 @@ int myCounter;
     self.complimentsView.hidden = YES;
     self.scrollViewMentor.contentSize = CGSizeMake(self.scrollViewMentor.frame.size.width,1300);
     
-    
+    [self.ratingVIew setHidden:YES];
     
 }
 
@@ -173,7 +173,8 @@ int myCounter;
                 self.rating.text = [NSString stringWithFormat:@"%@", formattedNumber];
                 self.complimentsArray = [NSArray arrayWithArray:cumulativeCompliments];
                 [self.complimentsCollectionView reloadData];
-                
+                //self.ratingVIew.layer.borderWidth = 1;
+                //self.ratingVIew.layer.borderColor = UIColor.blackColor.CGColor;
                 self.ratingVIew.layer.cornerRadius = 13;
                 self.ratingVIew.layer.masksToBounds = YES;
                 
