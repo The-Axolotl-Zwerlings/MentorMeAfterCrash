@@ -18,38 +18,45 @@
 @implementation DiscoverCell
 
 
+
 - (id) initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    UIColor* const COLOR_A = [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0]; //BACKGROUND
+    UIColor* const COLOR_B = [UIColor blackColor]; // TEXT+ BORDER
+
     
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if( self ){
         NSLog(@"Loading cell");
         //0. Background Color
-        self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 226)];
-        [self.backgroundImage setBackgroundColor:[UIColor colorWithRed:0.49 green:0.83 blue:0.69 alpha:1.0]];
-        [self.backgroundImage.layer setCornerRadius:0];
+        self.backgroundImage = [[UIImageView alloc] initWithFrame:CGRectMake(12, 12, 351, 200)];
+        [self.backgroundImage setBackgroundColor:COLOR_A];
+        [self.backgroundImage.layer setCornerRadius:10];
         [self.backgroundImage.layer setMasksToBounds:NO];
-        [self.backgroundImage.layer setShadowColor: UIColor.grayColor.CGColor];
+        [self.backgroundImage.layer setShadowColor: COLOR_A.CGColor];
         [self.backgroundImage.layer setShadowRadius:3];
         [self.backgroundImage.layer setShadowOpacity:0.4];
         [self.backgroundImage.layer setShadowOffset:CGSizeMake(0, 5)];
+        
+        
+        
         [self addSubview:self.backgroundImage];
         
         //1. Profile Image
         self.profilePicture = [[PFImageView alloc] initWithFrame:CGRectMake(12, 12, 100, 100)];
-        [self.profilePicture.layer setBorderColor:UIColor.whiteColor.CGColor];
-        [self.profilePicture.layer setBorderWidth:5];
+        [self.profilePicture.layer setBorderColor:COLOR_B.CGColor];
+        [self.profilePicture.layer setBorderWidth:3];
         [self.profilePicture.layer setCornerRadius: self.profilePicture.frame.size.width/2];
         [self.profilePicture.layer setMasksToBounds:YES];
         [self.backgroundImage addSubview:self.profilePicture];
         
         double textWidth = self.backgroundImage.frame.size.width - ( self.profilePicture.frame.origin.x + self.profilePicture.frame.size.width + self.profilePicture.frame.origin.x ) - self.profilePicture.frame.origin.x;
         
-    
+        
         //2. Name Label
         self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 124, 12, textWidth, 90)];
-        [self.nameLabel setFont:[UIFont fontWithName:@"Avenir" size:25]];
-        [self.nameLabel setTextColor:[UIColor whiteColor]];
+        [self.nameLabel setFont:[UIFont fontWithName:@"Avenir-Heavy" size:25]];
+        [self.nameLabel setTextColor:COLOR_B];
         [self.nameLabel setNumberOfLines:0];
         [self.nameLabel adjustsFontSizeToFitWidth];
         [self.nameLabel setLineBreakMode:NSLineBreakByClipping];
@@ -64,8 +71,8 @@
         self.jobLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.nameLabel.frame.size.height + self.nameLabel.frame.origin.y, textWidth, 40)];
         
         [self.jobLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-        [self.jobLabel setTextColor:[UIColor whiteColor]];
-        [self.jobLabel setNumberOfLines:0];
+        [self.jobLabel setTextColor:COLOR_B];
+        [self.jobLabel setNumberOfLines:2];
         [self.jobLabel adjustsFontSizeToFitWidth];
         [self.jobLabel setLineBreakMode:NSLineBreakByWordWrapping];
         
@@ -77,8 +84,8 @@
         //4. Education Label
         self.educationLabel = [[UILabel alloc] initWithFrame:CGRectMake(124, self.jobLabel.frame.size.height + self.jobLabel.frame.origin.y, textWidth, 40)];
         [self.educationLabel setFont:[UIFont fontWithName:@"Avenir" size:17]];
-        [self.educationLabel setTextColor:[UIColor whiteColor]];
-        [self.educationLabel setNumberOfLines:0];
+        [self.educationLabel setTextColor:COLOR_B];
+        [self.educationLabel setNumberOfLines:2];
         [self.educationLabel adjustsFontSizeToFitWidth];
         [self.educationLabel setLineBreakMode:NSLineBreakByWordWrapping];
         
@@ -87,7 +94,7 @@
         [self.backgroundImage addSubview:self.educationLabel];
         
         
-
+        
         
         UICollectionViewFlowLayout* flowLayoutA = [[UICollectionViewFlowLayout alloc] init];
         flowLayoutA.itemSize = CGSizeMake(120, 50);
@@ -102,7 +109,7 @@
         
         
         
-    
+        
         collectionViewA = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayoutA];
         [collectionViewA registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewA.delegate = self;
@@ -111,15 +118,15 @@
         collectionViewA.showsHorizontalScrollIndicator = NO;
         collectionViewA.alwaysBounceHorizontal = YES;
         [self.backgroundImage addSubview:collectionViewA];
- 
-    
+        
+        
         UICollectionViewFlowLayout* flowLayoutB = [[UICollectionViewFlowLayout alloc] init];
         flowLayoutB.itemSize = CGSizeMake(120, 50);
         [flowLayoutB setScrollDirection:UICollectionViewScrollDirectionHorizontal];
         flowLayoutB.minimumInteritemSpacing = 10;
         flowLayoutB.minimumLineSpacing = 0;
         flowLayoutB.sectionInset = UIEdgeInsetsMake(0, 12, 0, 12);
-   
+        
         collectionViewB = [[UICollectionView alloc]     initWithFrame:CGRectMake(0, yPositionOfCollectionViews, self.backgroundImage.frame.size.width, 30)   collectionViewLayout:flowLayoutB];
         [collectionViewB registerClass:[GetAdviceCollectionViewCell class] forCellWithReuseIdentifier:@"GetAdviceCollectionViewCell"];
         collectionViewB.delegate = self;
@@ -136,7 +143,7 @@
             collectionViewA.hidden = YES;
             collectionViewB.hidden = NO;
         }
-            
+        
         
     }
     
@@ -190,13 +197,7 @@
     [collectionViewA setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     [collectionViewB setFrame:CGRectMake(0, yPositionOfCollectionViews, 351, 50)];
     
-    CGFloat heightOfBackground = collectionViewB.frame.size.height + collectionViewB.frame.origin.y;
     
-    CGFloat newY = (250 - heightOfBackground)/2;
-    
-    [self.backgroundImage setFrame:CGRectMake(12, newY, 351, heightOfBackground)];
-    
-
     [collectionViewA reloadData];
     [collectionViewB reloadData];
     
@@ -215,17 +216,14 @@
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     GetAdviceCollectionViewCell *cellA = [collectionView dequeueReusableCellWithReuseIdentifier:@"GetAdviceCollectionViewCell" forIndexPath:indexPath];
+    UIColor *COLOR_C = [UIColor colorWithRed:0.47 green:0.38 blue:1.0 alpha:1.0]; // SELECTED CELL COLOR
 
-    NSIndexPath *front = 0;
     if( [collectionView isEqual:collectionViewA] ){
         cellA.interest = self.incomingGetInterests[indexPath.row];
         [cellA layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
         if([mySet intersectsSet:self.giveSet]){
-            
-            [collectionViewA moveItemAtIndexPath:indexPath toIndexPath:front];
-            
-            cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+            cellA.backgroundIMage.backgroundColor = COLOR_C;
             NSLog(@"MATCH!");
         }
     } else {
@@ -233,8 +231,7 @@
         [cellA layoutInterests];
         NSSet *mySet = [NSSet setWithObject:cellA.interest.subject];
         if([mySet intersectsSet:self.getSet]){
-            
-            cellA.backgroundIMage.backgroundColor = [UIColor colorWithRed:.47 green:.38 blue:1.0 alpha:1.0];
+            cellA.backgroundIMage.backgroundColor = COLOR_C;
             NSLog(@"MATCH!");
         }
     }
@@ -259,15 +256,15 @@
     return textSize;
 }
 
-- (NSInteger *)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger*)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     NSInteger *numberToReturn;
     if( collectionView == collectionViewB ){
         numberToReturn =  self.userForCell.giveAdviceInterests.count;
-    
+        
     } else {
         numberToReturn =  self.userForCell.getAdviceInterests.count;
     }
-    return MIN(2, numberToReturn);
+    return (MIN(2, numberToReturn));
 }
 
 - (NSInteger) numberOfSectionsInCollectionView:(UICollectionView *)collectionView{

@@ -25,7 +25,7 @@
         self.interestNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.contentView.frame.size.width, self.contentView.frame.size.height)];
         [self.contentView addSubview:self.interestNameLabel];
         
-        self.interestNameLabel.textColor = [UIColor whiteColor];
+        self.interestNameLabel.textColor = [UIColor blackColor];
         
         self.interestNameLabel.font = [UIFont fontWithName:@"Avenir" size:17.0f];
         self.interestNameLabel.textAlignment = NSTextAlignmentLeft;
@@ -62,7 +62,7 @@
     frameB.size.width = self.frame.size.width;
     frameB.origin.y = 0;
     self.backgroundImageStory.frame = frameB;
-    self.backgroundImageStory.layer.borderColor = UIColor.whiteColor.CGColor;
+    self.backgroundImageStory.layer.borderColor = UIColor.blackColor.CGColor;
     self.backgroundImageStory.layer.borderWidth = 2;
     self.backgroundImageStory.layer.cornerRadius = self.backgroundImageStory.frame.size.height/2;
     self.backgroundImageStory.layer.masksToBounds = YES;
@@ -90,7 +90,7 @@
     frameB.size.width = self.frame.size.width;
     frameB.origin.y = 0;
     self.backgroundIMage.frame = frameB;
-    self.backgroundIMage.layer.borderColor = UIColor.whiteColor.CGColor;
+    self.backgroundIMage.layer.borderColor = UIColor.blackColor.CGColor;
     self.backgroundIMage.layer.borderWidth = 2;
     self.backgroundIMage.layer.cornerRadius = self.backgroundIMage.frame.size.height/2;
     self.backgroundIMage.layer.masksToBounds = YES;

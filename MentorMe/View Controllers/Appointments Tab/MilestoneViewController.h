@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) Milestone *milestone;
 @property (nonatomic, strong) PFUser *mentor;
+@property (nonatomic, strong) PFUser *mentee;
 -(void)setUI;
 @end

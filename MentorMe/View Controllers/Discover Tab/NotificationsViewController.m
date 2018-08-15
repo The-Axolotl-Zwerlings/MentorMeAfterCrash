@@ -14,7 +14,6 @@
 #import "InviteDetailsView.h"
 #import "Notifications.h"
 
-
 @interface NotificationsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *notificationsTable;
 @property (strong, nonatomic) NSArray* appointmentArray;
@@ -111,22 +110,27 @@
             UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"accepted" forIndexPath:indexPath];
             //setting up cell
             UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(335, 15, 20, 20)];
-            typeIndicator.image = [UIImage imageNamed:@"checkmark"];
+            typeIndicator.image = [UIImage imageNamed:@"Artboard 1"];
             [typeIndicator setTintColor:[UIColor redColor]];
             [cell.contentView addSubview:typeIndicator];
             cell.contentView.layer.cornerRadius = 8;
             cell.contentView.layer.masksToBounds = true;
             cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
             cell.contentView.layer.borderWidth = 1;
-            UILabel* label = [[UILabel alloc]init];
-            [label setFrame:CGRectMake(8, 0, 400, 50)];
+            UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0, 300, 50)];
             label.numberOfLines = 0;
-            //Notifications* this = self.notificationTypes[indexPath.row];
+            
+            [label setFont:[UIFont fontWithName:@"Avenir" size:15]];
             PFUser* sender = self.notification.sender;
             NSString* message = [sender.name stringByAppendingString:@" has accepted your appointment invite."];
             label.text = message;
             [cell addSubview:label];
-           
+//            NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:message];
+//            [attrString beginEditing];
+//            [attrString addAttribute:NSFontAttributeName
+//                               value:[NSFont fontWithName:@"Helvetica-Bold" size:12.0]
+//                               range:NSMakeRange(4, 6)];
+//            [attrString endEditing];
             return  cell;
         }
     
@@ -140,14 +144,14 @@
             cell.contentView.layer.masksToBounds = true;
             cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
             cell.contentView.layer.borderWidth = 1;
-            UILabel* label = [[UILabel alloc]init];
+            UILabel* label = [[UILabel alloc]initWithFrame:CGRectMake(8, 0, 300, 50)];
             label.numberOfLines = 0;
             //setting up cell
             [label setFrame:CGRectMake(8, 0, 400, 50)];
-            //Notifications* this = self.notificationTypes[indexPath.row];
             PFUser* sender = self.notification.sender;
             NSString* message = [sender.name stringByAppendingString:@" has declined your appointment invite."];
             label.text = message;
+            [label setFont:[UIFont fontWithName:@"Avenir" size:15]];
             [cell.contentView addSubview:label];
             return  cell;
         }
@@ -155,7 +159,7 @@
             NSNumber * x = @(self.subtractor);
             [self.subtractors addObject:x];
             NotificationsTableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"invite" forIndexPath:indexPath];
-            UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(320, 30, 20, 20)];
+            UIImageView* typeIndicator = [[UIImageView alloc]initWithFrame:CGRectMake(335, 25, 20, 20)];
             typeIndicator.image = [UIImage imageNamed:@"envelop"];
             [cell.contentView addSubview:typeIndicator];
             NSInteger t = self.tracker;
@@ -174,11 +178,14 @@
             cell.contentView.layer.borderWidth = 1;
             self.other =  ([appointment.mentor.name isEqualToString:PFUser.currentUser.name]) ? appointment.mentee : appointment.mentor;
             cell.inviter.text = [self.other.name stringByAppendingString:@" wants to meet you"];
+            [cell.inviter setFont:[UIFont fontWithName:@"Avenir" size:15]];
             NSDateFormatter* df = [[NSDateFormatter alloc]init];
             [df setDateFormat:@"MM/dd/yyyy"];
             NSString *result = [df stringFromDate:appointment.meetingDate];
             cell.when.text = [@"On: " stringByAppendingString:result];
+            [cell.when setFont:[UIFont fontWithName:@"Avenir" size:15]];
             cell.where.text = [@"At: " stringByAppendingString:appointment.meetingLocation];
+            [cell.where setFont:[UIFont fontWithName:@"Avenir" size:15]];
             
             return cell;
             }
@@ -196,7 +203,7 @@
         return 65;
     }
     else{
-        return 50;
+        return 55;
     }
 }
 

@@ -34,7 +34,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EzO-xP-1RC">
-                                                    <rect key="frame" x="8" y="58" width="36" height="21"/>
+                                                    <rect key="frame" x="8" y="36" width="36" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="QIs-bu-8bj"/>
                                                     </constraints>
@@ -43,13 +43,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Greta Arnolds wants to schedule an appointment" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bqg-po-c3S">
-                                                    <rect key="frame" x="8" y="8" width="359" height="42"/>
+                                                    <rect key="frame" x="8" y="8" width="359" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PId-Fv-DAJ">
-                                                    <rect key="frame" x="94" y="58" width="65" height="20.5"/>
+                                                    <rect key="frame" x="94" y="36" width="65" height="20.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20.5" id="x5e-QX-ev6"/>
                                                     </constraints>
@@ -61,10 +61,9 @@
                                             <constraints>
                                                 <constraint firstItem="bqg-po-c3S" firstAttribute="leading" secondItem="Lql-XD-hRQ" secondAttribute="leading" constant="8" id="HYm-F4-AEY"/>
                                                 <constraint firstAttribute="trailing" secondItem="bqg-po-c3S" secondAttribute="trailing" constant="8" id="L6Z-an-Eg2"/>
-                                                <constraint firstAttribute="bottom" secondItem="PId-Fv-DAJ" secondAttribute="bottom" constant="8" id="RgQ-ev-xBt"/>
-                                                <constraint firstItem="PId-Fv-DAJ" firstAttribute="top" secondItem="bqg-po-c3S" secondAttribute="bottom" constant="8" id="S0M-KQ-ngP"/>
+                                                <constraint firstItem="PId-Fv-DAJ" firstAttribute="top" secondItem="bqg-po-c3S" secondAttribute="bottom" constant="7.5" id="S0M-KQ-ngP"/>
                                                 <constraint firstItem="EzO-xP-1RC" firstAttribute="leading" secondItem="Lql-XD-hRQ" secondAttribute="leading" constant="8" id="bo6-QT-hih"/>
-                                                <constraint firstItem="EzO-xP-1RC" firstAttribute="top" secondItem="bqg-po-c3S" secondAttribute="bottom" constant="8" id="d1z-we-cyd"/>
+                                                <constraint firstItem="EzO-xP-1RC" firstAttribute="top" secondItem="bqg-po-c3S" secondAttribute="bottom" constant="7.5" id="d1z-we-cyd"/>
                                                 <constraint firstItem="bqg-po-c3S" firstAttribute="top" secondItem="Lql-XD-hRQ" secondAttribute="top" constant="8" id="ydY-2D-bv3"/>
                                                 <constraint firstItem="PId-Fv-DAJ" firstAttribute="leading" secondItem="EzO-xP-1RC" secondAttribute="trailing" constant="50" id="zP2-Fu-wdZ"/>
                                             </constraints>
