@@ -47,7 +47,7 @@
                                                            forKey:NSFontAttributeName];
     [self.segmentedControl setTitleTextAttributes:attributes
                                 forState:UIControlStateNormal];
-    [self.segmentedControl setTintColor:[UIColor colorWithRed:0.40 green:0.97 blue:0.66 alpha:1.0]];
+    [self.segmentedControl setTintColor:[UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0]];
     
     
     self.tabBarController.navigationItem.title = @"Appointments";

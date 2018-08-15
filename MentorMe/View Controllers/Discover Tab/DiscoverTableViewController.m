@@ -323,7 +323,7 @@
     self.segmentedControl.sectionTitles = @[@"Get Advice", @"Give Advice"];
     self.segmentedControl.selectedSegmentIndex = 0;
     self.segmentedControl.backgroundColor = [UIColor clearColor];
-    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor blackColor], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
+    self.segmentedControl.selectedTitleTextAttributes = @{NSForegroundColorAttributeName : [UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
     self.segmentedControl.titleTextAttributes = @{NSForegroundColorAttributeName : [UIColor lightGrayColor], NSFontAttributeName : [UIFont fontWithName:@"Avenir-Heavy" size:25.0]};
     self.segmentedControl.selectionIndicatorColor = [UIColor clearColor];
     self.segmentedControl.selectionStyle = HMSegmentedControlSelectionStyleArrow;

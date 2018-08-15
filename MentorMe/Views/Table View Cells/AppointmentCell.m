@@ -36,13 +36,13 @@
 
 - (void) setAppointment:(AppointmentModel *)appointment {
    
-    self.backgroundImage.backgroundColor = [UIColor whiteColor];//[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
+    self.backgroundImage.backgroundColor = [UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0];//[UIColor colorWithRed:0.22 green:0.97 blue:0.66 alpha:1.0];
     
     _appointment = appointment;
     
     self.otherAttendeeName.adjustsFontSizeToFitWidth = YES;
     
-    self.backgroundImage.layer.borderWidth = 2;
+    self.backgroundImage.layer.borderWidth = 0;
     self.backgroundImage.layer.borderColor = [UIColor blackColor].CGColor;
     
     self.backgroundImage.layer.shadowColor = UIColor.blackColor.CGColor;

@@ -49,7 +49,7 @@
     self.tabBarController.navigationItem.title = @"Profile";
     self.tabBarController.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onTapLogout)];
     
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,860);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width,900);
     self.scrollView.alwaysBounceVertical = YES;
     self.scrollView.showsVerticalScrollIndicator = NO;
     
