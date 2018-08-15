@@ -17,6 +17,11 @@
     UICollectionView *collectionViewB;
 }
 
+extern UIColor *  const COLOR_A;
+extern UIColor *  const COLOR_B;
+
+
+
 @property (strong, nonatomic) PFUser *userForCell;
 
 @property (nonatomic, strong) NSArray *incomingGetInterests;
@@ -36,6 +41,6 @@
 @property (strong, nonatomic) PFImageView *profilePicture;
 
 - (void) loadCell;
-- (void) loadCollectionViews;
+
 
 @end
