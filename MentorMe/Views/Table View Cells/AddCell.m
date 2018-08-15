@@ -25,6 +25,7 @@
 -(void)setUpAdd{
     self.addButton = [[UIButton alloc]initWithFrame:CGRectMake(12, 12, 16, 16)];
     [self.addButton setTitle:@"+" forState:UIControlStateNormal];
+    
     [self.addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [self.addButton addTarget:self action:@selector(touched) forControlEvents:UIControlEventTouchUpInside];
@@ -32,6 +33,7 @@
     
     self.addTextField = [[UITextField alloc]initWithFrame:CGRectMake(40,12, self.contentView.frame.size.width-55, self.contentView.frame.size.height-12)];
     [self.addTextField setPlaceholder:@"Add something..."];
+    self.addTextField.font = [UIFont fontWithName:@"Avenir-Oblique" size:13];
     [self.contentView addSubview:self.addTextField];
 }
 
