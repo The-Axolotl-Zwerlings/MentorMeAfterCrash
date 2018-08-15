@@ -19,7 +19,7 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSArray *compliments = [NSArray arrayWithObjects:@"Great Conversation",@"Down to Earth",@"Useful Advice",@"Friendly",@"Super Knowledgeable", nil];
-    NSArray *icons = [NSArray arrayWithObjects:@"bubbles3.png",@"earth.png",@"eye.png",@"grin.png",@"cool.png", nil];
+    NSArray *icons = [NSArray arrayWithObjects:@"bubbles3.png",@"earthB.png",@"eye.png",@"grin.png",@"cool.png", nil];
 
     ComplimentsCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"ComplimentsCell" forIndexPath:indexPath];
     if(cell == nil){

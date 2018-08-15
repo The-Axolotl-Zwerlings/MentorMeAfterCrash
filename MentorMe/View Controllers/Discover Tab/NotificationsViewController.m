@@ -171,7 +171,6 @@
             self.tracker = self.tracker+1;
             
             //setting cell
-            
             cell.contentView.layer.cornerRadius = 8;
             cell.contentView.layer.masksToBounds = true;
             cell.contentView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -239,14 +238,15 @@
     NSDateFormatter* df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"MM/dd/yyyy"];
     NSString *result = [df stringFromDate:appointment.meetingDate];
+    [self.inviteDetails setDisplay];
     self.inviteDetails.dateLabel.text = result;
     self.inviteDetails.messageLabel.text = appointment.message;
     self.other =  ([appointment.mentor.name isEqualToString:PFUser.currentUser.name]) ? appointment.mentee : appointment.mentor;
     self.inviteDetails.nameLabel.text = self.other.name;
-    self.inviteDetails.companyLabel.text = self.other.company;
-    self.inviteDetails.majorLabel.text = self.other.major;
-    self.inviteDetails.institutionLabel.text = self.other.school;
-    self.inviteDetails.positionLabel.text = self.other.jobTitle;
+    //self.inviteDetails.companyLabel.text = (@"%@ at %@", self.other.company , );
+    self.inviteDetails.majorLabel.text = [NSString stringWithFormat: @"Studied %@ at %@" , self.other.major , self.other.school];//self.other.major;
+   // self.inviteDetails.institutionLabel.text = self.other.school;
+    self.inviteDetails.positionLabel.text = [NSString stringWithFormat: @"%@ at %@" , self.other.jobTitle , self.other.company];//self.other.jobTitle;
     self.inviteDetails.picture.file = self.other.profilePic;
 
     self.notificationIndex = indexPath.row;
