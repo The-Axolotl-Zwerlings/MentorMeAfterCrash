@@ -48,8 +48,14 @@
         self.selectedGiveFilters = [[NSMutableArray alloc]init];
     }
     
-    
-    
+    self.getAdviceTTGView.layer.cornerRadius = 8;
+    self.getAdviceTTGView.clipsToBounds = YES;
+    self.giveAdviceTTGView.layer.cornerRadius = 8;
+    self.giveAdviceTTGView.clipsToBounds = YES;
+    self.giveAdviceTTGView.layer.borderWidth = 2;
+    self.giveAdviceTTGView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.getAdviceTTGView.layer.borderWidth = 2;
+    self.getAdviceTTGView.layer.borderColor = [UIColor blackColor].CGColor;
     [self loadTitles];
     self.giveAdviceTTGView.delegate = self;
     self.getAdviceTTGView.delegate = self;
@@ -73,14 +79,14 @@
 
 - (void) loadTitles {
     PFUser *myUser = [PFUser currentUser];
-    self.schoolLabel.text =  [@"Attends " stringByAppendingString: myUser.school];
-    self.companyLabel.text = [@"Works at " stringByAppendingString: myUser.company];
-    self.locationLabel.text = [@"Lives in " stringByAppendingString: myUser.cityLocation];
+    self.schoolLabel.text =  [NSString stringWithFormat:@"Turn on to find alumni of %@", myUser.school];
+    self.companyLabel.text = [NSString stringWithFormat:@"Turn on to find people who also work at %@", myUser.company];
+    self.locationLabel.text = [NSString stringWithFormat:@"Turn on to find people in the %@ area", myUser.cityLocation];
 
     
-    self.schoolLabel.adjustsFontSizeToFitWidth = YES;
-    self.companyLabel.adjustsFontSizeToFitWidth = YES;
-    self.locationLabel.adjustsFontSizeToFitWidth = YES;
+//    self.schoolLabel.adjustsFontSizeToFitWidth = YES;
+//    self.companyLabel.adjustsFontSizeToFitWidth = YES;
+//    self.locationLabel.adjustsFontSizeToFitWidth = YES;
 }
 
 - (void) loadTagCollectionViews{
@@ -103,16 +109,17 @@
    
     //2. Set Tag Properties
     config.tagTextFont = [UIFont fontWithName:@"Avenir" size:17];
-    config.tagTextColor = [UIColor whiteColor];
+    config.tagTextColor = [UIColor blackColor];
     config.tagSelectedTextColor = [UIColor whiteColor];
-    config.tagBackgroundColor = [UIColor colorWithRed:0.67 green:0.71 blue:1.00 alpha:1.00];
-    config.tagSelectedBackgroundColor = [UIColor colorWithRed:0.38 green:0.12 blue:1.00 alpha:1.00];
+    config.tagBackgroundColor = [UIColor whiteColor];
+    config.tagSelectedBackgroundColor = [UIColor darkGrayColor];
     self.giveAdviceTTGView.horizontalSpacing = 8.0;
     self.giveAdviceTTGView.verticalSpacing = 8.0;
-    config.tagBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
-    config.tagSelectedBorderColor = [UIColor colorWithRed:0.18 green:0.19 blue:0.22 alpha:1.00];
+    config.tagBorderColor = [UIColor blackColor];
+    config.tagSelectedBorderColor = [UIColor blackColor];
     config.tagBorderWidth = 1;
-    config.tagCornerRadius = 6;
+    config.tagCornerRadius = 8;
+    
     
     
     //3. Fetch Query to Fill Tags
