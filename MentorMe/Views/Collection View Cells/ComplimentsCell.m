@@ -34,6 +34,11 @@
     self.contentView.layer.borderColor = [UIColor colorWithRed:0.19 green:0.69 blue:1.00 alpha:1.0].CGColor;
     self.contentView.layer.cornerRadius = 12;
     self.contentView.clipsToBounds = YES;
+    if(self.selectButton != nil){
+        self.selectButton.layer.borderColor = [UIColor blackColor].CGColor
+        ;
+        self.selectButton.layer.borderWidth = 1;
+    }
     
 }
 

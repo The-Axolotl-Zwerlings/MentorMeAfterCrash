@@ -88,6 +88,21 @@
     
     self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.view.frame.size.height + 400);
     
+    self.commentsTextView.layer.borderColor = [UIColor blackColor].CGColor;
+    self.commentsTextView.layer.borderWidth = 2;
+    
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+    
+    UIToolbar* keyboardToolbar = [[UIToolbar alloc] init];
+    [keyboardToolbar sizeToFit];
+    UIBarButtonItem *flexBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                      target:nil action:nil];
+    UIBarButtonItem *doneBarButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                      target:self action:@selector(didPressDone)];
+    keyboardToolbar.items = @[flexBarButton, doneBarButton];
+    self.commentsTextView.inputAccessoryView = keyboardToolbar;
     
     ReviewDataDelegate *reviewDataDelegate = [[ReviewDataDelegate alloc]initWithOrigin:self];
     
@@ -137,7 +152,15 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+- (void)didPressDone{
+    [self.commentsTextView resignFirstResponder];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.35f];
+    CGPoint offset = self.scrollView.contentOffset;
+    offset.y -= 280; // You can change this, but 200 doesn't create any problems
+    [self.scrollView setContentOffset:offset];
+    [UIView commitAnimations];
+}
 -(void)changeCompliment:(NSNumber *)index andSelectedStatus:(NSNumber *)selected{
     NSMutableArray *complimentMutable = [NSMutableArray arrayWithArray:self.complimentsArray];
     [complimentMutable replaceObjectAtIndex:[index integerValue] withObject:selected];
