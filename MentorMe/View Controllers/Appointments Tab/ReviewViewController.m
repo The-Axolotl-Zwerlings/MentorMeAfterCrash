@@ -74,9 +74,9 @@
 
     self.navigationItem.title = @"Review";
     // Stuff relating to star rating view
-    self.ratingView.notSelectedImage = [UIImage imageNamed:@"star-empty.png"];
+    self.ratingView.notSelectedImage = [UIImage imageNamed:@"starNew-empty.png"];
     self.ratingView.halfSelectedImage = [UIImage imageNamed:@"star-half.png"];
-    self.ratingView.fullSelectedImage = [UIImage imageNamed:@"star-full.png"];
+    self.ratingView.fullSelectedImage = [UIImage imageNamed:@"starNew-full.png"];
     self.ratingView.rating = 0;
     self.ratingView.editable = YES;
     self.ratingView.maxRating = 5;
