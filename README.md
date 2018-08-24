@@ -63,6 +63,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
+![mentormereal](https://user-images.githubusercontent.com/35011327/44589231-05d37300-a786-11e8-83ca-c09545083663.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
