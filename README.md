@@ -4,7 +4,7 @@
 
 Professional development is expensive and inaccessible to a large extent. There is a barrier to the mentor-mentee relationship.
 
-*application*
+*Application of Meta*
 
 The user of Meta will be able to search for people that have skills they want and create appointments with them, as well as allow someone with experience to find mentees to support through their career.
 
@@ -15,27 +15,27 @@ Time spent: **240** hours spent in total
 
 *Required*
 
-[X] Page to list more details about a person to indicate interests and scope for mentorship
-[X] Profile page for the current user to see their information
-[X] Feature enabling current user to edit their information/picture
-[X] Tags for interests, roles etc. 
-[X] Discover page with option to look at people to get advice from and give advice to
-[X] Filtering by school, interests, company
-[X] Creating appointments with someone (including picking the time, and sending a message)
-[X] Being able to see your upcoming and past appointments with people
-[X] Page to look at the details of your appointment
+- [X] Page to list more details about a person to indicate interests and scope for mentorship
+- [X] Profile page for the current user to see their information
+- [X] Feature enabling current user to edit their information/picture
+- [X] Tags for interests, roles etc. 
+- [X] Discover page with option to look at people to get advice from and give advice to
+- [X] Filtering by school, interests, company
+- [X] Creating appointments with someone (including picking the time, and sending a message)
+- [X] Being able to see your upcoming and past appointments with people
+- [X] Page to look at the details of your appointment
 
 
 
 
 *Optional*
 
-[X] Reviews given to mentors after meeting
-[X] Gamification, giving compliments (badges) and ratings to mentors
-[X] Personal Checklist/Notes/Milestones w/ different mentors, accessible from 
-[X] Notification/Confirmation System
-[X] Filters by location (using google API) 
-[X] Segmented control appears as scrolling horizontally
+- [X] Reviews given to mentors after meeting
+- [X] Gamification, giving compliments (badges) and ratings to mentors
+- [X] Personal Checklist/Notes/Milestones w/ different mentors, accessible from 
+- [X] Notification/Confirmation System
+- [X] Filters by location (using google API) 
+- [X] Segmented control appears as scrolling horizontally
 
 The following **additional** features are implemented:
 
