@@ -39,7 +39,12 @@ Time spent: **240** hours spent in total
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [X] Cohesion of colors for the app
+- [X] Logout button prompts a Cancel or Logout option
+- [X] Profile picture when clicked becomes larger
+- [X] Informs you whether you are the mentee/mentor at the meeting and also whether the meeting is confirmed or not
+- [X] Interests on the current user/other users profile are scrollable in the horizontal direction
+- [X] Persistent log-in
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -56,7 +61,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+We did not expect to be making table view cells from just code, so that was definitely a set-back. We also made the mistake of initializing the cells in the wrong place, so at one point our app was taking forever to load and we could not figure out why. Managing our work with version control was a pretty new experience for all of us as well so when our first conflict happened and we lost some important code, we made a new repository which in hindsight was the wrong course of action. We 
 
 ## Credits
 
@@ -64,7 +69,6 @@ List an 3rd party libraries, icons, graphics, or other assets you used in your a
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 - [DateTools](https://github.com/MatthewYork/DateTools) - date formatter library
-- [GPSKit](iOS) - 
 - [Parse](https://github.com/parse-community/Parse-SDK-iOS-OSX) - library for cloud storage, user athentication, and more 
 - [ParseUI](https://github.com/parse-community/Parse-SDK-iOS-OSX) - library used for making PFFiles into images
 - [TTGTagCollectionView](https://github.com/zekunyan/TTGTagCollectionView) - simple tag creation library
