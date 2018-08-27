@@ -1,54 +1,41 @@
+# Final Project - *Meta*
 
-
-**Pods to install**
-- DateTools
-- GPSKit
-
-**Instructions**
-1) Navigate to your project on Terminal
-2) Open Podfile
-3) Make sure **DateTools** and **GPSKit** are listed as pods to install
-4) Run pod install on Terminal
-
-
-# Final Project - *Mentor Me*
-
-**MentorMe** tackles this problem:
+**Meta** tackles this problem:
 
 Professional development is expensive and inaccessible to a large extent. There is a barrier to the mentor-mentee relationship.
 
 *application*
 
-Helps you meet up with people to get advice on your career.
+The user of Meta will be able to search for people that have skills they want and create appointments with them, as well as allow someone with experience to find mentees to support through their career.
 
 
-Time spent: **X** hours spent in total
+Time spent: **240** hours spent in total
 
 ## User Stories
 
 *Required*
 
-* Profile to indicate interests and scope for mentorship
-* Tags for interests, roles etc. 
-* Discovery mentors based on professional interests
-* ML algorithms
-* Connecting People
-* Appointments/Scheduling/Invites, etc.
-* Waitlist
-* (fake calendar)
+[X] Page to list more details about a person to indicate interests and scope for mentorship
+[X] Profile page for the current user to see their information
+[X] Feature enabling current user to edit their information/picture
+[X] Tags for interests, roles etc. 
+[X] Discover page with option to look at people to get advice from and give advice to
+[X] Filtering by school, interests, company
+[X] Creating appointments with someone (including picking the time, and sending a message)
+[X] Being able to see your upcoming and past appointments with people
+[X] Page to look at the details of your appointment
+
+
 
 
 *Optional*
 
-* Profile Rating/Feedback (mentee ↔ mentor)
-* Gamification (rewards/achievements)
-* Personal Checklist/Notes/Milestones w/ different mentors
-* Books/Publications/Preferred Reading in profile section
-* FaceTime integration (best times and methods to meet up based on location and time and preference)
-
-
-
-
+[X] Reviews given to mentors after meeting
+[X] Gamification, giving compliments (badges) and ratings to mentors
+[X] Personal Checklist/Notes/Milestones w/ different mentors, accessible from 
+[X] Notification/Confirmation System
+[X] Filters by location (using google API) 
+[X] Segmented control appears as scrolling horizontally
 
 The following **additional** features are implemented:
 
@@ -56,8 +43,8 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1. using to test issue
-2.
+1. How hard would it be to enable push notifications?
+2. How do we conserve the use of data on our app to make it run faster?
 
 ## Video Walkthrough
 
@@ -76,6 +63,14 @@ Describe any challenges encountered while building the app.
 List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
+- [DateTools](https://github.com/MatthewYork/DateTools) - date formatter library
+- [GPSKit](iOS) - 
+- [Parse](https://github.com/parse-community/Parse-SDK-iOS-OSX) - library for cloud storage, user athentication, and more 
+- [ParseUI](https://github.com/parse-community/Parse-SDK-iOS-OSX) - library used for making PFFiles into images
+- [TTGTagCollectionView](https://github.com/zekunyan/TTGTagCollectionView) - simple tag creation library
+- [MBProgressHUD](https://github.com/jdg/MBProgressHUD) - loading display library
+- [TLTagsControl](https://github.com/mohlman3/TLTagsControl.git) - another tag creation library (with deletion functionality)
+- [HMSegmentedControl](https://github.com/HeshamMegid/HMSegmentedControl) - pretty segmented control library
 
 ## License
 
